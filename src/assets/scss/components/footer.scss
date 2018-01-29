@@ -16,6 +16,9 @@
 			color: $dark-gray;
 		}
 	}
+  .contact {
+    text-align: center;
+  }
 }
 
 @include breakpoint(medium) {
