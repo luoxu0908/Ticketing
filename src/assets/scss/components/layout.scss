@@ -14,11 +14,19 @@ html, body {
   max-width: 1400px;
   margin: 0 auto;
 }
+#mainContent {
+  min-height: 400px;
+}
 
-.page-noframe #main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.page-noframe {
+  #main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #mainContent {
+    min-height: auto;
+  }
 }
 
 #header {
