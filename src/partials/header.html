@@ -1,39 +1,67 @@
 <header id="header">
-  <a href="{{root}}index.html" id="bizcubeTicketing">Bizcube Ticketing</a>
+  <a href="{{root}}index.html" id="logo">Genesis</a>
   <nav>
     <ul class="dropdown menu" data-dropdown-menu>
-      <li style="display:none" id="navPackages"><a href="{{root}}Ticketing/packages.html"><i class="icon"><img src="{{root}}assets/img/icon-mid-packages.png" /></i> Prdocuts</a></li>
-      <li style="display:none"id="navReport"><a href="#"><i class="icon"><img src="{{root}}assets/img/icon-mid-reports.png" /></i> Reports</a></li>
-      <li id="navUser"><a href="#"><i class="icon"><img src="{{root}}assets/img/icon-mid-user.png" /></i> User</a>
-        <ul class="menu vertical">
-          <li><a href="{{root}}Ticketing/profile.html">Profile</a>
-          <li><a href="{{root}}Ticketing/changeMyPwd.html">Change Password</a>
-          <li><a href="#" id="logOut">Logout</a>
-        </ul>
+      <li>
+        <a href="{{root}}" title="Home"><i class="icon"><img src="{{root}}assets/img/icon-home.png" /></i> Home</a></li>
+      <li>
+        <a href="#" id="navProfile" title="Profile"><i class="icon"><img src="{{root}}assets/img/icon-mid-profile.png" /></i> Profile</a></li>
+      <li>
+        <a href="#" id="navLogout"><i class="icon"><img src="{{root}}assets/img/icon-logout.png" /></i> Logout</a>
       </li>
-      <li style="display:none" id="navSettings"><a href="{{root}}index.htm"><i class="icon"><img src="{{root}}assets/img/icon-mid-settings.png" /></i> Settings</a></li>
+      <li>
+        <a href="#" id="navMainMenu"><i class="icon"><img src="{{root}}assets/img/icon-logout.png" /></i> Main Menu</a>
+      </li>
     </ul>
   </nav>
 
-<div id="mainMenuLeft" class="off-canvas position-left" data-off-canvas>
-
+<div id="mainMenu">
     <button class="close-button" aria-label="Close menu" type="button" data-close>
       <span aria-hidden="true">&times;</span>
     </button>
-    <nav>
-      <ul class="menu vertical accordion-menu" data-accordion-menu>
-        <li style="display:none" id="navPackages"><a href="{{root}}Ticketing/packages.html"><i class="icon"><img src="{{root}}assets/img/icon-mid-packages.png" /></i> Prdocuts</a></li>
-        <li style="display:none" id="navReport"><a href="#"><i class="icon"><img src="{{root}}assets/img/icon-mid-reports.png" /></i> Reports</a></li>
-        <li id="navUser"><a href="#"><i class="icon"><img src="{{root}}assets/img/icon-mid-user.png" /></i> User</a>
-          <ul class="menu vertical nested">
-            <li><a href="{{root}}Ticketing/profile.html">Profile</a>
-            <li><a href="{{root}}Ticketing/changeMyPwd.html">Change Password</a>
-            <li><a href="#" id="logOut">Logout</a>
-          </ul>
-        </li>
-        <li style="display:none" id="navSettings"><a href="#"><i class="icon"><img src="{{root}}assets/img/icon-mid-settings.png" /></i> Settings</a></li>
-      </ul>
-    </nav>
-</div>
+    <ul class="module">
+      <li><a href="{{root}}}/contacts/" data-menu="contacts">Contacts</a></li>
+      <li><a href="{{root}}}/communications/" data-menu="communications">Communications</a></li>
+      <li><a href="{{root}}}/volunteers/" data-menu="volunteers">Volunteers</a></li>
+      <li><a href="{{root}}}/donations/" data-menu="donations">Donations</a></li>
+      <li><a href="{{root}}}/file-manager/" data-menu="fileManager">File Manager</a></li>
+      <li><a href="{{root}}}/reports/" data-menu="reports">Reports</a></li>
+      <li><a href="{{root}}}/imports/" data-menu="imports">Imports</a></li>
+      <li><a href="{{root}}}/settings/" data-menu="settings">Settings</a></li>
+    </ul>
+    <ul id="moduleMenu-contacts" class="moduleMenu">
+      <li><a href="{{root}}}/contacts/">Search</a></li>
+      <li><a href="{{root}}}/contacts/">Group Management</a></li>
+    </ul>
+    <ul id="moduleMenu-communications" class="moduleMenu">
+      <li><a href="{{root}}}/communications/">Schedule Email</a></li>
+    </ul>
+    <ul id="moduleMenu-volunteers" class="moduleMenu">
+      <li><a href="{{root}}}/volunteers/life-cycle">Life Cycle</a></li>
+      <li><a href="{{root}}}/volunteers/achievement">Achievement</a></li>
+      <li><a href="{{root}}}/volunteers/attendance">Attendence</a></li>
+      <li><a href="{{root}}}/volunteers/door-knocking">Door Knocking</a></li>
+    </ul>
+    <ul id="moduleMenu-donations" class="moduleMenu">
+      <li><a href="{{root}}}/donations/batch">Batch Donations</a></li>
+      <li><a href="{{root}}}/donations/convert-tax-receipts">Convert Tax Receipts</a></li>
+    </ul>
+    <ul id="moduleMenu-fileManager" class="moduleMenu">
+      <li><a href="{{root}}}/file-manager/upload"></a>Upload</li>
+      <li><a href="{{root}}}/file-manager/management/">Files Management</a></li>
+    </ul>
+    <ul id="moduleMenu-reports" class="moduleMenu">
+      <li><a href="{{root}}}/reports/">Reports</a></li>
+    </ul>
+    <ul id="moduleMenu-imports" class="moduleMenu">
+      <li><a href="{{root}}}/imports/">Imports</a></li>
+    </ul>
+    <ul id="moduleMenu-settings" class="moduleMenu">
+      <li><a href="{{root}}}/settings/lookup">Lookup</a></li>
+      <li><a href="{{root}}}/settings/menu">Menu</a></li>
+      <li><a href="{{root}}}/settings/slickgrid">Slickgrid</a></li>
+      <li><a href="{{root}}}/settings/webparts">Web Parts</a></li>
+    </ul>
+</div><!-- main menu -->
 </header>
 <!-- header end -->
