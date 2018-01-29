@@ -1,23 +1,7 @@
-html,
-body {
-    height: 100%;
-}
-
 #main {
 	background: $light-gray;
 	//@include position(relative);
   //height: 100%;
-}
-
-.page-noframe {
-	#main {
-
-	}
-	#mainContent {
-
-    padding-top: 1rem;
-		//padding-top: $global-margin;
-	}
 }
 
 #mainContent {

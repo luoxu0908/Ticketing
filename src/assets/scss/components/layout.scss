@@ -1,4 +1,43 @@
-#main {
+html, body {
+  height: 100%;
+}
 
+#main {
+  display: grid;
+  grid-template-rows: 100px auto 60px;
+  grid-template-areas:
+    'h h h h h h h h h h h h'
+    'mc mc mc mc mc mc mc mc mc mc mc mc'
+    'f f f f f f f f f f f f';
+
+  height: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.page-noframe #main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#header {
+  grid-area: h;
+
+}
+
+#footer {
+  grid-area: f;
+}
+
+#mainContent {
+  grid-area: mc;
+}
+
+@include breakpoint(medium) {
+
+}
+
+@include breakpoint(large) {
 
 }

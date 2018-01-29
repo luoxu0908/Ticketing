@@ -1,11 +1,12 @@
 #footer {
-  border-top: 1px solid $complementary-light-color2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-	.inner {
-		background: $white;
-    font-size: $small-font-size;
-		padding: $global-mobile-padding;
-	}
+  border-top: 1px solid $complementary-light-color2;
+	background: $white;
+  font-size: $small-font-size;
+	padding: $global-padding $global-edge-padding;
 
 	a {
 		color: $black;
@@ -19,9 +20,7 @@
 
 @include breakpoint(medium) {
   #footer {
-    .inner {
-      padding: $global-edge-padding;
-    }
+
     a {
       display: inline;
       margin: 0 10px 0 0;

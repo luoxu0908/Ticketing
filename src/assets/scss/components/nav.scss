@@ -1,5 +1,4 @@
 nav {
-
   text-transform: uppercase;
 
   //menu links
@@ -10,12 +9,12 @@ nav {
     }
   }
 
-
   .dropdown.menu .is-active > a {
     @include activeDropDown;
   }
 
   .submenu {
+    background: $complementary-dark-color2;
     color: $complementary-light-color1;
     margin-top: 1.35rem;
 
