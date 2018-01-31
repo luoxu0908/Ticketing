@@ -2,18 +2,21 @@
 	//@include position(absolute, $top: 0, $left: 0, $right: 0);
 	//-webkit-box-shadow: 0 1px 4px 0 $black;
   //box-shadow: 0 1px 4px 0 $black;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
 
-  background: $complementary-light-color1;
-  border-bottom: 5px solid $complementary-dark-color3;
-	padding: $global-padding $global-edge-padding;
-	position: relative;
-	z-index: 1;
+	.topBar {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+	  background: $complementary-light-color1;
+	  border-bottom: 5px solid $complementary-dark-color3;
+		padding: $global-padding $global-edge-padding;
+		position: relative;
+		z-index: 1;
+	}
 }
 
-#bizcubeTicketing {
+#logo {
 	color: $dark-gray;
 	font-weight: bold;
 	font-size: 22px;
@@ -50,7 +53,17 @@
 }
 
 #mainMenu {
+	background: $complementary-dark-color3;
+	width: 100%;
 
+	button.close-button {
+		background: $complementary-dark-color3;
+		color: $complementary-light-color1;
+
+		&:hover {
+			color: $complementary-light-color2;
+		}
+	}
 }
 
 #mainMenuLeft {

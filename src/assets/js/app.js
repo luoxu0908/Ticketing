@@ -82,6 +82,35 @@ $(function(){
     return false;
   });//logout
 
+  //menu
+  $('#navMainMenu').click(function() {
+    var mainMenuContainer = $('#mainMenuContainer');
+    if(mainMenuContainer.is(':visible')) {
+      mainMenuContainer.slideUp();
+    }
+    else {
+      mainMenuContainer.slideDown();
+    }
+
+    return false;
+  });
+  $('#mainMenuContainer .close-button').click(function() {
+    var mainMenuContainer = $('#mainMenuContainer');
+    console.log('close');
+      mainMenuContainer.hide();
+
+    return false;
+  });
+
+  $('#mainMenu .module a').click(function() {
+
+    var target = $(this).data('menu');
+    console.log('close show ' + target);
+    $('.moduleMenu').hide();
+    $('#moduleMenu-'+target).show();
+    return false;
+  });
+
   $('.tabBoxButtonClose,.tabBoxButtonSubmit').click(function(){
     var targetRef = $(this).parents('.tabBoxContent');
     $(targetRef).hide();
@@ -168,13 +197,21 @@ $(function(){
   //set normal hyperlink to open new window if its external domain
   $('a').click(function() {
     var href = $(this).attr('href');
+    var redirect = true;
+
+    //links can include data-redirect="false", to prevent redirect
+    if (typeof $(this).data('redirect') !== 'undefined' && typeof $(this).data('redirect') === 'boolean') {
+      redirect = $(this).data('redirect');
+    };
+
     var host = window.host;
     if( location.hostname === this.hostname || !this.hostname.length ) {
-      window.location.href = href;
+      if (redirect)
+        window.location.href = href;
     }
-    else
+    else {
       window.open(href,'','');
-
+    }
     return false;
   });
 });//onready
