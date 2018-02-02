@@ -15,11 +15,12 @@
     </ul>
   </div>
   <div id="mainMenuContainer">
-    <button class="close-button" aria-label="Close menu" type="button" data-close>
-      <span aria-hidden="true">&times;</span>
-    </button>
+    <header>
+      <button class="close-button" aria-label="Close menu" type="button" data-close>
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </header>
     <nav id="mainMenu">
-
       <ul class="module">
         <li><a href="{{root}}/contacts/" data-menu="contacts" >Contacts</a></li>
         <li><a href="{{root}}/communications/" data-menu="communications" >Communications</a></li>
@@ -64,6 +65,11 @@
         <li><a href="{{root}}/settings/webparts">Web Parts</a></li>
       </ul>
     </nav><!-- main menu -->
+    <footer>GENESIS</footer>
   </div>
+  <form id="searchForm" action="" method="GET">
+    <input type="text" id="searchField" name="searchField">
+    <button href="">Search</button>
+  </form>
 </header>
 <!-- header end -->

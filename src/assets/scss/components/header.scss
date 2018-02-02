@@ -1,11 +1,7 @@
 #header {
-	//@include position(absolute, $top: 0, $left: 0, $right: 0);
-	//-webkit-box-shadow: 0 1px 4px 0 $black;
-  //box-shadow: 0 1px 4px 0 $black;
-
 	.topBar {
 		display: flex;
-		justify-content: space-between;
+		justify-content: flex-end;
 		align-items: center;
 
 	  background: $contrast-color1;
@@ -19,57 +15,16 @@
 
 #logo {
 	color: $white;
+	display: none;
 	font-weight: bold;
 	font-size: 22px;
 	text-transform: uppercase;
 }
 
-.title-bar {
-  @include global-box($border-radius: 0, $type: 'default');
-  -webkit-box-shadow: 0 1px 4px 0 $black;
-	box-shadow: 0 1px 4px 0 $black;
-
-  background: $complementary-light-color1;
-  color: inherit;
-  margin-bottom: 0;
-
-
-}
-
-#mainMenu {
-	background: $complementary-dark-color3;
-	width: 100%;
-
-	button.close-button {
-		background: $complementary-dark-color3;
-		color: $complementary-light-color1;
-
-		&:hover {
-			color: $complementary-light-color2;
-		}
-	}
-}
-
-#mainMenuLeft {
-	background: $complementary-dark-color3;
-	padding-top: 5rem;
-	width: 100%;
-
-
-	button.close-button {
-		background: $complementary-dark-color3;
-		color: $complementary-light-color1;
-
-		&:hover {
-			color: $complementary-light-color2;
-		}
-	}
-}
-
 @include breakpoint(small only) {
 		#header {
 			.topBar {
-				justify-content: flex-end;
+
 			}
 		}
 		#logo {
@@ -78,33 +33,18 @@
 
 
 }
+
+
 @include breakpoint(medium) {
-		#logo {
-			display: block;
-		}
-
-}
-
-
-
-
-//prevent top-bar from showing briefly when initially loads
-.no-js {
-  @include breakpoint(small only) {
-    .top-bar {
-      display: none;
+  #header {
+		.topBar {
+      justify-content: space-between;
     }
-		#mainMenu, #mainMenuLeft {
-			display: none;
-		}
-  }
-
-  @include breakpoint(medium) {
-    .title-bar {
-      display: none;
-    }
-		#mainMenu {
-			display: none;
-		}
-  }
+	}
+	#logo {
+		display: block;
+	}
+	#mainMenu {
+		display: none;
+	}
 }

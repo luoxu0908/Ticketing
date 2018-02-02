@@ -104,6 +104,9 @@ button, .button, [type="button"], [type="reset"], [type="submit"] {
 .close-button {
   background: none;
   margin-bottom: 0;
+	top: 0;
+	right: 0;
+	
   &:hover {
     background: none;
     color: $medium-gray;

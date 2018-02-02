@@ -1,18 +1,35 @@
 #mainMenuContainer {
-  display: none;
-  height: 400px;
-  overflow: hidden;
-  position: relative;
+  @include position(absolute,$top: 0, $right: 0, $left: 0, $zIndex: 50);
 
+  display: none;
+  height: 100%;
+  overflow: hidden;
+
+  header {
+    background: $complementary-dark-color3;
+    @include position(absolute, $top: 0, $right: 0, $left: 0, $zIndex: 51);
+  }
+
+  footer {
+    background: $complementary-dark-color3;
+    @include position(absolute, $bottom: 0, $right: 0, $left: 0, $zIndex: 51);
+
+    color: $white;
+    font-size: 0.8rem;
+    padding: $global-mobile-padding;
+    text-align: center;
+  }
 }
 
 #mainMenu {
-  @include position(absolute, $top: 0, $right: 0, $left: 0, $zIndex: 50);
+  @include position(relative, $zIndex: 50);
+
+  background: $complementary-dark-color3;
   display: grid;
-  grid-template-columns: 30% repeat(auto-fit, minmax(70%,1fr));
-  grid-template-rows: 400px;
-  //visibility: hidden;
-  //text-transform: uppercase;
+  grid-template-columns: 100%;
+  grid-template-rows: 100%;
+  height: 100%;
+  overflow: hidden;
   width: 100%;
 
   //menu links
@@ -31,7 +48,7 @@
     height: 100%;
     margin: 0;
     overflow-y:auto;
-    padding: 0;
+    padding: 4rem 0 4rem;
 
 
     li {
@@ -47,44 +64,19 @@
   .module {
     //min-width: 300px;
     //width: 20%;
-      background: $complementary-dark-color2;
+    a {
+      background: $complementary-dark-color2 url(../img/icon-mid-chevron-right.png) no-repeat center right;
 
-      a:hover {
+      &:hover {
         @include activeDropDown;
-        background: $complementary-dark-color3;
+        background: $complementary-dark-color3 url(../img/icon-mid-chevron-right.png) no-repeat center right;
       }
+    }
   }
   .moduleMenu {
     //display: none;
     //min-width: 300px;
     //width: 80%;
-  }
-
-  .dropdown.menu .is-active > a {
-    @include activeDropDown;
-  }
-
-  .submenu {
-    background: $complementary-dark-color2;
-    color: $complementary-light-color1;
-    margin-top: 1.35rem;
-
-    li {
-      border-top: 1px solid $complementary-light-color3;
-      &:first {
-        border-top: none;
-      }
-    }
-      //submenu links
-      a {
-        color: $complementary-light-color1;
-        text-transform: none;
-        &:hover {
-          border-radius: 0;
-          background: $complementary-dark-color3;
-          color: $complementary-light-color1;
-        }
-      }
   }
 }
 
@@ -99,10 +91,14 @@
 
   li {
     border-right: 1px solid rgba(255, 255, 255, 0.2);
+    display: none;
     font-size: 0.9rem;
     list-style: none;
     padding: 0 5px;
 
+    &:last-child {
+      display: inline;
+    }
 
     a {
       color: $white;
@@ -133,27 +129,6 @@
 
 }
 
-@include breakpoint(small) {
-
-  #navSecondary {
-
-    li {
-      display: none;
-      &:last-child {
-        display: inline;
-      }
-    }
-  }
-}
-@include breakpoint(medium) {
-  #navSecondary {
-
-    li {
-      display: block;
-    }
-  }
-}
-
 .menu-icon {
 	//@include border-radius();
 	background-color: $contrast-color1;
@@ -175,49 +150,33 @@
 	}
 }
 
-#mainMenuLeft nav {
-  a {
-    background: $complementary-dark-color3;
-    color: $complementary-light-color1;
-    &:hover {
-      @include border-radius($radius: 0);
-      background: darken($complementary-dark-color2,30);
-      color: $complementary-light-color1;
+@include breakpoint(small) {
+
+}
+@include breakpoint(medium) {
+  #navSecondary {
+    li {
+      display: block;
     }
   }
-  .dropdown.menu .is-active > a {
-    @include border-radius($radius: 0);
-    @include activeDropDown;
+  #mainMenuContainer {
+    @include position(relative);
+    height: 400px;
 
-    background: $complementary-dark-color2;
-    color: $complementary-light-color1;
+    header,footer {
+      display: none;
+    }
   }
 
-  .submenu {
-    border: 1px solid $complementary-dark-color3;
-    color: $complementary-dark-color1;
-    margin-top: 0;
-    margin-left: 0;
-
+  #mainMenu {
+    display: grid;
+    grid-template-columns: 30% repeat(auto-fit, minmax(70%,1fr));
+    grid-template-rows: 400px;
     width: 100%;
 
-    li {
-      border-top: 1px solid $complementary-dark-color3;
-      &:first {
-        border-top: none;
-      }
+    ul {
+      padding: 0;
     }
-
-      a {
-        background: $complementary-dark-color2;
-        color: $complementary-light-color1;
-        padding-left: 60px;
-        text-transform: none;
-        &:hover {
-          border-radius: 0;
-          background: $complementary-dark-color3;
-          color: $complementary-light-color1;
-        }
-      }
   }
+
 }
