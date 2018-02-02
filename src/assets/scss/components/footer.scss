@@ -1,32 +1,27 @@
-#footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  border-top: 1px solid $complementary-light-color2;
-	background: $white;
-  font-size: $small-font-size;
-	padding: $global-padding $global-edge-padding;
-
-	a {
-		color: $black;
-    display: block;
-		margin: 0px;
-		&:hover {
-			color: $dark-gray;
-		}
-	}
-  .contact {
-    text-align: center;
-  }
-}
 
 @include breakpoint(medium) {
   #footer {
+    border-top: 1px solid $complementary-light-color2;
+  	background: $white;
+    display: block;
+    font-size: $small-font-size;
+  	padding: $global-padding $global-edge-padding;
 
-    a {
-      display: inline;
-      margin: 0 10px 0 0;
+    .contact {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  	a {
+  		color: $black;
+      display: inline-block;
+  		margin: 0px 10px;
+  		&:hover {
+  			color: $dark-gray;
+  		}
+  	}
+    .contact {
+      text-align: center;
     }
   }
 
