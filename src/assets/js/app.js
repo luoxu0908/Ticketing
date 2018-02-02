@@ -41,6 +41,34 @@ $(function(){
     appCookie = Cookies.getJSON('appCookie');
   }
 
+  //set normal hyperlink to open new window if its external domain
+  //set data-redirect to false if don't want the function below to trigger
+  //remove this function if its too troublesome or slows performance...
+  $('a').filter(function() {
+    if ($(this).parents('.module').length) {
+      return false;
+    }
+    if (typeof $(this).data('redirect') !== 'undefined' && !$(this).data('redirect')) {
+      return false;
+    };
+    if (typeof $(this).parents('ul').data('redirect') !== 'undefined' && !$(this).parents('ul').data('redirect')) {
+      return false;
+    }
+    return true;
+  }).click(function() {
+    var href = $(this).attr('href');
+    var redirect = true;
+
+    var host = window.host;
+    if( location.hostname === this.hostname || !this.hostname.length ) {
+        window.location.href = href;
+    }
+    else {
+      window.open(href,'','');
+    }
+    return false;
+  });
+
   if (!appCookie.username && pageName.toLowerCase() != 'login') {
     var pageURL = window.location.href;
     if (typeof Cookies.getJSON('appCookie') !== 'undefined') {
@@ -194,26 +222,7 @@ $(function(){
     });
   });//editLinkForm
 
-  //set normal hyperlink to open new window if its external domain
-  $('a').click(function() {
-    var href = $(this).attr('href');
-    var redirect = true;
 
-    //links can include data-redirect="false", to prevent redirect
-    if (typeof $(this).data('redirect') !== 'undefined' && typeof $(this).data('redirect') === 'boolean') {
-      redirect = $(this).data('redirect');
-    };
-
-    var host = window.host;
-    if( location.hostname === this.hostname || !this.hostname.length ) {
-      if (redirect)
-        window.location.href = href;
-    }
-    else {
-      window.open(href,'','');
-    }
-    return false;
-  });
 });//onready
 
 function GetBasicInformation(personID) {
