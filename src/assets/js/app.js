@@ -124,8 +124,7 @@ $(function(){
   });
   $('#mainMenuContainer .close-button').click(function() {
     var mainMenuContainer = $('#mainMenuContainer');
-    console.log('close');
-      mainMenuContainer.hide();
+    mainMenuContainer.hide();
 
     return false;
   });
