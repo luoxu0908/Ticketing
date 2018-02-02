@@ -112,29 +112,68 @@ $(function(){
 
   //menu
   $('#navMainMenu').click(function() {
-    var mainMenuContainer = $('#mainMenuContainer');
-    if(mainMenuContainer.is(':visible')) {
-      mainMenuContainer.slideUp();
-    }
-    else {
-      mainMenuContainer.slideDown();
-    }
-
+    console.log('mainMenuToggle click');
+    mainMenuToggle();
     return false;
   });
   $('#mainMenuContainer .close-button').click(function() {
-    var mainMenuContainer = $('#mainMenuContainer');
-    mainMenuContainer.hide();
-
+    console.log('mainMenuToggle click');
+    mainMenuToggle();
     return false;
   });
 
-  $('#mainMenu .module a').click(function() {
+  function mainMenuToggle() {
+    console.log('mainMenuToggle');
+    var mainMenuContainer = $('#mainMenuContainer');
 
-    var target = $(this).data('menu');
-    console.log('close show ' + target);
-    $('.moduleMenu').hide();
-    $('#moduleMenu-'+target).show();
+    if (Foundation.MediaQuery.current == 'small')
+    {
+      var position = mainMenuContainer.offset();
+      console.log(position.left );
+      if(position.left < 0) {
+        console.log('slideout');
+        mainMenuContainer.animate({
+          left:'0'
+        },350);
+      }
+      else {
+        console.log('slidein');
+        mainMenuContainer.animate({
+          left:'-100%'
+        },350);
+      }
+    }
+    else {
+      if(mainMenuContainer.is(':visible')) {
+        console.log('slideup');
+        mainMenuContainer.slideUp();
+      }
+      else {
+        console.log('slidedown');
+        mainMenuContainer.slideDown();
+      }
+    }
+  }
+
+  $('#mainMenu .module a').click(function() {
+    var targetId = $(this).data('menu');
+    var targetObj = $('#moduleMenu-'+targetId);
+
+    if (Foundation.MediaQuery.current == 'small')
+    {
+      if (targetObj.find('li').length > 1) {
+        $('.module').hide();
+        $('.moduleMenu').hide();
+        targetObj.show();
+      }
+      else {
+        window.location.href = $(this).prop('href');
+      }
+    }
+    else {
+      $('.moduleMenu').hide();
+      targetObj.show();
+    }
     return false;
   });
 

@@ -21,18 +21,6 @@
 	text-transform: uppercase;
 }
 
-@include breakpoint(small only) {
-		#header {
-			.topBar {
-
-			}
-		}
-		#logo {
-			display: none;
-		}
-
-
-}
 
 
 @include breakpoint(medium) {

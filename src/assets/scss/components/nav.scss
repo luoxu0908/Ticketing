@@ -1,9 +1,9 @@
 #mainMenuContainer {
-  @include position(absolute,$top: 0, $right: 0, $left: 0, $zIndex: 50);
+  @include position(absolute,$top: 0, $right: 0, $left: -100%, $zIndex: 50);
 
-  display: none;
   height: 100%;
   overflow: hidden;
+  width: 100%;
 
   header {
     background: $complementary-dark-color3;
@@ -150,9 +150,7 @@
 	}
 }
 
-@include breakpoint(small) {
 
-}
 @include breakpoint(medium) {
   #navSecondary {
     li {
@@ -160,8 +158,9 @@
     }
   }
   #mainMenuContainer {
-    @include position(relative);
+    @include position(relative,$left:0);
     height: 400px;
+    display: none;
 
     header,footer {
       display: none;
@@ -172,7 +171,6 @@
     display: grid;
     grid-template-columns: 30% repeat(auto-fit, minmax(70%,1fr));
     grid-template-rows: 400px;
-    width: 100%;
 
     ul {
       padding: 0;
