@@ -8,8 +8,9 @@
 		justify-content: space-between;
 		align-items: center;
 
-	  background: $complementary-light-color1;
-	  border-bottom: 5px solid $complementary-dark-color3;
+	  background: $contrast-color1;
+	  border-bottom: 5px solid $light-gray;
+		height: 100%;
 		padding: $global-padding $global-edge-padding;
 		position: relative;
 		z-index: 1;
@@ -17,7 +18,7 @@
 }
 
 #logo {
-	color: $dark-gray;
+	color: $white;
 	font-weight: bold;
 	font-size: 22px;
 	text-transform: uppercase;
@@ -32,24 +33,7 @@
   color: inherit;
   margin-bottom: 0;
 
-  .menu-icon {
-		//@include border-radius();
-    background-color: $complementary-dark-color3;
-    height: 30px;
-		margin-left: 0;
-    margin-right: 0.8rem;
-		width: 30px;
 
-    &:hover {
-      background-color: $complementary-dark-color2;
-    }
-
-    &::after {
-      background: $complementary-light-color1;
-      box-shadow: 0 10px 0 $complementary-light-color1;
-      top:10px;
-    }
-  }
 }
 
 #mainMenu {
@@ -82,15 +66,27 @@
 	}
 }
 
-
 @include breakpoint(small only) {
-	.top-bar {
-		display: none;
-	}
+		#header {
+			.topBar {
+				justify-content: flex-end;
+			}
+		}
+		#logo {
+			display: none;
+		}
+
+
 }
 @include breakpoint(medium) {
+		#logo {
+			display: block;
+		}
 
 }
+
+
+
 
 //prevent top-bar from showing briefly when initially loads
 .no-js {

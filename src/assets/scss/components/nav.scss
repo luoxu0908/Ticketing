@@ -89,22 +89,90 @@
 }
 
 #navSecondary {
+
   display: flex;
   justify-content: space-around;
   align-items: center;
 
+  margin: 0;
+  padding: 0;
+
   li {
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 0.9rem;
     list-style: none;
+    padding: 0 5px;
+
 
     a {
+      color: $white;
       display: inline-block;
       padding: 0.8rem 0.8rem;
+      //text-align: center;
+
+      &:hover {
+        color: $complementary-light-color1;
+      }
+    }
+
+    &:first-child {
+      border: 0;
+    }
+    &:nth-last-child(2) {
+      border: 0;
+    }
+    &:last-child {
+      border: 0;
+      margin: 0 0 0 10px;
+    }
+
+    #navMainMenu .text, #navHome .text {
+      display: none;
     }
   }
 
-  .text {
-    display: none;
+}
+
+@include breakpoint(small) {
+
+  #navSecondary {
+
+    li {
+      display: none;
+      &:last-child {
+        display: inline;
+      }
+    }
   }
+}
+@include breakpoint(medium) {
+  #navSecondary {
+
+    li {
+      display: block;
+    }
+  }
+}
+
+.menu-icon {
+	//@include border-radius();
+	background-color: $contrast-color1;
+	margin-left: 0;
+	margin-right: 0;
+
+	width: 30px;
+
+	&:hover {
+		background-color: $contrast-color1;
+	}
+	&:hover::after {
+    background: $light-gray;
+    box-shadow: 0 7px 0 $light-gray, 0 14px 0 $light-gray;
+	}
+
+	&::after {
+		top:5px;
+	}
 }
 
 #mainMenuLeft nav {

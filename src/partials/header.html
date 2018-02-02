@@ -3,14 +3,14 @@
     <a href="{{root}}index.html" id="logo">Genesis</a>
     <ul id="navSecondary" >
       <li>
-        <a href="{{root}}" title="Home"><i class="icon"><img src="{{root}}assets/img/icon-home.png" /></i> <span class="text">Home</span></a></li>
+        <a href="{{root}}" id="navHome" title="Home"><i class="icon"><img src="{{root}}assets/img/icon-light-home.png" /></i> <span class="text">Home</span></a></li>
       <li>
-        <a href="#" id="navProfile" title="Profile"><i class="icon"><img src="{{root}}assets/img/icon-mid-profile.png" /></i> <span class="text">Profile</span></a></li>
+        <a href="#" id="navProfile" title="Profile"><i class="icon"><img src="{{root}}assets/img/icon-light-profile.png" /></i> <span class="text">Profile</span></a></li>
       <li>
-        <a href="#" id="navLogout"><i class="icon"><img src="{{root}}assets/img/icon-logout.png" /></i> <span class="text">Logout</span></a>
+        <a href="#" id="navLogout"><i class="icon"><img src="{{root}}assets/img/icon-light-log-out.png" /></i> <span class="text">Logout</span></a>
       </li>
       <li>
-        <a href="#" id="navMainMenu"><i class="icon"><img src="{{root}}assets/img/icon-logout.png" /></i> <span class="text">Main Menu</span></a>
+        <a href="#" id="navMainMenu" class="menu-icon"><span class="text">Main Menu</span></a>
       </li>
     </ul>
   </div>
@@ -21,20 +21,20 @@
     <nav id="mainMenu">
 
       <ul class="module">
-        <li><a href="{{root}}/contacts/" data-menu="contacts" data-redirect="false">Contacts</a></li>
-        <li><a href="{{root}}/communications/" data-menu="communications" data-redirect="false">Communications</a></li>
-        <li><a href="{{root}}/volunteers/" data-menu="volunteers" data-redirect="false">Volunteers</a></li>
-        <li><a href="{{root}}/donations/" data-menu="donations" data-redirect="false">Donations</a></li>
-        <li><a href="{{root}}/file-manager/" data-menu="fileManager" data-redirect="false">File Manager</a></li>
-        <li><a href="{{root}}/reports/" data-menu="reports" data-redirect="false">Reports</a></li>
-        <li><a href="{{root}}/imports/" data-menu="imports" data-redirect="false">Imports</a></li>
-        <li><a href="{{root}}/settings/" data-menu="settings" data-redirect="false">Settings</a></li>
+        <li><a href="{{root}}/contacts/" data-menu="contacts" >Contacts</a></li>
+        <li><a href="{{root}}/communications/" data-menu="communications" >Communications</a></li>
+        <li><a href="{{root}}/volunteers/" data-menu="volunteers" >Volunteers</a></li>
+        <li><a href="{{root}}/donations/" data-menu="donations" >Donations</a></li>
+        <li><a href="{{root}}/file-manager/" data-menu="fileManager" >File Manager</a></li>
+        <li><a href="{{root}}/reports/" data-menu="reports" >Reports</a></li>
+        <li><a href="{{root}}/imports/" data-menu="imports" >Imports</a></li>
+        <li><a href="{{root}}/settings/" data-menu="settings" >Settings</a></li>
       </ul>
-      <ul id="moduleMenu-contacts" class="moduleMenu">
+      <ul id="moduleMenu-contacts" class="moduleMenu" data-redirect="false">
         <li><a href="{{root}}/contacts/">Search</a></li>
         <li><a href="{{root}}/contacts/">Group Management</a></li>
       </ul>
-      <ul id="moduleMenu-communications" class="moduleMenu">
+      <ul id="moduleMenu-communications" class="moduleMenu" >
         <li><a href="{{root}}/communications/">Schedule Email</a></li>
       </ul>
       <ul id="moduleMenu-volunteers" class="moduleMenu">
