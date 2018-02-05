@@ -158,7 +158,7 @@
     }
   }
   #mainMenuContainer {
-    @include position(relative,$left:0);
+    @include position(absolute,$left:0, $top:80px);
     height: 400px;
     display: none;
 

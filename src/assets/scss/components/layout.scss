@@ -32,6 +32,7 @@ html, body {
 }
 
 #header {
+  background:  $white;
   grid-area: h;
 
 }
@@ -46,7 +47,7 @@ html, body {
 
 @include breakpoint(medium) {
   #main {
-    grid-template-rows: 80px auto 60px;
+    grid-template-rows: 150px auto 60px;
     grid-template-areas:
     'h h h h h h h h h h h h'
     'mc mc mc mc mc mc mc mc mc mc mc mc'

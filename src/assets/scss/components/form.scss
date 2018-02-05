@@ -16,6 +16,7 @@ form,.form {
 
   label,.labelText {
   	font-weight: bold;
+    margin-bottom: 0.5rem;
   }
   .text {
   	margin-bottom: $global-margin;
@@ -40,10 +41,26 @@ form,.form {
     height: 110px;
   }
 
+  input[type=text].noBox,
+  input[type=password].noBox,
+  input[type=email].noBox,
+  select.NoBox,
+  textarea.NoBox {
+    background: none;
+    border: none;
+    border-bottom: 0.2rem solid $light-gray;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
   .checkboxGroup,.radioGroup {
+    display: flex;
+    flex-direction: column;
     margin-bottom: $global-margin;
-    span {
+
+    label {
       display: block;
+      margin: 0 1rem 0.2rem 0;
     }
   }
 
@@ -93,9 +110,8 @@ form,.form {
 @include breakpoint(medium) {
   form,.form {
     .checkboxGroup,.radioGroup {
-      span {
-        display: inline;
-      }
+
+      flex-direction: row;
     }
   }
 }

@@ -1,12 +1,18 @@
 #header {
+	display: grid;
+	grid-template-areas: 's s s s s s s s s s s t';
+	background: $contrast-color1;
+	border-bottom: 5px solid $light-gray;
+
 	.topBar {
+		grid-area: t;
 		display: flex;
 		justify-content: flex-end;
 		align-items: center;
 
-	  background: $contrast-color1;
-	  border-bottom: 5px solid $light-gray;
-		height: 100%;
+		background: none;
+		border-bottom: none;
+		height: 80px;
 		padding: $global-padding $global-edge-padding;
 		position: relative;
 		z-index: 1;
@@ -21,11 +27,72 @@
 	text-transform: uppercase;
 }
 
+#searchForm
+{
+	grid-area: s;
+	display: flex;
+	justify-content: space-between;
+	opacity: 0.5;
+
+	border-bottom: 1px solid $light-gray;
+	margin: 0 0 15px $global-edge-padding;
+	padding: 0;
+
+	input[type=text] {
+		border: none;
+		color: $white;
+		font-size: 1.6rem;
+		margin: 0;
+		padding: 2.5rem 0 1.5rem;
+
+		&::placeholder {
+			color: rgba(255,255,255,1);
+
+		}
+	}
+
+	button {
+		align-self: flex-end;
+		background: none;
+		border-radius: 0;
+		//border: 1px solid $light-gray;
+		margin: 0 0 -1px;
+
+		text-align: center;
+
+		.text {
+			display: none;
+		}
+	}
+
+	#searchFilterBtn {
+		order: 1;
+	}
+	#searchField {
+		order: 2;
+	}
+	#searchBtn {
+		order: 3;
+
+
+	}
+}
 
 
 @include breakpoint(medium) {
   #header {
+		grid-template-areas:
+			't t t t t t t t t t t t'
+			's s s s s s s s s s s s';
+
+		background: $white;
+		border-bottom: none;
+
+
 		.topBar {
+			background: $contrast-color1;
+			border-bottom: 5px solid $light-gray;
+
       justify-content: space-between;
     }
 	}
@@ -34,5 +101,72 @@
 	}
 	#mainMenu {
 		display: none;
+	}
+	#searchForm {
+		border-bottom: 3px solid $light-gray;
+		margin: 0 $global-edge-padding;
+		opacity:1;
+
+		input[type="text"] {
+
+			background: url(../img/icon-mid-search.png) no-repeat left center;
+			color: #444;
+
+			padding: 2rem 0 2rem 40px;
+
+			&::placeholder {
+				color: $light-gray;
+			}
+		}
+		button {
+			align-self: center;
+			margin: 0;
+			padding: 11px 1rem;
+		}
+		#searchFilterBtn {
+			order: 2;
+
+			background: url(../img/icon-mid-filter.png) no-repeat center center;
+			display: block;
+			height: 50px;
+			width: 50px;
+			.icon {
+				display: none;
+			}
+		}
+
+		#searchField {
+			order: 1;
+		}
+		#searchBtn {
+			order: 3;
+
+			background: url(../img/icon-mid-right.png) no-repeat center center;
+			display: block;
+			height: 50px;
+			width: 50px;
+			.icon {
+				display: none;
+			}
+		}
+
+	}
+}
+
+//position out of form tag
+#searchFilterBox {
+	@include position(absolute,$left: 0, $right: 0, $top: 80px);
+
+	margin: 0 $global-margin;
+	max-width: none;
+	min-height: 100px;
+	width: auto;
+	//@include border-radius;
+}
+
+@include breakpoint(medium) {
+
+	#searchFilterBox {
+		@include position(absolute,$left: 0, $right: 0, $top: 160px);
 	}
 }

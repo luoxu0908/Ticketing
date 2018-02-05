@@ -13,7 +13,7 @@
         <a href="#" id="navMainMenu" class="menu-icon"><span class="text">Main Menu</span></a>
       </li>
     </ul>
-  </div>
+  </div><!-- topBar-->
   <div id="mainMenuContainer">
     <header>
       <button class="close-button" aria-label="Close menu" type="button" data-close>
@@ -66,10 +66,29 @@
       </ul>
     </nav><!-- main menu -->
     <footer>GENESIS</footer>
-  </div>
-  <form id="searchForm" action="" method="GET">
-    <input type="text" id="searchField" name="searchField">
-    <button href="">Search</button>
-  </form>
+  </div><!-- mainMenuContainer end -->
+  <form id="searchForm" action="" method="GET" class="tabBoxContainer">
+    <input type="text" id="searchField" name="searchField" class="noBox" placeholder="Search">
+
+    <button id="searchFilterBtn" class="tabBoxButton" data-target="searchFilterBox"><i class="icon"><img src="{{root}}/assets/img/icon-light-filter.png"></i></button>
+    <button id="searchBtn" type="submit"><i class="icon"><img src="{{root}}/assets/img/icon-light-search.png"></i><span class="text ">Filter</span></button>
+
+    <div class="reveal tabBoxContent tabBoxModal lightBg form" id="searchFilterBox" >
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="labelText">Category</div>
+      <div class="checkboxGroup">
+        <label for="searchCategoryContacts">
+        <input type="checkbox" id="searchCategoryContacts" name="searchCategory" value=contacts"">Contacts</label>
+        <label for="searchCategoryVolunteer">
+        <input type="checkbox" id="searchCategoryVolunteer" name="searchVolunteer" value=contacts"">Volunteer</label>
+        <label for="searchCategoryDonation">
+        <input type="checkbox" id="searchCategoryDonation" name="searchDonation" value=donation"">Donation</label>
+      </div>
+    </div>
+
+
+  </form><!-- searchForm end -->
 </header>
 <!-- header end -->

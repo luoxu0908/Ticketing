@@ -24,6 +24,11 @@
     width: 100%;
     z-index: 1;
   }
+  .tabBoxModal {
+    @include border-radius($top-right:8px, $top-left: 8px,$bottom-right:8px, $bottom-left: 8px);
+    max-width: none;
+  }
+
   .close-button {
     //color: $complementary-light-color1;
     right: 0;
