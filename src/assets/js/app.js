@@ -177,7 +177,7 @@ $(function(){
     return false;
   });
 
-  $('.tabBoxButtonClose,.tabBoxButtonSubmit').click(function(){
+  $('.tabBoxButtonClose,.tabBoxButtonSubmit, .tabBoxContent .close-button').click(function(){
     var targetRef = $(this).parents('.tabBoxContent');
     $(targetRef).hide();
     var targetRefId = targetRef.prop('id');
@@ -199,6 +199,7 @@ $(function(){
     }
     return false;
   });
+  $('.tabBoxModal').appendTo('body');
 
   $('.items').on('click', '.add', function () {
       var imageId = $(this).data("id");
@@ -259,7 +260,11 @@ $(function(){
       }
     });
   });//editLinkForm
-
+  //search
+  $('#searchBtn').click(() => {
+    $('#searchForm').submit();
+    return false;
+  });
 
 });//onready
 
