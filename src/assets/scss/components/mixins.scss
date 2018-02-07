@@ -38,60 +38,70 @@
 
 @mixin global-box(
   $type: null,
-  $padding-top: $global-padding,
-  $padding-right: $global-padding,
-  $padding-bottom: $global-padding,
-  $padding-left: $global-padding,
-  $margin-top: 0,
-  $margin-right: 0,
-  $margin-bottom: $global-margin,
-  $margin-left: 0,
-  $border-radius: $global-radius
+  $padding-top: null,
+  $padding-right: null,
+  $padding-bottom: null,
+  $padding-left: null,
+  $margin-top: null,
+  $margin-right: null,
+  $margin-bottom: null,
+  $margin-left: null,
+  $border-radius: null
   ) {
 
 
   $factor: 1;
 
-  @if ($type == 'mobile') {
-    //$factor: 0.5;
-    @if ($border-radius == $global-radius) {
-      $border-radius: $global-mobile-radius;
-    }
-  }
   @if ($type == 'small') {
     $factor: 0.5;
   }
 
-  @if ($border-radius == $global-radius) {
-    $border-radius: $global-radius * $factor
+  @if ($border-radius == null) {
+    $border-radius: $global-radius * $factor;
+  }
+
+  @if ($type == 'mobile') {
+    //$factor: 0.5;
+    @if ($border-radius == null) {
+      $border-radius: $global-mobile-radius;
+    }
   }
 
   @include border-radius($radius: $border-radius);
 
-  @if ($padding-top == $global-padding) {
+  @if ($padding-top == null) {
     $padding-top: $global-padding * $factor;
   }
-  @if ($padding-right == $global-padding) {
+
+  @if ($padding-right == null) {
     $padding-right: $global-padding * $factor;
   }
-  @if ($padding-bottom == $global-padding) {
+
+  @if ($padding-bottom == null) {
     $padding-bottom: $global-padding * $factor;
   }
-  @if ($padding-left == $global-padding) {
+
+  @if ($padding-left == null) {
     $padding-left: $global-padding * $factor;
   }
+
   padding: $padding-top $padding-right $padding-bottom $padding-left;
 
-  @if ($margin-top > 0) {
+  @if ($margin-top == null) {
     $margin-top: $global-margin * $factor;
   }
-  @if ($margin-right > 0) {
+
+
+  @if ($margin-right == null) {
     $margin-right: $global-margin * $factor;
   }
-  @if ($margin-bottom == $global-margin) {
+
+
+  @if ($margin-bottom == null) {
     $margin-bottom: $global-margin * $factor;
   }
-  @if ($margin-left > 0) {
+
+  @if ($margin-left == null) {
     $margin-left: $global-margin * $factor;
   }
 
