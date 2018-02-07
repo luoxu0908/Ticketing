@@ -1,5 +1,17 @@
 #mainWidgets {
+  margin-bottom: $global-margin;
+  
+  h2 {
+    text-align: center;
+  }
+  footer {
+    display: flex;
+    justify-content: center;
 
+    a {
+      margin: 0 1rem;
+    }
+  }
 }
 #sideWidgets {
 
