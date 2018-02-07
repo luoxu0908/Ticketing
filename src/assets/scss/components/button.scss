@@ -101,6 +101,57 @@ button, .button, [type="button"], [type="reset"], [type="submit"] {
 	}
 }
 
+.buttonType3 {
+	//@include position(relative);
+	background: none;
+	cursor: pointer;
+  color: $black;
+	@include global-box(
+		$margin-top: 0,
+		$margin-left: 0,
+		$margin-bottom: 0,
+		$margin-right: 0,
+		$padding-top: 0,
+		$padding-left: 0,
+		$padding-bottom: 0,
+		$padding-right: 0
+	);
+
+	&:hover {
+    background: none;
+		color: $medium-gray;
+	}
+	&:focus {
+			background: none;
+			color: $complementary-dark-color2;
+	}
+
+	.icon {
+		//@include position(absolute,$top:0, $right: 0);
+		@include global-box(
+			$margin-top: 0rem,
+			$margin-left: 0,
+			$margin-bottom: 0,
+			$padding-top: 0,
+			$padding-left: 0,
+			$padding-bottom: 0,
+			$padding-right: 0,
+			$margin-right: 0.5rem
+			);
+
+		background-color: $contrast-color1;
+		color: $white;
+		display: inline-block;
+		height: 35px;
+		width:35px;
+		vertical-align: middle;
+
+		img {
+			width: 100%;
+		}
+	}
+}
+
 .close-button {
   background: none;
   margin-bottom: 0;
