@@ -185,7 +185,7 @@ button, .button, [type="button"], [type="reset"], [type="submit"] {
 
 @include breakpoint(medium) {
 	button, .button, [type="button"], [type="reset"], [type="submit"] {
-			@include global-box();
+			@include global-box($margin-left: 0, $margin-right: 0);
 
 	}
 
