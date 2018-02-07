@@ -1,6 +1,5 @@
 #mainWidgets {
-  margin-bottom: $global-margin;
-  
+
   h2 {
     text-align: center;
   }
@@ -10,6 +9,20 @@
 
     a {
       margin: 0 1rem;
+    }
+  }
+
+  table {
+    td {
+      &:nth-child(1) {
+        width: 20%;
+      }
+      &:nth-child(2) {
+        width: 60%;
+      }
+      &:nth-child(3) {
+        width: 40%;
+      }
     }
   }
 }
