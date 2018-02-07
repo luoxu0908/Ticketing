@@ -27,7 +27,22 @@ html, body {
     align-items: center;
   }
   #mainContent {
+    @include border-radius(8px);
+    box-shadow: 0 0 10px $light-gray;
+
+    height: 95%;
     min-height: auto;
+    width: 90%;
+
+    @include breakpoint(medium) {
+      width: 60%;
+      height: auto;
+
+    }
+    @include breakpoint(large) {
+      //height: 30%;
+      width: 400px;
+    }
   }
 }
 
@@ -47,12 +62,13 @@ html, body {
 
 @include breakpoint(medium) {
   #main {
-    grid-template-rows: 150px auto 60px;
+    grid-template-rows: 80px auto 60px;
     grid-template-areas:
     'h h h h h h h h h h h h'
     'mc mc mc mc mc mc mc mc mc mc mc mc'
     'f f f f f f f f f f f f';
   }
+
   #footer {
     grid-area: f;
   }

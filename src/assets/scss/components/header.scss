@@ -32,21 +32,22 @@
 	grid-area: s;
 	display: flex;
 	justify-content: space-between;
-	opacity: 0.5;
 
-	border-bottom: 1px solid $light-gray;
+
+
 	margin: 0 0 15px $global-edge-padding;
 	padding: 0;
 
 	input[type=text] {
-		border: none;
+		border-bottom: 1px solid $light-gray;
+
 		color: $white;
 		font-size: 1.6rem;
 		margin: 0;
 		padding: 2.5rem 0 1.5rem;
 
 		&::placeholder {
-			color: rgba(255,255,255,1);
+			color: rgba(255,255,255,0.5);
 
 		}
 	}
@@ -56,8 +57,8 @@
 		background: none;
 		border-radius: 0;
 		//border: 1px solid $light-gray;
-		margin: 0 0 -1px;
-
+		margin: 0 0 0px;
+		padding: 1rem 0.6rem 0.8rem;
 		text-align: center;
 
 		.text {
@@ -74,7 +75,7 @@
 	#searchBtn {
 		order: 3;
 
-
+		border-bottom: 1px solid $light-gray;
 	}
 }
 
@@ -82,8 +83,7 @@
 @include breakpoint(medium) {
   #header {
 		grid-template-areas:
-			't t t t t t t t t t t t'
-			's s s s s s s s s s s s';
+			't t t t t t t t t t t t';
 
 		background: $white;
 		border-bottom: none;
@@ -103,12 +103,17 @@
 		display: none;
 	}
 	#searchForm {
+		@include position(absolute,$top:80px);
+		background: $white;
 		border-bottom: 3px solid $light-gray;
-		margin: 0 $global-edge-padding;
-		opacity:1;
+		//display: none;
+		margin: 0 2.5%;
+		padding: 0 0;
+
+		width: 95%;
 
 		input[type="text"] {
-
+			border: none;
 			background: url(../img/icon-mid-search.png) no-repeat left center;
 			color: #444;
 
@@ -134,7 +139,6 @@
 				display: none;
 			}
 		}
-
 		#searchField {
 			order: 1;
 		}
@@ -142,6 +146,7 @@
 			order: 3;
 
 			background: url(../img/icon-mid-right.png) no-repeat center center;
+			border: none;
 			display: block;
 			height: 50px;
 			width: 50px;
@@ -149,24 +154,32 @@
 				display: none;
 			}
 		}
-
 	}
 }
 
 //position out of form tag
 #searchFilterBox {
+	//using foundation's reveal
+
 	@include position(absolute,$left: 0, $right: 0, $top: 80px);
 
 	margin: 0 $global-margin;
 	max-width: none;
-	min-height: 100px;
+	/*min-height: 80vh;
+	height: 80vh;*/
 	width: auto;
+
+
 	//@include border-radius;
 }
 
 @include breakpoint(medium) {
 
 	#searchFilterBox {
-		@include position(absolute,$left: 0, $right: 0, $top: 160px);
+		//using foundation's reveal
+
+		@include position(absolute,$left: 0, $right: 0, $top: 80px);
+		margin: 0;
+
 	}
 }
