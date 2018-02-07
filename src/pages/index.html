@@ -1,19 +1,106 @@
 ---
 layout: dashboard
 ---
-
-<section id="profile" class="grid-x">
-   <div class="welcome cell">
-      Welcome
-      <b class="profileName">
-         <!-- user displayname -->
-      </b>
-   </div>
-   <!--<div class="organisation cell">HCA Hospice</div>-->
-</section>
-<!-- profile end -->
-<section class="grid-x">
-  <div class="cell">
-    <a href="{{root}}Ticketing/TicketingHome.html"><img src="{{root}}assets/img/support-smiley.png" width="100" height="100"></a>
+<div id="mainWidgets">
+  <section id="widget-events" class="widget">
+    <h2>Upcoiming Events</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Event</th>
+          <th>Created By</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>12 / 05 / 18</td>
+          <td>Volunteer Orientation</td>
+          <td>Soon Sing Suen</td>
+        </tr>
+        <tr>
+          <td>14 / 05 / 18</td>
+          <td>KidZania</td>
+          <td>Susie Green</td>
+        </tr>
+        <tr>
+          <td>01 / 06 / 18</td>
+          <td>WWF</td>
+          <td>Susie Green</td>
+        </tr>
+      </tbody>
+    </table>
+    <footer><a href="#">Create new event</a><a href="#">View whole event list</a></footer>
+  </section>
+  <section id="widget-donations" class="widget">
+    <h2>Latest Donations</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Donors</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>01 / 05 / 18</td>
+          <td>Joshua Wu</td>
+          <td>100.00</td>
+        </tr>
+        <tr>
+          <td>08 / 05 / 18</td>
+          <td>Donald Lee</td>
+          <td>800.00</td>
+        </tr>
+        <tr>
+          <td>09 / 05 / 18</td>
+          <td>Brock Wee</td>
+          <td>90.00</td>
+        </tr>
+      </tbody>
+    </table>
+    <footer><a href="#">New donation</a><a href="#">View moduleMenu-communications list</a></footer>
+  </section>
+  <section id="widget-charts" class="widget">
+    <h2>Charts</h2>
+    <div class="chart">
+      <h3>Member Summary</h3>
+      <img src="{{root}}/assets/img/charts/member-summary.jpg" alt="Member Summary Chart">
+    </div>
+    <div class="chart">
+      <h3>Engagement</h3>
+      <img src="{{root}}/assets/img/charts/engagement.jpg" alt="Engagement Chart">
+    </div>
+  </section>
+</div> <!-- main widgets area -->
+<aside id="sideWidgets">
+  <div id="quickLinks" class="widget">
+    <ul>
+      <li><a href="">New Donation</a></li>
+      <li><a href="">New Event</a></li>
+      <li><a href="">New Volunteer</a></li>
+    </ul>
   </div>
-</section>
+  <div id="calendar" class="widget">
+    <h3>Calendar</h3>
+  </div>
+  <div id="reports" class="widget">
+    <h3>Reports</h3>
+    <h4>Donation</h4>
+    <ul>
+      <li><a href="">Donation Amount</a></li>
+      <li><a href="">Donation Batch Listing</a></li>
+      <li><a href="">Donation Batch Summary</a></li>
+      <li><a href="">Donation Receipt Listing</a></li>
+    </ul>
+    <h4>Volunteer</h4>
+    <ul>
+      <li><a href="">Local Volunteer Report</a></li>
+      <li><a href="">VMFS Volunteer Statistics</a></li>
+      <li><a href="">Volunteer (Individual) Listing</a></li>
+      <li><a href="">Volunteer (Individual) Summary</a></li>
+    </ul>
+  </div>
+</aside>
+<!-- side widgets area -->
