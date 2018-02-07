@@ -111,7 +111,7 @@
       }
     }
 
-    &:first-child {
+    &:first-child, &:nth-child(2) {
       border: 0;
     }
     &:nth-last-child(2) {
