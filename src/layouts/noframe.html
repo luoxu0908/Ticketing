@@ -5,12 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-      {{#ifpage 'index'}}
-        Bizcube Ticketing
-      {{/ifpage}}
-      {{#unlesspage 'index'}}
-          {{page}} - Bizcube Ticketing
-      {{/unlesspage}}
+      {{> title}}
     </title>
     <link rel="shortcut icon" href="{{root}}favicon.ico" />
     <link rel="stylesheet" href="{{root}}assets/css/app.css">
