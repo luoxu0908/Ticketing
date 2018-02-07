@@ -1,19 +1,5 @@
 #page-login {
   #mainContent {
-    @include border-radius(8px);
-
-    height: 95%;
-    width: 90%;
-
-    @include breakpoint(medium) {
-      width: 60%;
-      height: auto;
-
-    }
-    @include breakpoint(large) {
-      //height: 30%;
-      width: 400px;
-    }
 
     .formCallout  {
       margin: 1rem 0;
