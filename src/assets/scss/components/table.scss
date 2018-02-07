@@ -1,6 +1,4 @@
 table {
-
-
   thead {
     border: none;
     th {
@@ -38,6 +36,33 @@ table {
     }
     td.colorCodeNonActive {
       background: #e60000;
+    }
+  }
+
+  &.table-lines {
+    thead {
+      th {
+        text-align: left;
+      }
+
+    }
+    tbody {
+      background: none;
+
+      tr {
+        border-bottom: 1px solid $medium-gray;
+      }
+
+      tr td {
+        background: none;
+      }
+      tr:nth-child(even) {
+        background: none;
+      }
+      tr:hover td,tr:hover:nth-child(even) td {
+        color: $black;
+        background: none;
+      }
     }
   }
 
