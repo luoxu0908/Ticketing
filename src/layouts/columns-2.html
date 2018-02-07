@@ -1,4 +1,4 @@
-{{!-- This is the base layout for your project, and will be used on every page. --}}
+{{!-- columns 2 --}}
 
 
 <!doctype html>
@@ -10,10 +10,8 @@
     <title>
       {{> title}}
     </title>
-    <link rel="shortcut icon" href="{{root}}favicon.ico" />
-    <link rel="stylesheet" href="{{root}}assets/css/app.css">
+    {{> header-settings}}
 
-  	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
   </head>
   <body id="page-{{page}}" class="columns-2">
     <div id="main" class="">
@@ -25,28 +23,6 @@
       </div> <!-- content end -->
       {{> footer}}
     </div>
-    <script src="{{root}}assets/js/app.js"></script>
-    {{#ifpage 'TicketingHome'}}
-      <script src="{{root}}assets/js/single-page/packagelist.js"></script>
-      <script src="{{root}}assets/js/single-page/caselist.js"></script>
-    {{/ifpage}}
-    {{#ifpage 'login'}}
-      <script src="{{root}}assets/js/single-page/login.js"></script>
-    {{/ifpage}}
-    {{#ifpage 'case'}}
-      <script src="{{root}}assets/js/single-page/casedetails.js"></script>
-    {{/ifpage}}
-    {{#ifpage 'packages'}}
-      <script src="{{root}}assets/js/single-page/packagelist.js"></script>
-    {{/ifpage}}
-    {{#ifpage 'packageDetails'}}
-      <script src="{{root}}assets/js/single-page/packagelist.js"></script>
-    {{/ifpage}}
-    {{#ifpage 'profile'}}
-      <script src="{{root}}assets/js/single-page/profile.js"></script>
-    {{/ifpage}}
-    {{#ifpage 'changeMyPwd'}}
-      <script src="{{root}}assets/js/single-page/profile.js"></script>
-    {{/ifpage}}
+    {{> scripts}}
   </body>
 </html>
