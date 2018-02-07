@@ -64,6 +64,7 @@ html, body {
 
     height: 95%;
     min-height: auto;
+    overflow: hidden;
     width: 90%;
 
     @include breakpoint(medium) {
@@ -134,5 +135,29 @@ html, body {
 }
 
 .page-columns-3 {
+  #mainContent {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-areas:
+    't t t t t t t t t t t t'
+    's1 mw mw mw mw mw mw mw mw mw mw s2';
 
+    grid-template-rows: 60px auto;
+    grid-gap: $global-padding;
+
+    h1 {
+      grid-area: t;
+
+      align-self: flex-end;
+    }
+    #sidebar1 {
+      grid-area: s1;
+    }
+    #sidebar2 {
+      grid-area: s2;
+    }
+    #contentWindow {
+      grid-area: mw;
+    }
+  }
 }
