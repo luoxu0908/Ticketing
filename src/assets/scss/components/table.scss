@@ -72,3 +72,11 @@ table {
     }
   }
 }
+
+
+
+@include breakpoint(medium) {
+  .table-scroll table {
+    width: 100%;
+  }
+}
