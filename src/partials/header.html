@@ -3,9 +3,12 @@
     <a href="{{root}}index.html" id="logo">Genesis</a>
     <ul id="navSecondary" >
       <li>
+        <a href="#" id="navSearch" title="Search"><i class="icon"><img src="{{root}}assets/img/icon-light-search.png" /></i> <span class="text">Search</span></a></li>
+      <li>
+      <li>
         <a href="{{root}}" id="navHome" title="Home"><i class="icon"><img src="{{root}}assets/img/icon-light-home.png" /></i> <span class="text">Home</span></a></li>
       <li>
-        <a href="#" id="navProfile" title="Profile"><i class="icon"><img src="{{root}}assets/img/icon-light-profile.png" /></i> <span class="text">Profile</span></a></li>
+        <a href="{{root}}/iContacts/profile.html" id="navProfile" title="Profile"><i class="icon"><img src="{{root}}assets/img/icon-light-profile.png" /></i> <span class="text">Profile</span></a></li>
       <li>
         <a href="#" id="navLogout"><i class="icon"><img src="{{root}}assets/img/icon-light-log-out.png" /></i> <span class="text">Logout</span></a>
       </li>
@@ -45,7 +48,7 @@
         <li><a href="{{root}}/volunteers/door-knocking">Door Knocking</a></li>
       </ul>
       <ul id="moduleMenu-donations" class="moduleMenu">
-        <li><a href="{{root}}/donations/batch">Batch Donations</a></li>
+        <li><a href="{{root}}/donations/batch.html">Batch Donations</a></li>
         <li><a href="{{root}}/donations/convert-tax-receipts">Convert Tax Receipts</a></li>
       </ul>
       <ul id="moduleMenu-fileManager" class="moduleMenu">
@@ -67,13 +70,13 @@
     </nav><!-- main menu -->
     <footer>GENESIS</footer>
   </div><!-- mainMenuContainer end -->
-  <form id="searchForm" action="" method="GET" class="tabBoxContainer">
+  <form id="searchForm" action="" method="GET" >
     <input type="text" id="searchField" name="searchField" class="noBox" placeholder="Search">
 
-    <button id="searchFilterBtn" class="tabBoxButton" data-target="searchFilterBox"><i class="icon"><img src="{{root}}/assets/img/icon-light-filter.png"></i></button>
+    <button id="searchFilterBtn" data-target="searchFilterBox" class="modalButton"><i class="icon"><img src="{{root}}/assets/img/icon-light-filter.png"></i></button>
     <button id="searchBtn" type="submit"><i class="icon"><img src="{{root}}/assets/img/icon-light-search.png"></i><span class="text ">Filter</span></button>
 
-    <div class="reveal tabBoxContent tabBoxModal lightBg form" id="searchFilterBox" >
+    <div class="reveal form modalContent"  id="searchFilterBox">
       <button class="close-button" data-close aria-label="Close modal" type="button">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -87,8 +90,6 @@
         <input type="checkbox" id="searchCategoryDonation" name="searchDonation" value=donation"">Donation</label>
       </div>
     </div>
-
-
   </form><!-- searchForm end -->
 </header>
 <!-- header end -->
