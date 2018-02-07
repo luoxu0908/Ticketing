@@ -9,6 +9,13 @@
 	padding: $global-padding $global-edge-padding;
 	//padding-top: 8rem;
 
+	h1 {
+
+		small {
+			color:$black;
+		}
+	}
+
   header.titleMain {
     border-bottom: none;
     margin-bottom: 1.5rem;
@@ -16,7 +23,7 @@
   }
 
 	section {
-		margin-bottom: $global-mobile-margin;
+		margin-bottom: 2rem;
 	}
 }
 

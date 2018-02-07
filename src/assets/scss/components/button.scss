@@ -1,5 +1,5 @@
 button, .button, [type="button"], [type="reset"], [type="submit"] {
-	@include global-box($type:'mobile');
+	@include global-box($type:'mobile', $margin-left: 0, $margin-right: 0);
 	//background: $contrast-color1;
 	cursor: pointer;
   font-weight: bold;
