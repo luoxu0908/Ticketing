@@ -13,11 +13,43 @@ html, body {
   //max-width: 1400px;
   margin: 0 auto;
 }
-#mainMenu {
+
+#header {
+  background:  $white;
+  grid-area: h;
 
 }
+
+#footer {
+  display: none;
+}
+
 #mainContent {
+  grid-area: mc;
+  overflow-y: scroll;
+
   min-height: 400px;
+}
+
+@include breakpoint(medium) {
+  #main {
+    grid-template-rows: 80px auto 60px;
+    grid-template-areas:
+    'h h h h h h h h h h h h'
+    'mc mc mc mc mc mc mc mc mc mc mc mc'
+    'f f f f f f f f f f f f';
+  }
+
+  #footer {
+    grid-area: f;
+    overflow: hidden;
+
+
+  }
+}
+
+@include breakpoint(large) {
+
 }
 
 .page-noframe {
@@ -46,36 +78,23 @@ html, body {
   }
 }
 
-#header {
-  background:  $white;
-  grid-area: h;
-
-}
-
-#footer {
-  display: none;
-}
-
-#mainContent {
-  grid-area: mc;
-  overflow-y: scroll;
-}
-
-@include breakpoint(medium) {
-  #main {
-    grid-template-rows: 80px auto 60px;
+.page-dashboard {
+  #mainContent {
+    display: grid;
     grid-template-areas:
-    'h h h h h h h h h h h h'
-    'mc mc mc mc mc mc mc mc mc mc mc mc'
-    'f f f f f f f f f f f f';
+    't t t t t t t t t t t t'
+    'mw mw mw mw mw mw mw mw mw mw sw sw';
+    grid-gap: $global-padding;
+
+    h1 {
+      grid-area: t;
+    }
+
+    #mainWidgets {
+      grid-area: mw;
+    }
+    #sideWidgets {
+      grid-area: sw;
+    }
   }
-
-  #footer {
-    grid-area: f;
-    overflow: hidden;
-  }
-}
-
-@include breakpoint(large) {
-
 }
