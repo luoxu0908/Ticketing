@@ -1,26 +1,40 @@
 #mainWidgets {
+  
+  .widget {
+    border-top: 3px solid $medium-gray;
+    padding-top: 2rem;
 
+    &:first-child {
+      border: none;
+      padding-top:0;
+    }
+  }
   h2 {
     text-align: center;
   }
   footer {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    //margin-bottom: 2rem;
 
     a {
-      margin: 0 1rem;
+      margin: 0 1rem 1rem;
     }
   }
 
   table {
     td {
       &:nth-child(1) {
+        min-width: 150px;
         width: 20%;
       }
       &:nth-child(2) {
+        min-width: 300px;
         width: 60%;
       }
       &:nth-child(3) {
+        min-width: 150px;
         width: 40%;
       }
     }
@@ -66,5 +80,15 @@
     list-style: disc;
     //margin: 0 0 0.5rem;
     //padding: 0;
+  }
+}
+
+@include breakpoint(medium) {
+  #mainWidgets {
+
+    footer {
+      flex-direction: row;
+      justify-content: center;
+    }
   }
 }

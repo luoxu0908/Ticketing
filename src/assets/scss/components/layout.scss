@@ -26,7 +26,7 @@ html, body {
 
 #mainContent {
   grid-area: mc;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   min-height: 400px;
 }
@@ -81,20 +81,58 @@ html, body {
 .page-dashboard {
   #mainContent {
     display: grid;
+
+    grid-template-columns: 100%;
+    grid-template-rows: 60px auto;
     grid-template-areas:
-    't t t t t t t t t t t t'
-    'mw mw mw mw mw mw mw mw mw mw sw sw';
+    't'
+    'mw';
     grid-gap: $global-padding;
+
 
     h1 {
       grid-area: t;
+      align-self: flex-end;
     }
 
     #mainWidgets {
       grid-area: mw;
+
     }
     #sideWidgets {
-      grid-area: sw;
+      display: none;
+    }
+
+
+  }
+
+
+  @include breakpoint(large) {
+    #mainContent {
+
+      grid-template-columns: auto;
+      grid-template-areas:
+      't t t t t t t t t t t t'
+      'mw mw mw mw mw mw mw mw mw mw sw sw';
+
+      h1 {
+
+      }
+      #mainWidgets {
+        max-width: 1200px;
+      }
+      #sideWidgets {
+        grid-area: sw;
+        display: block;
+      }
     }
   }
+}
+
+.page-columns-2 {
+
+}
+
+.page-columns-3 {
+
 }
