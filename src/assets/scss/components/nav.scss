@@ -178,3 +178,26 @@
   }
 
 }
+
+.subLinks {
+  @include noBulletsList;
+
+  li {
+    margin: 0 0 0.2rem;
+  }
+  a {
+    background: lighten($contrast-color1,10);
+    color: $black;
+    display: block;
+    padding: $global-padding;
+
+    &:hover {
+      background: lighten($contrast-color1,15);
+    }
+    &.selected,&.selected:hover {
+      background-image: url(../img/icon-light-right.png);
+      background-position: right center;
+      background-repeat: no-repeat;
+    }
+  }
+}
