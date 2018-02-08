@@ -136,3 +136,14 @@
   background: $complementary-dark-color2;
   color: $complementary-light-color1;
 }
+
+@mixin noBulletsList {
+
+    list-style: none;
+    margin-left: 0;
+
+    li {
+      padding-left: 0;
+    }
+  
+}
