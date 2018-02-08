@@ -34,6 +34,15 @@
 	}
 }
 
+ul.noBullets {
+	list-style: none;
+	margin-left: 0;
+
+	li {
+		padding-left: 0;
+	}
+}
+
 .icon img {
 	//margin-right: 0.5rem;
 	vertical-align: middle;
