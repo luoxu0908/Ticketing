@@ -1,5 +1,5 @@
 #mainWidgets {
-  
+
   .widget {
     border-top: 3px solid $medium-gray;
     padding-top: 2rem;
@@ -41,19 +41,8 @@
   }
 }
 #sideWidgets {
-  background: $complementary-light-color1;
-  font-size: 80%;
-  padding: $global-padding;
 
-  .widget {
-    border-top: 1px solid $light-gray;
-    margin: 0 0 .5rem;
-    padding: .5rem 0 0;
-
-    &:first-child {
-      border: none;
-    }
-  }
+  
 }
 #quickLinks {
   ul {
