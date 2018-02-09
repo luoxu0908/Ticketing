@@ -792,7 +792,7 @@ $table-color-scale: 5%;
 $table-border: 1px solid $complementary-dark-color2;//smart-scale($table-background, $table-color-scale);
 $table-padding: rem-calc(8 10 10);
 $table-hover-scale: 2%;
-$table-row-hover: $complementary-dark-color3;//darken($table-background, $table-hover-scale);
+$table-row-hover: $complementary-light-color1;//darken($table-background, $table-hover-scale);
 $table-row-stripe-hover: darken($table-background, $table-color-scale + $table-hover-scale);
 $table-is-striped: true;
 $table-striped-background: smart-scale($table-background, $table-color-scale);
