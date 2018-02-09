@@ -33,8 +33,11 @@ table {
 
   &.table-lines {
     thead {
-      th {
+      tr {
 
+      }
+      th {
+        background: none;
       }
     }
     tbody {
@@ -52,7 +55,7 @@ table {
   }
 
   &.hover {
-
+    tbody{
       tr:hover {
         background: $complementary-light-color1;
       }
@@ -60,7 +63,7 @@ table {
         background: $complementary-light-color2;
         //color: $black;
       }
-
+    }
   }
 
   tr.selected td {
