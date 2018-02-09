@@ -1,7 +1,9 @@
 #mainWidgets {
 
   .widget {
+
     border-top: 3px solid $medium-gray;
+
     padding-top: 2rem;
 
     &:first-child {
@@ -11,6 +13,7 @@
   }
   h2 {
     text-align: center;
+    margin-bottom: 1.5rem;
   }
   footer {
     display: flex;
@@ -42,7 +45,7 @@
 }
 #sideWidgets {
 
-  
+
 }
 #quickLinks {
   ul {
@@ -74,10 +77,14 @@
 
 @include breakpoint(medium) {
   #mainWidgets {
-
     footer {
       flex-direction: row;
       justify-content: center;
     }
+  }
+}
+@include breakpoint(large) {
+  #mainWidgets {
+
   }
 }
