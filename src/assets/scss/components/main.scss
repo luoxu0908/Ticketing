@@ -109,9 +109,8 @@ ul.noBullets {
   }
 
 	#contentWindow {
-		header {
+		> header {
 			border-bottom: 1px dashed $medium-gray;
-
 			margin-bottom: 3rem;
 
 			.sideLinks {
