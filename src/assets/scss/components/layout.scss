@@ -93,7 +93,7 @@ html, body {
 
     h1 {
       grid-area: t;
-      align-self: flex-end;
+
       margin: 0;
     }
 
@@ -106,8 +106,11 @@ html, body {
     }
 
 
-  }
 
+  }
+  @include breakpoint(medium) {
+
+  }
 
   @include breakpoint(large) {
     #mainContent {
@@ -117,8 +120,10 @@ html, body {
       't t t t t t t t t t t t'
       'mw mw mw mw mw mw mw mw mw mw sw sw';
 
-      h1 {
+      padding-right: 0;
 
+      h1 {
+        align-self: flex-end;
       }
       #mainWidgets {
         max-width: 1200px;
@@ -126,6 +131,7 @@ html, body {
       #sideWidgets {
         grid-area: sw;
         display: block;
+        padding-right: $global-edge-padding;
       }
     }
   }
@@ -145,7 +151,6 @@ html, body {
 
     h1 {
       grid-area: t;
-      align-self: flex-end;
       margin: 0;
     }
     .profile {
@@ -185,6 +190,9 @@ html, body {
       's1 m m m m m m m m m m m';
       grid-template-rows: 60px auto;
 
+      h1 {
+        align-self: flex-end;
+      }
       .profile {
         grid-area: p;
         display: block;
@@ -211,7 +219,6 @@ html, body {
 
     h1 {
       grid-area: t;
-      align-self: flex-end;
       margin: 0;
     }
     .profile {
@@ -259,6 +266,9 @@ html, body {
       's1 m m m m m m m m m m s2';
       grid-template-rows: 60px auto;
 
+      h1 {
+        align-self: flex-end;
+      }
       .profile {
         grid-area: p;
         display: block;
