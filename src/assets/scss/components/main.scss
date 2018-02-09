@@ -77,6 +77,27 @@ ul.noBullets {
 
 }
 
+#contentWindow {
+	header {
+		margin-bottom: 3rem;
+	}
+	.sideLinks {
+		margin-left: 1rem;
+
+		a {
+			border-left: 1px solid $light-gray;
+			padding-left: 0.5rem;
+			margin-right: 0.5rem;
+
+		}
+		a:first-child {
+			border: none;
+			padding: 0;
+		}
+	}
+}
+
+
 @include breakpoint(medium) {
   #mainContent {
     //height: 100%;
