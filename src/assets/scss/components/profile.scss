@@ -9,6 +9,12 @@
   }
 }
 
+#page-profile {
+  .profile {
+    display: none !important;
+  }
+}
+
 @include breakpoint(medium) {
   #profile {
     padding: 2rem 0;
