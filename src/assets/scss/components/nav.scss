@@ -195,6 +195,8 @@
       background: lighten($contrast-color1,15);
     }
     &.selected,&.selected:hover {
+      color: $white;
+      background-color: $complementary-dark-color1;
       background-image: url(../img/icon-light-right.png);
       background-position: right center;
       background-repeat: no-repeat;
