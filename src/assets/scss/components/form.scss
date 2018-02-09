@@ -1,8 +1,5 @@
-form,.form {
-  header {
-    border-bottom: 1px dashed $medium-gray;
-    margin-bottom: $global-margin;
-  }
+form,.form, .formTextContainer {
+
   footer {
     margin: $global-margin*0.5 0;
     button.button {
@@ -107,6 +104,15 @@ form,.form {
     @include global-box();
   }
 }
+
+.formTextContainer {
+  .labelText {
+    border-bottom: 2px solid $light-gray;
+    padding-bottom: 0.4rem;
+  }
+
+}
+
 @include breakpoint(medium) {
   form,.form {
     .checkboxGroup,.radioGroup {

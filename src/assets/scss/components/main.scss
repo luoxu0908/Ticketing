@@ -29,8 +29,7 @@
 
 .contentContainer {
   & > header {
-    border-bottom: 1px dashed $medium-gray;
-    margin-bottom: $global-margin;
+
 	}
 }
 
@@ -79,20 +78,22 @@ ul.noBullets {
 
 #contentWindow {
 	header {
-		margin-bottom: 3rem;
-	}
-	.sideLinks {
-		margin-left: 1rem;
+		margin-bottom: 1.5rem;
 
-		a {
-			border-left: 1px solid $light-gray;
-			padding-left: 0.5rem;
-			margin-right: 0.5rem;
+		.sideLinks {
+			display: block;
+			padding: 1rem 0 0.5rem;
 
-		}
-		a:first-child {
-			border: none;
-			padding: 0;
+			a {
+				border-left: 1px solid $light-gray;
+				padding-left: 0.5rem;
+				margin-right: 0.5rem;
+
+			}
+			a:first-child {
+				border: none;
+				padding: 0;
+			}
 		}
 	}
 }
@@ -106,4 +107,28 @@ ul.noBullets {
   		margin-bottom: $global-section-margin;
   	}
   }
+
+	#contentWindow {
+		header {
+			border-bottom: 1px dashed $medium-gray;
+
+			margin-bottom: 3rem;
+
+			.sideLinks {
+				display: inline;
+				margin-left: 1rem;
+
+				a {
+					border-left: 1px solid $light-gray;
+					padding-left: 0.5rem;
+					margin-right: 0.5rem;
+
+				}
+				a:first-child {
+					border: none;
+					padding: 0;
+				}
+			}
+		}
+	}
 }
