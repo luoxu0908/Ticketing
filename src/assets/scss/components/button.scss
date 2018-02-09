@@ -4,7 +4,7 @@ button, .button, [type="button"], [type="reset"], [type="submit"] {
 	cursor: pointer;
   font-weight: bold;
 	margin-bottom: 0;
-  text-transform: uppercase;
+  //text-transform: uppercase;
 
 	@include button-style(get-color(primary), lighten(get-color(primary),10%), $complementary-light-color1);
 }
@@ -17,6 +17,24 @@ button, .button, [type="button"], [type="reset"], [type="submit"] {
   @include button-style($complementary-dark-color3, lighten($complementary-dark-color3,10%), $complementary-light-color1);
 
 }
+
+.buttonGo {
+  @include button-style($success-color, darken($success-color,10%), $white);
+
+}
+.buttonNeutral {
+  @include button-style($medium-gray, darken($medium-gray,10%), $white);
+
+}
+.buttonWarn {
+  @include button-style($warning-color, darken($warning-color,10%), $white);
+
+}
+.buttonAlert {
+  @include button-style($alert-color, darken($alert-color,10%), $white);
+
+}
+
 
 //label is outside the button
 .buttonType2 {
@@ -178,9 +196,6 @@ button, .button, [type="button"], [type="reset"], [type="submit"] {
 		}
 	}
 }
-
-
-
 
 
 @include breakpoint(medium) {
