@@ -131,7 +131,68 @@ html, body {
 }
 
 .page-columns-2 {
+  #mainContent {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-areas:
+    't t t t t t t t t t t t'
+    's1 s1 s1 s1 s1 s1 s1 s1 s1 s1 s1 s1'
+    'm m m m m m m m m m m m';
 
+    grid-template-rows: 60px 55px auto;
+    grid-gap: $global-padding;
+
+    h1 {
+      grid-area: t;
+      align-self: flex-end;
+    }
+    .profile {
+      grid-area: p;
+      align-self: flex-end;
+      display: none;
+    }
+    #sidebar1 {
+      grid-area: s1;
+      display: block;
+      overflow: hidden;
+    }
+    #contentWindow {
+      grid-area: m;
+    }
+  }
+  @include breakpoint(medium) {
+    #mainContent {
+      grid-template-areas:
+      't t t t t t t t t t t p'
+      's1 s1 s1 s1 s1 s1 s1 s1 s1 s1 s1 s1'
+      'm m m m m m m m m m m m';
+
+      .profile {
+        display: block;
+      }
+      #sidebar1 {
+        display: block;
+      }
+    }
+  }
+
+  @include breakpoint(large) {
+    #mainContent {
+      grid-template-areas:
+      't t t t t t t t t t t p'
+      's1 m m m m m m m m m m m';
+      grid-template-rows: 60px auto;
+
+      .profile {
+        grid-area: p;
+        display: block;
+      }
+      #sidebar1 {
+        display: block;
+        overflow: auto;
+      }
+    }
+  }
 }
 
 .page-columns-3 {
@@ -140,24 +201,73 @@ html, body {
     grid-template-columns: auto;
     grid-template-areas:
     't t t t t t t t t t t t'
-    's1 mw mw mw mw mw mw mw mw mw mw s2';
+    's1 s1 s1 s1 s1 s1 s1 s1 s1 s1 s1 s1'
+    'm m m m m m m m m m m m';
 
-    grid-template-rows: 60px auto;
+    grid-template-rows: 60px 55px auto;
     grid-gap: $global-padding;
 
     h1 {
       grid-area: t;
-
       align-self: flex-end;
+    }
+    .profile {
+      grid-area: p;
+      align-self: flex-end;
+      display: none;
     }
     #sidebar1 {
       grid-area: s1;
+      display: block;
+      overflow: hidden;
     }
     #sidebar2 {
       grid-area: s2;
+      display: none;
     }
     #contentWindow {
-      grid-area: mw;
+      grid-area: m;
+      max-width: 800px;
     }
   }
+
+  @include breakpoint(medium) {
+    #mainContent {
+      grid-template-areas:
+      't t t t t t t t t t t p'
+      's1 s1 s1 s1 s1 s1 s1 s1 s1 s1 s1 s1'
+      'm m m m m m m m m m m s2';
+
+      .profile {
+        display: block;
+      }
+      #sidebar1 {
+        display: block;
+      }
+      #sidebar2 {
+        display: block;
+      }
+    }
+  }
+  @include breakpoint(large) {
+    #mainContent {
+      grid-template-areas:
+      't t t t t t t t t t t p'
+      's1 m m m m m m m m m m s2';
+      grid-template-rows: 60px auto;
+
+      .profile {
+        grid-area: p;
+        display: block;
+      }
+      #sidebar1 {
+        display: block;
+        overflow: auto;
+      }
+      #sidebar2 {
+        display: block;
+      }
+    }
+  }
+
 }
