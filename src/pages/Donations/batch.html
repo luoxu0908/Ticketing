@@ -30,19 +30,22 @@ Administration</a></li>
 
   <div class="listingContainer">
     <header class="tabBoxContainer">
-      <button type="href" class="tabBoxButton" data-target="filterOptions"><i class="icon"><img src="{{root}}assets/img/icon-light-filter.png" alt="icon"/></i>Filters</button>
+      
+        <button type="href" class="tabBoxButton" data-target="filterOptions"><i class="icon"><img src="{{root}}assets/img/icon-light-filter.png" alt="icon"/></i>Filters</button>
+        <form class="tabBoxContent reveal" id="filterOptions">
+          <button class="close-button tabBoxButtonClose " aria-label="Dismiss alert" type="button" data-close>
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <div>
+            <label>Text</label>
+            <input type="text" />
+          </div>
+          <footer>
+          </footer>
+        </form>
+
       <button class="buttonType2 buttonType2Add" data-open="donationBatch_addForm">New Batch Donation</button>
-      <form class="tabBoxContent reveal" id="filterOptions">
-        <button class="close-button tabBoxButtonClose " aria-label="Dismiss alert" type="button" data-close>
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <div>
-          <label>Text</label>
-          <input type="text" />
-        </div>
-        <footer>
-        </footer>
-      </form>
+
     </header>
     <div class="table-scroll">
       <table class="table-lines hover">
@@ -94,10 +97,10 @@ Administration</a></li>
         </tbody>
       </table>
       <footer >
-        <button type="href" id="donationBatch_confirmedIssuedReceipt">Confirmed &amp; Issue Receipt</button>
-        <button type="href" id="donationBatch_cancel">Cancel</button>
-        <button type="href" id="donationBatch_void">Void</button>
-        <button type="href" id="donationBatch_delete">Delete</button>
+        <button type="href" id="donationBatch_confirmedIssuedReceipt" class="buttonGo">Confirmed &amp; Issue Receipt</button>
+        <button type="href" id="donationBatch_cancel" class="buttonWarn">Cancel</button>
+        <button type="href" id="donationBatch_void" class="buttonNeutral">Void</button>
+        <button type="href" id="donationBatch_delete" class="buttonAlert">Delete</button>
       </footer>
     </div>
   </div>

@@ -1,13 +1,13 @@
 //
 .tabBoxContainer {
   @include position(relative);
-  margin-bottom: $global-margin;
+  //margin-bottom: $global-margin;
   //z-index: 2;
 
   .tabBoxButton {
     //@include border-radius($radius: $global-radius);
-    align-self: flex-end;
-    margin-bottom: 0px;
+    //align-self: flex-end;
+    margin: 0px;
     z-index: 2;
 
     &.tabBoxButtonOpen {
@@ -15,14 +15,35 @@
     }
   }
   .tabBoxContent {
-    //@include position(absolute,$top: 27px);
+    @include position(absolute,$top: 100%);
+
     //display: none;
     //padding-top: 49px;
     @include border-radius($top-right:8px, $top-left: 0,$bottom-right:8px, $bottom-left: 8px);
-    padding: 2rem 1rem 1.5rem;
-    top: 0;
+
+    background: $primary-color;
+    color: $white;
+    min-width: 200px;
+    padding: 1rem 1rem;
     width: 100%;
     z-index: 1;
+
+    label,
+    .labelText {
+      color: $white;
+    }
+
+    input[type=text],
+    select,
+    textarea {
+      color:$black;
+    }
+
+    .tabBoxButtonClose {
+      @include position(absolute, $top: -10px, $right: 0);
+      color: $white;
+      margin: 0;
+    }
   }
   .tabBoxModal {
     @include border-radius($top-right:8px, $top-left: 8px,$bottom-right:8px, $bottom-left: 8px);
