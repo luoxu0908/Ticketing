@@ -8,7 +8,6 @@ table {
       text-transform: uppercase;
       text-align: center;
     }
-
   }
 
   tbody {
@@ -16,14 +15,6 @@ table {
     border: none;
     tr {
       //border-top: 1px solid $complementary-dark-color3;
-    }
-    tr:hover td {
-      color: $complementary-light-color1;
-      background: $complementary-dark-color3;
-    }
-    tr:hover:nth-child(even) td {
-      background: $complementary-dark-color2;
-      //color: $black;
     }
     td {
       padding: 1.2rem 0.8rem;
@@ -37,6 +28,7 @@ table {
     td.colorCodeNonActive {
       background: #e60000;
     }
+
   }
 
   &.table-lines {
@@ -44,7 +36,6 @@ table {
       th {
 
       }
-
     }
     tbody {
       background: none;
@@ -53,17 +44,40 @@ table {
         border-bottom: 1px solid $medium-gray;
       }
 
+      tr,
       tr td {
         background: none;
       }
-      tr:nth-child(even) {
-        background: none;
-      }
-      tr:hover td,tr:hover:nth-child(even) td {
-        color: $black;
-        background: none;
-      }
     }
+  }
+
+  &.hover {
+
+      tr:hover {
+        background: $complementary-light-color1;
+      }
+      tr:hover:nth-child(even) {
+        background: $complementary-light-color2;
+        //color: $black;
+      }
+
+  }
+
+  tr.selected td {
+    color: $white;
+    background: $contrast-color1;
+  }
+  &.table-lines {
+    tr.selected {
+      color: $white;
+      background: $contrast-color1;
+    }
+    tr:hover.selected {
+      background: darken($contrast-color1,10);
+    }
+  }
+  tr:hover.selected {
+    background: darken($contrast-color1,10);
   }
 
   &.packageTable, &.packagetranTable {
