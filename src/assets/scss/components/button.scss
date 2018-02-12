@@ -5,6 +5,7 @@ button, .button, [type="button"], [type="reset"], [type="submit"] {
   font-weight: bold;
 	margin-bottom: 0;
   //text-transform: uppercase;
+	width: 100%;
 
 	@include button-style(get-color(primary), lighten(get-color(primary),10%), $complementary-light-color1);
 }
@@ -43,6 +44,7 @@ button, .button, [type="button"], [type="reset"], [type="submit"] {
 	cursor: pointer;
   color: $black;
 	font-size: 0.8rem;
+	width: auto;
 	@include global-box(
 		$margin-top: 0,
 		$margin-left: 0,
@@ -124,6 +126,7 @@ button, .button, [type="button"], [type="reset"], [type="submit"] {
 	background: none;
 	cursor: pointer;
   color: $black;
+	width: auto;
 	@include global-box(
 		$margin-top: 0,
 		$margin-left: 0,
@@ -172,9 +175,10 @@ button, .button, [type="button"], [type="reset"], [type="submit"] {
 
 .close-button {
   background: none;
-  margin-bottom: 0;
+  margin: 0;
 	top: 0;
 	right: 0;
+	width: auto;
 
   &:hover {
     background: none;
@@ -201,7 +205,7 @@ button, .button, [type="button"], [type="reset"], [type="submit"] {
 @include breakpoint(medium) {
 	button, .button, [type="button"], [type="reset"], [type="submit"] {
 			@include global-box($margin-left: 0, $margin-right: 0);
-
+			width: auto;
 	}
 
 	.buttonType2 {
