@@ -26,6 +26,7 @@ form,.form, .formTextContainer {
   input[type=email],
   select,
   textarea {
+    background: $complementary-light-color1;
     border-radius: 0;
     border: none;
     border-bottom: 3px solid $light-gray;
