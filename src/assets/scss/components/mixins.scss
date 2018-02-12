@@ -145,5 +145,12 @@
     li {
       padding-left: 0;
     }
-  
+
+}
+
+@mixin gridColumns($columns:12, $min: 100px, $max:1fr,$gap: 10px) {
+  display: grid;
+  grid-template-columns: repeat($columns,minmax($min,$max));
+  grid-gap: $gap;
+
 }
