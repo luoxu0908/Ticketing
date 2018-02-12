@@ -27,13 +27,14 @@ html, body {
 #mainContent {
   grid-area: mc;
   overflow-y: auto;
-
+  overflow-x: hidden;
   min-height: 400px;
 }
 
 @include breakpoint(medium) {
   #main {
     grid-template-rows: 80px auto 60px;
+
     grid-template-areas:
     'h h h h h h h h h h h h'
     'mc mc mc mc mc mc mc mc mc mc mc mc'
@@ -140,11 +141,11 @@ html, body {
 .page-columns-2 {
   #mainContent {
     display: grid;
-    grid-template-columns: auto;
+    grid-template-columns: 100%;
     grid-template-areas:
-    't t t t t t t t t t t t'
-    's1 s1 s1 s1 s1 s1 s1 s1 s1 s1 s1 s1'
-    'm m m m m m m m m m m m';
+    't'
+    's1'
+    'm';
 
     grid-template-rows: 60px 55px auto;
     grid-gap: $global-padding;
@@ -171,14 +172,17 @@ html, body {
     #mainContent {
       grid-template-areas:
       't t t t t t t t t t t p'
-      's1 s1 s1 s1 s1 s1 s1 s1 s1 s1 s1 s1'
-      'm m m m m m m m m m m m';
+      's1 m m m m m m m m m m m'
+      'f f f f f f f f f f f f';
+      grid-template-columns: 180px minmax(100px,1fr) 180px;
+      grid-template-rows: 60px auto;
 
       .profile {
         display: block;
       }
       #sidebar1 {
         display: block;
+        overflow: auto;
       }
     }
   }
@@ -189,6 +193,7 @@ html, body {
       't t t t t t t t t t t p'
       's1 m m m m m m m m m m m';
       grid-template-rows: 60px auto;
+      grid-template-columns: 220px repeat(auto-fill, minmax(500px,1fr)) 220px;
 
       h1 {
         align-self: flex-end;
@@ -197,10 +202,8 @@ html, body {
         grid-area: p;
         display: block;
       }
-      #sidebar1 {
-        display: block;
-        overflow: auto;
-      }
+
+
     }
   }
 }
@@ -208,11 +211,11 @@ html, body {
 .page-columns-3 {
   #mainContent {
     display: grid;
-    grid-template-columns: auto;
+    grid-template-columns: 100%;
     grid-template-areas:
-    't t t t t t t t t t t t'
-    's1 s1 s1 s1 s1 s1 s1 s1 s1 s1 s1 s1'
-    'm m m m m m m m m m m m';
+    't'
+    's1'
+    'm';
 
     grid-template-rows: 60px 55px auto;
     grid-gap: $global-padding;
@@ -245,8 +248,10 @@ html, body {
     #mainContent {
       grid-template-areas:
       't t t t t t t t t t t p'
-      's1 s1 s1 s1 s1 s1 s1 s1 s1 s1 s1 s1'
-      'm m m m m m m m m m m s2';
+      's1 m m m m m m m m m m m'
+      'f f f f f f f f f f f f';
+      grid-template-columns: 180px  minmax(100px,1fr)  180px;
+      grid-template-rows: 60px auto;
 
       .profile {
         display: block;
@@ -254,9 +259,7 @@ html, body {
       #sidebar1 {
         display: block;
       }
-      #sidebar2 {
-        display: block;
-      }
+
     }
   }
   @include breakpoint(large) {
@@ -265,6 +268,7 @@ html, body {
       't t t t t t t t t t t p'
       's1 m m m m m m m m m m s2';
       grid-template-rows: 60px auto;
+      grid-template-columns: 220px repeat(auto-fill, minmax(500px,1fr)) 220px;
 
       h1 {
         align-self: flex-end;
@@ -283,4 +287,40 @@ html, body {
     }
   }
 
+}
+
+//columns
+.columns12 {
+  @include gridColumns();
+}
+
+.columns11 {
+  @include gridColumns($columns:11);
+}
+.columns10 {
+  @include gridColumns($columns:10);
+}
+.columns9 {
+  @include gridColumns($columns:9);
+}
+.columns8 {
+  @include gridColumns($columns:8);
+}
+.columns7 {
+  @include gridColumns($columns:7);
+}
+.columns6 {
+  @include gridColumns($columns:6);
+}
+.columns5 {
+  @include gridColumns($columns:5);
+}
+.columns4 {
+  @include gridColumns($columns:4);
+}
+.columns3 {
+  @include gridColumns($columns:3);
+}
+.columns2 {
+  @include gridColumns($columns:2);
 }
