@@ -1,157 +1,420 @@
 ---
-layout: default
+layout: columns-2
 ---
 
-<div class="grid-container">
-  <div class="grid-x grid-margin-x">
-    <div class="large-12 cell">
-      <h1>Welcome to Foundation for Sites</h1>
-    </div>
-  </div>
+<h1>Reference Documentation</h1>
 
-  <div class="grid-x grid-margin-x">
-    <div class="large-12 cell">
-      <div class="callout">
-        <h3>We&rsquo;re stoked you want to try Foundation! </h3>
-        <p>To get going, this file (index.html) includes some basic styles you can modify, play around with, or totally destroy to get going.</p>
-        <p>Once you've exhausted the fun in this document, you should check out:</p>
-        <div class="grid-x grid-margin-x">
-          <div class="large-4 medium-4 cell">
-            <p><a href="http://foundation.zurb.com/docs">Foundation Documentation</a><br />Everything you need to know about using the framework.</p>
-          </div>
-          <div class="large-4 medium-4 cell">
-            <p><a href="http://zurb.com/university/code-skills">Foundation Code Skills</a><br />These online courses offer you a chance to better understand how Foundation works and how you can master it to create awesome projects.</p>
-          </div>
-          <div class="large-4 medium-4 cell">
-            <p><a href="http://foundation.zurb.com/forum">Foundation Forum</a><br />Join the Foundation community to ask a question or show off your knowledge.</p>
-          </div>
-        </div>
-        <div class="grid-x grid-margin-x">
-          <div class="large-4 medium-4 medium-push-2 cell">
-            <p><a href="http://github.com/zurb/foundation">Foundation on Github</a><br />Latest code, issue reports, feature requests and more.</p>
-          </div>
-          <div class="large-4 medium-4 medium-pull-2 cell">
-            <p><a href="https://twitter.com/ZURBfoundation">@zurbfoundation</a><br />Ping us on Twitter if you have questions. When you build something with this we'd love to see it (and send you a totally boss sticker).</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="profile"></div>
 
-  <div class="grid-x grid-margin-x">
-    <div class="large-8 medium-8 cell">
-      <h5>Here&rsquo;s your basic grid:</h5>
-      <!-- Grid Example -->
-
-      <div class="grid-x grid-margin-x">
-        <div class="large-12 cell">
-          <div class="primary callout">
-            <p><strong>This is a twelve column section in a grid-x with grid-margin-x.</strong> Each of these includes a div.callout element so you can see where the cell are - it's not required at all for the grid.</p>
-          </div>
-        </div>
-      </div>
-      <div class="grid-x grid-margin-x">
-        <div class="large-6 medium-6 cell">
-          <div class="primary callout">
-            <p>Six cell</p>
-          </div>
-        </div>
-        <div class="large-6 medium-6 cell">
-          <div class="primary callout">
-            <p>Six cell</p>
-          </div>
-        </div>
-      </div>
-      <div class="grid-x grid-margin-x">
-        <div class="large-4 medium-4 small-4 cell">
-          <div class="primary callout">
-            <p>Four cell</p>
-          </div>
-        </div>
-        <div class="large-4 medium-4 small-4 cell">
-          <div class="primary callout">
-            <p>Four cell</p>
-          </div>
-        </div>
-        <div class="large-4 medium-4 small-4 cell">
-          <div class="primary callout">
-            <p>Four cell</p>
-          </div>
-        </div>
-      </div>
-
-      <hr />
-
-      <h5>We bet you&rsquo;ll need a form somewhere:</h5>
-      <form>
-        <div class="grid-x grid-margin-x">
-          <div class="large-12 cell">
-            <label>Input Label</label>
-            <input type="text" placeholder="large-12.cell" />
-          </div>
-        </div>
-        <div class="grid-x grid-margin-x">
-          <div class="large-4 medium-4 cell">
-            <label>Input Label</label>
-            <input type="text" placeholder="large-4.cell" />
-          </div>
-          <div class="large-4 medium-4 cell">
-            <label>Input Label</label>
-            <input type="text" placeholder="large-4.cell" />
-          </div>
-          <div class="large-4 medium-4 cell">
-            <div class="grid-x grid-margin-x collapse">
-              <label>Input Label</label>
-              <div class="input-group">
-                <input class="input-group-field" type="text" placeholder="input-group" />
-                <span class="input-group-label">.com</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="grid-x grid-margin-x">
-          <div class="large-12 cell">
-            <label>Select Box</label>
-            <select>
-              <option value="husker">Husker</option>
-              <option value="starbuck">Starbuck</option>
-              <option value="hotdog">Hot Dog</option>
-              <option value="apollo">Apollo</option>
-            </select>
-          </div>
-        </div>
-        <div class="grid-x grid-margin-x">
-          <div class="large-6 medium-6 cell">
-            <label>Choose Your Favorite</label>
-            <input type="radio" name="pokemon" value="Red" id="pokemonRed"><label for="pokemonRed">Radio 1</label>
-            <input type="radio" name="pokemon" value="Blue" id="pokemonBlue"><label for="pokemonBlue">Radio 2</label>
-          </div>
-          <div class="large-6 medium-6 cell">
-            <label>Check these out</label>
-            <input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>
-            <input id="checkbox2" type="checkbox"><label for="checkbox2">Checkbox 2</label>
-          </div>
-        </div>
-        <div class="grid-x grid-margin-x">
-          <div class="large-12 cell">
-            <label>Textarea Label</label>
-            <textarea placeholder="small-12.cell"></textarea>
-          </div>
-        </div>
-      </form>
-    </div>
-
-    <div class="large-4 medium-4 cell">
-      <h5>Try one of these buttons:</h5>
-      <p><a href="#" class="small button">Simple Button</a><br/>
-      <a href="#" class="medium success button">Success Btn</a><br/>
-      <a href="#" class="medium alert button">Alert Btn</a><br/>
-      <a href="#" class="medium secondary button">Secondary Btn</a></p>
-      <div class="callout">
-        <h5>So many components, girl!</h5>
-        <p>A whole kitchen sink of goodies comes with Foundation. Check out the docs to see them all, along with details on making them your own.</p>
-        <a href="http://foundation.zurb.com/docs/" class="small button">Go to Foundation Docs</a>
-      </div>
-    </div>
-  </div>
+<div id="sidebar1" class="sidebar noBg">
+  <ul class="subLinks">
+    <li><a href="#type">Type</a></li>
+    <li><a href="#linksButtons">Online Donation
+Administration</a></li>
+    <li><a href="#list">List</a></li>
+    <li><a href="#table">Table</a></li>
+    <li><a href="#form">Form</a></li>
+    <li><a href="#column">Column</a></li>
+  </ul>
 </div>
+
+<div id="contentWindow">
+  <section id="type">
+    <h2>Title and paragraph</h2>
+
+    <h1>
+      Header H1
+    </h1>
+
+    <h2>
+      Header H2
+    </h2>
+
+    <h3>
+      Header H3
+    </h3>
+
+    <h4>
+      Header H4
+    </h4>
+
+    <h5>
+      Header H5
+    </h5>
+
+    <h6>
+      Header H6
+    </h6>
+
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam justo est, volutpat sed massa vel, vehicula fermentum mauris. Morbi posuere semper quam, at fermentum elit consectetur sit amet. Sed vel dui sit amet leo ultrices hendrerit quis in libero. Vivamus dictum tellus libero, at suscipit nisl semper nec. Phasellus tempus, nisi a egestas pulvinar, turpis est gravida orci, non viverra dolor ex nec lorem. Nulla vel porta nisl. Nullam ligula ligula, bibendum sit amet sodales in, dignissim et velit. Morbi quam justo, venenatis ut rutrum eu, faucibus ac orci. Aliquam lobortis lectus nec arcu posuere, non dictum ex gravida. Morbi vitae ipsum sit amet purus efficitur porta eu iaculis nulla. Sed placerat ex id orci consectetur consectetur. Praesent eu odio ac lectus maximus sodales vel ut quam. Etiam ante diam, rhoncus ac sapien id, porttitor varius magna.
+    </p>
+  </section>
+
+  <section id="linksButtons">
+    <h2>Links &amp; Buttons</h2>
+    <p>
+     <a href="#">link</a>
+    </p>
+    <p>
+     <button class="">Button</button>
+     <button class="button2">button2</button>
+     <button class="button3">button3</button>
+     <button class="buttonGo">buttonGo</button>
+     <button class="buttonNeutral">buttonNeutral</button>
+     <button class="buttonWarn">buttonWarn</button>
+     <button class="buttonAlert">buttonAlert</button>
+    </p>
+  </section>
+
+  <section id="list">
+    <h2>List</h2>
+    <ul>
+      <li>
+        item
+      </li>
+      <li>
+        item
+      </li>
+      <li>
+        item
+      </li>
+    </ul>
+
+    <ol>
+      <li>
+        item
+      </li>
+      <li>
+        item
+      </li>
+      <li>
+        item
+      </li>
+    </ol>
+  </section>
+
+  <section id="table">
+    <h2>Table</h2>
+    <h3>Basic</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Title</th>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Column</td>
+          <td>Column</td>
+          <td>Column</td>
+        </tr>
+        <tr>
+          <td>Column</td>
+          <td>Column</td>
+          <td>Column</td>
+        </tr>
+        <tr>
+          <td>Column</td>
+          <td>Column</td>
+          <td>Column</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h3>Just Bottom Line</h3>
+    <table class="table-lines">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Title</th>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Column</td>
+          <td>Column</td>
+          <td>Column</td>
+        </tr>
+        <tr>
+          <td>Column</td>
+          <td>Column</td>
+          <td>Column</td>
+        </tr>
+        <tr>
+          <td>Column</td>
+          <td>Column</td>
+          <td>Column</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>Hover</h3>
+    <table class="table-lines hover">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Title</th>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Column</td>
+          <td>Column</td>
+          <td>Column</td>
+        </tr>
+        <tr>
+          <td>Column</td>
+          <td>Column</td>
+          <td>Column</td>
+        </tr>
+        <tr>
+          <td>Column</td>
+          <td>Column</td>
+          <td>Column</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>Table Scroll</h3>
+    <div class="table-scroll">
+      <table class="table-lines hover">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Title</th>
+            <th>Title</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Column</td>
+            <td>Column</td>
+            <td>Column</td>
+          </tr>
+          <tr>
+            <td>Column</td>
+            <td>Column</td>
+            <td>Column</td>
+          </tr>
+          <tr>
+            <td>Column</td>
+            <td>Column</td>
+            <td>Column</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="form">
+    <h2>Form</h2>
+    <form>
+      <fieldset>
+        <legend><h3>Basic</h3></legend>
+        <div>
+          <label>
+            Text
+          </label>
+          <input type="text" id="textbox1" name="textbox1">
+        </div>
+        <div>
+          <label>
+            Text
+          </label>
+          <select>
+            <option>-- select --</option>
+            <option>item</option>
+            <option>item</option>
+          </select>
+        </div>
+
+        <div>
+          <div class="labelText">
+            Checkbox Group
+          </div>
+          <div class="checkboxGroup">
+            <label for="checkbox1"><input type="checkbox" id="checkbox1" name="checkbox1">
+            Checkbox 1</label>
+            <label for="checkbox2"><input type="checkbox" id="checkbox2" name="checkbox2">
+            Checkbox 2</label>
+            <label for="checkbox3"><input type="checkbox" id="checkbox3" name="checkbox3">
+            Checkbox 3</label>
+          </div>
+        </div>
+        <div>
+          <div class="labelText">
+            Radio Group
+          </div>
+          <div class="radioGroup">
+            <label for="radio1"><input type="radio" id="radio1" name="radio1">
+            Radio 1</label>
+            <label for="radio2"><input type="radio" id="radio2" name="radio2">
+            Radio 2</label>
+            <label for="radio3"><input type="radio" id="radio3" name="radio3">
+            Radio 3</label>
+          </div>
+        </div>
+        <div>
+          <label>
+            Text
+          </label>
+          <textarea></textarea>
+        </div>
+      </fieldset>
+      <footer class="text-center">
+        <button class="buttonNeutral">Cancel</button>
+        <button>Submit</button>
+      </footer>
+    </form>
+  </section>
+  <section id="column">
+    <h2>Columns</h2>
+    <h3>Column 12</h3>
+    <div class="columns12">
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+    </div>
+    <h3>Column 11</h3>
+    <div class="columns11">
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+    </div>
+    <h3>Column 10</h3>
+    <div class="columns10">
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+    </div>
+    <h3>Column 9</h3>
+    <div class="columns9">
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+    </div>
+    <h3>Column 8</h3>
+    <div class="columns8">
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+    </div>
+    <h3>Column 7</h3>
+    <div class="columns7">
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+    </div>
+    <h3>Column 6</h3>
+    <div class="columns6">
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+    </div>
+    <h3>Column 5</h3>
+    <div class="columns5">
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+    </div>
+    <h3>Column 4</h3>
+    <div class="columns4">
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+    </div>
+    <h3>Column 3</h3>
+    <div class="columns3">
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+    </div>
+    <h3>Column 2</h3>
+    <div class="columns2">
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+      <p>1</p>
+    </div>
+
+  </section>
+</div> <!-- contentWindow -->
