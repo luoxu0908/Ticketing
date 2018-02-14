@@ -201,6 +201,11 @@ button, .button, [type="button"], [type="reset"], [type="submit"] {
 	}
 }
 
+.page-noframe #mainContent {
+	button {
+		width: 100%;
+	}
+}
 
 @include breakpoint(medium) {
 	button, .button, [type="button"], [type="reset"], [type="submit"] {
