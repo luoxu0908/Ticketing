@@ -162,7 +162,7 @@ html, body {
     #sidebar1 {
       grid-area: s1;
       display: block;
-      overflow: hidden;
+      position: relative;
     }
     #contentWindow {
       grid-area: m;
@@ -232,7 +232,7 @@ html, body {
     #sidebar1 {
       grid-area: s1;
       display: block;
-      overflow: hidden;
+      position: relative;
     }
     #sidebar2 {
       grid-area: s2;
