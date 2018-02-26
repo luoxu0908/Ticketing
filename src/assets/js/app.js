@@ -285,13 +285,14 @@ $(function(){
     });
   });//editLinkForm
   //search
-  //init search form
-  if (Foundation.MediaQuery.is('small only')) {
-    $('#searchForm').show();
-  }
-  else {
-    $('#searchForm').hide();
-  }
+  //init search form and subLinksDropDown for mobile
+  $( window ).resize(function() {
+    resizeScreenSetup();
+  });
+  resizeScreenSetup();
+  initSubLinks();
+  //convertSubLinks(true);
+
   $('#navSearch').click(() => {
     $('#searchForm').slideToggle('start', function() {
       if ($('#searchForm').is(':visible')) {
@@ -373,3 +374,83 @@ function getGUID() {
 	});
 	return uuid;
 };
+
+function resizeScreenSetup() {
+  console.log('resizeScreen');
+  if (Foundation.MediaQuery.is('small only')) {
+    $('#searchForm').show();
+    //change sub links to dropdown list
+    setupSubLinks(true);
+
+  }
+  else {
+    $('#searchForm').hide();
+    //change sub links to ul list
+    setupSubLinks(false);
+    //initSubLinksDropDown();
+  }
+
+}
+
+function initSubLinks() {
+  var subLinksList = $('.subLinks');
+  var subLinks = $('.subLinks').find('li').find('a');
+  subLinks.each(function() {
+    var $this = $(this);
+    //var link = $this.find('a');
+
+    $this.click(function() {
+      subLinks.removeClass('selected');
+      $this.addClass('selected');
+
+      var subLinksDropDown = $('.subLinksDropDown');
+
+      //console.log(subLinksDropDown.is(':visible'));
+      if (subLinksDropDown.length && subLinksDropDown.is(':visible')) {
+        subLinksDropDown.html($this.html());
+        subLinksList.hide();
+      }
+    });
+  });
+}
+
+function initSubLinksDropDown() {
+  var subLinksList = $('.subLinks');
+  var subLinks = subLinksList.find('li').find('a');
+  var subLinkActive = subLinksList.find('.selected');
+  var subLinksDropDown = $('<div class="subLinksDropDown"></div>');
+
+
+  if ($('.subLinksDropDown').length <= 0) {
+    //adding subLinksDropDown
+    subLinksList.before(subLinksDropDown);
+
+    //init click
+    subLinksDropDown.click(function(){
+      if(subLinksList.is(':visible'))
+        subLinksList.hide();
+      else
+        subLinksList.show();
+    });
+  }
+
+  return subLinksDropDown;
+}
+
+function setupSubLinks(smallScreen) {
+  var subLinksList = $('.subLinks');
+  var subLinks = subLinksList.find('li');
+  var subLinkActive = subLinksList.find('a.selected');
+  var subLinksDropDown = initSubLinksDropDown();
+
+  console.log(subLinksDropDown);
+  if (smallScreen) {
+    subLinksList.hide();
+    subLinksDropDown.show().html(subLinkActive.html());
+
+  } //convert
+  else {
+    subLinksList.show();
+    subLinksDropDown.hide();
+  } //revert
+}
