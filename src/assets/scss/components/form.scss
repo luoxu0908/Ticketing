@@ -66,17 +66,28 @@ form,.form, .formTextContainer {
 
   .checkboxGroup,
   .radioGroup {
-    display: flex;
-    flex-direction: column;
-    align-items: baseline;
-    margin-bottom: $global-margin;
+    @include formGroups(column);
 
-    input[type='radio'],
-    input[type='checkbox'], {
-      margin: 0 0.5rem 0 0;
+  }
+  .dateGroup {
+    @include formGroups();
+
+    input[placeholder=DD],
+    input[placeholder=MM] {
+      text-align: center;
+      width: 60px;
     }
-    label {
-      margin: 0 $global-margin $global-margin 0;
+    input[placeholder=YYYY] {
+      text-align: center;
+      width: 100px;
+    }
+  }
+
+  .inlineGroup {
+    @include formGroups();
+
+    input[type=text] {
+      width: 120px;
     }
   }
 
@@ -97,6 +108,32 @@ form,.form, .formTextContainer {
   			background: rgba(0,0,0,0.2);
   		}
   	}
+  }
+.scoreForm {
+  .scoreRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+
+    > .labelText {
+      grid-column: 1 / -1;
+    }
+    .checkBoxGoup {
+      grid-column: 1 / 11;
+    }
+    .score {
+      grid-column: -3 / -1;
+      text-align: right;
+    }
+  }
+
+  .scoreTotal {
+    justify-content: flex-end;
+  }
+}
+
+  input[placeholder=other] {
+    width: 200px;
   }
 
   &.form2 {
@@ -130,6 +167,8 @@ form,.form, .formTextContainer {
     padding-bottom: 0.4rem;
   }
 
+
+
 }
 
 @include breakpoint(medium) {
@@ -137,6 +176,10 @@ form,.form, .formTextContainer {
     .radioGroup,
     .checkboxGroup {
       flex-direction: row;
+
+      &.columns {
+        flex-direction: columns;
+      }
     }
   }
 }
