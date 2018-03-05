@@ -154,3 +154,32 @@
   grid-gap: $gap;
 
 }
+
+@mixin formGroups($direction:row) {
+  display: flex;
+  flex-direction: $direction;
+  flex-wrap: wrap;
+  align-items: baseline;
+  margin-bottom: $global-margin;
+
+  label,
+  .labelText,
+  input[type='radio'],
+  input[type='checkbox'],
+  input[type=text] {
+    line-height: 1.2;
+    margin: 0 0.5rem 0.5rem 0.5rem;
+
+    &:first-child {
+      margin-left : 0;
+    }
+  }
+
+
+
+  label,
+  .labelText {
+    width: auto;
+  }
+
+}
