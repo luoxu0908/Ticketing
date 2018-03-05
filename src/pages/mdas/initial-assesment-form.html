@@ -1,7 +1,9 @@
 <h1>Initial Assessment Form</h1>
 
 <form action="" method="">
-  <div class="breadcrumbs"></div>
+  <div class="breadcrumbs">
+
+  </div>
   <fieldset id="sectionA">
   <legend>Section A</legend>
   <p>Main applicant of subsidy schemes - person with muscular dystophy (PMD)</p>
@@ -11,6 +13,7 @@
       <label><input type="radio" name="sectionA_ordinaryMembership" id="sectionA_ordinaryMembershipYes" value="yes"> Yes</label>
       <label><input type="radio" name="sectionA_ordinaryMembership" id="sectionA_ordinaryMembershipNo" value="no"> No</label>
     </div>
+    <p><small><i>(If No, please complete Section B)</i></small></p> 
   </div>
   <div>
     <label for="sectionA_name">Name <small>(as in NRIC)</small></label>
@@ -189,4 +192,48 @@
       <input type="text" id="sectionC_email" name="sectionC_email" />
     </div>
   </fieldset>
+  <fieldset id="sectionE" class="scoreForm">
+    <h2>Section E</h2>
+    <p>Part I – Basic activities of daily living (ADL) – Barthel index</p>
+    <p>Scoring: Sum the scores for each item. Total possible scores range from 0 to 20, with lower scores indicating increased disability.</p>
+    <div class="score">
+      <div class="labelText">Mobility Indoors</div>
+      <div class="checkBoxGoup">
+        <label><input type="checkbox" name="sectionE_moibilityIndoors" id="sectionE_moibilityIndoors" value="0" />Immobile</label>
+      </div>
+      <div class="score"></div>
+    </div>
+    <footer>
+      <div>Total Score</div>
+      <input type="text" id="sectionE_totalScore" name="sectionE_totalScore" /> / 20
+    </footer>
+  </fieldset>
+  <fieldset id="sectionF">
+    <legend>Section F</legend>
+    <p>Respite care needs</p>
+    <h3>Preferred Schedule</h3>
+    <div>
+      <div class="labelText">Period:</div>
+      <div class="inlineGroup">
+        <label>From <input type="text" id="sectionF_periodFrom" name="sectionF_periodFrom" /></label>
+        <label>to <input type="text" id="sectionF_periodTo" name="sectionF_periodTo" /></label>
+      </div>
+      <div class="radioGroup">
+        <label><input type="radio" name="sectionF_period" id="sectionF_periodMorning" value="morning"> Morning</label>
+        <label><input type="radio" name="sectionF_period" id="sectionF_periodAfternoon" value="afternoon"> Afternoon</label>
+        <label><input type="radio" name="sectionF_period" id="sectionF_periodEvening" value="evening"> Evening</label>
+        <label><input type="radio" name="sectionF_period" id="sectionF_periodNight" value="night"> Night</label>
+        <label><input type="radio" name="sectionF_period" id="sectionF_period24Hours" value="24hr shift"> 24hr shift</label>
+      </div>
+    </div>
+    <div>
+      <label>Remarks</label>
+      <textarea id="sectionF_remarks" name="sectionF_remarks"></textarea>
+    </div>
+  </fieldset>
+  <footer>
+    <button type="" id="previous">Previous</button>
+    <button type="" id="next">Next</button>
+    <button type="submit" id="submit">Submit</button>
+  </footer>
 </form>
