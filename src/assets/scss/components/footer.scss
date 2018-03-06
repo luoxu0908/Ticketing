@@ -2,17 +2,21 @@
 @include breakpoint(medium) {
   #footer {
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     justify-content: space-between;
+    align-items: center;
 
     border-top: 1px solid $complementary-light-color2;
   	background: $white;
     font-size: $small-font-size;
   	padding: $global-padding $global-edge-padding;
 
+    .copyright {
+
+    }
     .contact {
       display: flex;
-      flex-direction: row-row-reverse;
+      flex-direction: row-reverse;
 
       a {
         margin: 0 0 0 .5rem;
@@ -37,6 +41,9 @@
           padding-left: 0;
         }
       }
+    }
+    .version {
+
     }
     /*
     a {
