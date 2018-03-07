@@ -1,15 +1,13 @@
 <h1>Initial Assessment Form</h1>
 
-<form action="" method="">
-  <div class="breadcrumbs">
-    <ul>
-      <li class="active"><a href="#">Section A</a></li>
-      <li class=""><a href="#">Section B</a></li>
-      <li class=""><a href="#">Section C</a></li>
-    </ul>
-  </div>
+<form action="" method="" class="formSection">
+  <ul class="breadcrumbs">
+    <li class="active"><a href="#">Section A</a></li>
+    <li class=""><a href="#">Section B</a></li>
+    <li class=""><a href="#">Section C</a></li>
+  </ul>
   <fieldset id="sectionA">
-  <legend>Section A</legend>
+  <h2>Section A</h2>
   <p>Main applicant of subsidy schemes - person with muscular dystophy (PMD)</p>
   <div>
     <div class="labelText">I have a valid MDAS Ordinary Membership</div>
@@ -72,7 +70,7 @@
   </div>
   <div>
     <div class="labelText">Highest Education</div>
-    <div class="radioGroup">
+    <div class="radioGroup" >
       <label><input type="radio" name="sectionA_education" id="sectionA_educationNone" value="none"> None</label>
       <label><input type="radio" name="sectionA_education" id="sectionA_educationHomeSchool" value="home school"> Home-school</label>
       <label><input type="radio" name="sectionA_education" id="sectionA_educationPreSchool" value="pre school"> Pre-school</label>
@@ -84,9 +82,9 @@
       <label><input type="radio" name="sectionA_education" id="sectionA_educationALevel" value="a level">  A Level</label>
       <label><input type="radio" name="sectionA_sectionA_education" id="sectionA_educationITE" value="ITE"> ITE</label>
       <label><input type="radio" name="sectionA_education" id="sectionA_educationDiploma" value="diploma"> Diploma</label>
-      <label><input type="radio" name="sectionA_education" id="sectionA_educationDegreeAbove" value="degree & above"> Degree &amp; Above</label>
+      <label><input type="radio" name="sectionA_education" id="sectionA_educationDegreeAbove" value="degree & above" > Degree &amp; Above</label>
       <label><input type="radio" name="sectionA_education" id="sectionA_educationOthers" value="others" data-form-other="sectionA_educationOthersText"> Others</label>
-      <input type="text" id="sectionA_educationOthersText" name="sectionA_educationOthersText" placeholder="other"/>
+      <input type="text" id="sectionA_educationOthersText" name="sectionA_educationOthersText" placeholder="other" data-form-other-text="true"/>
     </div>
   </div>
   <h3>Contact Details</h3>
@@ -108,7 +106,7 @@
   </div>
   </fieldset>
   <fieldset id="sectionB">
-    <legend>Section B</legend>
+    <h2>Section B</h2>
     <p>Particulars of ordinary membership holder (If main applicant is not a member)</p>
     <div>
       <label for="sectionB_name">Name <small>(as in NRIC)</small></label>
@@ -150,7 +148,7 @@
     </div>
   </fieldset>
   <fieldset id="sectionC">
-    <legend>Section C</legend>
+    <h2>Section C</h2>
     <p>Particulars of caregiver (If not same as Section B)</p>
     <div>
       <label for="sectionC_name">Name <small>(as in NRIC)</small></label>
@@ -211,7 +209,7 @@
     </footer>
   </fieldset>
   <fieldset id="sectionF">
-    <legend>Section F</legend>
+    <h2>Section F</h2>
     <p>Respite care needs</p>
     <h3>Preferred Schedule</h3>
     <div>

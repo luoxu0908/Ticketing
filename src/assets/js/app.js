@@ -314,6 +314,9 @@ $(function(){
     return false;
   });
 
+  formOthersInit();
+  formSectionsInit();
+
 });//onready
 
 function GetBasicInformation(personID) {
@@ -453,4 +456,147 @@ function setupSubLinks(smallScreen) {
     subLinksList.show();
     subLinksDropDown.hide();
   } //revert
+}
+
+function formOthersInit() {
+  $('[data-form-other-text=true]').prop('disabled','disabled');
+  $('[data-form-other]').each(function(){
+    var thisObj = $(this);
+    var targetVal = thisObj.data('form-other');
+    var targetObj = $('#' + targetVal);
+    var target = $('#' + targetVal);
+
+
+    if (thisObj.prop('type')=='checkbox') {
+      //console.log('checkbox');
+      thisObj.click(function() {
+        if (thisObj.is(':checked')) {
+          targetObj.prop('disabled','');
+        }
+        else {
+          targetObj.prop('disabled','disabled');
+        }
+      });
+    }
+    else if (thisObj.prop('type') == 'radio') {
+      var radioName = thisObj.prop('name');
+      var thisVal = thisObj.val();
+      var radioGroup = $('[name='+radioName+']');
+
+      radioGroup.click(function() {
+
+        if ($('[name='+radioName+']:checked').val() == thisVal) {
+          targetObj.prop('disabled','');
+          console.log(3);
+        }
+        else {
+          targetObj.prop('disabled','disabled');
+          console.log(4);
+        }
+      });
+    }
+    else if (thisObj.is('select')) {
+      thisObj.change(function() {
+        var thisVal = thisObj.val();
+        //console.log('select');
+        if (thisVal.toLowerCase()=='other' || thisVal.toLowerCase()=='others') {
+          targetObj.prop('disabled','');
+        }
+        else {
+          targetObj.prop('disabled','disabled');
+        }
+      });
+    }
+  });
+}
+
+function formSectionsInit() {
+  $('form.formSection').each(function() {
+    var form = $(this);
+    var fieldsets = form.find('fieldset');
+    var breadcrumbs = form.find('.breadcrumbs');
+    var footer = form.find('footer.buttonsGroup');
+
+    form.data('current-form-index',0);
+
+    //set breadcrumbs and hide fieldsets
+    breadcrumbs.html('');
+
+    fieldsets.each(function(index) {
+
+      var fieldset = $(this);
+      fieldset.data('fieldset-index',index);
+      breadcrumbs.append('<li><a href="#'+fieldset.prop('id')+'" data-fieldset-index="'+index+'">'+fieldset.find('h2').html()+'</a>');
+
+      if(index>0) {
+        fieldset.hide();
+      }
+    });
+
+    breadcrumbs.find('a').click(function() {
+      var thisObj = $(this);
+      loadFormSection(thisObj.data('fieldset-index'));
+
+      return false;
+    });
+
+    //set buttons
+    footer.find('#previous').hide();
+    footer.find('[type=submit]').hide();
+
+    footer.find('#previous').click(function() {
+      var targetIndex = parseInt(form.data('current-form-index')) -1;
+
+      if (targetIndex <0) targetIndex=0;
+      loadFormSection( targetIndex);
+    });
+    footer.find('#next').click(function() {
+      var targetIndex = parseInt(form.data('current-form-index')) + 1;
+      if (targetIndex >= fieldsets.length) targetIndex=fieldsets.length-1;
+      loadFormSection( targetIndex);
+    });
+
+
+    function loadFormSection(index) {
+      //set index
+      form.data('current-form-index', index);
+      var targetIndex = index;
+
+      console.log(index);
+      //set breadcrumbs
+      breadcrumbs.find('a').removeClass('active').filter(function() {
+
+        return ($(this).data('fieldset-index') == index)
+      }).addClass('active');
+
+      //set fieldset`
+      fieldsets.hide().filter(function() {
+        return ($(this).data('fieldset-index') == index)
+      }).show();
+
+      if (index == 0) {
+        footer.find('#previous').hide();
+        footer.find('#next').show();
+        footer.find('[type=submit]').hide();
+      }
+      else if (index == fieldsets.length-1) {
+        footer.find('#previous').show();
+        footer.find('#next').hide();
+        footer.find('[type=submit]').show();
+      }
+      else {
+        footer.find('#previous').show();
+        footer.find('#next').show();
+        footer.find('[type=submit]').hide();
+      }
+
+
+      //set footer
+    }
+  });
+
+
+
+
+
 }
