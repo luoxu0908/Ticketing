@@ -316,7 +316,7 @@ $(function(){
 
   formOthersInit();
   formSectionsInit();
-
+  loadMenu();
 });//onready
 
 function GetBasicInformation(personID) {
@@ -349,7 +349,7 @@ function GetBasicInformation(personID) {
       Cookies.remove('appCookie');
       document.location.reload();
     }
-  })
+  });
 }
 
 function getCookie(cookie, cname) {
@@ -393,6 +393,40 @@ function resizeScreenSetup() {
     //initSubLinksDropDown();
   }
 
+}
+var menu = [];
+function loadMenu() {
+  var data = {};
+  $.ajax({
+    url: 'https://enterprise.travelplanner.com.sg/QuotientStg/'+"BCMain/Sec1.Menu.json",
+    method: "POST",
+    dataType: "json",
+    xhrFields: {withCredentials: true},
+    data: {
+      'data': JSON.stringify(data),
+      'WebPartKey':WebPartVal,
+      'ReqGUID': getGUID()
+    },
+    success: function(data){
+      if ((data) && (data.d.RetData.Tbl.Rows.length > 0)) {
+        var menus = data.d.RetData.Tbl.Rows;
+        var mainMenuRegex = /(.+)\\/;
+        var menuNameRegex = /\\(.+)/;
+        for (var i =0; i < menus.length; i++) {
+          var menuItem = menus[i];
+          var mainMenuName = menuItem.MenuName.match(/(.+)\\/);
+          if (mainMenuName != null && menu.indexOf(mainMenuName[1]) <= -1 && menuItem.MenuType.toLowerCase() == 'text') {
+              menu.push(mainMenuName[1]);
+          }
+
+        }
+        console.log(menu);
+      }
+    },
+    error: function(XMLHttpRequest, data, errorThrown){
+      console.log(errorThrown);
+    }
+  })
 }
 
 function initSubLinks() {
