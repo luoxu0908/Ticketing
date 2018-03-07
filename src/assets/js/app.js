@@ -122,61 +122,6 @@ $(function(){
     return false;
   });
 
-  function mainMenuToggle() {
-    console.log('mainMenuToggle');
-    var mainMenuContainer = $('#mainMenuContainer');
-
-    if (Foundation.MediaQuery.current == 'small')
-    {
-      var position = mainMenuContainer.offset();
-      console.log(position.left );
-      if(position.left < 0) {
-        console.log('slideout');
-        mainMenuContainer.animate({
-          left:'0'
-        },350);
-      }
-      else {
-        console.log('slidein');
-        mainMenuContainer.animate({
-          left:'-100%'
-        },350);
-      }
-    }
-    else {
-      if(mainMenuContainer.is(':visible')) {
-        console.log('slideup');
-        mainMenuContainer.slideUp();
-      }
-      else {
-        console.log('slidedown');
-        mainMenuContainer.slideDown();
-      }
-    }
-  }
-
-  $('#mainMenu .module a').click(function() {
-    var targetId = $(this).data('menu');
-    var targetObj = $('#moduleMenu-'+targetId);
-
-    if (Foundation.MediaQuery.current == 'small')
-    {
-      if (targetObj.find('li').length > 1) {
-        $('.module').hide();
-        $('.moduleMenu').hide();
-        targetObj.show();
-      }
-      else {
-        window.location.href = $(this).prop('href');
-      }
-    }
-    else {
-      $('.moduleMenu').hide();
-      targetObj.show();
-    }
-    return false;
-  });
-
   $('.tabBoxButtonClose,.tabBoxButtonSubmit, .tabBoxContent .close-button').click(function(){
     var targetRef = $(this).parents('.tabBoxContent');
     $(targetRef).hide();
@@ -410,23 +355,71 @@ function loadMenu() {
     success: function(data){
       if ((data) && (data.d.RetData.Tbl.Rows.length > 0)) {
         var menus = data.d.RetData.Tbl.Rows;
-        var mainMenuRegex = /(.+)\\/;
-        var menuNameRegex = /\\(.+)/;
+        //var moduleRegex = /(.+)\\/;
+        var moduleItemRegex = /\\(.+)/;
+        var mainMenuContainer = $('#mainMenu');
+        mainMenuContainer.html('');
+        var module;
+        var moduleMenu;
+        var moduleName;
+        var moduleNameOriginal;
+
+        module = $('<ul class="module"></ul>');
+        mainMenuContainer.append(module);
         for (var i =0; i < menus.length; i++) {
-          var menuItem = menus[i];
-          var mainMenuName = menuItem.MenuName.match(/(.+)\\/);
-          if (mainMenuName != null && menu.indexOf(mainMenuName[1]) <= -1 && menuItem.MenuType.toLowerCase() == 'text') {
-              menu.push(mainMenuName[1]);
+          var menuObj = menus[i];
+
+          //main menu module
+          if (menuObj.MenuName.indexOf("\\") <= -1 && menu.indexOf(menuObj.MenuName) <= -1 && menuObj.MenuType.toLowerCase() == 'text') {
+            moduleNameOriginal = menuObj.MenuName;
+              menu.push(moduleNameOriginal);
+              moduleName = moduleNameOriginal.replace(/[^A-Za-z0-9]/g,'');
+              moduleMenu = $('<ul id="moduleMenu-'+ moduleName +'" class="moduleMenu"></ul>');
+              var moduleItem = $('<li><a href="/'+moduleName+'/" data-menu="'+moduleName+'">'+moduleNameOriginal+'</a></li>');
+              module.append(moduleItem);
+              mainMenuContainer.append(moduleMenu);
+          }
+          else {
+            moduleMenu = $('#moduleMenu-'+moduleName);
           }
 
+          var moduleItemName = menuObj.MenuName.match(moduleItemRegex);
+          if (moduleItemName != null) {
+            console.log(moduleItemName[1]);
+            var moduleMenuItem = $('<li><a href="'+menuObj.RelativeURL+'">'+moduleItemName[1]+'</a></li>');
+            console.log(moduleMenu);
+            moduleMenu.append(moduleMenuItem);
+          }
         }
-        console.log(menu);
+        //console.log(menu);
+        console.log($('#mainMenu .module a').length);
+        $('#mainMenu .module a').click(function() {
+          var targetId = $(this).data('menu');
+          var targetObj = $('#moduleMenu-'+targetId);
+          //console.log(targetObj.length);
+          if (Foundation.MediaQuery.current == 'small')
+          {
+            if (targetObj.find('li').length > 1) {
+              $('.module').hide();
+              $('.moduleMenu').hide();
+              targetObj.show();
+            }
+            else {
+              window.location.href = $(this).prop('href');
+            }
+          }
+          else {
+            $('.moduleMenu').hide();
+            targetObj.show();
+          }
+          return false;
+        });
       }
     },
     error: function(XMLHttpRequest, data, errorThrown){
       console.log(errorThrown);
     }
-  })
+  });
 }
 
 function initSubLinks() {
@@ -472,6 +465,39 @@ function initSubLinksDropDown() {
   }
 
   return subLinksDropDown;
+}
+
+function mainMenuToggle() {
+  console.log('mainMenuToggle');
+  var mainMenuContainer = $('#mainMenuContainer');
+
+  if (Foundation.MediaQuery.current == 'small')
+  {
+    var position = mainMenuContainer.offset();
+    console.log(position.left );
+    if(position.left < 0) {
+      console.log('slideout');
+      mainMenuContainer.animate({
+        left:'0'
+      },350);
+    }
+    else {
+      console.log('slidein');
+      mainMenuContainer.animate({
+        left:'-100%'
+      },350);
+    }
+  }
+  else {
+    if(mainMenuContainer.is(':visible')) {
+      console.log('slideup');
+      mainMenuContainer.slideUp();
+    }
+    else {
+      console.log('slidedown');
+      mainMenuContainer.slideDown();
+    }
+  }
 }
 
 function setupSubLinks(smallScreen) {
