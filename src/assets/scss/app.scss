@@ -16,7 +16,7 @@
 @include foundation-accordion;
 @include foundation-accordion-menu;
 @include foundation-badge;
-@include foundation-breadcrumbs;
+//@include foundation-breadcrumbs;
 @include foundation-button-group;
 @include foundation-callout;
 @include foundation-card;
@@ -75,5 +75,6 @@
 @import 'components/dashboard-widgets';
 @import 'components/charts';
 @import 'components/listing-container';
+@import 'components/breadcrumbs';
 
 @import 'components/login';

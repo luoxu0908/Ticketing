@@ -1,17 +1,12 @@
 form,.form, .formTextContainer {
-  max-width: 800px;
 
-  .breadcrumbs {
-    display: flex;
-    justify-content: space-between;
-
-    margin: 0;
-    padding: 0;
-
-    li {
-      list-style: none;
+  fieldset {
+    @include gridColumns($columns:auto-fit);
+    > * {
+      grid-column: 1/-1;
     }
   }
+  max-width: 800px;
 
   .close-button {
     top: 0;

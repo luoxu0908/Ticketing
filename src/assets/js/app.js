@@ -526,7 +526,7 @@ function formSectionsInit() {
 
       var fieldset = $(this);
       fieldset.data('fieldset-index',index);
-      breadcrumbs.append('<li><a href="#'+fieldset.prop('id')+'" data-fieldset-index="'+index+'">'+fieldset.find('h2').html()+'</a>');
+      breadcrumbs.append('<li><a href="#'+fieldset.prop('id')+'" data-fieldset-index="'+index+'">'+fieldset.find('h2').html()+'</a>').find('li:eq(0) a').addClass('active');
 
       if(index>0) {
         fieldset.hide();

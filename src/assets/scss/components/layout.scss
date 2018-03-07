@@ -290,8 +290,9 @@ html, body {
 }
 
 //columns
+/*
 .columns12 {
-  @include gridColumns();
+  @include gridColumns($columns:12);
 }
 
 .columns11 {
@@ -324,3 +325,4 @@ html, body {
 .columns2 {
   @include gridColumns($columns:2);
 }
+*/
