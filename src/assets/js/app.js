@@ -344,7 +344,7 @@ var menu = [];
 function loadMenu() {
   var data = {};
   $.ajax({
-    url: apiSrc+"BCMain/Sec1.Menu.json",
+    url: 'https://enterprise.travelplanner.com.sg/QuotientStg/'+"BCMain/Sec1.Menu.json",
     method: "POST",
     dataType: "json",
     xhrFields: {withCredentials: true},
@@ -375,8 +375,10 @@ function loadMenu() {
             moduleNameOriginal = menuObj.MenuName;
               menu.push(moduleNameOriginal);
               moduleName = moduleNameOriginal.replace(/[^A-Za-z0-9]/g,'');
-              moduleMenu = $('<ul id="moduleMenu-'+ moduleName +'" class="moduleMenu"></ul>');
-              var moduleItem = $('<li><a href="/'+moduleName+'/" data-menu="'+moduleName+'" data-sort-key="'+menuObj.SortKey+'" >'+moduleNameOriginal+'</a></li>');
+
+              moduleMenu = $('<ul id="moduleMenu-'+ moduleName +'" class="moduleMenu"><li><a href="'+menuObj.RelativeURL+'" target="'+menuObj.TargetFrame+'" data-sort-key="'+menuObj.SortKey+'"             >'+moduleNameOriginal+'</a></li></ul>');
+
+              var moduleItem = $('<li><a href="/'+menuObj.RelativeURL+'/" data-menu="'+moduleName+'" data-sort-key="'+menuObj.SortKey+'" >'+moduleNameOriginal+'</a></li>');
               module.append(moduleItem);
               mainMenuContainer.append(moduleMenu);
           }
@@ -476,7 +478,7 @@ function loadPage(url,target,options) {
   if (typeof target != 'undefined' && target.toLowerCase() == 'iframe') {
     console.log(mainContentContainer.length);
     console.log('https://enterprise.travelplanner.com.sg/QuotientStg/'+url);
-    mainContentContainer.load('https://enterprise.travelplanner.com.sg/QuotientStg/'+url);
+    mainContentContainer.load(url);
   }
   else {
 
