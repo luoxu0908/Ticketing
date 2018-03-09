@@ -467,6 +467,7 @@ function initSubLinksDropDown() {
   return subLinksDropDown;
 }
 
+
 function mainMenuToggle() {
   console.log('mainMenuToggle');
   var mainMenuContainer = $('#mainMenuContainer');
@@ -611,11 +612,17 @@ function formSectionsInit() {
       loadFormSection( targetIndex);
     });
     footer.find('#next').click(function() {
-      var targetIndex = parseInt(form.data('current-form-index')) + 1;
-      if (targetIndex >= fieldsets.length) targetIndex=fieldsets.length-1;
-      loadFormSection( targetIndex);
+      //diabled other tabs input
+      $(form).find('fieldset:hidden :input').attr('disabled','disabled');
+      $(form).foundation('validateForm');
+      if (!$(form).find('div[class*=callout]').is(':visible')) {
+          var targetIndex = parseInt(form.data('current-form-index')) + 1;
+          if (targetIndex >= fieldsets.length) targetIndex=fieldsets.length-1;
+          loadFormSection( targetIndex);
+          $(form).find('fieldset :input').removeAttr('disabled');
+      }
+      return false;
     });
-
 
     function loadFormSection(index) {
       //set index
@@ -649,7 +656,6 @@ function formSectionsInit() {
         footer.find('#next').show();
         footer.find('[type=submit]').hide();
       }
-
 
       //set footer
     }
