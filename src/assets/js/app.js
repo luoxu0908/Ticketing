@@ -622,10 +622,10 @@ function formSectionsInit() {
       form.data('current-form-index', index);
       var targetIndex = index;
 
-      console.log(index);
-      //set breadcrumbs
-      breadcrumbs.find('a').removeClass('active').filter(function() {
 
+      //set breadcrumbs
+
+      breadcrumbs.find('a').removeClass('active').filter(function() {
         return ($(this).data('fieldset-index') == index)
       }).addClass('active');
 
