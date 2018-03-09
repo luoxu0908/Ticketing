@@ -262,6 +262,7 @@ $(function(){
   formOthersInit();
   formSectionsInit();
   loadMenu();
+
 });//onready
 
 function GetBasicInformation(personID) {
@@ -343,7 +344,7 @@ var menu = [];
 function loadMenu() {
   var data = {};
   $.ajax({
-    url: 'https://enterprise.travelplanner.com.sg/QuotientStg/'+"BCMain/Sec1.Menu.json",
+    url: apiSrc+"BCMain/Sec1.Menu.json",
     method: "POST",
     dataType: "json",
     xhrFields: {withCredentials: true},
@@ -375,7 +376,7 @@ function loadMenu() {
               menu.push(moduleNameOriginal);
               moduleName = moduleNameOriginal.replace(/[^A-Za-z0-9]/g,'');
               moduleMenu = $('<ul id="moduleMenu-'+ moduleName +'" class="moduleMenu"></ul>');
-              var moduleItem = $('<li><a href="/'+moduleName+'/" data-menu="'+moduleName+'">'+moduleNameOriginal+'</a></li>');
+              var moduleItem = $('<li><a href="/'+moduleName+'/" data-menu="'+moduleName+'" data-sort-key="'+menuObj.SortKey+'" >'+moduleNameOriginal+'</a></li>');
               module.append(moduleItem);
               mainMenuContainer.append(moduleMenu);
           }
@@ -385,14 +386,16 @@ function loadMenu() {
 
           var moduleItemName = menuObj.MenuName.match(moduleItemRegex);
           if (moduleItemName != null) {
-            console.log(moduleItemName[1]);
-            var moduleMenuItem = $('<li><a href="'+menuObj.RelativeURL+'">'+moduleItemName[1]+'</a></li>');
-            console.log(moduleMenu);
+            //console.log(moduleItemName[1]);
+            console.log(menuObj);
+
+            var moduleMenuItem = $('<li><a href="'+menuObj.RelativeURL+'" target="'+menuObj.TargetFrame+'" data-sort-key="'+menuObj.SortKey+'"             >'+moduleItemName[1]+'</a></li>');
+            //console.log(moduleMenu);
             moduleMenu.append(moduleMenuItem);
           }
         }
         //console.log(menu);
-        console.log($('#mainMenu .module a').length);
+        //console.log($('#mainMenu .module a').length);
         $('#mainMenu .module a').click(function() {
           var targetId = $(this).data('menu');
           var targetObj = $('#moduleMenu-'+targetId);
@@ -405,17 +408,30 @@ function loadMenu() {
               targetObj.show();
             }
             else {
+              console.log('aaa');
               window.location.href = $(this).prop('href');
             }
           }
           else {
+            //console.log('aaa');
             $('.moduleMenu').hide();
             targetObj.show();
           }
           return false;
+        });//module Links
+
+        $('.moduleMenu').find('a').click(function() {
+          var thisObj = $(this);
+          var target = thisObj.prop('target');
+          var href = thisObj.prop('href');
+
+          mainMenuToggle();
+          loadPage(href,target);
+
+          return false;
         });
-      }
-    },
+      }//rows
+    },//success
     error: function(XMLHttpRequest, data, errorThrown){
       console.log(errorThrown);
     }
@@ -442,6 +458,30 @@ function initSubLinks() {
       }
     });
   });
+}
+
+function loadPage(url,target,options) {
+  console.log('loadpage');
+  console.log('typeof:'+ typeof url);
+  console.log('url:'+url);
+
+  var mainContentContainer = $('#mainContent');
+  var contentWindow = mainContentContainer.find('contentWindow');
+
+  if (typeof url == 'undefined' || url == '') {
+    console.log('Page cannot load');
+    return;
+  }
+  target = 'iframe';//hardcode for testing
+  if (typeof target != 'undefined' && target.toLowerCase() == 'iframe') {
+    console.log(mainContentContainer.length);
+    console.log('https://enterprise.travelplanner.com.sg/QuotientStg/'+url);
+    mainContentContainer.load('https://enterprise.travelplanner.com.sg/QuotientStg/'+url);
+  }
+  else {
+
+  }
+
 }
 
 function initSubLinksDropDown() {
