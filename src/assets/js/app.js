@@ -635,8 +635,10 @@ function formSectionsInit() {
 
     breadcrumbs.find('a').click(function() {
       var thisObj = $(this);
-      loadFormSection(thisObj.data('fieldset-index'));
-
+      var currentIndex = parseInt(form.data('current-form-index'));
+      if (formSectionValidate(currentIndex) ) {
+        loadFormSection(thisObj.data('fieldset-index'));
+      }
       return false;
     });
 
@@ -645,17 +647,36 @@ function formSectionsInit() {
     footer.find('[type=submit]').hide();
 
     footer.find('#previous').click(function() {
-      var targetIndex = parseInt(form.data('current-form-index')) -1;
+      var currentIndex = parseInt(form.data('current-form-index'));
+      var targetIndex = currentIndex--;
 
       if (targetIndex <0) targetIndex=0;
+
+      if (formSectionValidate(currentIndex) ) {
+        loadFormSection(thisObj.data('fieldset-index'));
+      }
       loadFormSection( targetIndex);
     });
     footer.find('#next').click(function() {
-      var targetIndex = parseInt(form.data('current-form-index')) + 1;
+      var currentIndex = parseInt(form.data('current-form-index'));
+      var targetIndex = currentIndex++;
       if (targetIndex >= fieldsets.length) targetIndex=fieldsets.length-1;
-      loadFormSection( targetIndex);
+
+      if (formSectionValidate(currentIndex) ) {
+        loadFormSection( targetIndex);
+      }
     });
 
+    function formSectionValidate(index) {
+
+      //check error
+      //if(error) {
+        //prompt error
+        //return false;
+      //}
+
+      return true;
+    }
 
     function loadFormSection(index) {
       //set index
