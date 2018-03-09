@@ -648,18 +648,19 @@ function formSectionsInit() {
 
     footer.find('#previous').click(function() {
       var currentIndex = parseInt(form.data('current-form-index'));
-      var targetIndex = currentIndex--;
+      var targetIndex = currentIndex-1;
 
       if (targetIndex <0) targetIndex=0;
 
       if (formSectionValidate(currentIndex) ) {
-        loadFormSection(thisObj.data('fieldset-index'));
+        loadFormSection(targetIndex);
       }
       loadFormSection( targetIndex);
     });
     footer.find('#next').click(function() {
       var currentIndex = parseInt(form.data('current-form-index'));
-      var targetIndex = currentIndex++;
+      var targetIndex = currentIndex + 1;
+
       if (targetIndex >= fieldsets.length) targetIndex=fieldsets.length-1;
 
       if (formSectionValidate(currentIndex) ) {
@@ -687,12 +688,12 @@ function formSectionsInit() {
       //set breadcrumbs
       breadcrumbs.find('a').removeClass('active').filter(function() {
 
-        return ($(this).data('fieldset-index') == index)
+        return ($(this).data('fieldset-index') == targetIndex)
       }).addClass('active');
 
       //set fieldset`
       fieldsets.hide().filter(function() {
-        return ($(this).data('fieldset-index') == index)
+        return ($(this).data('fieldset-index') == targetIndex)
       }).show();
 
       if (index == 0) {
