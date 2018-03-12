@@ -376,8 +376,8 @@ function loadMenu() {
               menu.push(moduleNameOriginal);
               moduleName = moduleNameOriginal.replace(/[^A-Za-z0-9]/g,'');
 
-              moduleMenu = $('<ul id="moduleMenu-'+ moduleName +'" class="moduleMenu"><li><a href="'+menuObj.RelativeURL+'" target="'+menuObj.TargetFrame+'" data-sort-key="'+menuObj.SortKey+'"             >'+moduleNameOriginal+'</a></li></ul>');
-
+              moduleMenu = $('<ul id="moduleMenu-'+ moduleName +'" class="moduleMenu"><li><a href="'+menuObj.RelativeURL+'" target="'+menuObj.TargetFrame+'" data-sort-key="'+menuObj.SortKey+'" >'+moduleNameOriginal+'</a></li></ul>');
+              console.log('menuObj.RelativeURL:' + menuObj.RelativeURL);
               var moduleItem = $('<li><a href="/'+menuObj.RelativeURL+'/" data-menu="'+moduleName+'" data-sort-key="'+menuObj.SortKey+'" >'+moduleNameOriginal+'</a></li>');
               module.append(moduleItem);
               mainMenuContainer.append(moduleMenu);
@@ -391,7 +391,7 @@ function loadMenu() {
             //console.log(moduleItemName[1]);
             console.log(menuObj);
 
-            var moduleMenuItem = $('<li><a href="'+menuObj.RelativeURL+'" target="'+menuObj.TargetFrame+'" data-sort-key="'+menuObj.SortKey+'"             >'+moduleItemName[1]+'</a></li>');
+            var moduleMenuItem = $('<li><a href="'+menuObj.RelativeURL+'" target="'+menuObj.TargetFrame+'" data-sort-key="'+menuObj.SortKey+'" >'+moduleItemName[1]+'</a></li>');
             //console.log(moduleMenu);
             moduleMenu.append(moduleMenuItem);
           }
@@ -425,7 +425,7 @@ function loadMenu() {
         $('.moduleMenu').find('a').click(function() {
           var thisObj = $(this);
           var target = thisObj.prop('target');
-          var href = thisObj.prop('href');
+          var href = thisObj.attr('href');
 
           mainMenuToggle();
           loadPage(href,target);
@@ -468,17 +468,16 @@ function loadPage(url,target,options) {
   console.log('url:'+url);
 
   var mainContentContainer = $('#mainContent');
-  var contentWindow = mainContentContainer.find('contentWindow');
+  var mainContentContainerIframe = $('#mainContentIframe');
+  //var contentWindow = mainContentContainer.find('#contentWindow');
 
-  if (typeof url == 'undefined' || url == '') {
-    console.log('Page cannot load');
-    return;
-  }
+
   target = 'iframe';//hardcode for testing
   if (typeof target != 'undefined' && target.toLowerCase() == 'iframe') {
     console.log(mainContentContainer.length);
-    console.log('https://enterprise.travelplanner.com.sg/QuotientStg/'+url);
-    mainContentContainer.load(url);
+    console.log(url);
+    mainContentContainer.hide();
+    mainContentContainerIframe.show().prop('src',url);
   }
   else {
 
