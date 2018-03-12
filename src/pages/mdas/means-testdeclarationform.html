@@ -13,10 +13,12 @@
     <h2>Section A</h2>
     <p>Main applicant of subsidy schemes - person with muscular dystophy (PMD)</p>
     <div>
-      <div class="labelText">Tick &radic; where applicable</div>
-      <div class="labelText">I have a valid MDAS Ordinary Membership</div>
+      <label for="sectionA_FamilyName">Date of Declaration:<input type="Date" id="sectionA_DeclarationofDate" name="sectionA_DeclarationofDate" /></label>
+    </div>
+    <div>
+      <div class="labelText">I have a valid MDAS Ordinary Membership <span class="spanCss">*</span></div>
       <div class="radioGroup">
-        <label><input type="radio" name="sectionA_ordinaryMembership" id="sectionA_ordinaryMembershipYes" value="yes" > Yes</label>
+        <label><input type="radio" name="sectionA_ordinaryMembership" id="sectionA_ordinaryMembershipYes" value="yes" required> Yes</label>
         <label><input type="radio" name="sectionA_ordinaryMembership" id="sectionA_ordinaryMembershipNo" value="no"> No</label>
       </div>
       <p><small><i>(If No, please complete Section B)</i></small></p>
@@ -24,31 +26,25 @@
     <h3>Name (as in NRIC)</h3>
     <div>
       <label for="sectionA_FamilyName">Family/Surname</label>
-      <input type="text" id="sectionA_FamilyName" name="sectionA_FamilyName" required/>
+      <input type="text" id="sectionA_FamilyName" name="sectionA_FamilyName" />
     </div>
     <div>
       <label for="sectionA_GivenName">Given Name</label>
       <input type="text" id="sectionA_GivenName" name="sectionA_GivenName" />
     </div>
     <div>
-      <label for="sectionA_DisplayName">Display Name</label>
-      <input type="text" id="sectionA_DisplayName" name="sectionA_DisplayName" />
+      <label for="sectionA_DisplayName">Display Name<span class="spanCss">*</span></label>
+      <input type="text" id="sectionA_DisplayName" name="sectionA_DisplayName" required/>
     </div>
 
     <div>
-      <label for="sectionA_nric">NRIC / Birth Cert No.</label>
-      <input type="text" id="sectionA_nric" name="sectionA_nric" />
+      <label for="sectionA_nric">NRIC / Birth Cert No.<span class="spanCss">*</span></label>
+      <input type="text" id="sectionA_nric" name="sectionA_nric" pattern="NRIC" required/>
+      <span class="form-error">Invalid NRIC</span>
     </div>
     <div>
-      <div class="labelText">Date of Birth</div>
-      <div class="dateGroup">
-        <input type="text" id="sectionA_dateOfBirthDay" name="sectionA_dateOfBirthDay" placeholder="DD" maxlength="2" />
-        <div class="labelText">/</div>
-        <input type="text" id="sectionA_dateOfBirthMonth" name="sectionA_dateOfBirthMonth" placeholder="MM" maxlength="2" />
-        <div class="labelText">/</div>
-        <input type="text" id="sectionA_dateOfBirthYear" name="sectionA_dateOfBirthYear" placeholder="YYYY" maxlength="4" />
-
-      </div>
+      <div class="labelText">Date of Birth<span class="spanCss">*</span></div>
+      <input type="date" id="sectionA_DateofBirth" name="sectionA_DateofBirth" required/>
     </div>
     <h3>Residence Address (as in NRIC)</h3>
     <div>
@@ -74,7 +70,7 @@
     <h3>Contact No. (Mobile/Home/Office)</h3>
     <div>
       <label for="sectionA_Telhome">Tel no(home)</label>
-      <input type="text" id="sectionA_Telhome" name="sectionA_Telhome" />
+      <input type="text" id="sectionA_Telhome" name="sectionA_Telhome" pattern="Mobile" />
     </div>
     <div>
       <label for="sectionA_Teloffice">Tel no(office)</label>
@@ -443,7 +439,7 @@
     <p>I/We hereby confirm that I/We understand and agree to all the provisions in this form.</p>
     <h3>MAIN APPLICANT</h3>
     <div>
-      <label for="sectionE_MainName">Name</label>
+      <label for="sectionE_MainName">Name<span>*</span></label>
       <input type="text" id="sectionE_MainName" name="sectionE_MainName" required/>
     </div>
     <div>

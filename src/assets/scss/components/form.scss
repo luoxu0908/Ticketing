@@ -28,6 +28,7 @@ form,.form, .formTextContainer {
   input[type=text],
   input[type=password],
   input[type=email],
+  input[type=Date],
   select,
   textarea {
     background: $complementary-light-color1;
@@ -179,7 +180,9 @@ form,.form, .formTextContainer {
 
 
 }
-
+.spanCss{
+  color: red;
+}
 @include breakpoint(medium) {
   form,.form, .formTextContainer {
     .radioGroup,

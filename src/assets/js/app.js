@@ -11,9 +11,10 @@ import Foundation from 'foundation-sites';
 // If you want to pick and choose which modules to include, comment out the above and uncomment
 // the line below
 //import './lib/foundation-explicit-pieces';
+Foundation.Abide.defaults.patterns['NRIC'] = /^[A-Z]{1}[0-9]{7}[A-Z]{1}$/;
+Foundation.Abide.defaults.patterns['Mobile'] = /^\+{0,1}\d{8,}$/;
 
 $(document).foundation();
-
 var appCookie, igwasCookie, WebPartVal, guid;
 
 //document ready
@@ -612,17 +613,21 @@ function formSectionsInit() {
       loadFormSection( targetIndex);
     });
     footer.find('#next').click(function() {
-      //diabled other tabs input
-      $(form).find('fieldset:hidden :input').attr('disabled','disabled');
-      $(form).foundation('validateForm');
-      if (!$(form).find('div[class*=callout]').is(':visible')) {
+        if (ValidForm(form)) {
           var targetIndex = parseInt(form.data('current-form-index')) + 1;
           if (targetIndex >= fieldsets.length) targetIndex=fieldsets.length-1;
-          loadFormSection( targetIndex);
-          $(form).find('fieldset :input').removeAttr('disabled');
-      }
-      return false;
+          loadFormSection(targetIndex);
+        }
     });
+
+    function ValidForm(form){
+      var result=0;
+      $(form).find('fieldset:hidden :input').attr('disabled','disabled');
+      $(form).on('formvalid.zf.abide',function(){result=1;});
+      $(form).foundation('validateForm');
+      $(form).find('fieldset :input').removeAttr('disabled');
+      return result;
+    }
 
     function loadFormSection(index) {
       //set index
@@ -660,9 +665,4 @@ function formSectionsInit() {
       //set footer
     }
   });
-
-
-
-
-
 }
