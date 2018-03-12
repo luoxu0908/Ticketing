@@ -36,7 +36,7 @@ $(function(){
   if (typeof Cookies.getJSON('appCookie') === 'undefined') {
     appCookie = Cookies.set('appCookie', {
     },
-    { expires: 3600 });
+    { expires: 36000 });
   }
   else {
     appCookie = Cookies.getJSON('appCookie');
