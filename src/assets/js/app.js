@@ -604,7 +604,7 @@ function formSectionsInit() {
 
     //set buttons
     footer.find('#previous').hide();
-    footer.find('[type=submit]').hide();
+    footer.find('[class*=submit]').hide();
 
     footer.find('#previous').click(function() {
       var targetIndex = parseInt(form.data('current-form-index')) -1;
@@ -649,17 +649,17 @@ function formSectionsInit() {
       if (index == 0) {
         footer.find('#previous').hide();
         footer.find('#next').show();
-        footer.find('[type=submit]').hide();
+        footer.find('[class*=submit]').hide();
       }
       else if (index == fieldsets.length-1) {
         footer.find('#previous').show();
         footer.find('#next').hide();
-        footer.find('[type=submit]').show();
+        footer.find('[class*=submit]').show();
       }
       else {
         footer.find('#previous').show();
         footer.find('#next').show();
-        footer.find('[type=submit]').hide();
+        footer.find('[class*=submit]').hide();
       }
 
       //set footer

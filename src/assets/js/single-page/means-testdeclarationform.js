@@ -2,14 +2,13 @@ $(function(){
   //get cookie & loginID
   var appCookie = Cookies.getJSON('appCookie'),
       loginID = appCookie.loginID;
-
       $('#submit').click(function(){
         SaveDeclaretion();
       });
 })
 //Submit data
 function SaveDeclaretion(){
-  var sectionA_ordinaryMembership='', sectionA_FamilyName='', sectionA_GivenName='', sectionA_DisplayName='', sectionA_nric='',
+  var sectionA_DeclarationofDate='',sectionA_ordinaryMembership='', sectionA_FamilyName='', sectionA_GivenName='', sectionA_DisplayName='', sectionA_nric='',
    sectionA_Birth='',sectionA_PostalCode='', sectionA_BlockNo='', sectionA_Level='', sectionA_PostalCode='', sectionA_StreetName='',
    sectionA_Telhome='', sectionA_Teloffice='', sectionA_Handphone='', sectionA_Occupation='', sectionA_Email='',
    sectionB_FamilyName='', sectionB_GivenName='', sectionB_DisplayName='', sectionB_nric='', sectionB_Birth='',
@@ -28,17 +27,13 @@ function SaveDeclaretion(){
    sectionD_Frequency1='',sectionD_Period1='', sectionD_Amount1='',sectionD_Frequency2='',sectionD_Period2='',
    sectionD_Amount2='',sectionD_Frequency3='',sectionD_Period3='', sectionD_Amount3='',sectionD_Frequency4='',
    sectionD_Period4='', sectionD_Amount4='',sectionE_Check='';
-
-   $('#DeclaretionFrom input[name="sectionA_ordinaryMembership"]').each(function () {
-           if ($(this).is(':checked')) {
-                     sectionA_ordinaryMembership = $(this).val();
-           }
-   });
+  sectionA_DeclarationofDate=$('#sectionA_DeclarationofDate').val();
+  sectionA_ordinaryMembership=$('#DeclaretionFrom input[name="sectionA_ordinaryMembership"]:checked').val()||'';
   sectionA_FamilyName=$('#sectionA_FamilyName').val();
   sectionA_GivenName=$('#sectionA_GivenName').val();
   sectionA_DisplayName = $('#sectionA_DisplayName').val();
   sectionA_nric = $('#sectionA_nric').val();
-  sectionA_Birth=$('#sectionA_dateOfBirthYear').val()+'-'+$('#sectionA_dateOfBirthMonth').val()+'-'+$('#sectionA_dateOfBirthDay').val();
+  sectionA_Birth=$('#sectionA_Birth').val();
   sectionA_PostalCode = $('#sectionA_PostalCode').val();
   sectionA_BlockNo = $('#sectionA_BlockNo').val();
   sectionA_Level = $('#sectionA_Level').val();
@@ -135,7 +130,7 @@ function SaveDeclaretion(){
             }
   });
 
-  var data = { "sectionA_ordinaryMembership": sectionA_ordinaryMembership, "sectionA_FamilyName": sectionA_FamilyName,
+  var data = {"sectionA_DeclarationofDate":sectionA_DeclarationofDate, "sectionA_ordinaryMembership": sectionA_ordinaryMembership, "sectionA_FamilyName": sectionA_FamilyName,
   "sectionA_GivenName": sectionA_GivenName, "sectionA_DisplayName": sectionA_DisplayName, "sectionA_nric": sectionA_nric,
   "sectionA_Birth": sectionA_Birth, "sectionA_PostalCode": sectionA_PostalCode, "sectionA_BlockNo": sectionA_BlockNo,
   "sectionA_Level": sectionA_Level, "sectionA_PostalCode": sectionA_PostalCode,"sectionA_StreetName": sectionA_StreetName,
