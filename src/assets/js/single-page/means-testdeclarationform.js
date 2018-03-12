@@ -10,10 +10,10 @@ $(function(){
 
 //Submit data
 function SaveDeclaretion(){
-  var array=new Array();
+  var data={};
   $('#DeclaretionFrom :input').each(function(){
     var type=$(this).attr('type'), name= $(this).attr('name'),val=$(this).val();
-    if (type=="radio") {  val=$(':input[type="'+type+'"][name="'+name+'"]:checked').val()||'';};
+    if (type=="radio") { val=$(':input[type="'+type+'"][name="'+name+'"]:checked').val()||'';};
     if (type=="checkbox") {
       var tempVal='';
       $(':input[type="'+type+'"][name="'+name+'"]').each(function(index,item){
@@ -23,13 +23,11 @@ function SaveDeclaretion(){
       });
       val=(tempVal.length>0?tempVal.substr(0,tempVal.length-1):'');
     };
-    item=name+':'+val;
-    if ($.inArray(item,array)==-1&&name) {array.push(item);}
+    if (data.hasOwnProperty&&name) {
+      alert(name);
+      data[name]=val;
+    }
   });
-  var data={};
-  for (var i = 0; i < array.length; i++) {
-    data[array[i].split(':')[0]]=array[i].split(':')[1];
-  }
   $.ajax({
     url: apiSrc+"BCMain/iCtc1.SaveDeclaretion.json",
     method: "POST",
