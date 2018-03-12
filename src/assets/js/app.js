@@ -344,7 +344,7 @@ var menu = [];
 function loadMenu() {
   var data = {};
   $.ajax({
-    url: 'https://enterprise.travelplanner.com.sg/QuotientStg/'+"BCMain/Sec1.Menu.json",
+    url: apiSrc+"BCMain/Sec1.Menu.json",
     method: "POST",
     dataType: "json",
     xhrFields: {withCredentials: true},
