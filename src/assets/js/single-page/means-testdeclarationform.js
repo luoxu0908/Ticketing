@@ -23,10 +23,9 @@ function SaveDeclaretion(){
       });
       val=(tempVal.length>0?tempVal.substr(0,tempVal.length-1):'');
     };
-    if (data.hasOwnProperty&&name) {
-      alert(name);
-      data[name]=val;
-    }
+    if ((!data.hasOwnProperty(data[name]))&&name) {
+        data[name]=val;
+      }
   });
   $.ajax({
     url: apiSrc+"BCMain/iCtc1.SaveDeclaretion.json",
