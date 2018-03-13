@@ -1,4 +1,5 @@
 
+var pageresult=0;
 $(function(){
   //get cookie & loginID
   var appCookie = Cookies.getJSON('appCookie'),
@@ -6,27 +7,32 @@ $(function(){
       $('#submit').click(function(){
         SaveDeclaretion();
       });
+    $('#DeclaretionFrom').on('formvalid.zf.abide',function(){pageresult=1;});
+    $('#DeclaretionFrom').on('forminvalid.zf.abide',function(){pageresult=0;});
 });
 
 //Submit data
 function SaveDeclaretion(){
+  $('#DeclaretionFrom').foundation('validateForm');
+  if (pageresult==0){return false;}
   var data={};
   $('#DeclaretionFrom :input').each(function(){
     var type=$(this).attr('type'), name= $(this).attr('name'),val=$(this).val();
-    if (type=="radio") { val=$(':input[type="'+type+'"][name="'+name+'"]:checked').val()||'';};
+    if (type=="radio") { val=$(':input[type="'+type+'"][name="'+name+'"]:checked').val()||'';}
     if (type=="checkbox") {
       var tempVal='';
-      $(':input[type="'+type+'"][name="'+name+'"]').each(function(index,item){
+      $(':input[type="'+type+'"][name="'+name+'"]:checked').each(function(index,item){
         if ($(item).prop('checked')==true) {
           tempVal+=$(item).val()+',';
         }
       });
       val=(tempVal.length>0?tempVal.substr(0,tempVal.length-1):'');
-    };
+    }
     if ((!data.hasOwnProperty(data[name]))&&name) {
         data[name]=val;
       }
   });
+  console.log(data);
   $.ajax({
     url: apiSrc+"BCMain/iCtc1.SaveDeclaretion.json",
     method: "POST",
@@ -37,11 +43,8 @@ function SaveDeclaretion(){
             'ReqGUID': 'b4bbedbf-e591-4b7a-ad20-101f8f656277' },
     success: function(data){
       if ((data) && (data.d.RetVal === -1)) {
-        if (data.d.RetData.Tbl.Rows.length > 0) {
-          if (data.d.RetData.Tbl.Rows[0].Success == true) {
+        alert('Successfully updated!');
             location.reload();
-          } else { alert(data.d.RetData.Tbl.Rows[0].ReturnMsg); }
-        }
       }
       else {
         alert(data.d.RetMsg);
@@ -50,7 +53,7 @@ function SaveDeclaretion(){
     error: function(XMLHttpRequest, data, errorThrown){
       alert("Error: " + errorThrown);
     }
-  })
+  });
 }
 
 
@@ -58,7 +61,7 @@ function SaveDeclaretion(){
 function convertDateTime(inputFormat, type) {
   if (inputFormat == null){
     return '-';
-  };
+  }
   function pad(s) { return (s < 10) ? '0' + s : s; }
   var d = new Date(inputFormat);
   if (type == 'date'){
@@ -68,7 +71,7 @@ function convertDateTime(inputFormat, type) {
   }else if (type == 'time'){
     return [pad(d.getHours()), pad(d.getMinutes()), pad(d.getSeconds())].join(':');
   }
-};
+}
 
 function GetDeclarationInfo(DeclarationID){
   var data = {'DeclarationID':DeclarationID};
@@ -137,10 +140,10 @@ function GetDeclarationInfo(DeclarationID){
       }
     }
   });
-};
+}
 //geneare drop down optioms
 function GetDropdownList(id, category) {
-  var data = {'LookupCat': category}
+  var data = {'LookupCat': category};
   $.ajax({
     url: apiSrc+"BCMain/iCtc1.Lookup_Get.json",
     method: "POST",
@@ -163,4 +166,4 @@ function GetDropdownList(id, category) {
       }
     }
   });
-};
+}
