@@ -16,7 +16,7 @@ function SaveDeclaretion(){
   $('#DeclaretionFrom').foundation('validateForm');
   if (pageresult==0){return false;}
   var data={};
-  $('#DeclaretionFrom :input').each(function(){
+  $('#DeclaretionFrom :input,select').each(function(){
     var type=$(this).attr('type'), name= $(this).attr('name'),val=$(this).val();
     if (type=="radio") { val=$(':input[type="'+type+'"][name="'+name+'"]:checked').val()||'';}
     if (type=="checkbox") {
@@ -32,7 +32,6 @@ function SaveDeclaretion(){
         data[name]=val;
       }
   });
-  console.log(data);
   $.ajax({
     url: apiSrc+"BCMain/iCtc1.SaveDeclaretion.json",
     method: "POST",
@@ -143,6 +142,7 @@ function GetDeclarationInfo(DeclarationID){
 }
 //geneare drop down optioms
 function GetDropdownList(id, category) {
+  alert();
   var data = {'LookupCat': category};
   $.ajax({
     url: apiSrc+"BCMain/iCtc1.Lookup_Get.json",

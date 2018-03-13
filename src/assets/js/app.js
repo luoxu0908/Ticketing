@@ -36,7 +36,7 @@ $(function(){
   if (typeof Cookies.getJSON('appCookie') === 'undefined') {
     appCookie = Cookies.set('appCookie', {
     },
-    { expires: 36000 });
+    { expires: 1 });
   }
   else {
     appCookie = Cookies.getJSON('appCookie');
@@ -536,6 +536,7 @@ function formOthersInit() {
           targetObj.prop('disabled','');
         }
         else {
+          targetObj.val('');
           targetObj.prop('disabled','disabled');
         }
       });
@@ -549,11 +550,10 @@ function formOthersInit() {
 
         if ($('[name='+radioName+']:checked').val() == thisVal) {
           targetObj.prop('disabled','');
-          console.log(3);
         }
         else {
+          targetObj.val('');
           targetObj.prop('disabled','disabled');
-          console.log(4);
         }
       });
     }
@@ -565,6 +565,7 @@ function formOthersInit() {
           targetObj.prop('disabled','');
         }
         else {
+          targetObj.val('');
           targetObj.prop('disabled','disabled');
         }
       });

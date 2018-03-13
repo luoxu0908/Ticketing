@@ -12,7 +12,9 @@ form,.form, .formTextContainer {
       list-style: none;
     }
   }
-
+.breadcrumbs a {
+  display: inline;
+}
   .close-button {
     top: 0;
   }
