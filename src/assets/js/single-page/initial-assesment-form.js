@@ -1,17 +1,17 @@
-
+var pageresult=0;
 $(function(){
-
   //get cookie & loginID
   var appCookie = Cookies.getJSON('appCookie'),
       loginID = appCookie.loginID;
 
     //calculater total score
     CalculaterItemTotal();
-
     // save data
     $('#submit').click(function(){
       SaveInitialAssesment();
     });
+    $('#InitialAssessmentForm').on('formvalid.zf.abide',function(){pageresult=1;});
+    $('#InitialAssessmentForm').on('forminvalid.zf.abide',function(){pageresult=0;});
 });
 
 function CalculaterItemTotal() {
@@ -119,13 +119,15 @@ function CalculaterItemTotal() {
     }
 // save initial-assesment-form
 function SaveInitialAssesment(){
+  $('#InitialAssessmentForm').foundation('validateForm');
+  if (pageresult==0){return false;}
   var data={};
-  $('#InitialAssessmentForm :input').each(function(){
+  $('#InitialAssessmentForm :input,select').each(function(){
     var type=$(this).attr('type'), name= $(this).attr('name'),val=$(this).val();
     if (type=="radio") { val=$(':input[type="'+type+'"][name="'+name+'"]:checked').val()||'';};
     if (type=="checkbox") {
       var tempVal='';
-      $(':input[type="'+type+'"][name="'+name+'"]').each(function(index,item){
+      $(':input[type="'+type+'"][name="'+name+'"]:checked').each(function(index,item){
         if ($(item).prop('checked')==true) {
           tempVal+=$(item).val()+',';
         }
