@@ -52,7 +52,7 @@ $(function(){
         if ((data) && (data.d.RetVal === -1)) {
           if (data.d.RetData.Tbl.Rows.length > 0) {
             var RoleName = data.d.RetData.Tbl.Rows[0].RoleName;
-            if (RoleName=='Admin'){
+            if (RoleName=='Admin' || RoleName=='Security Admin'){
               $('.adminControl').show();
             }else{
               $('.adminControl').hide();
