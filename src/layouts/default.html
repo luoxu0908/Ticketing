@@ -8,18 +8,24 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-      {{> title}}
+      {{> meta-title}}
     </title>
     {{> header-settings}}
   </head>
   <body id="page-{{page}}">
-    <div id="main" class="">
+    <div id="main">
       {{> header}}
-      <div id="mainContent" class="">
-        {{!-- Pages you create in the src/pages/ folder are inserted here when the flattened page is
-          created. --}}
-        {{> body}}
-      </div> <!-- content end -->
+      {{!-- Pages you create in the src/pages/ folder are inserted here when the flattened page is created. --}}
+      <div id="mainContent">
+        {{> title}}
+        {{> profile}}
+        {{> sidebar1 }}
+        <div id="pageContent">{{> body}}</div>
+
+        {{> sidebar2 }}
+        <iframe id="pageIFrame" ></iframe>
+      </div>
+       <!-- content end -->
       {{> footer}}
     </div>
     {{> scripts}}

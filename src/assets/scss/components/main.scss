@@ -1,34 +1,42 @@
+body {
+
+}
 #main {
 	background: $light-gray url(../img/cubes.png) repeat center center;
+
 	//@include position(relative);
   //height: 100%;
 }
 
 #mainContent {
 	background: $white;
+	min-height: 400px;
+	overflow-y: auto;
+	overflow-x: hidden;
 	padding: $global-padding $global-edge-padding;
 	//padding-top: 8rem;
 
-	h1 {
+	#pageTitle,
+	header.titleMain,
+	#pageProfile {
+		display: flex;
+		align-items: flex-end;
+		margin-bottom: 0;
+
 		small {
 			color:$black;
 		}
 	}
 
-  header.titleMain {
-    border-bottom: none;
-    margin-bottom: 1.5rem;
-
-  }
+	#pageIFrame {
+		border: none;
+		min-height: 800px;
+		height: 100%;
+		width: 100%;
+	}
 
 	section {
 		//margin-bottom: 2rem;
-	}
-}
-
-.contentContainer {
-  & > header {
-
 	}
 }
 

@@ -11,10 +11,9 @@ import Foundation from 'foundation-sites';
 // If you want to pick and choose which modules to include, comment out the above and uncomment
 // the line below
 //import './lib/foundation-explicit-pieces';
-Foundation.Abide.defaults.patterns['NRIC'] = /^[A-Z]{1}[0-9]{7}[A-Z]{1}$/;
-Foundation.Abide.defaults.patterns['Mobile'] = /^\+{0,1}\d{8,}$/;
 
 $(document).foundation();
+
 var appCookie, igwasCookie, WebPartVal, guid;
 
 //document ready
@@ -263,6 +262,7 @@ $(function(){
   formOthersInit();
   formSectionsInit();
   loadMenu();
+
 });//onready
 
 function GetBasicInformation(personID) {
@@ -375,8 +375,10 @@ function loadMenu() {
             moduleNameOriginal = menuObj.MenuName;
               menu.push(moduleNameOriginal);
               moduleName = moduleNameOriginal.replace(/[^A-Za-z0-9]/g,'');
-              moduleMenu = $('<ul id="moduleMenu-'+ moduleName +'" class="moduleMenu"></ul>');
-              var moduleItem = $('<li><a href="/'+moduleName+'/" data-menu="'+moduleName+'">'+moduleNameOriginal+'</a></li>');
+
+              moduleMenu = $('<ul id="moduleMenu-'+ moduleName +'" class="moduleMenu"><li><a href="'+menuObj.RelativeURL+'" target="'+menuObj.TargetFrame+'" data-sort-key="'+menuObj.SortKey+'" >'+moduleNameOriginal+'</a></li></ul>');
+              console.log('menuObj.RelativeURL:' + menuObj.RelativeURL);
+              var moduleItem = $('<li><a href="/'+menuObj.RelativeURL+'/" data-menu="'+moduleName+'" data-sort-key="'+menuObj.SortKey+'" >'+moduleNameOriginal+'</a></li>');
               module.append(moduleItem);
               mainMenuContainer.append(moduleMenu);
           }
@@ -386,14 +388,16 @@ function loadMenu() {
 
           var moduleItemName = menuObj.MenuName.match(moduleItemRegex);
           if (moduleItemName != null) {
-            console.log(moduleItemName[1]);
-            var moduleMenuItem = $('<li><a href="'+menuObj.RelativeURL+'">'+moduleItemName[1]+'</a></li>');
-            console.log(moduleMenu);
+            //console.log(moduleItemName[1]);
+            //console.log(apiSrc.substr(0,apiSrc.length-1));
+
+            var moduleMenuItem = $('<li><a href="'+ (( /\/$/.test(apiSrc) ) ? apiSrc.substr(0,apiSrc.length-1) : apiSrc ) + menuObj.RelativeURL +'" target="'+menuObj.TargetFrame+'" data-sort-key="'+menuObj.SortKey+'" >'+moduleItemName[1]+'</a></li>');
+            //console.log(moduleMenu);
             moduleMenu.append(moduleMenuItem);
           }
         }
         //console.log(menu);
-        console.log($('#mainMenu .module a').length);
+        //console.log($('#mainMenu .module a').length);
         $('#mainMenu .module a').click(function() {
           var targetId = $(this).data('menu');
           var targetObj = $('#moduleMenu-'+targetId);
@@ -406,17 +410,30 @@ function loadMenu() {
               targetObj.show();
             }
             else {
+              console.log('aaa');
               window.location.href = $(this).prop('href');
             }
           }
           else {
+            //console.log('aaa');
             $('.moduleMenu').hide();
             targetObj.show();
           }
           return false;
+        });//module Links
+
+        $('.moduleMenu').find('a').click(function() {
+          var thisObj = $(this);
+          var target = thisObj.prop('target');
+          var href = thisObj.attr('href');
+
+          mainMenuToggle();
+          loadPage(href,target);
+
+          return false;
         });
-      }
-    },
+      }//rows
+    },//success
     error: function(XMLHttpRequest, data, errorThrown){
       console.log(errorThrown);
     }
@@ -445,6 +462,28 @@ function initSubLinks() {
   });
 }
 
+function loadPage(url,target,options) {
+  console.log('loadpage');
+  console.log('typeof:'+ typeof url);
+  console.log('url:'+url);
+
+  var mainContent = $('#mainContent');
+  var pageContent = $('#pageContent');
+  var pageIFrame = $('#pageIFrame');
+  //var contentWindow = mainContentContainer.find('#contentWindow');
+
+
+  target = 'iframe';//hardcode for testing
+  if (typeof target != 'undefined' && target.toLowerCase() == 'iframe') {
+    mainContent.addClass('layout-iframe');
+    pageIFrame.prop('src',url);
+  }
+  else {
+    mainContent.removeClass('layout-iframe');
+  }
+
+}
+
 function initSubLinksDropDown() {
   var subLinksList = $('.subLinks');
   var subLinks = subLinksList.find('li').find('a');
@@ -467,7 +506,6 @@ function initSubLinksDropDown() {
 
   return subLinksDropDown;
 }
-
 
 function mainMenuToggle() {
   console.log('mainMenuToggle');
@@ -536,7 +574,6 @@ function formOthersInit() {
           targetObj.prop('disabled','');
         }
         else {
-          targetObj.val('');
           targetObj.prop('disabled','disabled');
         }
       });
@@ -550,10 +587,11 @@ function formOthersInit() {
 
         if ($('[name='+radioName+']:checked').val() == thisVal) {
           targetObj.prop('disabled','');
+          console.log(3);
         }
         else {
-          targetObj.val('');
           targetObj.prop('disabled','disabled');
+          console.log(4);
         }
       });
     }
@@ -565,7 +603,6 @@ function formOthersInit() {
           targetObj.prop('disabled','');
         }
         else {
-          targetObj.val('');
           targetObj.prop('disabled','disabled');
         }
       });
@@ -598,36 +635,48 @@ function formSectionsInit() {
 
     breadcrumbs.find('a').click(function() {
       var thisObj = $(this);
-      loadFormSection(thisObj.data('fieldset-index'));
-
+      var currentIndex = parseInt(form.data('current-form-index'));
+      if (formSectionValidate(currentIndex) ) {
+        loadFormSection(thisObj.data('fieldset-index'));
+      }
       return false;
     });
 
     //set buttons
     footer.find('#previous').hide();
-    footer.find('[class*=submit]').hide();
+    footer.find('[type=submit]').hide();
 
     footer.find('#previous').click(function() {
-      var targetIndex = parseInt(form.data('current-form-index')) -1;
+      var currentIndex = parseInt(form.data('current-form-index'));
+      var targetIndex = currentIndex-1;
 
       if (targetIndex <0) targetIndex=0;
+
+      if (formSectionValidate(currentIndex) ) {
+        loadFormSection(targetIndex);
+      }
       loadFormSection( targetIndex);
     });
     footer.find('#next').click(function() {
-        if (ValidForm(form)) {
-          var targetIndex = parseInt(form.data('current-form-index')) + 1;
-          if (targetIndex >= fieldsets.length) targetIndex=fieldsets.length-1;
-          loadFormSection(targetIndex);
-        }
+      var currentIndex = parseInt(form.data('current-form-index'));
+      var targetIndex = currentIndex + 1;
+
+      if (targetIndex >= fieldsets.length) targetIndex=fieldsets.length-1;
+
+      if (formSectionValidate(currentIndex) ) {
+        loadFormSection( targetIndex);
+      }
     });
 
-    function ValidForm(form){
-      var result=0;
-      $(form).find('fieldset:hidden :input').attr('disabled','disabled');
-      $(form).on('formvalid.zf.abide',function(){result=1;});
-      $(form).foundation('validateForm');
-      $(form).find('fieldset :input').removeAttr('disabled');
-      return result;
+    function formSectionValidate(index) {
+
+      //check error
+      //if(error) {
+        //prompt error
+        //return false;
+      //}
+
+      return true;
     }
 
     function loadFormSection(index) {
@@ -635,35 +684,36 @@ function formSectionsInit() {
       form.data('current-form-index', index);
       var targetIndex = index;
 
-
+      console.log(index);
       //set breadcrumbs
-
       breadcrumbs.find('a').removeClass('active').filter(function() {
-        return ($(this).data('fieldset-index') == index)
+
+        return ($(this).data('fieldset-index') == targetIndex)
       }).addClass('active');
 
       //set fieldset`
       fieldsets.hide().filter(function() {
-        return ($(this).data('fieldset-index') == index)
+        return ($(this).data('fieldset-index') == targetIndex)
       }).show();
 
       if (index == 0) {
         footer.find('#previous').hide();
         footer.find('#next').show();
-        footer.find('[class*=submit]').hide();
+        footer.find('[type=submit]').hide();
       }
       else if (index == fieldsets.length-1) {
         footer.find('#previous').show();
         footer.find('#next').hide();
-        footer.find('[class*=submit]').show();
+        footer.find('[type=submit]').show();
       }
       else {
         footer.find('#previous').show();
         footer.find('#next').show();
-        footer.find('[class*=submit]').hide();
+        footer.find('[type=submit]').hide();
       }
 
       //set footer
     }
   });
+
 }
