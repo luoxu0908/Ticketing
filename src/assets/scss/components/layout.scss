@@ -79,6 +79,11 @@ html, body {
 
 @include breakpoint(medium) {
 
+  #mainContent {
+    grid-template-areas:
+    'tt tt tt tt tt tt tt tt tt tt pf pf'
+    'cc cc cc cc cc cc cc cc cc cc cc cc';
+  }
   #mainContent.layout-columns-2 {
     grid-template-rows: 50px 50px auto;
     grid-template-areas:
@@ -112,11 +117,18 @@ html, body {
 
 
 @include breakpoint(large) {
+  #pageContent {
+    justify-content: center;
+  }
+
   #mainContent.layout-columns-2 {
     grid-template-rows: 50px auto;
     grid-template-areas:
     'tt tt tt tt tt tt tt tt tt tt pf pf'
     's1 s1 cc cc cc cc cc cc cc cc cc cc';
+    #pageContent {
+      justify-content: flex-start;
+    }
   }
 
   #mainContent.layout-columns-3 {
@@ -124,6 +136,9 @@ html, body {
     grid-template-areas:
     'tt tt tt tt tt tt tt tt tt tt pf pf'
     's1 s1 cc cc cc cc cc cc cc cc s2 s2';
+    #pageContent {
+      justify-content: flex-start;
+    }
   }
 }
 
@@ -147,6 +162,7 @@ html, body {
     align-items: center;
   }
   #mainContent {
+    display: block;
     @include border-radius(8px);
     box-shadow: 0 0 10px $light-gray;
 
