@@ -639,7 +639,7 @@ function formSectionsInit() {
     breadcrumbs.find('a').click(function() {
       var thisObj = $(this);
       var currentIndex = parseInt(form.data('current-form-index'));
-      if (formSectionValidate(currentIndex) ) {
+      if (formSectionValidate(form) ) {
         loadFormSection(thisObj.data('fieldset-index'));
       }
       return false;
@@ -655,10 +655,10 @@ function formSectionsInit() {
 
       if (targetIndex <0) targetIndex=0;
 
-      if (formSectionValidate(currentIndex) ) {
+      if (formSectionValidate(form) ) {
         loadFormSection(targetIndex);
       }
-      loadFormSection( targetIndex);
+      return false;
     });
     footer.find('#next').click(function() {
         if (formSectionValidate(form)) {
@@ -689,13 +689,12 @@ function formSectionsInit() {
       //set breadcrumbs
 
       breadcrumbs.find('a').removeClass('active').filter(function() {
-        return ($(this).data('fieldset-index') == index)
-        return ($(this).data('fieldset-index') == targetIndex)
+        return ($(this).data('fieldset-index') == targetIndex);
       }).addClass('active');
 
       //set fieldset`
       fieldsets.hide().filter(function() {
-        return ($(this).data('fieldset-index') == targetIndex)
+        return ($(this).data('fieldset-index') == targetIndex);
       }).show();
 
       if (index == 0) {
