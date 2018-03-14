@@ -97,6 +97,30 @@ button, .button, [type="button"], [type="reset"], [type="submit"] {
 		width: 0;
 	}
 
+	&.buttonChargeAdd {
+		&.left:before,
+		&:after {
+			background: url('/assets/img/case-charge.png') no-repeat center center;
+			background-size: 100% 100%;
+		}
+		&.left:hover:before,
+		&:hover:after {
+			background-color: lighten($contrast-color1,10%);
+		}
+	}
+
+	&.buttonReviewAdd {
+		&.left:before,
+		&:after {
+			background: url('/assets/img/case-review.jpg') no-repeat center center;
+			background-size: 100% 100%;
+		}
+		&.left:hover:before,
+		&:hover:after {
+			background-color: lighten($contrast-color1,10%);
+		}
+	}
+
 	&.buttonType2Add {
 		&.left:before,
 		&:after {

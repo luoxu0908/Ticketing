@@ -84,7 +84,7 @@ table {
     background: darken($contrast-color1,10);
   }
 
-  &.packageTable, &.packagetranTable {
+  &.packageTable, &.packagetranTable, &.userTable {
     td {
       text-align: center;
     }
