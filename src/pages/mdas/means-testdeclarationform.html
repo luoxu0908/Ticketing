@@ -17,8 +17,8 @@
     <div>
       <div class="labelText">I have a valid MDAS Ordinary Membership <span class="spanCss">*</span></div>
       <div class="radioGroup">
-        <label><input type="radio" name="sectionA_ordinaryMembership" id="sectionA_ordinaryMembershipYes" value="yes" required> Yes</label>
-        <label><input type="radio" name="sectionA_ordinaryMembership" id="sectionA_ordinaryMembershipNo" value="no"> No</label>
+        <label><input type="radio" name="sectionA_ordinaryMembership" id="sectionA_ordinaryMembershipYes" value="1" required> Yes</label>
+        <label><input type="radio" name="sectionA_ordinaryMembership" id="sectionA_ordinaryMembershipNo" value="0"> No</label>
       </div>
       <p><small><i>(If No, please complete Section B)</i></small></p>
     </div>
@@ -73,19 +73,19 @@
     </div>
     <div>
       <label for="sectionA_Teloffice">Tel no(office)</label>
-      <input type="text" id="sectionA_Teloffice" name="sectionA_Teloffice" />
+      <input type="text" id="sectionA_Teloffice" name="sectionA_Teloffice" pattern="Mobile" />
     </div>
     <div>
       <label for="sectionA_Handphone">Handphone no</label>
-      <input type="text" id="sectionA_Handphone" name="sectionA_Handphone" />
+      <input type="text" id="sectionA_Handphone" name="sectionA_Handphone" pattern="Mobile" />
     </div>
     <div>
       <label for="sectionA_Occupation">Occupation</label>
-      <input type="text" id="sectionA_Occupation" name="sectionA_Occupation" />
+      <select id="sectionA_Occupation" name="sectionA_Occupation" class="selOccupation"></select>
     </div>
     <div>
       <label for="sectionA_Email">Email Address</label>
-      <input type="text" id="sectionA_Email" name="sectionA_Email" />
+      <input type="text" id="sectionA_Email" name="sectionA_Email" pattern="Email"/>
     </div>
   </fieldset>
   <fieldset id="sectionB">
@@ -110,7 +110,7 @@
     </div>
     <div>
       <div class="labelText">Date of Birth</div>
-      <input type="text" id="sectionB_Birth" name="sectionB_Birth" />
+      <input type="Date" id="sectionB_Birth" name="sectionB_Birth" />
     </div>
 
     <h3>Residence Address (as in NRIC)</h3>
@@ -137,27 +137,27 @@
     <h3>Contact No. (Mobile/Home/Office)</h3>
     <div>
       <label for="sectionB_mobile">Handphone no</label>
-      <input type="text" id="sectionB_mobile" name="sectionB_mobile" />
+      <input type="text" id="sectionB_mobile" name="sectionB_mobile" pattern="Mobile" />
     </div>
     <div>
       <label for="sectionB_home">Tel no(home)</label>
-      <input type="text" id="sectionB_home" name="sectionB_home" />
+      <input type="text" id="sectionB_home" name="sectionB_home" pattern="Mobile" />
     </div>
     <div>
       <label for="sectionB_office">Tel no(office)</label>
-      <input type="text" id="sectionB_office" name="sectionB_office" />
+      <input type="text" id="sectionB_office" name="sectionB_office" pattern="Mobile" />
     </div>
     <div>
       <label for="sectionB_email">Email</label>
-      <input type="email" id="sectionB_email" name="sectionB_email" />
+      <input type="email" id="sectionB_email" name="sectionB_email" pattern="Email" />
     </div>
     <div>
       <label for="sectionB_Occupation">Occupation</label>
-      <input type="text" id="sectionB_Occupation" name="sectionB_Occupation" />
+        <select id="sectiotB_Occupation" name="sectionB_Occupation" class="selOccupation"></select>
     </div>
     <div>
-      <label for="sectionB_relationship">Relationship to Main Applicant (PMD)</label>
-      <input type="text" id="sectionB_relationship" name="sectionB_relationship" />
+      <label for="sectionB_relationship">Relationship to Main Applicant (PMD) <span class="spanCss">*</span> </label>
+      <select id="sectionB_relationship" name="sectionB_relationship" class="selRelationship" required></select>
     </div>
   </fieldset>
   <fieldset id="sectionC">
@@ -183,15 +183,15 @@
     </div>
     <div>
       <label for="sectionC_OccupationMain">Occupation</label>
-      <input type="text" id="sectionC_OccupationMain" name="sectionC_OccupationMain" />
+      <select id="sectionC_OccupationMain" name="sectionC_OccupationMain" class="selOccupation"></select>
     </div>
     <div>
       <label for="sectionC_NettMain">Monthly Income (Nett)</label>
-      <input type="text" id="sectionC_NettMain" placeholder="S$" name="sectionC_NettMain" />
+      <input type="text" id="sectionC_NettMain" placeholder="S$" name="sectionC_NettMain" pattern="Number"/>
     </div>
     <div>
       <label for="sectionC_GrossMain">Monthly Income (Gross)</label>
-      <input type="text" id="sectionC_GrossMain" placeholder="S$" name="sectionC_GrossMain" />
+      <input type="text" id="sectionC_GrossMain" placeholder="S$" name="sectionC_GrossMain" pattern="Number"/>
     </div>
     <h3>Family Member #1</h3>
     <div>
@@ -208,23 +208,23 @@
     </div>
     <div>
       <label for="sectionC_Age1">Age</label>
-      <input type="text" id="sectionC_Age1" name="sectionC_Age1" />
+      <input type="text" id="sectionC_Age1" name="sectionC_Age1" pattern="Number"/>
     </div>
     <div>
       <label for="sectionC_Occupation1">Occupation</label>
-      <input type="text" id="sectionC_Occupation1" name="sectionC_Occupation1" />
+      <select id="sectionC_Occupation1" name="sectionC_Occupation1" class="selOccupation"></select>
     </div>
     <div>
       <label for="sectionC_Relationship1">Relationship to Main Applicant</label>
-      <input type="text" id="sectionC_Relationship1" name="sectionC_Relationship1" />
+      <select id="sectionC_Relationship1" name="sectionC_Relationship1" class="selRelationship"></select>
     </div>
     <div>
       <label for="sectionC_Nett1">Monthly Income (Nett)</label>
-      <input type="text" id="sectionC_Nett1" placeholder="S$" name="sectionC_Nett1" />
+      <input type="text" id="sectionC_Nett1" placeholder="S$" name="sectionC_Nett1" pattern="Number"/>
     </div>
     <div>
       <label for="sectionC_Gross1">Monthly Income (Gross)</label>
-      <input type="text" id="sectionC_Gross1" placeholder="S$" name="sectionC_Gross1" />
+      <input type="text" id="sectionC_Gross1" placeholder="S$" name="sectionC_Gross1" pattern="Number"/>
     </div>
 
     <h3>Family Member #2</h3>
@@ -242,23 +242,23 @@
     </div>
     <div>
       <label for="sectionC_Age2">Age</label>
-      <input type="text" id="sectionC_Age2" name="sectionC_Age2" />
+      <input type="text" id="sectionC_Age2" name="sectionC_Age2" pattern="Number"/>
     </div>
     <div>
       <label for="sectionC_Occupation2">Occupation</label>
-      <input type="text" id="sectionC_Occupation2" name="sectionC_Occupation2" />
+        <select id="sectionC_Occupation2" name="sectionC_Occupation2" class="selOccupation"></select>
     </div>
     <div>
       <label for="sectionC_Relationship2">Relationship to Main Applicant</label>
-      <input type="text" id="sectionC_Relationship2" name="sectionC_Relationship2" />
+      <select id="sectionC_Relationship2" name="sectionC_Relationship2" class="selRelationship"></select>
     </div>
     <div>
       <label for="sectionC_Nett2">Monthly Income (Nett)</label>
-      <input type="text" id="sectionC_Nett2" placeholder="S$" name="sectionC_Nett2" />
+      <input type="text" id="sectionC_Nett2" placeholder="S$" name="sectionC_Nett2" pattern="Number"/>
     </div>
     <div>
       <label for="sectionC_Gross2">Monthly Income (Gross)</label>
-      <input type="text" id="sectionC_Gross2" placeholder="S$" name="sectionC_Gross2" />
+      <input type="text" id="sectionC_Gross2" placeholder="S$" name="sectionC_Gross2" pattern="Number"/>
     </div>
 
 
@@ -280,23 +280,23 @@
     </div>
     <div>
       <label for="sectionC_Age3">Age</label>
-      <input type="text" id="sectionC_Age3" name="sectionC_Age3" />
+      <input type="text" id="sectionC_Age3" name="sectionC_Age3" pattern="Number"/>
     </div>
     <div>
       <label for="sectionC_Occupation3">Occupation</label>
-      <input type="text" id="sectionC_Occupation3" name="sectionC_Occupation3" />
+      <select id="sectionC_Occupation3" name="sectionC_Occupation3" class="selOccupation"></select>
     </div>
     <div>
       <label for="sectionC_Relationship3">Relationship to Main Applicant</label>
-      <input type="text" id="sectionC_Relationship3" name="sectionC_Relationship3" />
+      <select id="sectionC_Relationship3" name="sectionC_Relationship3" class="selRelationship"></select>
     </div>
     <div>
       <label for="sectionC_Nett3">Monthly Income (Nett)</label>
-      <input type="text" id="sectionC_Nett3" placeholder="S$" name="sectionC_Nett3" />
+      <input type="text" id="sectionC_Nett3" placeholder="S$" name="sectionC_Nett3" pattern="Number"/>
     </div>
     <div>
       <label for="sectionC_Gross3">Monthly Income (Gross)</label>
-      <input type="text" id="sectionC_Gross3" placeholder="S$" name="sectionC_Gross3" />
+      <input type="text" id="sectionC_Gross3" placeholder="S$" name="sectionC_Gross3" pattern="Number"/>
     </div>
 
 
@@ -317,7 +317,7 @@
     </div>
     <div>
       <label for="sectionC_Age4">Age</label>
-      <input type="text" id="sectionC_Age4" name="sectionC_Age4" />
+      <input type="text" id="sectionC_Age4" name="sectionC_Age4" pattern="Number"/>
     </div>
     <div>
       <label for="sectionC_Occupation4">Occupation</label>
@@ -325,15 +325,15 @@
     </div>
     <div>
       <label for="sectionC_Relationship4">Relationship to Main Applicant</label>
-      <input type="text" id="sectionC_Relationship4" name="sectionC_Relationship4" />
+      <select id="sectionC_Relationship4" name="sectionC_Relationship4" class="selOccupation"></select>
     </div>
     <div>
       <label for="sectionC_Nett4">Monthly Income (Nett)</label>
-      <input type="text" id="sectionC_Nett4" placeholder="S$" name="sectionC_Nett4" />
+      <input type="text" id="sectionC_Nett4" placeholder="S$" name="sectionC_Nett4" pattern="Number"/>
     </div>
     <div>
       <label for="sectionC_Gross4">Monthly Income (Gross)</label>
-      <input type="text" id="sectionC_Gross4" placeholder="S$" name="sectionC_Gross4" />
+      <input type="text" id="sectionC_Gross4" placeholder="S$" name="sectionC_Gross4" pattern="Number"/>
     </div>
 
     <h3>
@@ -353,23 +353,23 @@
     </div>
     <div>
       <label for="sectionC_Age5">Age</label>
-      <input type="text" id="sectionC_Age5sectionC_Age5" name="sectionC_Age5" />
+      <input type="text" id="sectionC_Age5sectionC_Age5" name="sectionC_Age5" pattern="Number"/>
     </div>
     <div>
       <label for="sectionC_Occupation5">Occupation</label>
-      <input type="text" id="sectionC_Occupation5" name="sectionC_Occupation5" />
+      <select id="sectionC_Occupation5" name="sectionC_Occupation5" class="selOccupation"></select>
     </div>
     <div>
       <label for="sectionC_Relationship5">Relationship to Main Applicant</label>
-      <input type="text" id="sectionC_Relationship5" name="sectionC_Relationship5" />
+      <select id="sectionC_Relationship5" name="sectionC_Relationship5" class="selRelationship"></select>
     </div>
     <div>
       <label for="sectionC_Nett5">Monthly Income (Nett)</label>
-      <input type="text" id="sectionC_Nett5" placeholder="S$" name="sectionC_Nett5" />
+      <input type="text" id="sectionC_Nett5" placeholder="S$" name="sectionC_Nett5" pattern="Number"/>
     </div>
     <div>
       <label for="sectionC_Gross5">Monthly Income (Gross)</label>
-      <input type="text" id="sectionC_Gross5" placeholder="S$" name="sectionC_Gross5" />
+      <input type="text" id="sectionC_Gross5" placeholder="S$" name="sectionC_Gross5" pattern="Number"/>
     </div>
   </fieldset>
   <fieldset id="sectionD" class="scoreForm">
@@ -378,8 +378,8 @@
     <div>
       <div class="labelText">Does your family receive any support from other source?</div>
       <div class="radioGroup">
-        <label><input type="radio" name="sectionD_familysupport" id="sectionD_familysupportYes" value="yes"> Yes</label>
-        <label><input type="radio" name="sectionD_familysupport" id="sectionD_familysupportNo" value="no"> No</label>
+        <label><input type="radio" name="sectionD_familysupport" id="sectionD_familysupportYes" value="1"> Yes</label>
+        <label><input type="radio" name="sectionD_familysupport" id="sectionD_familysupportNo" value="0"> No</label>
       </div>
       <p><small><i>(If Yes, please specify the source)</i></small></p>
     </div>
@@ -395,25 +395,25 @@
           <td>Source #1</td>
           <td><input type="text" id="sectionD_Frequency1" name="sectionD_Frequency1" /></td>
           <td><input type="text" id="sectionD_Period1" name="sectionD_Period1" /></td>
-          <td><input type="text" placeholder="S$" id="sectionD_Amount1" name="sectionD_Amount1" /></td>
+          <td><input type="text" placeholder="S$" id="sectionD_Amount1" name="sectionD_Amount1" pattern="Number"/></td>
         </tr>
         <tr>
           <td>Source #2</td>
           <td><input type="text" id="sectionD_Frequency2" name="sectionD_Frequency2" /></td>
           <td><input type="text" id="sectionD_Period2" name="sectionD_Period2" /></td>
-          <td><input type="text" placeholder="S$" id="sectionD_Amount2" name="sectionD_Amount2" /></td>
+          <td><input type="text" placeholder="S$" id="sectionD_Amount2" name="sectionD_Amount2" pattern="Number"/></td>
         </tr>
         <tr>
           <td>Source #3</td>
           <td><input type="text" id="sectionD_Frequency3" name="sectionD_Frequency3" /></td>
           <td><input type="text" id="sectionD_Period3" name="sectionD_Period3" /></td>
-          <td><input type="text" placeholder="S$" id="sectionD_Amount3" name="sectionD_Amount3" /></td>
+          <td><input type="text" placeholder="S$" id="sectionD_Amount3" name="sectionD_Amount3" pattern="Number"/></td>
         </tr>
         <tr>
           <td>Source #4</td>
           <td><input type="text" id="sectionD_Frequency4" name="sectionD_Frequency4" /></td>
           <td><input type="text" id="sectionD_Period4" name="sectionD_Period4" /></td>
-          <td><input type="text" placeholder="S$" id="sectionD_Amount4" name="sectionD_Amount4" /></td>
+          <td><input type="text" placeholder="S$" id="sectionD_Amount4" name="sectionD_Amount4" pattern="Number"/></td>
         </tr>
       </table>
     </div>
@@ -441,7 +441,7 @@
     </div>
     <div>
       <label for="sectionE_MainDate">Date</label>
-      <input type="text" id="sectionE_MainDate" name="sectionE_MainDate" />
+      <input type="Date" id="sectionE_MainDate" name="sectionE_MainDate" />
     </div>
     <h3>ORDINARY MEMBERSHIP HOLDER (IF MAIN APPLICANT IS NOT A MEMBER)</h3>
     <div>
@@ -454,7 +454,7 @@
     </div>
     <div>
       <label for="sectionE_MemberDate">Date</label>
-      <input type="text" id="sectionE_MemberDate" name="sectionE_MemberDate" />
+      <input type="Date" id="sectionE_MemberDate" name="sectionE_MemberDate" />
     </div>
   </fieldset>
 
