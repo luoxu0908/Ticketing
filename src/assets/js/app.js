@@ -661,42 +661,23 @@ function formSectionsInit() {
       loadFormSection( targetIndex);
     });
     footer.find('#next').click(function() {
-<<<<<<< HEAD
-        if (ValidForm(form)) {
+        if (formSectionValidate(form)) {
           var targetIndex = parseInt(form.data('current-form-index')) + 1;
           if (targetIndex >= fieldsets.length) targetIndex=fieldsets.length-1;
           loadFormSection(targetIndex);
         }
+        return false;
     });
 
-    function ValidForm(form){
+
+
+    function formSectionValidate(form) {
       var result=0;
       $(form).find('fieldset:hidden :input').attr('disabled','disabled');
       $(form).on('formvalid.zf.abide',function(){result=1;});
       $(form).foundation('validateForm');
       $(form).find('fieldset :input').removeAttr('disabled');
       return result;
-=======
-      var currentIndex = parseInt(form.data('current-form-index'));
-      var targetIndex = currentIndex + 1;
-
-      if (targetIndex >= fieldsets.length) targetIndex=fieldsets.length-1;
-
-      if (formSectionValidate(currentIndex) ) {
-        loadFormSection( targetIndex);
-      }
-    });
-
-    function formSectionValidate(index) {
-
-      //check error
-      //if(error) {
-        //prompt error
-        //return false;
-      //}
-
-      return true;
->>>>>>> 3ffabf96eb828e3f2d1b2c3e6f5e1a1a5b7f3288
     }
 
     function loadFormSection(index) {
@@ -707,12 +688,9 @@ function formSectionsInit() {
 
       //set breadcrumbs
 
-<<<<<<< HEAD
       breadcrumbs.find('a').removeClass('active').filter(function() {
         return ($(this).data('fieldset-index') == index)
-=======
         return ($(this).data('fieldset-index') == targetIndex)
->>>>>>> 3ffabf96eb828e3f2d1b2c3e6f5e1a1a5b7f3288
       }).addClass('active');
 
       //set fieldset`
@@ -739,8 +717,4 @@ function formSectionsInit() {
       //set footer
     }
   });
-<<<<<<< HEAD
-=======
-
->>>>>>> 3ffabf96eb828e3f2d1b2c3e6f5e1a1a5b7f3288
 }
