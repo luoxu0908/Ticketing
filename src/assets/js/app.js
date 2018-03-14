@@ -283,7 +283,7 @@ $(function(){
 
   formOthersInit();
   formSectionsInit();
-  loadMenu();
+  //loadMenu();
 
 });//onready
 
