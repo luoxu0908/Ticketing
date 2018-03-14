@@ -467,20 +467,19 @@ function loadPage(url,target,options) {
   console.log('typeof:'+ typeof url);
   console.log('url:'+url);
 
-  var mainContentContainer = $('#mainContent');
-  var mainContentContainerIframe = $('#mainContentIframe');
+  var mainContent = $('#mainContent');
+  var pageContent = $('#pageContent');
+  var pageIFrame = $('#pageIFrame');
   //var contentWindow = mainContentContainer.find('#contentWindow');
 
 
   target = 'iframe';//hardcode for testing
   if (typeof target != 'undefined' && target.toLowerCase() == 'iframe') {
-    console.log(mainContentContainer.length);
-    console.log(url);
-    mainContentContainer.hide();
-    mainContentContainerIframe.show().prop('src',url);
+    mainContent.addClass('layout-iframe');
+    pageIFrame.prop('src',url);
   }
   else {
-
+    mainContent.removeClass('layout-iframe');
   }
 
 }
