@@ -263,6 +263,7 @@ $(function(){
   formOthersInit();
   formSectionsInit();
   loadMenu();
+
 });//onready
 
 function GetBasicInformation(personID) {
@@ -375,8 +376,10 @@ function loadMenu() {
             moduleNameOriginal = menuObj.MenuName;
               menu.push(moduleNameOriginal);
               moduleName = moduleNameOriginal.replace(/[^A-Za-z0-9]/g,'');
-              moduleMenu = $('<ul id="moduleMenu-'+ moduleName +'" class="moduleMenu"></ul>');
-              var moduleItem = $('<li><a href="/'+moduleName+'/" data-menu="'+moduleName+'">'+moduleNameOriginal+'</a></li>');
+
+              moduleMenu = $('<ul id="moduleMenu-'+ moduleName +'" class="moduleMenu"><li><a href="'+menuObj.RelativeURL+'" target="'+menuObj.TargetFrame+'" data-sort-key="'+menuObj.SortKey+'" >'+moduleNameOriginal+'</a></li></ul>');
+              console.log('menuObj.RelativeURL:' + menuObj.RelativeURL);
+              var moduleItem = $('<li><a href="/'+menuObj.RelativeURL+'/" data-menu="'+moduleName+'" data-sort-key="'+menuObj.SortKey+'" >'+moduleNameOriginal+'</a></li>');
               module.append(moduleItem);
               mainMenuContainer.append(moduleMenu);
           }
@@ -386,14 +389,16 @@ function loadMenu() {
 
           var moduleItemName = menuObj.MenuName.match(moduleItemRegex);
           if (moduleItemName != null) {
-            console.log(moduleItemName[1]);
-            var moduleMenuItem = $('<li><a href="'+menuObj.RelativeURL+'">'+moduleItemName[1]+'</a></li>');
-            console.log(moduleMenu);
+            //console.log(moduleItemName[1]);
+            //console.log(apiSrc.substr(0,apiSrc.length-1));
+
+            var moduleMenuItem = $('<li><a href="'+ (( /\/$/.test(apiSrc) ) ? apiSrc.substr(0,apiSrc.length-1) : apiSrc ) + menuObj.RelativeURL +'" target="'+menuObj.TargetFrame+'" data-sort-key="'+menuObj.SortKey+'" >'+moduleItemName[1]+'</a></li>');
+            //console.log(moduleMenu);
             moduleMenu.append(moduleMenuItem);
           }
         }
         //console.log(menu);
-        console.log($('#mainMenu .module a').length);
+        //console.log($('#mainMenu .module a').length);
         $('#mainMenu .module a').click(function() {
           var targetId = $(this).data('menu');
           var targetObj = $('#moduleMenu-'+targetId);
@@ -406,17 +411,30 @@ function loadMenu() {
               targetObj.show();
             }
             else {
+              console.log('aaa');
               window.location.href = $(this).prop('href');
             }
           }
           else {
+            //console.log('aaa');
             $('.moduleMenu').hide();
             targetObj.show();
           }
           return false;
+        });//module Links
+
+        $('.moduleMenu').find('a').click(function() {
+          var thisObj = $(this);
+          var target = thisObj.prop('target');
+          var href = thisObj.attr('href');
+
+          mainMenuToggle();
+          loadPage(href,target);
+
+          return false;
         });
-      }
-    },
+      }//rows
+    },//success
     error: function(XMLHttpRequest, data, errorThrown){
       console.log(errorThrown);
     }
@@ -443,6 +461,28 @@ function initSubLinks() {
       }
     });
   });
+}
+
+function loadPage(url,target,options) {
+  console.log('loadpage');
+  console.log('typeof:'+ typeof url);
+  console.log('url:'+url);
+
+  var mainContent = $('#mainContent');
+  var pageContent = $('#pageContent');
+  var pageIFrame = $('#pageIFrame');
+  //var contentWindow = mainContentContainer.find('#contentWindow');
+
+
+  target = 'iframe';//hardcode for testing
+  if (typeof target != 'undefined' && target.toLowerCase() == 'iframe') {
+    mainContent.addClass('layout-iframe');
+    pageIFrame.prop('src',url);
+  }
+  else {
+    mainContent.removeClass('layout-iframe');
+  }
+
 }
 
 function initSubLinksDropDown() {
@@ -598,8 +638,10 @@ function formSectionsInit() {
 
     breadcrumbs.find('a').click(function() {
       var thisObj = $(this);
-      loadFormSection(thisObj.data('fieldset-index'));
-
+      var currentIndex = parseInt(form.data('current-form-index'));
+      if (formSectionValidate(currentIndex) ) {
+        loadFormSection(thisObj.data('fieldset-index'));
+      }
       return false;
     });
 
@@ -608,12 +650,18 @@ function formSectionsInit() {
     footer.find('[class*=submit]').hide();
 
     footer.find('#previous').click(function() {
-      var targetIndex = parseInt(form.data('current-form-index')) -1;
+      var currentIndex = parseInt(form.data('current-form-index'));
+      var targetIndex = currentIndex-1;
 
       if (targetIndex <0) targetIndex=0;
+
+      if (formSectionValidate(currentIndex) ) {
+        loadFormSection(targetIndex);
+      }
       loadFormSection( targetIndex);
     });
     footer.find('#next').click(function() {
+<<<<<<< HEAD
         if (ValidForm(form)) {
           var targetIndex = parseInt(form.data('current-form-index')) + 1;
           if (targetIndex >= fieldsets.length) targetIndex=fieldsets.length-1;
@@ -628,6 +676,27 @@ function formSectionsInit() {
       $(form).foundation('validateForm');
       $(form).find('fieldset :input').removeAttr('disabled');
       return result;
+=======
+      var currentIndex = parseInt(form.data('current-form-index'));
+      var targetIndex = currentIndex + 1;
+
+      if (targetIndex >= fieldsets.length) targetIndex=fieldsets.length-1;
+
+      if (formSectionValidate(currentIndex) ) {
+        loadFormSection( targetIndex);
+      }
+    });
+
+    function formSectionValidate(index) {
+
+      //check error
+      //if(error) {
+        //prompt error
+        //return false;
+      //}
+
+      return true;
+>>>>>>> 3ffabf96eb828e3f2d1b2c3e6f5e1a1a5b7f3288
     }
 
     function loadFormSection(index) {
@@ -638,13 +707,17 @@ function formSectionsInit() {
 
       //set breadcrumbs
 
+<<<<<<< HEAD
       breadcrumbs.find('a').removeClass('active').filter(function() {
         return ($(this).data('fieldset-index') == index)
+=======
+        return ($(this).data('fieldset-index') == targetIndex)
+>>>>>>> 3ffabf96eb828e3f2d1b2c3e6f5e1a1a5b7f3288
       }).addClass('active');
 
       //set fieldset`
       fieldsets.hide().filter(function() {
-        return ($(this).data('fieldset-index') == index)
+        return ($(this).data('fieldset-index') == targetIndex)
       }).show();
 
       if (index == 0) {
@@ -666,4 +739,8 @@ function formSectionsInit() {
       //set footer
     }
   });
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3ffabf96eb828e3f2d1b2c3e6f5e1a1a5b7f3288
 }
