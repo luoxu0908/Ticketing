@@ -32,10 +32,8 @@
 	grid-area: s;
 	display: flex;
 	justify-content: space-between;
-
-
-
 	margin: 0 0 15px $global-edge-padding;
+	max-width: none;
 	padding: 0;
 
 	input[type=text] {
@@ -60,6 +58,7 @@
 		margin: 0 0 0px;
 		padding: 1rem 0.6rem 0.8rem;
 		text-align: center;
+		width: auto;
 
 		.text {
 			display: none;
