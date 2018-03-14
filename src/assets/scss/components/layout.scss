@@ -23,11 +23,7 @@ html, body {
   }
 
   #mainContent {
-
     grid-area: mc;
-    overflow-y: auto;
-    overflow-x: hidden;
-    min-height: 400px;
     min-width: 0;
   }
 
@@ -75,6 +71,27 @@ html, body {
       grid-area: s2;
       min-width: 0;
     }
+
+    #pageIFrame {
+      grid-area: if;
+      min-width: 0;
+    }
+}
+
+#mainContent.layout-iframe {
+  grid-template-rows: auto;
+  max-width: none;
+  grid-template-areas:
+    'if if if if if if if if if if if if';
+
+  #pageTitle,
+  #pageProfile,
+  #pageContent {
+      display: none;
+  }
+  #pageIFrame {
+    display: block;
+  }
 }
 
 @include breakpoint(medium) {
@@ -143,7 +160,7 @@ html, body {
 }
 
 @include breakpoint(small) {
-  #pageProfile,#sidebar1,#sidebar2,#footer {
+  #pageProfile,#sidebar1,#sidebar2,#footer,#pageIFrame {
     display: none;
   }
 }
