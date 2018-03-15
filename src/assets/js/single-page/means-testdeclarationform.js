@@ -63,65 +63,6 @@ function SaveDeclaretion() {
   });
 }
 
-//convert date to dd/mm/yyyy
-function convertDateTime(inputFormat, type) {
-  if (inputFormat == null) {
-    return '-';
-  }
-  function pad(s) {
-    return (s < 10)? '0' + s: s;
-  }
-  var d = new Date(inputFormat);
-  if (type == 'date') {
-    return [
-      pad(d.getDate()),
-      pad(d.getMonth() + 1),
-      d.getFullYear()
-    ].join('/');
-  } else if (type == 'datetime') {
-    return [
-      pad(d.getDate()),
-      pad(d.getMonth() + 1),
-      d.getFullYear()
-    ].join('/') + ' ' + [
-      pad(d.getHours()),
-      pad(d.getMinutes()),
-      pad(d.getSeconds())
-    ].join(':');
-  } else if (type == 'time') {
-    return [
-      pad(d.getHours()),
-      pad(d.getMinutes()),
-      pad(d.getSeconds())
-    ].join(':');
-  }
-}
-
-function GetDeclarationInfo(DeclarationID) {
-  var data = {
-    'DeclarationID': DeclarationID
-  };
-  $.ajax({
-    url: apiSrc + "BCMain/iCtc1.GetDeclarationInfo.json",
-    method: "POST",
-    dataType: "json",
-    xhrFields: {
-      withCredentials: true
-    },
-    data: {
-      'data': JSON.stringify(data),
-      'WebPartKey': '021cb7cca70748ff89795e3ad544d5eb',
-      'ReqGUID': 'b4bbedbf-e591-4b7a-ad20-101f8f656277'
-    },
-    success: function(data) {
-      if ((data) && (data.d.RetVal === -1)) {
-        if (data.d.RetData.Tbl.Rows.length > 0) {
-          var DeclarationInfo = data.d.RetData.Tbl.Rows[0];
-        }
-      }
-    }
-  });
-}
 //geneare drop down optioms
 function GetDropdownList(id, category) {
   var data = {
@@ -156,7 +97,7 @@ function GetDropdownList(id, category) {
 
 function GetRelationship(sel) {
   $.ajax({
-    url: apiSrc + "BCMain/iCtc1.Relationship_Get.json",
+    url: apiSrc + "BCMain/iCtc1.SearchRelationshipType.json",
     method: "POST",
     dataType: "json",
     xhrFields: {
@@ -172,7 +113,7 @@ function GetRelationship(sel) {
         if (data.d.RetData.Tbl.Rows.length > 0) {
           var lookup = data.d.RetData.Tbl.Rows;
           for (var i = 0; i < lookup.length; i++) {
-            $(sel).append('<option value="' + lookup[i].RelKeyAB + '">' + lookup[i].RelKeyAB  + '</option>');
+            $(sel).append('<option value="' + lookup[i].RelationshipAB + '">' + lookup[i].RelationshipAB  + '</option>');
           }
         }
       } else {
@@ -195,7 +136,6 @@ function formSectionsInit() {
     breadcrumbs.html('');
 
     fieldsets.each(function(index) {
-
       var fieldset = $(this);
       fieldset.data('fieldset-index',index);
       breadcrumbs.append('<li><a href="#'+fieldset.prop('id')+'" data-fieldset-index="'+index+'">'+fieldset.find('h2').html()+'</a>').find('li:eq(0) a').addClass('active');
@@ -208,7 +148,7 @@ function formSectionsInit() {
     breadcrumbs.find('a').click(function() {
       var thisObj = $(this);
       var currentIndex = parseInt(form.data('current-form-index'));
-      if (formSectionValidate(form) ) {
+      if (formSectionValidate(form,0) ) {
         loadFormSection(thisObj.data('fieldset-index'));
       }
       return false;
@@ -237,6 +177,7 @@ function formSectionsInit() {
         }
         return false;
     });
+
     function loadFormSection(index) {
       //set index
       form.data('current-form-index', index);
