@@ -1,6 +1,3 @@
-
-<h1>Initial Assessment Form</h1>
-
 <form action="" method="" class="formSection" id="InitialAssessmentForm" data-abide novalidate>
     <div data-abide-error class="alert callout" style="display: none;">
         <p><i class="fi-alert"></i> There are some errors in your form.</p>
@@ -32,7 +29,7 @@
         </div>
         <div>
             <label for="sectionA_DisplayName">Display Name<span class="spanCss">*</span></label>
-            <input type="text" id="sectionA_DisplayName" name="sectionA_DisplayName"  />
+            <input type="text" id="sectionA_DisplayName" name="sectionA_DisplayName"   />
         </div>
         <div>
             <label for="sectionA_nric">NRIC / Birth Cert No.<span class="spanCss">*</span></label>
@@ -59,7 +56,7 @@
                 <option value="malay">Malay</option>
                 <option value="indian">Indian</option>
                 <option value="eurasian">Eurasian</option>
-                <option value="others">Others</option>
+                <option value="Others">Others</option>
             </select>
         </div>
         <div class="">
@@ -73,7 +70,7 @@
                 <label><input type="checkbox" name="sectionA_language" id="sectionA_languageMandarin" value="mandarin"> Mandarin</label>
                 <label><input type="checkbox" name="sectionA_language" id="sectionA_languageMalay" value="malay"> Malay</label>
                 <label><input type="checkbox" name="sectionA_language" id="sectionA_languageTamil" value="languageTamiles"> Hindi/Tamil</label>
-                <label><input type="checkbox" name="sectionA_language" id="sectionA_languageOthers" data-form-other="sectionA_languageOthersText"> Others</label>
+                <label><input type="checkbox" name="sectionA_language" id="sectionA_languageOthers" data-form-other="sectionA_languageOthersText" value="Others"> Others</label>
                 <input type="text" id="sectionA_languageOthersText" name="sectionA_languageOthersText" placeholder="other" data-form-other-text="true" />
             </div>
         </div>
@@ -92,26 +89,26 @@
                 <label><input type="radio" name="sectionA_education" id="sectionA_educationITE" value="ITE"> ITE</label>
                 <label><input type="radio" name="sectionA_education" id="sectionA_educationDiploma" value="diploma"> Diploma</label>
                 <label><input type="radio" name="sectionA_education" id="sectionA_educationDegreeAbove" value="degree & above"> Degree &amp; Above</label>
-                <label><input type="radio" name="sectionA_education" id="sectionA_educationOthers" value="others" data-form-other="sectionA_educationOthersText"> Others</label>
+                <label><input type="radio" name="sectionA_education" id="sectionA_educationOthers" value="Others" data-form-other="sectionA_educationOthersText"> Others</label>
                 <input type="text" id="sectionA_educationOthersText" name="sectionA_educationOthersText" placeholder="other" data-form-other-text="true" />
             </div>
         </div>
         <h3>Contact Details</h3>
         <div>
             <label for="sectionA_mobile">Mobile</label>
-            <input type="text" id="sectionA_mobile" name="sectionA_mobile" />
+            <input type="text" id="sectionA_mobile" name="sectionA_mobile" pattern="Mobile"/>
         </div>
         <div>
             <label for="sectionA_home">Home</label>
-            <input type="text" id="sectionA_home" name="sectionA_home" />
+            <input type="text" id="sectionA_home" name="sectionA_home" pattern="Mobile"/>
         </div>
         <div>
             <label for="sectionA_office">Office</label>
-            <input type="text" id="sectionA_office" name="sectionA_office" />
+            <input type="text" id="sectionA_office" name="sectionA_office" pattern="Mobile">
         </div>
         <div>
             <label for="sectionA_email">Email</label>
-            <input type="email" id="sectionA_email" name="sectionA_email" />
+            <input type="email" id="sectionA_email" name="sectionA_email" pattern="email" />
         </div>
     </fieldset>
     <fieldset id="sectionB">
@@ -146,19 +143,19 @@
         <h3>Contact Details</h3>
         <div>
             <label for="sectionB_mobile">Mobile</label>
-            <input type="text" id="sectionB_mobile" name="sectionB_mobile" />
+            <input type="text" id="sectionB_mobile" name="sectionB_mobile" pattern="Mobile"/>
         </div>
         <div>
             <label for="sectionB_home">Home</label>
-            <input type="text" id="sectionB_home" name="sectionB_home" />
+            <input type="text" id="sectionB_home" name="sectionB_home" pattern="Mobile"/>
         </div>
         <div>
             <label for="sectionB_office">Office</label>
-            <input type="text" id="sectionB_office" name="sectionB_office" />
+            <input type="text" id="sectionB_office" name="sectionB_office" pattern="Mobile"/>
         </div>
         <div>
             <label for="sectionB_email">Email</label>
-            <input type="email" id="sectionB_email" name="sectionB_email" />
+            <input type="email" id="sectionB_email" name="sectionB_email" pattern="email"/>
         </div>
     </fieldset>
     <fieldset id="sectionC">
@@ -193,19 +190,19 @@
         <h3>Contact Details</h3>
         <div>
             <label for="sectionC_mobile">Mobile</label>
-            <input type="text" id="sectionC_mobile" name="sectionC_mobile" />
+            <input type="text" id="sectionC_mobile" name="sectionC_mobile" pattern="Mobile"/>
         </div>
         <div>
             <label for="sectionC_home">Home</label>
-            <input type="text" id="sectionC_home" name="sectionC_home" />
+            <input type="text" id="sectionC_home" name="sectionC_home" pattern="Mobile"/>
         </div>
         <div>
             <label for="sectionC_office">Office</label>
-            <input type="text" id="sectionC_office" name="sectionC_office" />
+            <input type="text" id="sectionC_office" name="sectionC_office" pattern="Mobile"/>
         </div>
         <div>
             <label for="sectionC_email">Email</label>
-            <input type="email" id="sectionC_email" name="sectionC_email" />
+            <input type="email" id="sectionC_email" name="sectionC_email" pattern="email"/>
         </div>
     </fieldset>
     <fieldset id="sectionD">
@@ -226,7 +223,7 @@
                 <label><input type="checkbox" name="sectionD_Precautions" id="sectionD_PrecautionsCardiac" value="Cardiac"> Cardiac</label>
                 <label><input type="checkbox" name="sectionD_Precautions" id="sectionD_PrecautionsChoking" value="Choking"> Choking</label>
                 <label><input type="checkbox" name="sectionD_Precautions" id="sectionD_PrecautionsRespiratory" value="Respiratory"> Respiratory</label>
-                <label><input type="checkbox" name="sectionD_Precautions" id="sectionD_PrecautionsOther" data-form-other="sectionD_PrecautionsOther"> Other</label>
+                <label><input type="checkbox" name="sectionD_Precautions" id="sectionD_PrecautionsOther" data-form-other="sectionD_PrecautionsOther" value="Others"> Other</label>
                 <input type="text" id="sectionD_PrecautionsOthersText" name="sectionD_PrecautionsOthersText" placeholder="other" data-form-other-text="true" />
             </div>
         </div>
@@ -298,7 +295,6 @@
             <label><input type="radio" name="sectionD_ToiletAnticipated" id="sectionD_ToiletAnticipatedYes" value="Yes"> Yes</label>
             <label><input type="radio" name="sectionD_ToiletAnticipated" id="sectionD_ToiletAnticipatedNo" value="No"> No</label>
         </div>
-
 
         <div>
             <label><u>Sensory Status</u></label>
@@ -376,10 +372,10 @@
                 <label><input type="checkbox" name="sectionE_Transfers" id="sectionE_TransfersIndependent" value="3" />Independent</label>
             </div>
             <div id="sectionE_ScoreTransfers" class="score">
-              <label id="ScoreTransfers0"></label>
-              <label id="ScoreTransfers1"></label>
-              <label id="ScoreTransfers2"></label>
-              <label id="ScoreTransfers3"></label>
+              <label id="ScoreTransfers0">0</label>
+              <label id="ScoreTransfers1">1</label>
+              <label id="ScoreTransfers2">2</label>
+              <label id="ScoreTransfers3">3</label>
             </div>
             <div class="labelText">Stairs</div>
             <div class="checkBoxGoup columns">
@@ -388,9 +384,9 @@
                 <label><input type="checkbox" name="sectionE_Stairs" id="sectionE_StairsIndependent" value="2" />Independent up and down, carrying walking aid</label>
             </div>
             <div id="sectionE_ScoreStairs" class="score">
-              <label id="ScoreStairs0"></label>
-              <label id="ScoreStairs1"></label>
-              <label id="ScoreStairs2"></label>
+              <label id="ScoreStairs0">0</label>
+              <label id="ScoreStairs1">1</label>
+              <label id="ScoreStairs2">2</label>
             </div>
             <div class="labelText">Toilet Use</div>
             <div class="checkBoxGoup columns">
@@ -399,9 +395,9 @@
                 <label><input type="checkbox" name="sectionE_ToiletUse" id="sectionE_ToiletUseNdependent" value="2" />ndependent: can reach toilet/commode, undress, clean self and leave</label>
             </div>
             <div id="sectionE_ScoreToilet" class="score">
-              <label id="ScoreToilet0"></label>
-              <label id="ScoreToilet1"></label>
-              <label id="ScoreToilet2"></label>
+              <label id="ScoreToilet0">0</label>
+              <label id="ScoreToilet1">1</label>
+              <label id="ScoreToilet2">2</label>
             </div>
             <div class="labelText">Bladder</div>
             <div class="checkBoxGoup columns">
@@ -410,9 +406,9 @@
                 <label><input type="checkbox" name="sectionE_Bladder" id="sectionE_BladderContinent" value="2" />Continent</label>
             </div>
             <div id="sectionE_ScoreBladder" class="score">
-              <label id="ScoreBladder0"></label>
-              <label id="ScoreBladder1"></label>
-              <label id="ScoreBladder2"></label>
+              <label id="ScoreBladder0">0</label>
+              <label id="ScoreBladder1">1</label>
+              <label id="ScoreBladder2">2</label>
             </div>
             <div class="labelText">Bowels</div>
             <div class="checkBoxGoup columns">
@@ -421,9 +417,9 @@
                 <label><input type="checkbox" name="sectionE_Bowels" id="sectionE_BowelsContinent" value="2" />Continent</label>
             </div>
             <div id="sectionE_ScoreBowels" class="score">
-              <label id="ScoreBowels0"></label>
-              <label id="ScoreBowels1"></label>
-              <label id="ScoreBowels2"></label>
+              <label id="ScoreBowels0">0</label>
+              <label id="ScoreBowels1">1</label>
+              <label id="ScoreBowels2">2</label>
             </div>
 
             <div class="labelText">Bathing/Showering</div>
@@ -432,8 +428,8 @@
                 <label><input type="checkbox" name="sectionE_BathingShowering" id="sectionE_BathingShoweringIndependent" value="1" />Independent Bath: must get in and out unsupervised, wash self Shower: unsupervised/ unaided</label>
             </div>
             <div id="sectionE_ScoreBathing" class="score">
-              <label id="ScoreBathing0"></label>
-              <label id="ScoreBathing1"></label>
+              <label id="ScoreBathing0">0</label>
+              <label id="ScoreBathing1">1</label>
             </div>
             <div class="labelText">Grooming (e.g. brush teeth, comb hair)</div>
             <div class="checkBoxGoup columns">
@@ -441,8 +437,8 @@
                 <label><input type="checkbox" name="sectionE_Grooming" id="sectionE_GroomingIndependent" value="1" />Independent: Implement can be provided by helper</label>
             </div>
             <div id="sectionE_ScoreGrooming" class="score">
-              <label id="ScoreGrooming0"></label>
-              <label id="ScoreGrooming1"></label>
+              <label id="ScoreGrooming0">0</label>
+              <label id="ScoreGrooming1">1</label>
             </div>
             <div class="labelText">Dressing (Change clothings)</div>
             <div class="checkBoxGoup columns">
@@ -451,9 +447,9 @@
                 <label><input type="checkbox" name="sectionE_Dressing" id="sectionE_DressingIndependent" value="2" />Independent including buttons, zips, laces etc.</label>
             </div>
             <div id="sectionE_ScoreDressing" class="score">
-              <label id="ScoreDressing0"></label>
-              <label id="ScoreDressing1"></label>
-              <label id="ScoreDressing2"></label>
+              <label id="ScoreDressing0">0</label>
+              <label id="ScoreDressing1">1</label>
+              <label id="ScoreDressing2">2</label>
             </div>
             <div class="labelText">Feeding</div>
             <div class="checkBoxGoup columns">
@@ -462,9 +458,9 @@
                 <label><input type="checkbox" name="sectionE_Feeding" id="sectionE_FeedingContinent" value="2" />Continent</label>
             </div>
             <div id="sectionE_ScoreFeeding" class="score">
-              <label id="ScoreFeeding0"></label>
-              <label id="ScoreFeeding1"></label>
-              <label id="ScoreFeeding2"></label>
+              <label id="ScoreFeeding0">0</label>
+              <label id="ScoreFeeding1">1</label>
+              <label id="ScoreFeeding2">2</label>
             </div>
         </div>
         <footer class="scoreTotal inlineGroup">
@@ -473,125 +469,147 @@
         </footer>
 
         <p>Part II–area of needs</p>
-        <div><label>Physical Assistance</label></div>
-        <div class="checkBoxGoup columns">
-            <label><input type="checkbox" name="sectionE_Physical" id="sectionE_PhysicalTransferring" value="Transferring" />Transferring</label>
-            <label><input type="checkbox" name="sectionE_Physical" id="sectionE_PhysicalToileting" value="Toileting" />Toileting</label>
-            <label><input type="checkbox" name="sectionE_Physical" id="sectionE_PhysicalStretching" value="Stretching/Breathing Exercise*" />Stretching/Breathing Exercise*</label>
-            <label><input type="checkbox" name="sectionE_Physical" id="sectionE_PhysicalFeeding" value="Feeding/Food Preparation*" />Feeding/Food Preparation*</label>
-        </div>
-        <div><label>Personal Hygiene</label></div>
-        <div class="checkBoxGoup columns">
-            <label><input type="checkbox" name="sectionE_Personal" id="sectionE_PersonalTransferring" value="Showering" />Showering</label>
-            <label><input type="checkbox" name="sectionE_Personal" id="sectionE_PersonalDressing" value="Dressing (Change clothings)" />Dressing (Change clothings)</label>
-            <label><input type="checkbox" name="sectionE_Personal" id="sectionE_PersonalBrush" value="Brush Teeth" />Brush Teeth</label>
-            <label><input type="checkbox" name="sectionE_Personal" id="sectionE_PersonalHair" value="Hair Wash" />Hair Wash</label>
-        </div>
-
-        <div><label>Nursing Care</label></div>
-        <div class="checkBoxGoup columns">
-            <label><input type="checkbox" name="sectionE_Nursing" id="sectionE_NursingSuction" value="Suction" />Suction</label>
-            <label><input type="checkbox" name="sectionE_Nursing" id="sectionE_NursingTube" value="Tube Feeding (Nasal/Gastrostomy)*" />Tube Feeding (Nasal/Gastrostomy)*</label>
-            <label><input type="checkbox" name="sectionE_Nursing" id="sectionE_NursingSyringe" value="Syringe Feeding" />Syringe Feeding</label>
-            <label><input type="checkbox" name="sectionE_Nursing" id="sectionE_NursingDressing" value="Dressing (Wound/PEG/Trache)*" />Dressing (Wound/PEG/Trache)*</label>
-            <label><input type="checkbox" name="sectionE_Nursing" id="sectionE_NursingMedication" value="Medication" />Medication</label>
-        </div>
-
         <div class="">
-            <div class="labelText">Assistive Devices Used</div>
-            <table style="width: 100%; border: 0px;">
-                <tr>
-                    <td>
-                        <label for="sectionE_AssistiveNone">
-                            <input type="checkbox" name="sectionE_Assistive" id="sectionE_AssistiveNone" value="None"> None
-                        </label>
-                    </td>
-                    <td>
-                        <label for="sectionE_AssistiveSuction">
-                            <input type="checkbox" name="sectionE_Assistive" id="sectionE_AssistiveSuction" value="Suction Machine"> Suction Machine
-                        </label>
-                    </td>
-                    <td>
-                        <label for="sectionE_AssistiveTracheostomy">
-                            <input type="checkbox" name="sectionE_Assistive" id="sectionE_AssistiveTracheostomy" value="Tracheostomy Tube"> Tracheostomy Tube
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="sectionE_AssistiveCiPap">
-                            <input type="checkbox" name="sectionE_Assistive" id="sectionE_AssistiveCiPap" value="CiPap/BiPap*"> CiPap/BiPap*
-                        </label>
-                    </td>
-                    <td>
-                        <label for="sectionE_AssistiveHoist">
-                            <input type="checkbox" name="sectionE_Assistive" id="sectionE_AssistiveHoist" value="Hoist"> Hoist
-                        </label>
-                    </td>
-                    <td>
-                        <label for="sectionE_AssistiveMagnifying">
-                            <input type="checkbox" name="sectionE_Assistive" id="sectionE_AssistiveMagnifying" value="Magnifying Glass"> Magnifying Glass
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="sectionE_AssistiveCommunicative">
-                            <input type="checkbox" name="sectionE_Assistive" id="sectionE_AssistiveCommunicative" value="Communicative Device"> Communicative Device
-                        </label>
-                    </td>
-                    <td>
-                        <label for="sectionE_AssistiveHearing">
-                            <input type="checkbox" name="sectionE_Assistive" id="sectionE_AssistiveHearing" value="Hearing Aid"> Hearing Aid
-                        </label>
-                    </td>
-                    <td>
-                        <label for="sectionE_AssistiveWalking">
-                            <input type="checkbox" name="sectionE_Assistive" id="sectionE_AssistiveWalking" value="Walking Frame"> Walking Frame
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="sectionE_AssistiveCrutches">
-                            <input type="checkbox" name="sectionE_Assistive" id="sectionE_AssistiveCrutches" value="Crutches"> Crutches
-                        </label>
-                    </td>
-                    <td>
-                        <label for="sectionE_AssistiveCommode">
-                            <input type="checkbox" name="sectionE_Assistive" id="sectionE_AssistiveCommode" value="Commode"> Commode
-                        </label>
-                    </td>
-                    <td>
-                        <label for="sectionE_AssistiveMotorised">
-                            <input type="checkbox" name="sectionE_Assistive" id="sectionE_AssistiveMotorised" value="Motorised Wheelchair"> Motorised Wheelchair
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="sectionE_AssistiveOthers">
-                            <input type="checkbox" name="sectionE_Assistive" id="sectionE_AssistiveOthers" data-form-other="sectionE_AssistiveOthersText"> Others
-                        </label>
-                    </td>
-                    <td>
-                        <label for="sectionE_AssistiveOthersText">
-                            <input type="text" id="sectionE_AssistiveOthersText" name="sectionE_AssistiveOthersText" placeholder="other" data-form-other-text="true" />
-                        </label>
-                    </td>
-                    <td>
-                        <label for="NotSure">
+      <div><label>Physical Assistance</label></div>
+      <table>
+          <tr>
+              <td><label><input type="checkbox" name="sectionE_Physical" id="sectionE_PhysicalTransferring" value="Transferring" />Transferring</label></td>
+              <td><label><input type="checkbox" name="sectionE_Physical" id="sectionE_PhysicalToileting" value="Toileting" />Toileting</label></td>
+              <td><label><input type="checkbox" name="sectionE_Physical" id="sectionE_PhysicalStretching" value="Stretching/Breathing Exercise*" />Stretching/Breathing Exercise*</label></td>
+              <td><label><input type="checkbox" name="sectionE_Physical" id="sectionE_PhysicalFeeding" value="Feeding/Food Preparation*" />Feeding/Food Preparation*</label></td>
+          </tr>
+      </table>
+      </div>
+      <div class="">
+        <div><label>Personal Hygiene</label></div>
+        <table>
+            <tr>
+                <td><label><input type="checkbox" name="sectionE_Personal" id="sectionE_PersonalTransferring" value="Showering" />Showering</label></td>
+                <td><label><input type="checkbox" name="sectionE_Personal" id="sectionE_PersonalDressing" value="Dressing (Change clothings)" />Dressing (Change clothings)</label></td>
+                <td><label><input type="checkbox" name="sectionE_Personal" id="sectionE_PersonalBrush" value="Brush Teeth" />Brush Teeth</label></td>
+                <td><label><input type="checkbox" name="sectionE_Personal" id="sectionE_PersonalHair" value="Hair Wash" />Hair Wash</label></td>
+            </tr>
+        </table>
+    </div>
 
-                        </label>
-                    </td>
-                </tr>
-            </table>
-        </div>
+    <div class="">
+    <div><label>Nursing Care</label></div>
+    <table>
+        <tr>
+            <td><label><input type="checkbox" name="sectionE_Nursing" id="sectionE_NursingSuction" value="Suction" />Suction</label></td>
+            <td><label><input type="checkbox" name="sectionE_Nursing" id="sectionE_NursingTube" value="Tube Feeding (Nasal/Gastrostomy)*" />Tube Feeding (Nasal/Gastrostomy)*</label></td>
+            <td><label><input type="checkbox" name="sectionE_Nursing" id="sectionE_NursingSyringe" value="Syringe Feeding" />Syringe Feeding</label></td>
+            <td><label for="NotSure"></label></td>
+        </tr>
+        <tr>
+          <td><label><input type="checkbox" name="sectionE_Nursing" id="sectionE_NursingDressing" value="Dressing (Wound/PEG/Trache)*" />Dressing (Wound/PEG/Trache)*</label></td>
+            <td><label><input type="checkbox" name="sectionE_Nursing" id="sectionE_NursingMedication" value="Medication" />Medication</label></td>
+
+            <td><label for="NotSure"></label></td>
+            <td><label for="NotSure"></label></td>
+        </tr>
+    </table>
+</div>
+
+<div class="">
+    <div class="labelText">Assistive Devices Used</div>
+    <table style="width: 100%; border: 0px;">
+        <tr>
+            <td>
+                <label for="sectionE_AssistiveNone">
+                    <input type="checkbox" name="sectionE_Assistive" id="sectionE_AssistiveNone" value="None"> None
+                </label>
+            </td>
+            <td>
+                <label for="sectionE_AssistiveSuction">
+                    <input type="checkbox" name="sectionE_Assistive" id="sectionE_AssistiveSuction" value="Suction Machine"> Suction Machine
+                </label>
+            </td>
+            <td>
+                <label for="sectionE_AssistiveTracheostomy">
+                    <input type="checkbox" name="sectionE_Assistive" id="sectionE_AssistiveTracheostomy" value="Tracheostomy Tube"> Tracheostomy Tube
+                </label>
+            </td>
+            <td>
+                <label for="sectionE_AssistiveCiPap">
+                    <input type="checkbox" name="sectionE_Assistive" id="sectionE_AssistiveCiPap" value="CiPap/BiPap*"> CiPap/BiPap*
+                </label>
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                <label for="sectionE_AssistiveHoist">
+                    <input type="checkbox" name="sectionE_Assistive" id="sectionE_AssistiveHoist" value="Hoist"> Hoist
+                </label>
+            </td>
+            <td>
+                <label for="sectionE_AssistiveMagnifying">
+                    <input type="checkbox" name="sectionE_Assistive" id="sectionE_AssistiveMagnifying" value="Magnifying Glass"> Magnifying Glass
+                </label>
+            </td>
+            <td>
+                <label for="sectionE_AssistiveCommunicative">
+                    <input type="checkbox" name="sectionE_Assistive" id="sectionE_AssistiveCommunicative" value="Communicative Device"> Communicative Device
+                </label>
+            </td>
+            <td>
+                <label for="sectionE_AssistiveHearing">
+                    <input type="checkbox" name="sectionE_Assistive" id="sectionE_AssistiveHearing" value="Hearing Aid"> Hearing Aid
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="sectionE_AssistiveCrutches">
+                    <input type="checkbox" name="sectionE_Assistive" id="sectionE_AssistiveCrutches" value="Crutches"> Crutches
+                </label>
+            </td>
+            <td>
+                <label for="sectionE_AssistiveCommode">
+                    <input type="checkbox" name="sectionE_Assistive" id="sectionE_AssistiveCommode" value="Commode"> Commode
+                </label>
+            </td>
+            <td>
+                <label for="sectionE_AssistiveMotorised">
+                    <input type="checkbox" name="sectionE_Assistive" id="sectionE_AssistiveMotorised" value="Motorised Wheelchair"> Motorised Wheelchair
+                </label>
+            </td>
+            <td>
+                <label for="sectionE_AssistiveWalking">
+                    <input type="checkbox" name="sectionE_Assistive" id="sectionE_AssistiveWalking" value="Walking Frame"> Walking Frame
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="sectionE_AssistiveOthers">
+                    <input type="checkbox" name="sectionE_Assistive" id="sectionE_AssistiveOthers" data-form-other="sectionE_AssistiveOthersText" value="Others"> Others
+                </label>
+            </td>
+            <td>
+                <label for="sectionE_AssistiveOthersText">
+                    <input type="text" id="sectionE_AssistiveOthersText" name="sectionE_AssistiveOthersText" placeholder="other" data-form-other-text="true" />
+                </label>
+            </td>
+            <td>
+                <label for="NotSure">
+
+                </label>
+            </td>
+            <td>
+                <label for="NotSure">
+
+                </label>
+            </td>
+        </tr>
+    </table>
+</div>
 
         <div class="noBox text-right checkboxGroup">
             <label>Anticipated need for new/additional assistive devices:</label>
-            <label><input type="checkbox" name="sectionE_Devices" id="sectionE_DevicesYes" value="Yes"> Yes</label>
-            <label><input type="checkbox" name="sectionE_Devices" id="sectionE_DevicesNo" value="No"> No</label>
+            <label><input type="radio" name="sectionE_Devices" id="sectionE_DevicesYes" value="Yes"> Yes</label>
+            <label><input type="radio" name="sectionE_Devices" id="sectionE_DevicesNo" value="No"> No</label>
         </div>
         <div>
             <label>Remarks</label>
@@ -615,28 +633,33 @@
         <div>
             <div class="labelText">Period:</div>
             <div class="inlineGroup">
-                <label for="sectionF_periodFrom">From</label> <input type="text" id="sectionF_periodFrom" name="sectionF_periodFrom" />
-                <label for="sectionF_periodTo">to</label> <input type="text" id="sectionF_periodTo" name="sectionF_periodTo" />
+                <label for="sectionF_periodFrom">From</label> <input type="date" id="sectionF_periodFrom" name="sectionF_periodFrom" />
+                <label for="sectionF_periodTo">to</label> <input type="date" id="sectionF_periodTo" name="sectionF_periodTo" />
             </div>
-            <div class="radioGroup">
-                <label><input type="radio" name="sectionF_period" id="sectionF_periodMorning" value="morning"> Morning</label>
-                <label><input type="radio" name="sectionF_period" id="sectionF_periodAfternoon" value="afternoon"> Afternoon</label>
-                <label><input type="radio" name="sectionF_period" id="sectionF_periodEvening" value="evening"> Evening</label>
-                <label><input type="radio" name="sectionF_period" id="sectionF_periodNight" value="night"> Night</label>
-                <label><input type="radio" name="sectionF_period" id="sectionF_period24Hours" value="24hr shift"> 24hr shift</label>
+            <div class="">
+                <div class="checkboxGroup">
+                  <label><input type="checkbox" name="sectionF_period" id="sectionF_periodMorning" value="morning"> Morning</label>
+                  <label><input type="checkbox" name="sectionF_period" id="sectionF_periodAfternoon" value="afternoon"> Afternoon</label>
+                  <label><input type="checkbox" name="sectionF_period" id="sectionF_periodEvening" value="evening"> Evening</label>
+                  <label><input type="checkbox" name="sectionF_period" id="sectionF_periodNight" value="night"> Night</label>
+                  <label><input type="checkbox" name="sectionF_period" id="sectionF_period24Hours" value="24hr shift"> 24hr shift</label>
+                </div>
             </div>
             <div>
                 <label>Timing</label>
                 <input type="text" id="sectionF_TimingText" name="sectionF_TimingText" />
             </div>
-            <div class="radioGroup">
-                <label><input type="radio" name="sectionF_Timing" id="sectionF_TimingMon" value="Mon"> Mon</label>
-                <label><input type="radio" name="sectionF_Timing" id="sectionF_TimingTue" value="Tue"> Tue</label>
-                <label><input type="radio" name="sectionF_Timing" id="sectionF_TimingWed" value="Wed"> Wed</label>
-                <label><input type="radio" name="sectionF_Timing" id="sectionF_TimingThu" value="Thu"> Thu</label>
-                <label><input type="radio" name="sectionF_Timing" id="sectionF_TimingFri" value="Fri"> Fri</label>
-                <label><input type="radio" name="sectionF_Timing" id="sectionF_TimingSat" value="Sat"> Sat</label>
-                <label><input type="radio" name="sectionF_Timing" id="sectionF_TimingSun" value="Sun"> Sun</label>
+
+            <div class="">
+                <div class="checkboxGroup">
+                  <label><input type="checkbox" name="sectionF_Timing" id="sectionF_TimingMon" value="Mon"> Mon</label>
+                  <label><input type="checkbox" name="sectionF_Timing" id="sectionF_TimingTue" value="Tue"> Tue</label>
+                  <label><input type="checkbox" name="sectionF_Timing" id="sectionF_TimingWed" value="Wed"> Wed</label>
+                  <label><input type="checkbox" name="sectionF_Timing" id="sectionF_TimingThu" value="Thu"> Thu</label>
+                  <label><input type="checkbox" name="sectionF_Timing" id="sectionF_TimingFri" value="Fri"> Fri</label>
+                  <label><input type="checkbox" name="sectionF_Timing" id="sectionF_TimingSat" value="Sat"> Sat</label>
+                  <label><input type="checkbox" name="sectionF_Timing" id="sectionF_TimingSun" value="Sun"> Sun</label>
+                </div>
             </div>
         </div>
 
