@@ -219,7 +219,6 @@ function formSectionsInit() {
     footer.find('[class*=submit]').hide();
 
     footer.find('#previous').click(function() {
-      isAll=0;
       var currentIndex = parseInt(form.data('current-form-index'));
       var targetIndex = currentIndex-1;
 
