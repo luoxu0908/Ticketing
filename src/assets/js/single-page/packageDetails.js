@@ -62,7 +62,7 @@ $(function(){
 function addNewtransaction(PackageID, CaseID){
   var Type, Hours, AssuranceNo, Remarks;
   TranType =  $('#packageTransactionAddForm #tranType').val();
-  AssuranceNo = $('#packageTransactionAddForm #assurancePlusNo').val()*8;
+  AssuranceNo = $('#packageTransactionAddForm #assurancePlusNo').val() * 5 * 8;
   Hours = $('#packageTransactionAddForm #hours').val();
   Remarks = $('#packageTransactionAddForm #remarks').val();
 

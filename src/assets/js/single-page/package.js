@@ -93,7 +93,7 @@ function addNewPackage(){
   }else{
     AssurancePlus = 0;
   }
-  NoAssPlus = $('#packageAddForm #assurancePlusNo').val() * 8;
+  NoAssPlus = $('#packageAddForm #assurancePlusNo').val() * 5 * 8;
   Remarks = $('#packageAddForm #remarks').val();
 
   if (RoleID.length==0 || PackageType.length==0 || Product.length==0 || StartDate.length==0 || ExpiryDate.length==0){
