@@ -225,9 +225,11 @@ function updateIndBasic(PersonID){
       return false;
     }
   }
-  if (IsValidEmail(email)==false){
-    alert('Invalid email!');
-    return false;
+  if (email!=''){
+    if (IsValidEmail(email)==false){
+      alert('Invalid email!');
+      return false;
+    }
   }
 
   var data = { "PID": PersonID, "name": name, "tel1": tel1, "mobile": mobile, "email": email, "country": country, "postalCode": postalCode, "city": city, "state": state, "blockNo": blockNo, "street": street, "unit": unit, "building": building };
@@ -272,12 +274,17 @@ function updateOrgBasic(PersonID){
   unit = $('#unit').val();
   building = $('#building').val();
 
-  if (IsValidContact(tel1)==false){
-    alert('Invalid contact!');
-    return false;
-  }if (IsValidEmail(email)==false){
-    alert('Invalid email!');
-    return false;
+  if (tel1!=''){
+    if (IsValidContact(tel1)==false){
+      alert('Invalid contact!');
+      return false;
+    }
+  }
+  if (email!=''){
+    if (IsValidEmail(email)==false){
+      alert('Invalid email!');
+      return false;
+    }
   }
 
   var data = { "PID": PersonID, "name": name, "entityKey": entityKey, "tel1": tel1, "email": email, "country": country, "postalCode": postalCode, "city": city, "state": state, "blockNo": blockNo, "street": street, "unit": unit, "building": building };
