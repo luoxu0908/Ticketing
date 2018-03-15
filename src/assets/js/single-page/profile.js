@@ -168,6 +168,7 @@ function GetBasicInformation(personID) {
         }else{
           showIndProfile();
           $('.indName').html(personalInfo.DisplayName);
+          $('.indNRIC').html(personalInfo.EntityKey);
           $('.indTel').html(personalInfo.Tel1);
           $('.indMobile').html(personalInfo.Mobile);
           $('.indEmail').html(personalInfo.Email1);
@@ -375,9 +376,8 @@ function updateContactPoint(PersonID){
 function showOrgProfile(){
   var orgProfile = '';
   orgProfile = '<div class="toggleContent"><div id="basicContent" class="grid-container form fluid">'+
-  '<div class="grid-x grid-padding-x"> <div class="cell"> <div class="labelText"> Name </div> <div class="text orgName"> </div> </div> </div>'+
-  '<div class="grid-x grid-padding-x"> <div class="cell small-12 medium-6"> <div class="labelText"> UEN No </div> <div class="text entityKey"> </div> </div>'+
-  '<div class="cell small-12 medium-6"> <div class="labelText"> ID Type </div> <div class="text idType"> </div> </div> </div>'+
+  '<div class="grid-x grid-padding-x"> <div class="cell small-12 medium-6"> <div class="labelText"> Name </div> <div class="text orgName"> </div> </div>'+
+  '<div class="cell small-12 medium-6"> <div class="labelText"> UEN No </div> <div class="text entityKey"> </div> </div> </div>'+
   '<div class="grid-x grid-padding-x"> <div class="cell small-12 medium-6"> <div class="labelText"> Contact No </div> <div class="text orgContact"> </div> </div>'+
   '<div class="cell small-12 medium-6"><div class="labelText"> Email </div> <div class="text orgEmail"> </div> </div> </div>'+
   '<div class="grid-x grid-padding-x"> <div class="cell"> <div class="labelText"> Address </div> <div class="text orgAddress"> </div> </div> </div> </div>'+
@@ -406,7 +406,8 @@ function showOrgProfile(){
 function showIndProfile(){
   var indProfile = '';
   indProfile = '<div class="toggleContent"><div id="basicContent" class="grid-container form fluid">'+
-  '<div class="grid-x grid-padding-x"> <div class="cell"> <div class="labelText"> Name </div> <div class="text indName"> </div> </div> </div>'+
+  '<div class="grid-x grid-padding-x"> <div class="cell small-12 medium-4"> <div class="labelText"> Name </div> <div class="text indName"> </div> </div>'+
+  '<div class="cell small-12 medium-4"> <div class="labelText"> NRIC </div> <div class="text indNRIC"> </div> </div> </div>'+
   '<div class="grid-x grid-padding-x"> <div class="cell small-12 medium-4"> <div class="labelText"> Contact No (O) </div> <div class="text indTel"> </div> </div>'+
   '<div class="cell small-12 medium-4"> <div class="labelText"> Contact No (M) </div> <div class="text indMobile"> </div> </div>'+
   '<div class="cell small-12 medium-4"> <div class="labelText"> Email </div> <div class="text indEmail"> </div> </div> </div>'+
