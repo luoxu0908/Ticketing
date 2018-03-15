@@ -16,27 +16,28 @@
         <div>
             <div class="labelText">I have a valid MDAS Ordinary Membership</div>
             <div class="radioGroup">
-                <label><input type="radio" name="sectionA_ordinaryMembership" id="sectionA_ordinaryMembershipYes" value="yes"> Yes</label>
-                <label><input type="radio" name="sectionA_ordinaryMembership" id="sectionA_ordinaryMembershipNo" value="no"> No</label>
+                <label><input type="radio" name="sectionA_ordinaryMembership" id="sectionA_ordinaryMembershipYes" value="1"> Yes</label>
+                <label><input type="radio" name="sectionA_ordinaryMembership" id="sectionA_ordinaryMembershipNo" value="0"> No</label>
             </div>
             <p><small><i>(If No, please complete Section B)</i></small></p>
         </div>
         <h3>Name (as in NRIC)</h3>
         <div>
-            <label for="sectionA_FamilyName">Family/Surname<span class="spanCss">*</span></label>
-            <input type="text" id="sectionA_FamilyName" name="sectionA_FamilyName" required />
+            <label for="sectionA_FamilyName">Family/Surname</label>
+            <input type="text" id="sectionA_FamilyName" name="sectionA_FamilyName" />
         </div>
         <div>
             <label for="sectionA_GivenName">Given Name</label>
-            <input type="text" id="sectionA_GivenName" name="sectionA_GivenName" />
+            <input type="text" id="sectionA_GivenName" name="sectionA_GivenName"/>
         </div>
         <div>
-            <label for="sectionA_DisplayName">Display Name</label>
-            <input type="text" id="sectionA_DisplayName" name="sectionA_DisplayName" />
+            <label for="sectionA_DisplayName">Display Name<span class="spanCss">*</span></label>
+            <input type="text" id="sectionA_DisplayName" name="sectionA_DisplayName"  />
         </div>
         <div>
-            <label for="sectionA_nric">NRIC / Birth Cert No.</label>
-            <input type="text" id="sectionA_nric" name="sectionA_nric" />
+            <label for="sectionA_nric">NRIC / Birth Cert No.<span class="spanCss">*</span></label>
+            <input type="text" id="sectionA_nric" name="sectionA_nric" pattern="NRIC"  />
+            <span class="form-error">Invalid NRIC</span>
         </div>
 
         <div>
@@ -46,8 +47,8 @@
         <div>
             <div class="labelText">Gender</div>
             <div class="radioGroup">
-                <label><input type="radio" name="sectionA_gender" id="sectionA_genderMale" value="male"> Male</label>
-                <label><input type="radio" name="sectionA_gender" id="sectionA_genderFemale" value="female"> Female</label>
+                <label><input type="radio" name="sectionA_gender" id="sectionA_genderMale" value="M"> Male</label>
+                <label><input type="radio" name="sectionA_gender" id="sectionA_genderFemale" value="F"> Female</label>
             </div>
         </div>
         <div>
@@ -131,7 +132,8 @@
         </div>
         <div>
             <label for="sectionB_nric">NRIC / Birth Cert No.</label>
-            <input type="text" id="sectionB_nric" name="sectionB_nric" />
+            <input type="text" id="sectionB_nric" name="sectionB_nric" pattern="NRIC" />
+            <span class="form-error">Invalid NRIC</span>
         </div>
         <div>
             <div class="labelText">Date of Birth</div>
@@ -139,7 +141,7 @@
         </div>
         <div>
             <label for="sectionB_relationship">Relationship to Main Applicant (PMD)</label>
-            <input type="text" id="sectionB_relationship" name="sectionB_relationship" />
+            <select id="sectionB_relationship" name="sectionB_relationship" class="sectionB_relationship" required></select>
         </div>
         <h3>Contact Details</h3>
         <div>
@@ -177,7 +179,8 @@
         </div>
         <div>
             <label for="sectionC_nric">NRIC / Birth Cert No.</label>
-            <input type="text" id="sectionC_nric" name="sectionC_nric" />
+            <input type="text" id="sectionC_nric" name="sectionC_nric" pattern="NRIC" />
+            <span class="form-error">Invalid NRIC</span>
         </div>
         <div>
             <div class="labelText">Date of Birth</div>
@@ -185,7 +188,7 @@
         </div>
         <div>
             <label for="sectionC_relationship">Relationship to Main Applicant (PMD)</label>
-            <input type="text" id="sectionC_relationship" name="sectionC_relationship" />
+            <select id="sectionC_relationship" name="sectionC_relationship" class="sectionC_relationship" required></select>
         </div>
         <h3>Contact Details</h3>
         <div>
@@ -239,61 +242,61 @@
             <label><u>Home</u></label>
         </div>
 
-        <div class="checkboxGroup">
+        <div class="radioGroup">
             <label>Stays:</label>
-            <label><input type="checkbox" name="sectionD_HomeAlone" id="sectionD_HomeAlone" value="Alone"> Alone</label>
-            <label><input type="checkbox" name="sectionD_HomeWithFamily" id="sectionD_HomeWithFamily" value="WithFamily"> With family/caregiver </label>
+            <label><input type="radio" name="sectionD_HomeAlone" id="sectionD_HomeAlone" value="Alone"> Alone</label>
+            <label><input type="radio" name="sectionD_HomeAlone" id="sectionD_HomeWithFamily" value="WithFamily"> With family/caregiver </label>
             <footer class="scoreTotal inlineGroup">
                 <label for="sectionD_HomeMainCaregiver">(Main caregiver</label>
-                <input type="text" id="sectionD_totalScore" name="sectionD_HomeMainCaregiver" class="noBox text-left" /><label>)</label>
+                <input type="text" id="sectionD_HomeMainCaregiver" name="sectionD_HomeMainCaregiver" class="noBox text-left" /><label>)</label>
             </footer>
         </div>
-        <div class="checkboxGroup">
+        <div class="radioGroup">
             <label>lift landing:</label>
-            <label><input type="checkbox" name="sectionD_Lift" id="sectionD_LiftYes" value="Yes"> Yes</label>
-            <label><input type="checkbox" name="sectionD_Lift" id="sectionD_LiftNo" value="No"> No</label>
+            <label><input type="radio" name="sectionD_radioLift" id="sectionD_HomeLiftYes" value="Yes"> Yes</label>
+            <label><input type="radio" name="sectionD_radioLift" id="sectionD_HomeLiftNo" value="No"> No</label>
         </div>
         <div>
             <footer class="scoreTotal inlineGroup">
                 <label for="sectionD_MainEntrance">No. of steps/kerbs at main entrance:</label>
-                <input type="text" id="sectionD_MainEntrance" name="sectionD_MainEntrance" class="noBox text-right" /><div class="labelText"></div>
+                <input type="text" id="sectionD_MainEntrance" name="sectionD_MainEntrance" class="noBox text-left" /><div class="labelText"></div>
                 <label for="sectionD_HeightStep">(est. height of step(s):</label>
-                <input type="text" id="sectionD_HeightStep" name="sectionD_HeightStep" class="noBox text-right" /><div class="labelText"> cm)</div>
+                <input type="text" id="sectionD_HeightStep" name="sectionD_HeightStep" class="noBox text-left" /><div class="labelText"> cm)</div>
             </footer>
         </div>
-        <div class="checkboxGroup">
+        <div class="radioGroup">
             <label>Ramp used at home</label>
-            <label><input type="checkbox" name="sectionD_Ramp" id="sectionD_RampPortable" value="Yes"> Portable ramp</label>
-            <label><input type="checkbox" name="sectionD_Ramp" id="sectionD_RampBuilt" value="No"> Built-up ramp</label>
-            <label><input type="checkbox" name="sectionD_Ramp" id="sectionD_RampNone" value="No"> None</label>
+            <label><input type="radio" name="sectionD_HomeRamp" id="sectionD_HomeRampPortable" value="Yes"> Portable ramp</label>
+            <label><input type="radio" name="sectionD_HomeRamp" id="sectionD_HomeRampBuilt" value="No"> Built-up ramp</label>
+            <label><input type="radio" name="sectionD_HomeRamp" id="sectionD_HomeRampNone" value="No"> None</label>
         </div>
         <div>
             <label><u>Toilet/Bathroom</u></label>
         </div>
-        <div class="checkboxGroup">
+        <div class="radioGroup">
             <label>Kerb:</label>
-            <label><input type="checkbox" name="sectionD_Kerb" id="sectionD_KerbYes" value="Yes"> Yes</label>
-            <label><input type="checkbox" name="sectionD_Kerb" id="sectionD_KerbNo" value="No"> No</label>
+            <label><input type="radio" name="sectionD_ToiletKerb" id="sectionD_ToiletKerbYes" value="Yes"> Yes</label>
+            <label><input type="radio" name="sectionD_ToiletKerb" id="sectionD_ToiletKerbNo" value="No"> No</label>
         </div>
-        <div class="checkboxGroup">
+        <div class="radioGroup">
             <label>No Grab bars:</label>
-            <label><input type="checkbox" name="sectionD_NoGrabBars" id="sectionD_NoGrabBarsYes" value="Yes"> Yes</label>
-            <label><input type="checkbox" name="sectionD_NoGrabBars" id="sectionD_NoGrabBarsNo" value="No"> No</label>
+            <label><input type="radio" name="sectionD_ToiletNoGrab" id="sectionD_NoGrabYes" value="Yes"> Yes</label>
+            <label><input type="radio" name="sectionD_ToiletNoGrab" id="sectionD_NoGrabNo" value="No"> No</label>
         </div>
-        <div class="checkboxGroup">
+        <div class="radioGroup">
             <label>Anti-slip mat/tile:</label>
-            <label><input type="checkbox" name="sectionD_AntiSlip" id="sectionD_AntiSlipYes" value="Yes"> Yes</label>
-            <label><input type="checkbox" name="sectionD_AntiSlip" id="sectionD_AntiSlipNo" value="No"> No</label>
+            <label><input type="radio" name="sectionD_ToiletAntiSlip" id="sectionD_ToiletAntiSlipYes" value="Yes"> Yes</label>
+            <label><input type="radio" name="sectionD_ToiletAntiSlip" id="sectionD_ToiletAntiSlipNo" value="No"> No</label>
         </div>
-        <div class="checkboxGroup">
+        <div class="radioGroup">
             <label>Type:</label>
-            <label><input type="checkbox" name="sectionD_Type" id="sectionD_TypeYes" value="Squatting"> Squatting</label>
-            <label><input type="checkbox" name="sectionD_Type" id="sectionD_TypeNo" value="Seating"> Seating</label>
+            <label><input type="radio" name="sectionD_ToiletType" id="sectionD_ToiletTypeYes" value="Squatting"> Squatting</label>
+            <label><input type="radio" name="sectionD_ToiletType" id="sectionD_ToiletTypeNo" value="Seating"> Seating</label>
         </div>
-        <div class="noBox text-right checkboxGroup">
+        <div class="noBox text-right radioGroup">
             <label>Anticipated need for home modifications:</label>
-            <label><input type="checkbox" name="sectionD_Anticipated" id="sectionD_AnticipatedYes" value="Yes"> Yes</label>
-            <label><input type="checkbox" name="sectionD_Anticipated" id="sectionD_AnticipatedNo" value="No"> No</label>
+            <label><input type="radio" name="sectionD_ToiletAnticipated" id="sectionD_ToiletAnticipatedYes" value="Yes"> Yes</label>
+            <label><input type="radio" name="sectionD_ToiletAnticipated" id="sectionD_ToiletAnticipatedNo" value="No"> No</label>
         </div>
 
 
@@ -301,32 +304,32 @@
             <label><u>Sensory Status</u></label>
         </div>
 
-        <div class="checkboxGroup">
+        <div class="radioGroup">
             <label>Vision</label>
-            <label><input type="checkbox" name="sectionD_SensoryVision" id="sectionD_SensoryVisionNormal" value="Normal"> Normal</label>
-            <label><input type="checkbox" name="sectionD_SensoryVision" id="sectionD_SensoryVisionWears" value="Wears glasses/contact lenses"> Wears glasses/contact lenses</label>
-            <label><input type="checkbox" name="sectionD_SensoryVision" id="sectionD_SensoryVisionLow" value="Low/No vision*"> Low/No vision*</label>
+            <label><input type="radio" name="sectionD_SensoryVision" id="sectionD_SensoryVisionNormal" value="Normal"> Normal</label>
+            <label><input type="radio" name="sectionD_SensoryVision" id="sectionD_SensoryVisionWears" value="Wears glasses/contact lenses"> Wears glasses/contact lenses</label>
+            <label><input type="radio" name="sectionD_SensoryVision" id="sectionD_SensoryVisionLow" value="Low/No vision*"> Low/No vision*</label>
         </div>
-        <div class="checkboxGroup">
+        <div class="radioGroup">
             <label>Auditory</label>
-            <label><input type="checkbox" name="sectionD_SensoryAuditory" id="sectionD_SensoryAuditoryNormal" value="Normal"> Normal</label>
-            <label><input type="checkbox" name="sectionD_SensoryAuditory" id="sectionD_SensoryAuditoryImpaired" value="Impaired (Left/Right/Both)*"> Impaired (Left/Right/Both)*</label>
-            <label><input type="checkbox" name="sectionD_SensoryAuditory" id="sectionD_SensoryAuditoryHearing" value="No hearing"> No hearing</label>
+            <label><input type="radio" name="sectionD_SensoryAuditory" id="sectionD_SensoryAuditoryNormal" value="Normal"> Normal</label>
+            <label><input type="radio" name="sectionD_SensoryAuditory" id="sectionD_SensoryAuditoryImpaired" value="Impaired (Left/Right/Both)*"> Impaired (Left/Right/Both)*</label>
+            <label><input type="radio" name="sectionD_SensoryAuditory" id="sectionD_SensoryAuditoryHearing" value="No hearing"> No hearing</label>
         </div>
-        <div class="checkboxGroup">
+        <div class="radioGroup">
             <label>Speech</label>
-            <label><input type="checkbox" name="sectionD_SensorySpeech" id="sectionD_SensorySpeechNormal" value="Normal"> Normal</label>
-            <label><input type="checkbox" name="sectionD_SensorySpeech" id="sectionD_SensorySpeechWears" value="Slurred/Unclear speech*"> Slurred/Unclear speech*</label>
-            <label><input type="checkbox" name="sectionD_SensorySpeech" id="sectionD_SensorySpeechVision" value="No speech"> No speech</label>
+            <label><input type="radio" name="sectionD_SensorySpeech" id="sectionD_SensorySpeechNormal" value="Normal"> Normal</label>
+            <label><input type="radio" name="sectionD_SensorySpeech" id="sectionD_SensorySpeechWears" value="Slurred/Unclear speech*"> Slurred/Unclear speech*</label>
+            <label><input type="radio" name="sectionD_SensorySpeech" id="sectionD_SensorySpeechVision" value="No speech"> No speech</label>
         </div>
         <div>
             <label><u>Feeding Diet</u></label>
         </div>
-        <div class="checkboxGroup">
-            <label><input type="checkbox" name="sectionD_Feeding" id="sectionD_FeedingSoft" value="Soft"> Soft</label>
-            <label><input type="checkbox" name="sectionD_Feeding" id="sectionD_FeedingBlended" value="Blended"> Blended</label>
-            <label><input type="checkbox" name="sectionD_Feeding" id="sectionD_FeedingBite" value="Bite-sized"> Bite-sized</label>
-            <label><input type="checkbox" name="sectionD_Feeding" id="sectionD_FeedingNormal" value="Normal"> Normal</label>
+        <div class="radioGroup">
+            <label><input type="radio" name="sectionD_Feeding" id="sectionD_FeedingSoft" value="Soft"> Soft</label>
+            <label><input type="radio" name="sectionD_Feeding" id="sectionD_FeedingBlended" value="Blended"> Blended</label>
+            <label><input type="radio" name="sectionD_Feeding" id="sectionD_FeedingBite" value="Bite-sized"> Bite-sized</label>
+            <label><input type="radio" name="sectionD_Feeding" id="sectionD_FeedingNormal" value="Normal"> Normal</label>
 
         </div>
         <div>
@@ -359,7 +362,12 @@
                 <label><input type="checkbox" name="sectionE_moibilityIndoors" id="sectionE_moibilityIndoors" value="2" />Help of one untrained person, including supervision</label>
                 <label><input type="checkbox" name="sectionE_moibilityIndoors" id="sectionE_moibilityIndoors" value="3" />Independent (may use aid) </label>
             </div>
-            <div id="sectionE_ScoreMobility" class="score">0</div>
+            <div id="sectionE_ScoreMobility" class="score">
+              <label id="MobilityIndoors0">0</label>
+              <label id="MobilityIndoors1">1</label>
+              <label id="MobilityIndoors2">2</label>
+              <label id="MobilityIndoors3">3</label>
+            </div>
             <div class="labelText">Transfers</div>
             <div class="checkBoxGoup columns">
                 <label><input type="checkbox" name="sectionE_Transfers" id="sectionE_TransfersUnable" value="0" />Unable – no sitting balance, two to lift</label>
@@ -367,62 +375,97 @@
                 <label><input type="checkbox" name="sectionE_Transfers" id="sectionE_TransfersMinor" value="2" />Minor help: 1 person easily or supervision for safety</label>
                 <label><input type="checkbox" name="sectionE_Transfers" id="sectionE_TransfersIndependent" value="3" />Independent</label>
             </div>
-            <div id="sectionE_ScoreTransfers" class="score">0</div>
+            <div id="sectionE_ScoreTransfers" class="score">
+              <label id="ScoreTransfers0"></label>
+              <label id="ScoreTransfers1"></label>
+              <label id="ScoreTransfers2"></label>
+              <label id="ScoreTransfers3"></label>
+            </div>
             <div class="labelText">Stairs</div>
             <div class="checkBoxGoup columns">
                 <label><input type="checkbox" name="sectionE_Stairs" id="sectionE_StairsUnable" value="0" />Unable</label>
                 <label><input type="checkbox" name="sectionE_Stairs" id="sectionE_StairsNeeds" value="1" />Needs help (verbal/physical, carrying aid)</label>
                 <label><input type="checkbox" name="sectionE_Stairs" id="sectionE_StairsIndependent" value="2" />Independent up and down, carrying walking aid</label>
             </div>
-            <div id="sectionE_ScoreStairs" class="score">0</div>
+            <div id="sectionE_ScoreStairs" class="score">
+              <label id="ScoreStairs0"></label>
+              <label id="ScoreStairs1"></label>
+              <label id="ScoreStairs2"></label>
+            </div>
             <div class="labelText">Toilet Use</div>
             <div class="checkBoxGoup columns">
                 <label><input type="checkbox" name="sectionE_ToiletUse" id="sectionE_ToiletUseUnable" value="0" />Unable</label>
                 <label><input type="checkbox" name="sectionE_ToiletUse" id="sectionE_ToiletUseNeeds" value="1" />Needs help but can do something (including wiping self)</label>
                 <label><input type="checkbox" name="sectionE_ToiletUse" id="sectionE_ToiletUseNdependent" value="2" />ndependent: can reach toilet/commode, undress, clean self and leave</label>
             </div>
-            <div id="sectionE_ScoreToilet" class="score">0</div>
+            <div id="sectionE_ScoreToilet" class="score">
+              <label id="ScoreToilet0"></label>
+              <label id="ScoreToilet1"></label>
+              <label id="ScoreToilet2"></label>
+            </div>
             <div class="labelText">Bladder</div>
             <div class="checkBoxGoup columns">
                 <label><input type="checkbox" name="sectionE_Bladder" id="sectionE_BladderIncontinent" value="0" />Incontinent (or needs to be given enema)</label>
                 <label><input type="checkbox" name="sectionE_Bladder" id="sectionE_BladderOccasional" value="1" />Occasional accident (less than 1 / week)</label>
                 <label><input type="checkbox" name="sectionE_Bladder" id="sectionE_BladderContinent" value="2" />Continent</label>
             </div>
-            <div id="sectionE_ScoreBladder" class="score">0</div>
+            <div id="sectionE_ScoreBladder" class="score">
+              <label id="ScoreBladder0"></label>
+              <label id="ScoreBladder1"></label>
+              <label id="ScoreBladder2"></label>
+            </div>
             <div class="labelText">Bowels</div>
             <div class="checkBoxGoup columns">
                 <label><input type="checkbox" name="sectionE_Bowels" id="sectionE_BowelsIncontinent" value="0" />Incontinent (or needs to be given enema)</label>
                 <label><input type="checkbox" name="sectionE_Bowels" id="sectionE_BowelsOccasional" value="1" />Occasional accident (less than 1 / week)</label>
                 <label><input type="checkbox" name="sectionE_Bowels" id="sectionE_BowelsContinent" value="2" />Continent</label>
             </div>
-            <div id="sectionE_ScoreBowels" class="score">0</div>
+            <div id="sectionE_ScoreBowels" class="score">
+              <label id="ScoreBowels0"></label>
+              <label id="ScoreBowels1"></label>
+              <label id="ScoreBowels2"></label>
+            </div>
 
             <div class="labelText">Bathing/Showering</div>
             <div class="checkBoxGoup columns">
                 <label><input type="checkbox" name="sectionE_BathingShowering" id="sectionE_BathingShoweringDependent" value="0" />Dependent</label>
                 <label><input type="checkbox" name="sectionE_BathingShowering" id="sectionE_BathingShoweringIndependent" value="1" />Independent Bath: must get in and out unsupervised, wash self Shower: unsupervised/ unaided</label>
             </div>
-            <div id="sectionE_ScoreBathing" class="score">0</div>
+            <div id="sectionE_ScoreBathing" class="score">
+              <label id="ScoreBathing0"></label>
+              <label id="ScoreBathing1"></label>
+            </div>
             <div class="labelText">Grooming (e.g. brush teeth, comb hair)</div>
             <div class="checkBoxGoup columns">
                 <label><input type="checkbox" name="sectionE_Grooming" id="sectionE_GroomingNeeds" value="0" />Needs help with personal care</label>
                 <label><input type="checkbox" name="sectionE_Grooming" id="sectionE_GroomingIndependent" value="1" />Independent: Implement can be provided by helper</label>
             </div>
-            <div id="sectionE_ScoreGrooming" class="score">0</div>
+            <div id="sectionE_ScoreGrooming" class="score">
+              <label id="ScoreGrooming0"></label>
+              <label id="ScoreGrooming1"></label>
+            </div>
             <div class="labelText">Dressing (Change clothings)</div>
             <div class="checkBoxGoup columns">
                 <label><input type="checkbox" name="sectionE_Dressing" id="sectionE_DressingDependent" value="0" />Dependent</label>
                 <label><input type="checkbox" name="sectionE_Dressing" id="sectionE_DressingNeeds" value="1" />Needs help but can do half unaided</label>
                 <label><input type="checkbox" name="sectionE_Dressing" id="sectionE_DressingIndependent" value="2" />Independent including buttons, zips, laces etc.</label>
             </div>
-            <div id="sectionE_ScoreDressing" class="score">0</div>
+            <div id="sectionE_ScoreDressing" class="score">
+              <label id="ScoreDressing0"></label>
+              <label id="ScoreDressing1"></label>
+              <label id="ScoreDressing2"></label>
+            </div>
             <div class="labelText">Feeding</div>
             <div class="checkBoxGoup columns">
                 <label><input type="checkbox" name="sectionE_Feeding" id="sectionE_FeedingIncontinent" value="0" />Incontinent (or needs to be given enema)</label>
                 <label><input type="checkbox" name="sectionE_Feeding" id="sectionE_FeedingOccasional" value="1" />Occasional accident (less than 1 / week)</label>
                 <label><input type="checkbox" name="sectionE_Feeding" id="sectionE_FeedingContinent" value="2" />Continent</label>
             </div>
-            <div id="sectionE_ScoreFeeding" class="score">0</div>
+            <div id="sectionE_ScoreFeeding" class="score">
+              <label id="ScoreFeeding0"></label>
+              <label id="ScoreFeeding1"></label>
+              <label id="ScoreFeeding2"></label>
+            </div>
         </div>
         <footer class="scoreTotal inlineGroup">
             <label for="sectionE_totalScore">Total Score</label>
