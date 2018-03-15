@@ -259,9 +259,6 @@ $(function(){
     $('#searchForm').submit();
     return false;
   });
-
-  formOthersInit();
-  formSectionsInit();
   loadMenu();
 
 });//onready

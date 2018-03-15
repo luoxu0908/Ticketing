@@ -13,7 +13,7 @@ formSectionsInit();
 
 //Submit data
 function SaveDeclaretion() {
-  if (!formSectionValidate(form,1)) {
+  if (!formSectionValidate($('#DeclaretionFrom'),1)) {
     return false;
   }
   var data = {};
@@ -237,47 +237,47 @@ function formSectionsInit() {
         }
         return false;
     });
+    function loadFormSection(index) {
+      //set index
+      form.data('current-form-index', index);
+      var targetIndex = index;
+
+      breadcrumbs.find('a').removeClass('active').filter(function() {
+        return ($(this).data('fieldset-index') == targetIndex);
+      }).addClass('active');
+
+      //set fieldset`
+      fieldsets.hide().filter(function() {
+        return ($(this).data('fieldset-index') == targetIndex);
+      }).show();
+
+      if (index == 0) {
+        footer.find('#previous').hide();
+        footer.find('#next').show();
+        footer.find('[class*=submit]').hide();
+      }
+      else if (index == fieldsets.length-1) {
+        footer.find('#previous').show();
+        footer.find('#next').hide();
+        footer.find('[class*=submit]').show();
+      }
+      else {
+        footer.find('#previous').show();
+        footer.find('#next').show();
+        footer.find('[class*=submit]').hide();
+      }
+    }
   });
 }
 
 function formSectionValidate(form,isAll) {
   var result=0;
-  if (isAll) {
-      $(form).find('fieldset:hidden :input').attr('disabled','disabled');
+  if (!isAll) {
+      $(form).find('fieldset:hidden :input,select').attr('disabled','disabled');
   }
-  $(form).foundation('validateForm');
   $(form).on('formvalid.zf.abide',function(){result=1;});
+  $(form).foundation('validateForm');
+
   $(form).find('fieldset :input').removeAttr('disabled');
   return result;
-}
-
-function loadFormSection(index) {
-  //set index
-  form.data('current-form-index', index);
-  var targetIndex = index;
-
-  breadcrumbs.find('a').removeClass('active').filter(function() {
-    return ($(this).data('fieldset-index') == targetIndex);
-  }).addClass('active');
-
-  //set fieldset`
-  fieldsets.hide().filter(function() {
-    return ($(this).data('fieldset-index') == targetIndex);
-  }).show();
-
-  if (index == 0) {
-    footer.find('#previous').hide();
-    footer.find('#next').show();
-    footer.find('[class*=submit]').hide();
-  }
-  else if (index == fieldsets.length-1) {
-    footer.find('#previous').show();
-    footer.find('#next').hide();
-    footer.find('[class*=submit]').show();
-  }
-  else {
-    footer.find('#previous').show();
-    footer.find('#next').show();
-    footer.find('[class*=submit]').hide();
-  }
 }
