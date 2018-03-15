@@ -3,7 +3,7 @@ $(function() {
   //get cookie & loginID
   var appCookie = Cookies.getJSON('appCookie'),
     loginID = appCookie.loginID;
-  formOthersInit();formSectionsInit();
+formSectionsInit();
   $('#submit').click(function() {
     SaveDeclaretion();
   });
@@ -172,7 +172,7 @@ function GetRelationship(sel) {
         if (data.d.RetData.Tbl.Rows.length > 0) {
           var lookup = data.d.RetData.Tbl.Rows;
           for (var i = 0; i < lookup.length; i++) {
-            $(id).append('<option value="' + lookup[i].RelKeyAB + '">' + lookup[i].RelKeyAB  + '</option>');
+            $(sel).append('<option value="' + lookup[i].RelKeyAB + '">' + lookup[i].RelKeyAB  + '</option>');
           }
         }
       } else {
