@@ -183,10 +183,10 @@ function formSectionsInit() {
     function loadFormSection(index,isNext) {
       //set index
       if (index==1) {
-        if (moveToSectionC==0&&isNext==1) {
+        if (moveToSectionC==1&&isNext==1) {
           index++;
         }
-        else if(moveToSectionC==0&&isNext==0) {
+        else if(moveToSectionC==1&&isNext==0) {
           index--;
         }
       }
