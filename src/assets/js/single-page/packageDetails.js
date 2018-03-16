@@ -98,6 +98,7 @@ function addNewtransaction(PackageID, CaseID){
       if ((data) && (data.d.RetVal === -1)) {
         if (data.d.RetData.Tbl.Rows.length > 0) {
           if (data.d.RetData.Tbl.Rows[0].Success == true) {
+            clearTransactionForm();
             getPackageDetails(PackageID);
             getPackageTransaction(PackageID);
           } else { alert(data.d.RetData.Tbl.Rows[0].ReturnMsg); }
@@ -133,6 +134,7 @@ function extendExpiry(PackageID){
       if ((data) && (data.d.RetVal === -1)) {
         if (data.d.RetData.Tbl.Rows.length > 0) {
           if (data.d.RetData.Tbl.Rows[0].Success == true) {
+            clearExtendForm();
             getPackageDetails(PackageID);
             getPackageTransaction(PackageID);
           } else { alert(data.d.RetData.Tbl.Rows[0].ReturnMsg); }
@@ -209,6 +211,18 @@ function getPackageTransaction(PackageID){
     }
   });
 };
+
+function clearExtendForm() {
+  NewExpiry =  $('#packageExtendForm #expiryDate').val('');
+  Remarks = $('#packageExtendForm #remarks').val('');
+}
+
+function clearTransactionForm() {
+  TranType =  $('#packageTransactionAddForm #tranType').val('');
+  AssuranceNo = $('#packageTransactionAddForm #assurancePlusNo').val('');
+  Hours = $('#packageTransactionAddForm #hours').val('');
+  Remarks = $('#packageTransactionAddForm #remarks').val('');
+}
 
 function convertDateTime(inputFormat, type) {
   if (inputFormat == null){

@@ -114,6 +114,7 @@ function addNewPackage(){
       if ((data) && (data.d.RetVal === -1)) {
         if (data.d.RetData.Tbl.Rows.length > 0) {
           if (data.d.RetData.Tbl.Rows[0].Success == true) {
+            clearPackageForm();
             getPackageList();
           } else { alert(data.d.RetData.Tbl.Rows[0].ReturnMsg); }
         }
@@ -194,6 +195,16 @@ function getOrgProductList(Organization){
       }
     }
   });
+}
+
+function clearPackageForm(){
+  RoleID = $('#packageAddForm #organisation').val('');
+  Product = $('#packageAddForm #product').val('');
+  PackageType =  $('#packageAddForm #type').val('');
+  StartDate = $('#packageAddForm #packageStartDate').val('');
+  ExpiryDate = $('#packageAddForm #packageExpiryDate').val('');
+  NoAssPlus = $('#packageAddForm #assurancePlusNo').val('');
+  Remarks = $('#packageAddForm #remarks').val('');
 }
 
 function IsValidDate(inputDate) {

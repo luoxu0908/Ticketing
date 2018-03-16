@@ -412,6 +412,7 @@ function addNewPackage(){
       if ((data) && (data.d.RetVal === -1)) {
         if (data.d.RetData.Tbl.Rows.length > 0) {
           if (data.d.RetData.Tbl.Rows[0].Success == true) {
+            clearPackageForm();
             alert('Package added successfully!');
           } else { alert(data.d.RetData.Tbl.Rows[0].ReturnMsg); }
         }
@@ -476,6 +477,7 @@ function addNewUser(){
       if ((data) && (data.d.RetVal === -1)) {
         if (data.d.RetData.Tbl.Rows.length > 0) {
           if (data.d.RetData.Tbl.Rows[0].Success == true) {
+            clearUserForm();
             alert('New user added successfully!');
             getUsersList();
           } else { alert(data.d.RetData.Tbl.Rows[0].ReturnMsg); }
@@ -513,6 +515,57 @@ function convertDateTime(inputFormat, type) {
     return [pad(d.getHours()), pad(d.getMinutes()), pad(d.getSeconds())].join(':');
   }
 };
+
+function clearPackageForm(){
+  RoleID = $('#packageAddForm #organisation').val('');
+  Product = $('#packageAddForm #product').val('');
+  PackageType =  $('#packageAddForm #type').val('');
+  StartDate = $('#packageAddForm #packageStartDate').val('');
+  ExpiryDate = $('#packageAddForm #packageExpiryDate').val('');
+  NoAssPlus = $('#packageAddForm #assurancePlusNo').val('');
+  Remarks = $('#packageAddForm #remarks').val('');
+}
+
+function clearUserForm(){
+  firstName = $('#newUserForm #firstName').val('');
+  lastName = $('#newUserForm #lastName').val('');
+  entityKey = $('#newUserForm #entityKey').val('');
+  mobile =  $('#newUserForm #contact').val('');
+  email = $('#newUserForm #email').val('');
+  country = $('#newUserForm #country').val('');
+  postalCode = $('#newUserForm #postalCode').val('');
+  city = $('#newUserForm #city').val('');
+  state = $('#newUserForm #state').val('');
+  block = $('#newUserForm #blockNo').val('');
+  street = $('#newUserForm #street').val('');
+  unit = $('#newUserForm #unitNo').val('');
+  building = $('#newUserForm #building').val('');
+  role = $('#newUserForm #role').val('');
+  poc1Name = $('#newUserForm #poc1Name').val('');
+  poc1Contact = $('#newUserForm #poc1Contact').val('');
+  poc1Email = $('#newUserForm #poc1Email').val('');
+  poc1Designation = $('#newUserForm #poc1Designation').val('');
+  poc1Department = $('#newUserForm #poc1Department').val('');
+  poc2Name = $('#newUserForm #poc2Name').val('');
+  poc2Contact = $('#newUserForm #poc2Contact').val('');
+  poc2Email = $('#newUserForm #poc2Email').val('');
+  poc2Designation = $('#newUserForm #poc2Designation').val('');
+  poc2Department = $('#newUserForm #poc2Department').val('');
+}
+
+function clearCaseForm(){
+  var length = $('#caseAddForm #organisation > option').length;
+  if (length > 1){
+    Organization = $('#caseAddForm #organisation').val('');
+  }
+  ContactPerson = $('#caseAddForm #name').val('');
+  Email = $('#caseAddForm #email').val('');
+  Contact = $('#caseAddForm #contact').val('');
+  Subject = $('#caseAddForm #title').val('');
+  Product = $('#caseAddForm #product').val('');
+  Category = $('#caseAddForm #category').val('');
+  Details = $('#caseAddForm #description').val('');
+}
 
 function getGUID() {
 	var d = new Date().getTime();
