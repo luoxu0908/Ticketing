@@ -43,6 +43,9 @@ $(function(){
             }
           }
         }
+        else {
+          alert(data.d.RetMsg);
+        }
       }
     });
 
@@ -181,6 +184,9 @@ function getPackageDetails(PackageID){
           $('#summary .createdDate').html(packageDate);
         }
       }
+      else {
+        alert(data.d.RetMsg);
+      }
     }
   });
 };
@@ -207,6 +213,9 @@ function getPackageTransaction(PackageID){
           }
           $('.packagetranTable tbody').html(htmlString);
         }
+      }
+      else {
+        alert(data.d.RetMsg);
       }
     }
   });

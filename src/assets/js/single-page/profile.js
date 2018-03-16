@@ -67,6 +67,9 @@ function getOrgnisationInfo(PersonID){
           $('#building').val(organisationInfo.AddrP4);
         }
       }
+      else {
+        alert(data.d.RetMsg);
+      }
     }
   });
 };
@@ -108,6 +111,9 @@ function getPointofContact(PersonID){
           $('#poc2Designation').val(pointOfContact.POCDesi1);
           $('#poc2Department').val(pointOfContact.POCDept1);
         }
+      }
+      else {
+        alert(data.d.RetMsg);
       }
     }
   });

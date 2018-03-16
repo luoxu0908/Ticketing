@@ -36,6 +36,9 @@ $(function(){
           }
         }
       }
+      else {
+        alert(data.d.RetMsg);
+      }
     }
   });
 
@@ -58,6 +61,9 @@ $(function(){
               $('.adminControl').hide();
             }
           }
+        }
+        else {
+          alert(data.d.RetMsg);
         }
       }
     });
@@ -168,6 +174,9 @@ function getPackageList(){
           });
         }
       }
+      else {
+        alert(data.d.RetMsg);
+      }
     }
   });
 };
@@ -192,6 +201,9 @@ function getOrgProductList(Organization){
             $('#packageFilter #product').append('<option value="'+productList[i].Product+'">'+productList[i].Product+'</option>');
           }
         }
+      }
+      else {
+        alert(data.d.RetMsg);
       }
     }
   });

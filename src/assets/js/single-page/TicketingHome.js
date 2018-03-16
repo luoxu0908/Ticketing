@@ -42,6 +42,9 @@ $(function(){
           }
         }
       }
+      else {
+        alert(data.d.RetMsg);
+      }
     }
   });
 
@@ -64,28 +67,11 @@ $(function(){
           }
         }
       }
+      else {
+        alert(data.d.RetMsg);
+      }
     }
   });
-
-  /*
-  var checkAccess =
-    $.ajax({
-      url: apiSrc+"BCMain/iCtc1.CheckIsAdmin.json",
-      method: "POST",
-      dataType: "json",
-      xhrFields: {withCredentials: true},
-      data: { 'data':JSON.stringify({}),
-              'WebPartKey':WebPartVal,
-              'ReqGUID': getGUID() },
-      success: function(data){
-        if ((data) && (data.d.RetVal === -1)) {
-          if (data.d.RetData.Tbl.Rows.length > 0) {
-            access = data.d.RetData.Tbl.Rows[0].CanAccess;
-          }
-        }
-      }
-    });
-    */
 
   var checkRoleAccess =
     $.ajax({
@@ -101,6 +87,9 @@ $(function(){
           if (data.d.RetData.Tbl.Rows.length > 0) {
             RoleName = data.d.RetData.Tbl.Rows[0].RoleName;
           }
+        }
+        else {
+          alert(data.d.RetMsg);
         }
       }
     });
@@ -212,6 +201,9 @@ function getCasesList(){
           });
         }
       }
+      else {
+        alert(data.d.RetMsg);
+      }
     }
   });
 };
@@ -257,6 +249,9 @@ function getUsersList(){
             window.location.href = profileUrl;
           });
         }
+      }
+      else {
+        alert(data.d.RetMsg);
       }
     }
   });
@@ -350,6 +345,9 @@ function getProductOwn(){
           $('#caseAddForm #product').val(Product);
         });
       }
+      else {
+        alert(data.d.RetMsg);
+      }
     }
   });
 };
@@ -374,6 +372,9 @@ function getOrgProductList(Organization){
             $('#caseAddForm #product').append('<option value="'+productList[i].Product+'">'+productList[i].Product+'</option>');
           }
         }
+      }
+      else {
+        alert(data.d.RetMsg);
       }
     }
   });

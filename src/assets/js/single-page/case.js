@@ -21,6 +21,9 @@ $(function(){
             RoleName = data.d.RetData.Tbl.Rows[0].RoleName;
           }
         }
+        else {
+          alert(data.d.RetMsg);
+        }
       }
     });
 
@@ -31,7 +34,7 @@ $(function(){
     if (RoleName=='Admin'){
 
     }else if (RoleName=='Clients'){
-      
+
     }else if (RoleName=='Support Developer'){
       $('.supportControl').show();
     }else if (RoleName=='Support Team Lead'){
@@ -369,6 +372,9 @@ function getStaffList(){
             html+=('<option value="'+staffList[i].RoleID+'">'+staffList[i].StaffDetails+'</option>');
           }
         }
+      }
+      else {
+        alert(data.d.RetMsg);
       }
       $('#involvementForm #person').append(html);
     }
