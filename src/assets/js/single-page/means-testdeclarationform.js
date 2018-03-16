@@ -13,7 +13,7 @@ formSectionsInit();
 
 //Submit data
 function SaveDeclaretion() {
-  if (!formSectionValidate($('#DeclaretionFrom'),1)) {
+  if (!formSectionValidate(form,1)) {
     return false;
   }
   var data = {};
@@ -63,6 +63,65 @@ function SaveDeclaretion() {
   });
 }
 
+//convert date to dd/mm/yyyy
+function convertDateTime(inputFormat, type) {
+  if (inputFormat == null) {
+    return '-';
+  }
+  function pad(s) {
+    return (s < 10)? '0' + s: s;
+  }
+  var d = new Date(inputFormat);
+  if (type == 'date') {
+    return [
+      pad(d.getDate()),
+      pad(d.getMonth() + 1),
+      d.getFullYear()
+    ].join('/');
+  } else if (type == 'datetime') {
+    return [
+      pad(d.getDate()),
+      pad(d.getMonth() + 1),
+      d.getFullYear()
+    ].join('/') + ' ' + [
+      pad(d.getHours()),
+      pad(d.getMinutes()),
+      pad(d.getSeconds())
+    ].join(':');
+  } else if (type == 'time') {
+    return [
+      pad(d.getHours()),
+      pad(d.getMinutes()),
+      pad(d.getSeconds())
+    ].join(':');
+  }
+}
+
+function GetDeclarationInfo(DeclarationID) {
+  var data = {
+    'DeclarationID': DeclarationID
+  };
+  $.ajax({
+    url: apiSrc + "BCMain/iCtc1.GetDeclarationInfo.json",
+    method: "POST",
+    dataType: "json",
+    xhrFields: {
+      withCredentials: true
+    },
+    data: {
+      'data': JSON.stringify(data),
+      'WebPartKey': '021cb7cca70748ff89795e3ad544d5eb',
+      'ReqGUID': 'b4bbedbf-e591-4b7a-ad20-101f8f656277'
+    },
+    success: function(data) {
+      if ((data) && (data.d.RetVal === -1)) {
+        if (data.d.RetData.Tbl.Rows.length > 0) {
+          var DeclarationInfo = data.d.RetData.Tbl.Rows[0];
+        }
+      }
+    }
+  });
+}
 //geneare drop down optioms
 function GetDropdownList(id, category) {
   var data = {
@@ -97,7 +156,7 @@ function GetDropdownList(id, category) {
 
 function GetRelationship(sel) {
   $.ajax({
-    url: apiSrc + "BCMain/iCtc1.SearchRelationshipType.json",
+    url: apiSrc + "BCMain/iCtc1.Relationship_Get.json",
     method: "POST",
     dataType: "json",
     xhrFields: {
@@ -113,7 +172,7 @@ function GetRelationship(sel) {
         if (data.d.RetData.Tbl.Rows.length > 0) {
           var lookup = data.d.RetData.Tbl.Rows;
           for (var i = 0; i < lookup.length; i++) {
-            $(sel).append('<option value="' + lookup[i].RelationshipAB + '">' + lookup[i].RelationshipAB  + '</option>');
+            $(sel).append('<option value="' + lookup[i].RelKeyAB + '">' + lookup[i].RelKeyAB  + '</option>');
           }
         }
       } else {
@@ -136,6 +195,7 @@ function formSectionsInit() {
     breadcrumbs.html('');
 
     fieldsets.each(function(index) {
+
       var fieldset = $(this);
       fieldset.data('fieldset-index',index);
       breadcrumbs.append('<li><a href="#'+fieldset.prop('id')+'" data-fieldset-index="'+index+'">'+fieldset.find('h2').html()+'</a>').find('li:eq(0) a').addClass('active');
@@ -148,7 +208,7 @@ function formSectionsInit() {
     breadcrumbs.find('a').click(function() {
       var thisObj = $(this);
       var currentIndex = parseInt(form.data('current-form-index'));
-      if (formSectionValidate(form,0) ) {
+      if (formSectionValidate(form) ) {
         loadFormSection(thisObj.data('fieldset-index'));
       }
       return false;
@@ -177,48 +237,47 @@ function formSectionsInit() {
         }
         return false;
     });
-
-    function loadFormSection(index) {
-      //set index
-      form.data('current-form-index', index);
-      var targetIndex = index;
-
-      breadcrumbs.find('a').removeClass('active').filter(function() {
-        return ($(this).data('fieldset-index') == targetIndex);
-      }).addClass('active');
-
-      //set fieldset`
-      fieldsets.hide().filter(function() {
-        return ($(this).data('fieldset-index') == targetIndex);
-      }).show();
-
-      if (index == 0) {
-        footer.find('#previous').hide();
-        footer.find('#next').show();
-        footer.find('[class*=submit]').hide();
-      }
-      else if (index == fieldsets.length-1) {
-        footer.find('#previous').show();
-        footer.find('#next').hide();
-        footer.find('[class*=submit]').show();
-      }
-      else {
-        footer.find('#previous').show();
-        footer.find('#next').show();
-        footer.find('[class*=submit]').hide();
-      }
-    }
   });
 }
 
 function formSectionValidate(form,isAll) {
   var result=0;
   if (!isAll) {
-      $(form).find('fieldset:hidden :input,select').attr('disabled','disabled');
+      $(form).find('fieldset:hidden :input').attr('disabled','disabled');
   }
-  $(form).on('formvalid.zf.abide',function(){result=1;});
   $(form).foundation('validateForm');
-
+  $(form).on('formvalid.zf.abide',function(){result=1;});
   $(form).find('fieldset :input').removeAttr('disabled');
   return result;
+}
+
+function loadFormSection(index) {
+  //set index
+  form.data('current-form-index', index);
+  var targetIndex = index;
+
+  breadcrumbs.find('a').removeClass('active').filter(function() {
+    return ($(this).data('fieldset-index') == targetIndex);
+  }).addClass('active');
+
+  //set fieldset`
+  fieldsets.hide().filter(function() {
+    return ($(this).data('fieldset-index') == targetIndex);
+  }).show();
+
+  if (index == 0) {
+    footer.find('#previous').hide();
+    footer.find('#next').show();
+    footer.find('[class*=submit]').hide();
+  }
+  else if (index == fieldsets.length-1) {
+    footer.find('#previous').show();
+    footer.find('#next').hide();
+    footer.find('[class*=submit]').show();
+  }
+  else {
+    footer.find('#previous').show();
+    footer.find('#next').show();
+    footer.find('[class*=submit]').hide();
+  }
 }
