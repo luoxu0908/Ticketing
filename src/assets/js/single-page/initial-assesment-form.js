@@ -8,7 +8,7 @@ $(function(){
 
     $('.scoreRow :input[type="checkbox"]').click(function(){
          if ($(this).is(':checked')) {
-           
+
              if ($('#sectionE_totalScore').val().length<=0) {
                  $('#sectionE_totalScore').val(parseInt($(this).val()));
              }else {
@@ -114,7 +114,7 @@ function GetInitialAssesmentInfo(InitialAssesmentID){
 
 function GetRelationship(sel) {
   $.ajax({
-    url: apiSrc + "BCMain/iCtc1.Relationship_Get.json",
+    url: apiSrc + "BCMain/iCtc1.SearchRelationshipType.json",
     method: "POST",
     dataType: "json",
     xhrFields: {
@@ -130,7 +130,7 @@ function GetRelationship(sel) {
         if (data.d.RetData.Tbl.Rows.length > 0) {
           var lookup = data.d.RetData.Tbl.Rows;
           for (var i = 0; i < lookup.length; i++) {
-            $(sel).append('<option value="' + lookup[i].RelKeyAB + '">' + lookup[i].RelKeyAB  + '</option>');
+            $(sel).append('<option value="' + lookup[i].RelationshipAB + '">' + lookup[i].RelationshipAB  + '</option>');
           }
         }
       } else {
