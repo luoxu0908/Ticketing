@@ -213,23 +213,17 @@ function updateIndBasic(PersonID){
   unit = $('#unit').val();
   building = $('#building').val();
 
-  if (tel1!=''){
-    if (IsValidContact(tel1)==false){
-      alert('Invalid contact!');
-      return false;
-    }
+  if (tel1!='' && !IsValidContact(tel1)){
+    alert('Invalid contact!');
+    return false;
   }
-  if (mobile!=''){
-    if (IsValidContact(mobile)==false){
-      alert('Invalid contact!');
-      return false;
-    }
+  if (mobile!='' && !IsValidContact(mobile)){
+    alert('Invalid contact!');
+    return false;
   }
-  if (email!=''){
-    if (IsValidEmail(email)==false){
-      alert('Invalid email!');
-      return false;
-    }
+  if (email!='' && !IsValidEmail(email)){
+    alert('Invalid email!');
+    return false;
   }
 
   var data = { "PID": PersonID, "name": name, "tel1": tel1, "mobile": mobile, "email": email, "country": country, "postalCode": postalCode, "city": city, "state": state, "blockNo": blockNo, "street": street, "unit": unit, "building": building };
@@ -274,17 +268,13 @@ function updateOrgBasic(PersonID){
   unit = $('#unit').val();
   building = $('#building').val();
 
-  if (tel1!=''){
-    if (IsValidContact(tel1)==false){
-      alert('Invalid contact!');
-      return false;
-    }
+  if (tel1!='' && !IsValidContact(tel1)){
+    alert('Invalid contact!');
+    return false;
   }
-  if (email!=''){
-    if (IsValidEmail(email)==false){
-      alert('Invalid email!');
-      return false;
-    }
+  if (email!='' && !IsValidEmail(email)){
+    alert('Invalid email!');
+    return false;
   }
 
   var data = { "PID": PersonID, "name": name, "entityKey": entityKey, "tel1": tel1, "email": email, "country": country, "postalCode": postalCode, "city": city, "state": state, "blockNo": blockNo, "street": street, "unit": unit, "building": building };
@@ -328,29 +318,21 @@ function updateContactPoint(PersonID){
   poc2Designation = $('#poc2Designation').val();
   poc2Department = $('#poc2Department').val();
 
-  if (poc1Contact!=''){
-    if (!IsValidContact(poc1Contact)){
-      alert('Invalid contact!');
-      return false;
-    }
+  if (poc1Contact!='' && !IsValidContact(poc1Contact)){
+    alert('Invalid contact!');
+    return false;
   }
-  if (poc2Contact!=''){
-    if (!IsValidContact(poc2Contact)){
-      alert('Invalid contact!');
-      return false;
-    }
+  if (poc2Contact!='' && !IsValidContact(poc2Contact)){
+    alert('Invalid contact!');
+    return false;
   }
-  if (poc1Email!=''){
-    if (!IsValidEmail(poc1Email)){
-      alert('Invalid email!');
-      return false;
-    }
+  if (poc1Email!='' && !IsValidEmail(poc1Email)){
+    alert('Invalid email!');
+    return false;
   }
-  if (poc2Email!=''){
-    if (!IsValidEmail(poc2Email)){
-      alert('Invalid email!');
-      return false;
-    }
+  if (poc2Email!='' && !IsValidEmail(poc2Email)){
+    alert('Invalid email!');
+    return false;
   }
 
   var data = { "PID": PersonID, "poc1Name": poc1Name, "poc1Contact": poc1Contact, "poc1Email": poc1Email, "poc1Designation": poc1Designation, "poc1Department": poc1Department, "poc2Name": poc2Name, "poc2Contact": poc2Contact, "poc2Email": poc2Email, "poc2Designation": poc2Designation, "poc2Department": poc2Department };
