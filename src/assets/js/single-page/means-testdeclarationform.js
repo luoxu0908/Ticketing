@@ -1,4 +1,4 @@
-
+var moveToSectionC=0;
 $(function() {
   //get cookie & loginID
   var appCookie = Cookies.getJSON('appCookie'),
@@ -13,7 +13,8 @@ formSectionsInit();
 
 //Submit data
 function SaveDeclaretion() {
-  if (!formSectionValidate(form,1)) {
+
+  if (!formSectionValidate($('#DeclaretionFrom'),1)) {
     return false;
   }
   var data = {};
@@ -63,65 +64,6 @@ function SaveDeclaretion() {
   });
 }
 
-//convert date to dd/mm/yyyy
-function convertDateTime(inputFormat, type) {
-  if (inputFormat == null) {
-    return '-';
-  }
-  function pad(s) {
-    return (s < 10)? '0' + s: s;
-  }
-  var d = new Date(inputFormat);
-  if (type == 'date') {
-    return [
-      pad(d.getDate()),
-      pad(d.getMonth() + 1),
-      d.getFullYear()
-    ].join('/');
-  } else if (type == 'datetime') {
-    return [
-      pad(d.getDate()),
-      pad(d.getMonth() + 1),
-      d.getFullYear()
-    ].join('/') + ' ' + [
-      pad(d.getHours()),
-      pad(d.getMinutes()),
-      pad(d.getSeconds())
-    ].join(':');
-  } else if (type == 'time') {
-    return [
-      pad(d.getHours()),
-      pad(d.getMinutes()),
-      pad(d.getSeconds())
-    ].join(':');
-  }
-}
-
-function GetDeclarationInfo(DeclarationID) {
-  var data = {
-    'DeclarationID': DeclarationID
-  };
-  $.ajax({
-    url: apiSrc + "BCMain/iCtc1.GetDeclarationInfo.json",
-    method: "POST",
-    dataType: "json",
-    xhrFields: {
-      withCredentials: true
-    },
-    data: {
-      'data': JSON.stringify(data),
-      'WebPartKey': '021cb7cca70748ff89795e3ad544d5eb',
-      'ReqGUID': 'b4bbedbf-e591-4b7a-ad20-101f8f656277'
-    },
-    success: function(data) {
-      if ((data) && (data.d.RetVal === -1)) {
-        if (data.d.RetData.Tbl.Rows.length > 0) {
-          var DeclarationInfo = data.d.RetData.Tbl.Rows[0];
-        }
-      }
-    }
-  });
-}
 //geneare drop down optioms
 function GetDropdownList(id, category) {
   var data = {
@@ -156,7 +98,7 @@ function GetDropdownList(id, category) {
 
 function GetRelationship(sel) {
   $.ajax({
-    url: apiSrc + "BCMain/iCtc1.Relationship_Get.json",
+    url: apiSrc + "BCMain/iCtc1.SearchRelationshipType.json",
     method: "POST",
     dataType: "json",
     xhrFields: {
@@ -172,7 +114,7 @@ function GetRelationship(sel) {
         if (data.d.RetData.Tbl.Rows.length > 0) {
           var lookup = data.d.RetData.Tbl.Rows;
           for (var i = 0; i < lookup.length; i++) {
-            $(sel).append('<option value="' + lookup[i].RelKeyAB + '">' + lookup[i].RelKeyAB  + '</option>');
+            $(sel).append('<option value="' + lookup[i].RelationshipAB + '">' + lookup[i].RelationshipAB  + '</option>');
           }
         }
       } else {
@@ -195,7 +137,6 @@ function formSectionsInit() {
     breadcrumbs.html('');
 
     fieldsets.each(function(index) {
-
       var fieldset = $(this);
       fieldset.data('fieldset-index',index);
       breadcrumbs.append('<li><a href="#'+fieldset.prop('id')+'" data-fieldset-index="'+index+'">'+fieldset.find('h2').html()+'</a>').find('li:eq(0) a').addClass('active');
@@ -208,8 +149,8 @@ function formSectionsInit() {
     breadcrumbs.find('a').click(function() {
       var thisObj = $(this);
       var currentIndex = parseInt(form.data('current-form-index'));
-      if (formSectionValidate(form) ) {
-        loadFormSection(thisObj.data('fieldset-index'));
+      if (formSectionValidate(form,0) ) {
+        loadFormSection(thisObj.data('fieldset-index'),3);
       }
       return false;
     });
@@ -219,13 +160,14 @@ function formSectionsInit() {
     footer.find('[class*=submit]').hide();
 
     footer.find('#previous').click(function() {
+
       var currentIndex = parseInt(form.data('current-form-index'));
       var targetIndex = currentIndex-1;
 
       if (targetIndex <0) targetIndex=0;
 
       if (formSectionValidate(form,0) ) {
-        loadFormSection(targetIndex);
+        loadFormSection(targetIndex,0);
       }
       return false;
     });
@@ -233,51 +175,69 @@ function formSectionsInit() {
         if (formSectionValidate(form,0)) {
           var targetIndex = parseInt(form.data('current-form-index')) + 1;
           if (targetIndex >= fieldsets.length) targetIndex=fieldsets.length-1;
-          loadFormSection(targetIndex);
+          loadFormSection(targetIndex,1);
         }
         return false;
     });
+
+    function loadFormSection(index,isNext) {
+      //set index
+      if (index==1) {
+        if (moveToSectionC==1&&isNext==1) {
+          index++;
+        }
+        else if(moveToSectionC==1&&isNext==0) {
+          index--;
+        }
+      }
+      form.data('current-form-index', index);
+      var targetIndex = index;
+
+      breadcrumbs.find('a').removeClass('active').filter(function() {
+        return ($(this).data('fieldset-index') == targetIndex);
+      }).addClass('active');
+
+      //set fieldset`
+      fieldsets.hide().filter(function() {
+        return ($(this).data('fieldset-index') == targetIndex);
+      }).show();
+
+      if (index == 0) {
+        footer.find('#previous').hide();
+        footer.find('#next').show();
+        footer.find('[class*=submit]').hide();
+      }
+      else if (index == fieldsets.length-1) {
+        footer.find('#previous').show();
+        footer.find('#next').hide();
+        footer.find('[class*=submit]').show();
+      }
+      else {
+        footer.find('#previous').show();
+        footer.find('#next').show();
+        footer.find('[class*=submit]').hide();
+      }
+    }
   });
 }
 
 function formSectionValidate(form,isAll) {
   var result=0;
+  moveToSectionC=$('[name=sectionA_ordinaryMembership]:checked').val();
   if (!isAll) {
-      $(form).find('fieldset:hidden :input').attr('disabled','disabled');
+      $(form).find('fieldset:hidden :input,select').attr('disabled','disabled');
   }
-  $(form).foundation('validateForm');
+  if (moveToSectionC==1) {
+    $(form).find('fieldset:eq(1) :input,select').attr('disabled','disabled');
+  }
   $(form).on('formvalid.zf.abide',function(){result=1;});
-  $(form).find('fieldset :input').removeAttr('disabled');
-  return result;
-}
-
-function loadFormSection(index) {
-  //set index
-  form.data('current-form-index', index);
-  var targetIndex = index;
-
-  breadcrumbs.find('a').removeClass('active').filter(function() {
-    return ($(this).data('fieldset-index') == targetIndex);
-  }).addClass('active');
-
-  //set fieldset`
-  fieldsets.hide().filter(function() {
-    return ($(this).data('fieldset-index') == targetIndex);
-  }).show();
-
-  if (index == 0) {
-    footer.find('#previous').hide();
-    footer.find('#next').show();
-    footer.find('[class*=submit]').hide();
-  }
-  else if (index == fieldsets.length-1) {
-    footer.find('#previous').show();
-    footer.find('#next').hide();
-    footer.find('[class*=submit]').show();
+  $(form).foundation('validateForm');
+  if (moveToSectionC==1) {
+     $(form).find('fieldset:not(:eq(1)) :input,select').removeAttr('disabled');
   }
   else {
-    footer.find('#previous').show();
-    footer.find('#next').show();
-    footer.find('[class*=submit]').hide();
+     $(form).find('fieldset :input,select').removeAttr('disabled');
   }
+
+  return result;
 }
