@@ -1,4 +1,4 @@
-
+var moveToSectionC=0;
 $(function() {
   //get cookie & loginID
   var appCookie = Cookies.getJSON('appCookie'),
@@ -13,6 +13,7 @@ formSectionsInit();
 
 //Submit data
 function SaveDeclaretion() {
+
   if (!formSectionValidate($('#DeclaretionFrom'),1)) {
     return false;
   }
@@ -149,7 +150,7 @@ function formSectionsInit() {
       var thisObj = $(this);
       var currentIndex = parseInt(form.data('current-form-index'));
       if (formSectionValidate(form,0) ) {
-        loadFormSection(thisObj.data('fieldset-index'));
+        loadFormSection(thisObj.data('fieldset-index'),3);
       }
       return false;
     });
@@ -159,13 +160,14 @@ function formSectionsInit() {
     footer.find('[class*=submit]').hide();
 
     footer.find('#previous').click(function() {
+
       var currentIndex = parseInt(form.data('current-form-index'));
       var targetIndex = currentIndex-1;
 
       if (targetIndex <0) targetIndex=0;
 
       if (formSectionValidate(form,0) ) {
-        loadFormSection(targetIndex);
+        loadFormSection(targetIndex,0);
       }
       return false;
     });
@@ -173,13 +175,21 @@ function formSectionsInit() {
         if (formSectionValidate(form,0)) {
           var targetIndex = parseInt(form.data('current-form-index')) + 1;
           if (targetIndex >= fieldsets.length) targetIndex=fieldsets.length-1;
-          loadFormSection(targetIndex);
+          loadFormSection(targetIndex,1);
         }
         return false;
     });
 
-    function loadFormSection(index) {
+    function loadFormSection(index,isNext) {
       //set index
+      if (index==1) {
+        if (moveToSectionC==0&&isNext==1) {
+          index++;
+        }
+        else if(moveToSectionC==0&&isNext==0) {
+          index--;
+        }
+      }
       form.data('current-form-index', index);
       var targetIndex = index;
 
@@ -213,12 +223,21 @@ function formSectionsInit() {
 
 function formSectionValidate(form,isAll) {
   var result=0;
+  moveToSectionC=$('[name=sectionA_ordinaryMembership]:checked').val();
   if (!isAll) {
       $(form).find('fieldset:hidden :input,select').attr('disabled','disabled');
   }
+  if (moveToSectionC==1) {
+    $(form).find('fieldset:eq(1) :input,select').attr('disabled','disabled');
+  }
   $(form).on('formvalid.zf.abide',function(){result=1;});
   $(form).foundation('validateForm');
+  if (moveToSectionC==1) {
+     $(form).find('fieldset:not(:eq(1)) :input,select').removeAttr('disabled');
+  }
+  else {
+     $(form).find('fieldset :input,select').removeAttr('disabled');
+  }
 
-  $(form).find('fieldset :input').removeAttr('disabled');
   return result;
 }
