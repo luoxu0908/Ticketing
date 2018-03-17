@@ -229,15 +229,32 @@ $(function(){
       }
     });
   });//editLinkForm
+
+  //init
+  pageInit();
+
+
+});//onready
+
+
+function pageInit() {
+  formOthersInit();
+  formSectionsInit();
+  loadMenu();
+  loadPage('currentPage','');
+
   //search
   //init search form and subLinksDropDown for mobile
   $( window ).resize(function() {
     resizeScreenSetup();
   });
   resizeScreenSetup();
+
+  //subLinks / tabs in sidebar1
   initSubLinks();
   //convertSubLinks(true);
 
+  //navSearch
   $('#navSearch').click(() => {
     $('#searchForm').slideToggle('start', function() {
       if ($('#searchForm').is(':visible')) {
@@ -259,12 +276,9 @@ $(function(){
     return false;
   });
 
-  formOthersInit();
-  formSectionsInit();
-  loadMenu();
+}//pageInit enfd
 
-});//onready
-
+//packages,
 function GetBasicInformation(personID) {
   var data = {'PersonID': personID};
   $.ajax({
@@ -298,6 +312,7 @@ function GetBasicInformation(personID) {
   });
 }
 
+//cookies
 function getCookie(cookie, cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(cookie);
@@ -325,7 +340,7 @@ function getGUID() {
 };
 
 function resizeScreenSetup() {
-  console.log('resizeScreen');
+  //console.log('resizeScreen');
   if (Foundation.MediaQuery.is('small only')) {
     $('#searchForm').show();
     //change sub links to dropdown list
@@ -338,8 +353,8 @@ function resizeScreenSetup() {
     setupSubLinks(false);
     //initSubLinksDropDown();
   }
-
 }
+
 var menu = [];
 function loadMenu() {
   var data = {};
@@ -396,6 +411,7 @@ function loadMenu() {
             moduleMenu.append(moduleMenuItem);
           }
         }
+        //menu
         //console.log(menu);
         //console.log($('#mainMenu .module a').length);
         $('#mainMenu .module a').click(function() {
@@ -472,16 +488,63 @@ function loadPage(url,target,options) {
   var pageIFrame = $('#pageIFrame');
   //var contentWindow = mainContentContainer.find('#contentWindow');
 
+  var pageTitle;
+  var pageLayout;
+  var pageSubLinks;
+  var pageSideBar;
 
-  target = 'iframe';//hardcode for testing
+  //target = 'iframe';//hardcode for testing
   if (typeof target != 'undefined' && target.toLowerCase() == 'iframe') {
+    mainContent.removeClass('layout-iframe');
     mainContent.addClass('layout-iframe');
     pageIFrame.prop('src',url);
   }
   else {
     mainContent.removeClass('layout-iframe');
-  }
 
+    var pageTitle;
+    var pageLayout;
+    var pageSubLinks;
+    var pageSideBar;
+    var pageContentWrapper;
+
+    if(url == 'currentPage' || url.trim() == '') {
+      url = location.pathname;
+console.log('url2'+url);
+      if (url == '' || url == '/') {
+        url = '/index.html'
+      }
+    }
+
+    console.log('url2'+url);
+    //pageContent.load(location.pathname);
+
+    pageContent.load(
+      url + ' #pageContentWrapper',
+      function( response, status, xhr ) {
+        if ( status == "error" ) {
+          var msg = "Sorry but there was an error: ";
+          $(this).html( msg + xhr.status + " " + xhr.statusText );
+          return;
+        }
+
+        var pageContentWrapper = $(this).find('#pageContentWrapper');
+
+        if (pageContentWrapper.length) {
+          pageTitle = pageContentWrapper.data('page-title') || pageContentWrapper.find('h1#pageTitle').html();
+          pageLayout = pageContentWrapper.data('page-layout');
+          pageSubLinks = pageContentWrapper.data('page-sublinks');
+          pageSideBar = pageContentWrapper.data('page-sidebar');
+
+          pageContentWrapper.find('h1#pageTitle').remove();
+          mainContent.find('#pageTitle').html(pageTitle);
+          document.title = pageTitle + (url != '/index.html') ? ' - Bizcube' : 'Bizcube';
+          console.log('t:'+pageTitle + (url != '/index.html') ? ' - Bizcube' : '');
+          mainContent.addClass(pageLayout);
+        }
+      });
+
+  }
 }
 
 function initSubLinksDropDown() {
