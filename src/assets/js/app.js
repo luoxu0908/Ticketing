@@ -121,6 +121,11 @@ $(function(){
     mainMenuToggle();
     return false;
   });
+  $('#mainMenuContainer .back-button').click(function() {
+    console.log('hello');
+    moduleMenuToggle();
+    return false;
+  });
 
   $('.tabBoxButtonClose,.tabBoxButtonSubmit, .tabBoxContent .close-button').click(function(){
     var targetRef = $(this).parents('.tabBoxContent');
@@ -411,30 +416,16 @@ function loadMenu() {
             moduleMenu.append(moduleMenuItem);
           }
         }
+
         //menu
         //console.log(menu);
         //console.log($('#mainMenu .module a').length);
         $('#mainMenu .module a').click(function() {
           var targetId = $(this).data('menu');
           var targetObj = $('#moduleMenu-'+targetId);
-          //console.log(targetObj.length);
-          if (Foundation.MediaQuery.current == 'small')
-          {
-            if (targetObj.find('li').length > 1) {
-              $('.module').hide();
-              $('.moduleMenu').hide();
-              targetObj.show();
-            }
-            else {
-              console.log('aaa');
-              window.location.href = $(this).prop('href');
-            }
-          }
-          else {
-            //console.log('aaa');
-            $('.moduleMenu').hide();
-            targetObj.show();
-          }
+
+          moduleMenuToggle(targetObj);
+
           return false;
         });//module Links
 
@@ -577,9 +568,13 @@ function mainMenuToggle() {
   if (Foundation.MediaQuery.current == 'small')
   {
     var position = mainMenuContainer.offset();
-    console.log(position.left );
+    //console.log(position.left );
     if(position.left < 0) {
       console.log('slideout');
+      //reset menu  first
+      $('#mainMenuContainer .back-button').hide();
+      $('.module').show();
+      $('.moduleMenu').hide();
       mainMenuContainer.animate({
         left:'0'
       },350);
@@ -600,6 +595,35 @@ function mainMenuToggle() {
       console.log('slidedown');
       mainMenuContainer.slideDown();
     }
+  }
+}
+
+function moduleMenuToggle(targetObj) {
+  if (Foundation.MediaQuery.current == 'small')
+  {
+    //console.log(targetObj);
+    if (typeof targetObj != 'undefined') {
+      if (targetObj.find('li').length > 1) {
+        $('#mainMenuContainer .back-button').show();
+        $('.module').hide();
+        $('.moduleMenu').hide();
+        targetObj.show();
+      }
+      else {
+        window.location.href = $(this).prop('href');
+      }
+    }
+    else {
+      $('#mainMenuContainer .back-button').hide();
+      $('.module').show();
+      $('.moduleMenu').hide();
+    }
+  }
+  else {
+    //console.log('aaa');
+
+    $('.moduleMenu').hide();
+    targetObj.show();
   }
 }
 
