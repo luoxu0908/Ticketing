@@ -424,6 +424,9 @@ function loadMenu() {
           var targetId = $(this).data('menu');
           var targetObj = $('#moduleMenu-'+targetId);
 
+          $('#mainMenu .module a').removeClass('selected');
+          $(this).addClass('selected');
+
           moduleMenuToggle(targetObj);
 
           return false;
@@ -593,6 +596,8 @@ function mainMenuToggle() {
     }
     else {
       console.log('slidedown');
+      $('#mainMenu').find('a').removeClass('selected');
+      $('#mainMenu').find('li:eq(0)').find('a').addClass('selected');
       mainMenuContainer.slideDown();
     }
   }
@@ -614,6 +619,7 @@ function moduleMenuToggle(targetObj) {
       }
     }
     else {
+      $('#mainMenu .module a').removeClass('selected');
       $('#mainMenuContainer .back-button').hide();
       $('.module').show();
       $('.moduleMenu').hide();
