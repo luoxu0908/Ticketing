@@ -487,8 +487,8 @@ function loadPage(url,target,options) {
   var pageSubLinks;
   var pageSideBar;
 
-  //target = 'iframe';//hardcode for testing
-  if (typeof target != 'undefined' && target.toLowerCase() == 'iframe') {
+  target = 'new';//hardcode for testing
+  if (typeof target != 'undefined' && target.toLowerCase() != 'new') {
     mainContent.removeClass('layout-iframe');
     mainContent.addClass('layout-iframe');
     pageIFrame.prop('src',url);
@@ -501,16 +501,20 @@ function loadPage(url,target,options) {
     var pageSubLinks;
     var pageSideBar;
     var pageContentWrapper;
+    var queryString;
 
     if(url == 'currentPage' || url.trim() == '') {
       url = location.pathname;
-console.log('url2'+url);
+
       if (url == '' || url == '/') {
         url = '/index.html'
       }
-    }
 
-    console.log('url2'+url);
+
+
+
+    }
+    queryString = QueryStringToJSON();
     //pageContent.load(location.pathname);
 
     pageContent.load(
@@ -525,17 +529,26 @@ console.log('url2'+url);
         var pageContentWrapper = $(this).find('#pageContentWrapper');
 
         if (pageContentWrapper.length) {
-          pageTitle = pageContentWrapper.data('page-title') || pageContentWrapper.find('h1#pageTitle').html();
-          pageLayout = pageContentWrapper.data('page-layout');
-          pageSubLinks = pageContentWrapper.data('page-sublinks');
-          pageSideBar = pageContentWrapper.data('page-sidebar');
+          pageTitle = queryString['page-title'] || pageContentWrapper.data('page-title') || pageContentWrapper.find('h1#pageTitle').html();
+          pageLayout = queryString['page-layout'] ||  pageContentWrapper.data('page-layout');
+          pageSubLinks = queryString['page-sublinks'] || pageContentWrapper.data('page-sublinks');
+          pageSideBar = queryString['page-sidebar'] ||pageContentWrapper.data('page-sidebar');
 
           pageContentWrapper.find('h1#pageTitle').remove();
           mainContent.find('#pageTitle').html(pageTitle);
-          document.title = pageTitle + (url != '/index.html') ? ' - Bizcube' : 'Bizcube';
-          console.log('t:'+pageTitle + (url != '/index.html') ? ' - Bizcube' : '');
-          mainContent.addClass(pageLayout);
         }
+        else {
+          
+        }
+
+        if (url != '/index.html') {
+          pageTitle += ' - Bizcube';
+        }
+        else {
+          pageTitle += ' Bizcube';
+        }
+        document.title = pageTitle;
+        mainContent.addClass(pageLayout);
       });
 
   }
@@ -809,4 +822,25 @@ function formSectionsInit() {
     }
   });
 
+}//formSectionsInit
+
+function QueryStringToJSON() {
+    var pairs = location.search.slice(1).split('&');
+
+    var result = {};
+    pairs.forEach(function(pair) {
+        pair = pair.split('=');
+        result[pair[0]] = decodeURIComponent(pair[1] || '');
+    });
+
+    return JSON.parse(JSON.stringify(result));
+}
+
+var query_string = QueryStringToJSON();
+function objectify(array) {//serialize data function
+  var returnArray = {};
+  for (var i = 0; i < array.length; i++){
+    returnArray[array[i]['name']] = array[i]['value'];
+  }
+  return returnArray;
 }
