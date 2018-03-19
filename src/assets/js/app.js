@@ -280,8 +280,14 @@ function pageInit() {
     $('#searchForm').submit();
     return false;
   });
+<<<<<<< HEAD
 
 }//pageInit enfd
+=======
+ loadMenu();
+
+});//onready
+>>>>>>> 0bb3d8e678f8a96c18f4f11b7b7f264ef0f97975
 
 //packages,
 function GetBasicInformation(personID) {
@@ -663,6 +669,7 @@ function setupSubLinks(smallScreen) {
     subLinksDropDown.hide();
   } //revert
 }
+<<<<<<< HEAD
 
 function formOthersInit() {
   $('[data-form-other-text=true]').prop('disabled','disabled');
@@ -844,3 +851,5 @@ function objectify(array) {//serialize data function
   }
   return returnArray;
 }
+=======
+>>>>>>> 0bb3d8e678f8a96c18f4f11b7b7f264ef0f97975

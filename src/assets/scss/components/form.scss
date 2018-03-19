@@ -1,13 +1,20 @@
 form,.form, .formTextContainer {
-
-  fieldset {
-    @include gridColumns($columns:auto-fit);
-    > * {
-      grid-column: 1/-1;
-    }
-  }
   max-width: 800px;
 
+  .breadcrumbs {
+    display: flex;
+    justify-content: space-between;
+    ul {
+      margin: 0;
+      padding:0;
+    }
+    li {
+      list-style: none;
+    }
+  }
+.breadcrumbs a {
+  display: inline;
+}
   .close-button {
     top: 0;
   }
@@ -23,6 +30,7 @@ form,.form, .formTextContainer {
   input[type=text],
   input[type=password],
   input[type=email],
+  input[type=Date],
   select,
   textarea {
     background: $complementary-light-color1;
@@ -61,13 +69,6 @@ form,.form, .formTextContainer {
     border-bottom: 0.2rem solid $light-gray;
     box-shadow: none;
     border-radius: 0;
-  }
-
-  input[disabled],
-  textarea[disabled] {
-    background: #ddd;
-    color: #999;
-
   }
 
   .checkboxGroup,
@@ -182,7 +183,9 @@ form,.form, .formTextContainer {
 
 
 }
-
+.spanCss{
+  color: red;
+}
 @include breakpoint(medium) {
   form,.form, .formTextContainer {
     .radioGroup,
