@@ -160,7 +160,12 @@ html, body {
 }
 
 @include breakpoint(small) {
-  #pageProfile,#sidebar1,#sidebar2,#footer,#pageIFrame {
+  #mainContent {
+    #pageProfile,#sidebar1,#sidebar2,#pageIFrame {
+      display: none;
+    }
+  }
+  #footer {
     display: none;
   }
 }
