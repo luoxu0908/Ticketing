@@ -152,6 +152,53 @@
   display: grid;
   grid-template-columns: repeat($columns,minmax($min,$max));
   grid-gap: $gap;
+  grid-auto-rows: auto;
+  min-width: 0;
+
+  .columns1 {
+    grid-column: auto / span 1;
+    //width: 8.3%;
+  }
+  .columns2 {
+    grid-column: auto / span 2;
+    //width: 16.6%;
+  }
+  .columns3 {
+    grid-column: auto / span 3;
+    //width: 25%;
+  }
+  .columns4 {
+    grid-column: auto / span 4;
+    //width: 33.3%;
+  }
+  .columns5 {
+    grid-column: auto / span 5;
+    //width: 41.6%;
+  }
+  .columns6 {
+    grid-column: auto / span 6;
+    //width: 50%;
+  }
+  .columns7 {
+    grid-column: auto / span 7;
+    //width: 58.3%;
+  }
+  .columns8 {
+    grid-column: auto / span 8;
+    //width: 66.6%;
+  }
+  .columns9 {
+    grid-column: auto / span 9;
+    //width: 75%;
+  }
+  .columns10 {
+    grid-column: auto / span 10;
+    //width: 83.3%;
+  }
+  .columns11 {
+    grid-column: auto / span 11;
+    //width: 91.6%;
+  }
 
 }
 
@@ -168,11 +215,16 @@
   input[type='checkbox'],
   input[type=text] {
     line-height: 1.2;
-    margin: 0 0.5rem 0.5rem 0.5rem;
+    margin: 0 0.5rem 0.5rem 0;
 
-    &:first-child {
-      margin-left : 0;
+    @include breakpoint(medium) {
+      margin-left: 0.5rem;
+
+      &:first-child {
+        margin-left : 0;
+      }
     }
+
   }
 
 

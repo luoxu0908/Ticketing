@@ -122,61 +122,6 @@ $(function(){
     return false;
   });
 
-  function mainMenuToggle() {
-    console.log('mainMenuToggle');
-    var mainMenuContainer = $('#mainMenuContainer');
-
-    if (Foundation.MediaQuery.current == 'small')
-    {
-      var position = mainMenuContainer.offset();
-      console.log(position.left );
-      if(position.left < 0) {
-        console.log('slideout');
-        mainMenuContainer.animate({
-          left:'0'
-        },350);
-      }
-      else {
-        console.log('slidein');
-        mainMenuContainer.animate({
-          left:'-100%'
-        },350);
-      }
-    }
-    else {
-      if(mainMenuContainer.is(':visible')) {
-        console.log('slideup');
-        mainMenuContainer.slideUp();
-      }
-      else {
-        console.log('slidedown');
-        mainMenuContainer.slideDown();
-      }
-    }
-  }
-
-  $('#mainMenu .module a').click(function() {
-    var targetId = $(this).data('menu');
-    var targetObj = $('#moduleMenu-'+targetId);
-
-    if (Foundation.MediaQuery.current == 'small')
-    {
-      if (targetObj.find('li').length > 1) {
-        $('.module').hide();
-        $('.moduleMenu').hide();
-        targetObj.show();
-      }
-      else {
-        window.location.href = $(this).prop('href');
-      }
-    }
-    else {
-      $('.moduleMenu').hide();
-      targetObj.show();
-    }
-    return false;
-  });
-
   $('.tabBoxButtonClose,.tabBoxButtonSubmit, .tabBoxContent .close-button').click(function(){
     var targetRef = $(this).parents('.tabBoxContent');
     $(targetRef).hide();
@@ -313,6 +258,7 @@ $(function(){
     $('#searchForm').submit();
     return false;
   });
+ loadMenu();
 
 });//onready
 
@@ -346,7 +292,7 @@ function GetBasicInformation(personID) {
       Cookies.remove('appCookie');
       document.location.reload();
     }
-  })
+  });
 }
 
 function getCookie(cookie, cname) {
@@ -391,6 +337,105 @@ function resizeScreenSetup() {
   }
 
 }
+var menu = [];
+function loadMenu() {
+  var data = {};
+  $.ajax({
+    url: apiSrc+"BCMain/Sec1.Menu.json",
+    method: "POST",
+    dataType: "json",
+    xhrFields: {withCredentials: true},
+    data: {
+      'data': JSON.stringify(data),
+      'WebPartKey':WebPartVal,
+      'ReqGUID': getGUID()
+    },
+    success: function(data){
+      if ((data) && (data.d.RetData.Tbl.Rows.length > 0)) {
+        var menus = data.d.RetData.Tbl.Rows;
+        //var moduleRegex = /(.+)\\/;
+        var moduleItemRegex = /\\(.+)/;
+        var mainMenuContainer = $('#mainMenu');
+        mainMenuContainer.html('');
+        var module;
+        var moduleMenu;
+        var moduleName;
+        var moduleNameOriginal;
+
+        module = $('<ul class="module"></ul>');
+        mainMenuContainer.append(module);
+        for (var i =0; i < menus.length; i++) {
+          var menuObj = menus[i];
+
+          //main menu module
+          if (menuObj.MenuName.indexOf("\\") <= -1 && menu.indexOf(menuObj.MenuName) <= -1 && menuObj.MenuType.toLowerCase() == 'text') {
+            moduleNameOriginal = menuObj.MenuName;
+              menu.push(moduleNameOriginal);
+              moduleName = moduleNameOriginal.replace(/[^A-Za-z0-9]/g,'');
+
+              moduleMenu = $('<ul id="moduleMenu-'+ moduleName +'" class="moduleMenu"><li><a href="'+menuObj.RelativeURL+'" target="'+menuObj.TargetFrame+'" data-sort-key="'+menuObj.SortKey+'" >'+moduleNameOriginal+'</a></li></ul>');
+              console.log('menuObj.RelativeURL:' + menuObj.RelativeURL);
+              var moduleItem = $('<li><a href="/'+menuObj.RelativeURL+'/" data-menu="'+moduleName+'" data-sort-key="'+menuObj.SortKey+'" >'+moduleNameOriginal+'</a></li>');
+              module.append(moduleItem);
+              mainMenuContainer.append(moduleMenu);
+          }
+          else {
+            moduleMenu = $('#moduleMenu-'+moduleName);
+          }
+
+          var moduleItemName = menuObj.MenuName.match(moduleItemRegex);
+          if (moduleItemName != null) {
+            //console.log(moduleItemName[1]);
+            //console.log(apiSrc.substr(0,apiSrc.length-1));
+
+            var moduleMenuItem = $('<li><a href="'+ (( /\/$/.test(apiSrc) ) ? apiSrc.substr(0,apiSrc.length-1) : apiSrc ) + menuObj.RelativeURL +'" target="'+menuObj.TargetFrame+'" data-sort-key="'+menuObj.SortKey+'" >'+moduleItemName[1]+'</a></li>');
+            //console.log(moduleMenu);
+            moduleMenu.append(moduleMenuItem);
+          }
+        }
+        //console.log(menu);
+        //console.log($('#mainMenu .module a').length);
+        $('#mainMenu .module a').click(function() {
+          var targetId = $(this).data('menu');
+          var targetObj = $('#moduleMenu-'+targetId);
+          //console.log(targetObj.length);
+          if (Foundation.MediaQuery.current == 'small')
+          {
+            if (targetObj.find('li').length > 1) {
+              $('.module').hide();
+              $('.moduleMenu').hide();
+              targetObj.show();
+            }
+            else {
+              console.log('aaa');
+              window.location.href = $(this).prop('href');
+            }
+          }
+          else {
+            //console.log('aaa');
+            $('.moduleMenu').hide();
+            targetObj.show();
+          }
+          return false;
+        });//module Links
+
+        $('.moduleMenu').find('a').click(function() {
+          var thisObj = $(this);
+          var target = thisObj.prop('target');
+          var href = thisObj.attr('href');
+
+          mainMenuToggle();
+          loadPage(href,target);
+
+          return false;
+        });
+      }//rows
+    },//success
+    error: function(XMLHttpRequest, data, errorThrown){
+      console.log(errorThrown);
+    }
+  });
+}
 
 function initSubLinks() {
   var subLinksList = $('.subLinks');
@@ -414,6 +459,28 @@ function initSubLinks() {
   });
 }
 
+function loadPage(url,target,options) {
+  console.log('loadpage');
+  console.log('typeof:'+ typeof url);
+  console.log('url:'+url);
+
+  var mainContent = $('#mainContent');
+  var pageContent = $('#pageContent');
+  var pageIFrame = $('#pageIFrame');
+  //var contentWindow = mainContentContainer.find('#contentWindow');
+
+
+  target = 'iframe';//hardcode for testing
+  if (typeof target != 'undefined' && target.toLowerCase() == 'iframe') {
+    mainContent.addClass('layout-iframe');
+    pageIFrame.prop('src',url);
+  }
+  else {
+    mainContent.removeClass('layout-iframe');
+  }
+
+}
+
 function initSubLinksDropDown() {
   var subLinksList = $('.subLinks');
   var subLinks = subLinksList.find('li').find('a');
@@ -435,6 +502,39 @@ function initSubLinksDropDown() {
   }
 
   return subLinksDropDown;
+}
+
+function mainMenuToggle() {
+  console.log('mainMenuToggle');
+  var mainMenuContainer = $('#mainMenuContainer');
+
+  if (Foundation.MediaQuery.current == 'small')
+  {
+    var position = mainMenuContainer.offset();
+    console.log(position.left );
+    if(position.left < 0) {
+      console.log('slideout');
+      mainMenuContainer.animate({
+        left:'0'
+      },350);
+    }
+    else {
+      console.log('slidein');
+      mainMenuContainer.animate({
+        left:'-100%'
+      },350);
+    }
+  }
+  else {
+    if(mainMenuContainer.is(':visible')) {
+      console.log('slideup');
+      mainMenuContainer.slideUp();
+    }
+    else {
+      console.log('slidedown');
+      mainMenuContainer.slideDown();
+    }
+  }
 }
 
 function setupSubLinks(smallScreen) {

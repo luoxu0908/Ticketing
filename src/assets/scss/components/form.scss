@@ -12,7 +12,9 @@ form,.form, .formTextContainer {
       list-style: none;
     }
   }
-
+.breadcrumbs a {
+  display: inline;
+}
   .close-button {
     top: 0;
   }
@@ -28,6 +30,7 @@ form,.form, .formTextContainer {
   input[type=text],
   input[type=password],
   input[type=email],
+  input[type=Date],
   select,
   textarea {
     background: $complementary-light-color1;
@@ -76,12 +79,12 @@ form,.form, .formTextContainer {
   .dateGroup {
     @include formGroups();
 
-    input[placeholder=DD],
-    input[placeholder=MM] {
+    input[data-date-group=DD],
+    input[data-date-group=MM] {
       text-align: center;
       width: 60px;
     }
-    input[placeholder=YYYY] {
+    input[data-date-group=YYYY] {
       text-align: center;
       width: 100px;
     }
@@ -116,6 +119,7 @@ form,.form, .formTextContainer {
 
   .buttonsGroup {
     display: flex;
+
     justify-content: space-between;
   }
 .scoreForm {
@@ -179,7 +183,9 @@ form,.form, .formTextContainer {
 
 
 }
-
+.spanCss{
+  color: red;
+}
 @include breakpoint(medium) {
   form,.form, .formTextContainer {
     .radioGroup,
