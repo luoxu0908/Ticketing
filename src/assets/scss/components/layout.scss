@@ -96,7 +96,8 @@ html, body {
 
 @include breakpoint(medium) {
 
-  #mainContent {
+  #mainContent,
+  #mainContent.layout-column-1 {
     grid-template-areas:
     'tt tt tt tt tt tt tt tt tt tt pf pf'
     'cc cc cc cc cc cc cc cc cc cc cc cc';

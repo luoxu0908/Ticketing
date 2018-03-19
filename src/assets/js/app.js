@@ -485,36 +485,36 @@ function loadPage(url,target,options) {
   var pageLayout;
   var pageSubLinks;
   var pageSideBar;
+  var pageContentWrapper;
+  var queryString;
+  var currentPage = false;
 
-  target = 'new';//hardcode for testing
-  if (typeof target != 'undefined' && target.toLowerCase() != 'new') {
-    mainContent.removeClass('layout-iframe');
-    mainContent.addClass('layout-iframe');
-    pageIFrame.prop('src',url);
+
+  if (url == 'currentPage' || url.trim() == '') {
+    url = location.pathname;
+    queryString = QueryStringToJSON();
+    currentPage = true;
+    if (url == '' || url == '/') {
+      url = '/index.html';
+    }
   }
   else {
-    mainContent.removeClass('layout-iframe');
+    var temp = url.match(/\?.+/);
+    queryString = QueryStringToJSON(temp[0].substring(1));
+  }
 
-    var pageTitle;
-    var pageLayout;
-    var pageSubLinks;
-    var pageSideBar;
-    var pageContentWrapper;
-    var queryString;
+  pageTitle = queryString['page-title'];
+  pageLayout = queryString['page-layout'];
+  pageSubLinks = queryString['page-sublinks'];
+  pageSideBar = queryString['page-sidebar'];
 
-    if(url == 'currentPage' || url.trim() == '') {
-      url = location.pathname;
+  if (currentPage && typeof pageLayout == 'undefined')
+    pageLayout = 'layout-column-1';
 
-      if (url == '' || url == '/') {
-        url = '/index.html'
-      }
+  mainContent.removeClass('');
 
-
-
-
-    }
-    queryString = QueryStringToJSON();
-    //pageContent.load(location.pathname);
+  //target = 'new';//hardcode for testing
+  if (typeof pageLayout != 'undefined' && pageLayout.trim().length) {
 
     pageContent.load(
       url + ' #pageContentWrapper',
@@ -534,11 +534,9 @@ function loadPage(url,target,options) {
           pageSideBar = queryString['page-sidebar'] ||pageContentWrapper.data('page-sidebar');
 
           pageContentWrapper.find('h1#pageTitle').remove();
-          mainContent.find('#pageTitle').html(pageTitle);
         }
-        else {
 
-        }
+        mainContent.find('#pageTitle').html(pageTitle);
 
         if (url != '/index.html') {
           pageTitle += ' - Bizcube';
@@ -548,8 +546,12 @@ function loadPage(url,target,options) {
         }
         document.title = pageTitle;
         mainContent.addClass(pageLayout);
-      });
-
+      });//load
+  }
+  else {
+    mainContent.removeClass();
+    mainContent.addClass('layout-iframe');
+    pageIFrame.prop('src',url);
   }
 }
 
@@ -823,8 +825,8 @@ function formSectionsInit() {
 
 }//formSectionsInit
 
-function QueryStringToJSON() {
-    var pairs = location.search.slice(1).split('&');
+function QueryStringToJSON(src) {
+    var pairs = src || location.search.slice(1).split('&');
 
     var result = {};
     pairs.forEach(function(pair) {
@@ -835,7 +837,6 @@ function QueryStringToJSON() {
     return JSON.parse(JSON.stringify(result));
 }
 
-var query_string = QueryStringToJSON();
 function objectify(array) {//serialize data function
   var returnArray = {};
   for (var i = 0; i < array.length; i++){
