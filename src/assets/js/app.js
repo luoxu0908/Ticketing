@@ -11,9 +11,10 @@ import Foundation from 'foundation-sites';
 // If you want to pick and choose which modules to include, comment out the above and uncomment
 // the line below
 //import './lib/foundation-explicit-pieces';
+Foundation.Abide.defaults.patterns['NRIC'] = /^[A-Z]{1}[0-9]{7}[A-Z]{1}$/;
+Foundation.Abide.defaults.patterns['Mobile'] = /^\+{0,1}\d{8,}$/;
 
 $(document).foundation();
-
 var appCookie, igwasCookie, WebPartVal, guid;
 
 //document ready
@@ -258,7 +259,10 @@ $(function(){
     $('#searchForm').submit();
     return false;
   });
- loadMenu();
+
+  formOthersInit();
+  formSectionsInit();
+  loadMenu();
 
 });//onready
 
@@ -504,6 +508,7 @@ function initSubLinksDropDown() {
   return subLinksDropDown;
 }
 
+
 function mainMenuToggle() {
   console.log('mainMenuToggle');
   var mainMenuContainer = $('#mainMenuContainer');
@@ -553,4 +558,159 @@ function setupSubLinks(smallScreen) {
     subLinksList.show();
     subLinksDropDown.hide();
   } //revert
+}
+
+function formOthersInit() {
+  $('[data-form-other-text=true]').prop('disabled','disabled');
+  $('[data-form-other]').each(function(){
+    var thisObj = $(this);
+    var targetVal = thisObj.data('form-other');
+    var targetObj = $('#' + targetVal);
+    var target = $('#' + targetVal);
+
+
+    if (thisObj.prop('type')=='checkbox') {
+      //console.log('checkbox');
+      thisObj.click(function() {
+        if (thisObj.is(':checked')) {
+          targetObj.prop('disabled','');
+        }
+        else {
+          targetObj.val('');
+          targetObj.prop('disabled','disabled');
+        }
+      });
+    }
+    else if (thisObj.prop('type') == 'radio') {
+      var radioName = thisObj.prop('name');
+      var thisVal = thisObj.val();
+      var radioGroup = $('[name='+radioName+']');
+
+      radioGroup.click(function() {
+
+        if ($('[name='+radioName+']:checked').val() == thisVal) {
+          targetObj.prop('disabled','');
+        }
+        else {
+          targetObj.val('');
+          targetObj.prop('disabled','disabled');
+        }
+      });
+    }
+    else if (thisObj.is('select')) {
+      thisObj.change(function() {
+        var thisVal = thisObj.val();
+        //console.log('select');
+        if (thisVal.toLowerCase()=='other' || thisVal.toLowerCase()=='others') {
+          targetObj.prop('disabled','');
+        }
+        else {
+          targetObj.val('');
+          targetObj.prop('disabled','disabled');
+        }
+      });
+    }
+  });
+}
+
+function formSectionsInit() {
+  $('form.formSection').each(function() {
+    var form = $(this);
+    var fieldsets = form.find('fieldset');
+    var breadcrumbs = form.find('.breadcrumbs');
+    var footer = form.find('footer.buttonsGroup');
+
+    form.data('current-form-index',0);
+
+    //set breadcrumbs and hide fieldsets
+    breadcrumbs.html('');
+
+    fieldsets.each(function(index) {
+
+      var fieldset = $(this);
+      fieldset.data('fieldset-index',index);
+      breadcrumbs.append('<li><a href="#'+fieldset.prop('id')+'" data-fieldset-index="'+index+'">'+fieldset.find('h2').html()+'</a>').find('li:eq(0) a').addClass('active');
+
+      if(index>0) {
+        fieldset.hide();
+      }
+    });
+
+    breadcrumbs.find('a').click(function() {
+      var thisObj = $(this);
+      var currentIndex = parseInt(form.data('current-form-index'));
+      if (formSectionValidate(form) ) {
+        loadFormSection(thisObj.data('fieldset-index'));
+      }
+      return false;
+    });
+
+    //set buttons
+    footer.find('#previous').hide();
+    footer.find('[class*=submit]').hide();
+
+    footer.find('#previous').click(function() {
+      var currentIndex = parseInt(form.data('current-form-index'));
+      var targetIndex = currentIndex-1;
+
+      if (targetIndex <0) targetIndex=0;
+
+      if (formSectionValidate(form) ) {
+        loadFormSection(targetIndex);
+      }
+      return false;
+    });
+    footer.find('#next').click(function() {
+          var targetIndex = parseInt(form.data('current-form-index')) + 1;
+          if (targetIndex >= fieldsets.length) targetIndex=fieldsets.length-1;
+          loadFormSection(targetIndex);
+    });
+
+
+
+    function formSectionValidate(form) {
+      var result=0;
+      $(form).find('fieldset:hidden :input').attr('disabled','disabled');
+      $(form).on('formvalid.zf.abide',function(){result=1;});
+      $(form).foundation('validateForm');
+      $(form).find('fieldset :input').removeAttr('disabled');
+      return result;
+    }
+
+    function loadFormSection(index) {
+      //set index
+      form.data('current-form-index', index);
+      var targetIndex = index;
+
+
+      //set breadcrumbs
+
+      breadcrumbs.find('a').removeClass('active').filter(function() {
+        return ($(this).data('fieldset-index') == targetIndex);
+      }).addClass('active');
+
+      //set fieldset`
+      fieldsets.hide().filter(function() {
+        return ($(this).data('fieldset-index') == targetIndex);
+      }).show();
+
+      if (index == 0) {
+        footer.find('#previous').hide();
+        footer.find('#next').show();
+        footer.find('[class*=submit]').hide();
+      }
+      else if (index == fieldsets.length-1) {
+        footer.find('#previous').show();
+        footer.find('#next').hide();
+        footer.find('[class*=submit]').show();
+      }
+      else {
+        footer.find('#previous').show();
+        footer.find('#next').show();
+        footer.find('[class*=submit]').hide();
+      }
+
+      //set footer
+    }
+  });
 }
