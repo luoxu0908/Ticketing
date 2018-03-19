@@ -173,13 +173,18 @@ function GetBasicInformation(personID) {
           getPointofContact(personID);
         }else{
           showIndProfile();
-          $('.indName').html(personalInfo.DisplayName);
+          $('.indFirstName').html(personalInfo.FirstName);
+          $('.indLastName').html(personalInfo.LastName);
+          $('.indDisplayName').html(personalInfo.DisplayName);
           $('.indNRIC').html(personalInfo.EntityKey);
           $('.indTel').html(personalInfo.Tel1);
           $('.indMobile').html(personalInfo.Mobile);
           $('.indEmail').html(personalInfo.Email1);
           $('.indAddress').html(personalInfo.FullAddress);
-          $('#name').val(personalInfo.DisplayName);
+          $('#firstName').val(personalInfo.FirstName);
+          $('#lastName').val(personalInfo.LastName);
+          $('#displayName').val(personalInfo.DisplayName);
+          $('#entityKey').val(personalInfo.EntityKey);
           $('#tel1').val(personalInfo.Tel1);
           $('#mobile').val(personalInfo.Mobile);
           $('#email').val(personalInfo.Email1);
@@ -193,6 +198,9 @@ function GetBasicInformation(personID) {
           $('#building').val(personalInfo.AddrP4);
         }
       }
+      else {
+        alert(data.d.RetMsg);
+      }
     },
     error: function(XMLHttpRequest, data, errorThrown){
       alert("Error: " + errorThrown);
@@ -205,8 +213,11 @@ function GetBasicInformation(personID) {
 }
 
 function updateIndBasic(PersonID){
-  var name, tel1, mobile, email, country, postalCode, city, state, blockNo, street, unit, building;
-  name = $('#name').val();
+  var firstName, lastName, displayName, entityKey, tel1, mobile, email, country, postalCode, city, state, blockNo, street, unit, building;
+  firstName = $('#firstName').val();
+  lastName = $('#lastName').val();
+  displayName = $('#displayName').val();
+  entityKey = $('#entityKey').val();
   tel1 = $('#tel1').val();
   mobile = $('#mobile').val();
   email = $('#email').val();
@@ -232,7 +243,7 @@ function updateIndBasic(PersonID){
     return false;
   }
 
-  var data = { "PID": PersonID, "name": name, "tel1": tel1, "mobile": mobile, "email": email, "country": country, "postalCode": postalCode, "city": city, "state": state, "blockNo": blockNo, "street": street, "unit": unit, "building": building };
+  var data = { "PID": PersonID, "firstName": firstName, "lastName": lastName, "displayName": displayName, "entityKey": entityKey, "tel1": tel1, "mobile": mobile, "email": email, "country": country, "postalCode": postalCode, "city": city, "state": state, "blockNo": blockNo, "street": street, "unit": unit, "building": building };
   $.ajax({
     url: apiSrc+"BCMain/iCtc1.UpdateIndBasic.json",
     method: "POST",
@@ -401,14 +412,19 @@ function showOrgProfile(){
 function showIndProfile(){
   var indProfile = '';
   indProfile = '<div class="toggleContent"><div id="basicContent" class="grid-container form fluid">'+
-  '<div class="grid-x grid-padding-x"> <div class="cell small-12 medium-4"> <div class="labelText"> Name </div> <div class="text indName"> </div> </div>'+
+  '<div class="grid-x grid-padding-x"> <div class="cell small-12 medium-4"> <div class="labelText"> First Name </div> <div class="text indFirstName"> </div> </div>'+
+  '<div class="cell small-12 medium-4"> <div class="labelText"> Last Name </div> <div class="text indLastName"> </div> </div> </div>'+
+  '<div class="grid-x grid-padding-x"> <div class="cell small-12 medium-4"> <div class="labelText"> Display Name </div> <div class="text indDisplayName"> </div> </div>'+
   '<div class="cell small-12 medium-4"> <div class="labelText"> NRIC </div> <div class="text indNRIC"> </div> </div> </div>'+
   '<div class="grid-x grid-padding-x"> <div class="cell small-12 medium-4"> <div class="labelText"> Contact No (O) </div> <div class="text indTel"> </div> </div>'+
   '<div class="cell small-12 medium-4"> <div class="labelText"> Contact No (M) </div> <div class="text indMobile"> </div> </div>'+
   '<div class="cell small-12 medium-4"> <div class="labelText"> Email </div> <div class="text indEmail"> </div> </div> </div>'+
   '<div class="grid-x grid-padding-x"> <div class="cell"> <div class="labelText"> Address </div> <div class="text indAddress"> </div> </div> </div> </div>'+
   '<form id="basicForm" class="grid-container fluid">'+
-  '<div class="grid-x grid-padding-x"> <div class="cell"> <label for="name"> Name </label> <input type="text" id="name"/> </div> </div>'+
+  '<div class="grid-x grid-padding-x"> <div class="cell small-12 medium-4"> <label for="firstName"> First Name </label> <input type="text" id="firstName"/> </div>'+
+  '<div class="cell small-12 medium-4"> <label for="lastName"> Last Name </label> <input type="text" id="lastName"/> </div> </div>'+
+  '<div class="grid-x grid-padding-x"> <div class="cell small-12 medium-4"> <label for="displayName"> Display Name </label> <input type="text" id="displayName"/> </div>'+
+  '<div class="cell small-12 medium-4"> <label for="entityKey"> NRIC </label> <input type="text" id="entityKey"/> </div> </div>'+
   '<div class="grid-x grid-padding-x"> <div class="cell small-12 medium-4"> <label for="tel1"> Contact No (O) </label> <input type="text" id="tel1"/> </div>'+
   '<div class="cell small-12 medium-4"> <label for="mobile"> Contact No (M) </label> <input type="text" id="mobile"/> </div>'+
   '<div class="cell small-12 medium-4"> <label for="email"> Email </label> <input type="text" id="email"/> </div> </div>'+

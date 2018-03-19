@@ -426,9 +426,8 @@ function addNewPackage(){
 }
 
 function addNewUser(){
-  var firstName, lastName, entityKey, mobile, email, country, postalCode, city, state, block, street, unit, building, role, poc1Name, poc1Contact, poc1Email, poc1Designation, poc1Department, poc2Name, poc2Contact, poc2Email, poc2Designation, poc2Department;
-  firstName = $('#newUserForm #firstName').val();
-  lastName = $('#newUserForm #lastName').val();
+  var displayName, entityKey, mobile, email, country, postalCode, city, state, block, street, unit, building, role, poc1Name, poc1Contact, poc1Email, poc1Designation, poc1Department, poc2Name, poc2Contact, poc2Email, poc2Designation, poc2Department;
+  displayName = $('#newUserForm #displayName').val();
   entityKey = $('#newUserForm #entityKey').val();
   mobile =  $('#newUserForm #contact').val();
   email = $('#newUserForm #email').val();
@@ -452,7 +451,7 @@ function addNewUser(){
   poc2Designation = $('#newUserForm #poc2Designation').val();
   poc2Department = $('#newUserForm #poc2Department').val();
 
-  if (firstName == '' || lastName == '' || entityKey == '' || mobile == '' || email == '' || role == ''){
+  if (displayName == '' || entityKey == '' || mobile == '' || email == '' || role == ''){
     alert('Please fill in all mandatory fields!');
     return false;
   }
@@ -464,7 +463,7 @@ function addNewUser(){
     return false;
   }
 
-  var data = {'firstName':firstName, 'lastName':lastName, 'entityKey':entityKey, 'mobile':mobile, 'email':email, 'country':country, 'postalCode':postalCode, 'city':city, 'state':state, 'block':block, 'street':street, 'unit':unit, 'building':building, 'role':role, 'poc1Name':poc1Name, 'poc1Contact':poc1Contact, 'poc1Email':poc1Email, 'poc1Designation':poc1Designation, 'poc1Department':poc1Department, 'poc2Name':poc2Name, 'poc2Contact':poc2Contact, 'poc2Email':poc2Email, 'poc2Designation':poc2Designation, 'poc2Department':poc2Department};
+  var data = {'displayName':displayName, 'entityKey':entityKey, 'mobile':mobile, 'email':email, 'country':country, 'postalCode':postalCode, 'city':city, 'state':state, 'block':block, 'street':street, 'unit':unit, 'building':building, 'role':role, 'poc1Name':poc1Name, 'poc1Contact':poc1Contact, 'poc1Email':poc1Email, 'poc1Designation':poc1Designation, 'poc1Department':poc1Department, 'poc2Name':poc2Name, 'poc2Contact':poc2Contact, 'poc2Email':poc2Email, 'poc2Designation':poc2Designation, 'poc2Department':poc2Department};
 
   $.ajax({
     url: apiSrc+"BCMain/iCtc1.AddNewUser1.json",
