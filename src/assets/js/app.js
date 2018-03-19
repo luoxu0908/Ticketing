@@ -11,10 +11,9 @@ import Foundation from 'foundation-sites';
 // If you want to pick and choose which modules to include, comment out the above and uncomment
 // the line below
 //import './lib/foundation-explicit-pieces';
-Foundation.Abide.defaults.patterns['NRIC'] = /^[A-Z]{1}[0-9]{7}[A-Z]{1}$/;
-Foundation.Abide.defaults.patterns['Mobile'] = /^\+{0,1}\d{8,}$/;
 
 $(document).foundation();
+
 var appCookie, igwasCookie, WebPartVal, guid;
 
 //document ready
@@ -259,7 +258,7 @@ $(function(){
     $('#searchForm').submit();
     return false;
   });
-  loadMenu();
+ loadMenu();
 
 });//onready
 
@@ -504,7 +503,6 @@ function initSubLinksDropDown() {
 
   return subLinksDropDown;
 }
-
 
 function mainMenuToggle() {
   console.log('mainMenuToggle');
