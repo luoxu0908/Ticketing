@@ -2,6 +2,7 @@ import $ from 'jquery';
 import Cookies from 'js-cookie';
 import whatInput from 'what-input';
 import Master from './lib/master';
+import SlickGrid from './lib/slickgrid';
 
 window.$ = $;
 window.Cookies = Cookies;
@@ -502,6 +503,7 @@ function loadPage(url,target,options) {
     var temp = url.match(/\?.+/);
     queryString = QueryStringToJSON(temp[0].substring(1));
   }
+  console.log('url:'+url);
 
   pageTitle = queryString['page-title'];
   pageLayout = queryString['page-layout'];
@@ -515,7 +517,7 @@ function loadPage(url,target,options) {
 
   //target = 'new';//hardcode for testing
   if (typeof pageLayout != 'undefined' && pageLayout.trim().length) {
-
+    console.log('loading '+url);
     pageContent.load(
       url + ' #pageContentWrapper',
       function( response, status, xhr ) {
