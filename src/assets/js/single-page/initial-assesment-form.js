@@ -1,3 +1,6 @@
+Foundation.Abide.defaults.patterns['NRIC'] = /^[A-Z]{1}[0-9]{7}[A-Z]{1}$/;
+Foundation.Abide.defaults.patterns['Mobile'] =/^\+{0,1}\d{8,}$/;
+$(document).foundation();
 $(function(){
   //get cookie & loginID
   var appCookie = Cookies.getJSON('appCookie'),
