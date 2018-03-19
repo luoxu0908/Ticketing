@@ -487,6 +487,7 @@ function loadPage(url,target,options) {
   var pageSideBar;
   var pageContentWrapper;
   var queryString;
+  var pageScript;
   var currentPage = false;
 
 
@@ -507,6 +508,7 @@ function loadPage(url,target,options) {
   pageLayout = queryString['page-layout'];
   pageSubLinks = queryString['page-sublinks'];
   pageSideBar = queryString['page-sidebar'];
+  pageScript = queryString['page-script'];
 
   if (currentPage && typeof pageLayout == 'undefined')
     pageLayout = 'layout-column-1';
@@ -532,6 +534,7 @@ function loadPage(url,target,options) {
           pageLayout = queryString['page-layout'] ||  pageContentWrapper.data('page-layout');
           pageSubLinks = queryString['page-sublinks'] || pageContentWrapper.data('page-sublinks');
           pageSideBar = queryString['page-sidebar'] ||pageContentWrapper.data('page-sidebar');
+          pageScript = queryString['page-script'] ||pageContentWrapper.data('page-script');
 
           pageContentWrapper.find('h1#pageTitle').remove();
         }
@@ -546,6 +549,17 @@ function loadPage(url,target,options) {
         }
         document.title = pageTitle;
         mainContent.addClass(pageLayout);
+
+        //load script
+        $.loadScript(pageScript, function(response, status, xhr){
+          if ( status == "error" ) {
+            var msg = "Sorry but there was an error: ";
+            $(this).html( msg + xhr.status + " " + xhr.statusText );
+            return;
+          }
+          //do something after loading script
+          console.log('load script');
+        });
       });//load
   }
   else {
@@ -843,4 +857,13 @@ function objectify(array) {//serialize data function
     returnArray[array[i]['name']] = array[i]['value'];
   }
   return returnArray;
+}
+
+$.loadScript = function (url, callback) {
+    $.ajax({
+        url: url,
+        dataType: 'script',
+        success: callback,
+        async: true
+    });
 }
