@@ -18,7 +18,7 @@ $(function(){
       NewUserName = $('#newUserName').val();
       Password = $('#newPassword').val();
       if (checkPassword()){
-        changeMyPwd(NewUserName, Password);
+        changeMyPwd(personID, NewUserName, Password);
       }
     }
   });
@@ -27,7 +27,7 @@ $(function(){
     NewUserName = $('#newUserName').val();
     Password = $('#newPassword').val();
     if (checkPassword()){
-      changeMyPwd(NewUserName, Password);
+      changeMyPwd(personID, NewUserName, Password);
     }
   });
 });//onready
@@ -119,10 +119,10 @@ function getPointofContact(PersonID){
   });
 };
 
-function changeMyPwd(Username, Password){
-  var data = { "Username": Username, "Password": Password };
+function changeMyPwd(PersonID, Username, Password){
+  var data = { "PID": PersonID, "Username": Username, "Password": Password };
   $.ajax({
-    url: apiSrc+"BCMain/iCtc1.ChangeUsernamePassword.json",
+    url: apiSrc+"BCMain/iCtc1.ChangeUsernamePasswordByPID.json",
     method: "POST",
     dataType: "json",
     xhrFields: { withCredentials: true },
@@ -130,7 +130,7 @@ function changeMyPwd(Username, Password){
             'WebPartKey':WebPartVal,
             'ReqGUID': getGUID() },
     success: function(data){
-      window.location = '/profile.html';
+      location.reload();
     },
     error: function(XMLHttpRequest, data, errorThrown){
       alert("Error: " + errorThrown);
