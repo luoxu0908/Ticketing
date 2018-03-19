@@ -12,7 +12,8 @@ import Foundation from 'foundation-sites';
 // If you want to pick and choose which modules to include, comment out the above and uncomment
 // the line below
 //import './lib/foundation-explicit-pieces';
-
+Foundation.Abide.defaults.patterns['NRIC'] = /^[A-Z]{1}[0-9]{7}[A-Z]{1}$/;
+Foundation.Abide.defaults.patterns['Mobile'] =/^\+{0,1}\d{8,}$/;
 $(document).foundation();
 
 var appCookie, igwasCookie, WebPartVal, guid;
@@ -244,8 +245,6 @@ $(function(){
 
 
 function pageInit() {
-  formOthersInit();
-  formSectionsInit();
   loadMenu();
   loadPage('currentPage','');
 
@@ -488,6 +487,7 @@ function loadPage(url,target,options) {
   var pageSideBar;
   var pageContentWrapper;
   var queryString;
+  var pageScript;
   var currentPage = false;
 
 
@@ -501,7 +501,10 @@ function loadPage(url,target,options) {
   }
   else {
     var temp = url.match(/\?.+/);
-    queryString = QueryStringToJSON(temp[0].substring(1));
+    if (temp != null)
+      queryString = QueryStringToJSON(temp[0].substring(1));
+    else
+      queryString = QueryStringToJSON('');
   }
   console.log('url:'+url);
 
@@ -509,6 +512,7 @@ function loadPage(url,target,options) {
   pageLayout = queryString['page-layout'];
   pageSubLinks = queryString['page-sublinks'];
   pageSideBar = queryString['page-sidebar'];
+  pageScript = queryString['page-script'];
 
   if (currentPage && typeof pageLayout == 'undefined')
     pageLayout = 'layout-column-1';
@@ -534,6 +538,7 @@ function loadPage(url,target,options) {
           pageLayout = queryString['page-layout'] ||  pageContentWrapper.data('page-layout');
           pageSubLinks = queryString['page-sublinks'] || pageContentWrapper.data('page-sublinks');
           pageSideBar = queryString['page-sidebar'] ||pageContentWrapper.data('page-sidebar');
+          pageScript = queryString['page-script'] ||pageContentWrapper.data('page-script');
 
           pageContentWrapper.find('h1#pageTitle').remove();
         }
@@ -548,6 +553,17 @@ function loadPage(url,target,options) {
         }
         document.title = pageTitle;
         mainContent.addClass(pageLayout);
+
+        //load script
+        $.loadScript(pageScript, function(response, status, xhr){
+          if ( status == "error" ) {
+            var msg = "Sorry but there was an error: ";
+            $(this).html( msg + xhr.status + " " + xhr.statusText );
+            return;
+          }
+          //do something after loading script
+          console.log('load script');
+        });
       });//load
   }
   else {
@@ -831,11 +847,10 @@ function QueryStringToJSON(src) {
     var pairs = src || location.search.slice(1).split('&');
 
     var result = {};
-    pairs.forEach(function(pair) {
-        pair = pair.split('=');
-        result[pair[0]] = decodeURIComponent(pair[1] || '');
-    });
-
+      for(var i = 0; i < pairs.length; i++) {
+          var pair = pairs[i].split('=');
+          result[pair[0]] = decodeURIComponent(pair[1] || '');
+      };
     return JSON.parse(JSON.stringify(result));
 }
 
@@ -845,4 +860,13 @@ function objectify(array) {//serialize data function
     returnArray[array[i]['name']] = array[i]['value'];
   }
   return returnArray;
+}
+
+$.loadScript = function (url, callback) {
+    $.ajax({
+        url: url,
+        dataType: 'script',
+        success: callback,
+        async: true
+    });
 }
