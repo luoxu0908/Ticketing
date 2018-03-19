@@ -1,0 +1,102 @@
+<form class="formSection" action="" method="" data-page-title="Assistive Device&Equipment Subsidy_Appln Form" data-page-layout="" id="pageContentWrapper" data-page-script="/assets/js/single-page/AssistiveDeviceEquipmentSubsidy_ApplnForm.js" data-abide novalidate>
+  <div data-abide-error class="alert callout" style="display: none;">
+    <p><i class="fi-alert"></i> There are some errors in your form.</p>
+  </div>
+  <ul class="breadcrumbs">
+    <li class="active"><a href="#">Section A</a></li>
+    <li class=""><a href="#">Section B</a></li>
+    <li class=""><a href="#">Section C</a></li>
+    <li class=""><a href="#">Section D</a></li>
+    <li class=""><a href="#">Section E</a></li>
+  </ul>
+  <fieldset id="SectionA">
+    <h2>Section A</h2>
+    <p>Main applicant of subsidy schemes - person with muscular dystophy (PMD)</p>
+    <div>
+      <div class="labelText">I have a valid MDAS Ordinary Membership <span class="spanCss">*</span></div>
+      <div class="radioGroup">
+        <label><input type="radio" name="sectionA_ordinaryMembership" id="sectionA_ordinaryMembershipYes" value="1" required> Yes</label>
+        <label><input type="radio" name="sectionA_ordinaryMembership" id="sectionA_ordinaryMembershipNo" value="0"> No</label>
+        <div><small><i>(If No, please complete Section B)</i></small></div>
+      </div>
+    </div>
+    <h3>Name (as in NRIC)</h3>
+    <div>
+      <label for="sectionA_FamilyName">Family/Surname</label>
+      <input type="text" id="sectionA_FamilyName" name="sectionA_FamilyName" />
+    </div>
+    <div>
+      <label for="sectionA_GivenName">Given Name</label>
+      <input type="text" id="sectionA_GivenName" name="sectionA_GivenName" />
+    </div>
+    <div>
+      <label for="sectionA_DisplayName">Display Name<span class="spanCss">*</span></label>
+      <input type="text" id="sectionA_DisplayName" name="sectionA_DisplayName" required/>
+    </div>
+    <div>
+      <label for="sectionA_nric">NRIC / Birth Cert No.<span class="spanCss">*</span></label>
+      <input type="text" id="sectionA_nric" name="sectionA_nric" pattern="NRIC" required value="" />
+      <span class="form-error">Invalid NRIC</span>
+    </div>
+    <div>
+      <div class="labelText">Date of Birth<span class="spanCss">*</span></div>
+      <input type="date" id="sectionA_Birth" name="sectionA_Birth" required/>
+    </div>
+    <h3>Contact No.</h3>
+    <div>
+      <label for="sectionA_email">Email Address</label>
+      <input type="text" id="sectionA_email" name="sectionA_email" pattern="email"/>
+    </div>
+    <div>
+      <label for="sectionA_Mobile">Mobile</label>
+      <input type="text" id="sectionA_Mobile" name="sectionA_Mobile" pattern="Mobile" />
+    </div>
+    <div>
+      <label for="sectionA_Home">Home</label>
+      <input type="text" id="sectionA_Home" name="sectionA_Home" pattern="Mobile" />
+    </div>
+    <div>
+      <label for="sectionA_Office">Office</label>
+      <input type="text" id="sectionA_Office " name="sectionA_Office " pattern="Mobile" />
+    </div>
+  </fieldset>
+  <fieldset id="SectionB" style="display:none">
+    <h2>Section B</h2>
+    <p>Particulars of ordinary membership holder (If main applicant is not a member)</p>
+    <h3>Name (as in NRIC)</h3>
+    <div>
+      <label for="sectionB_FamilyName">Family/Surname</label>
+      <input type="text" id="sectionB_FamilyName" name="sectionB_FamilyName" />
+    </div>
+    <div>
+      <label for="sectionB_GivenName">Given Name</label>
+      <input type="text" id="sectionB_GivenName" name="sectionB_GivenName" />
+    </div>
+    <div>
+      <label for="sectionB_DisplayName">Display Name</label>
+      <input type="text" id="sectionB_DisplayName" name="sectionB_DisplayName" />
+    </div>
+    <div>
+      <label for="sectionB_nric">NRIC / Birth Cert No.</label>
+      <input type="text" id="sectionB_nric" name="sectionB_nric" />
+    </div>
+    <div>
+      <div class="labelText">Date of Birth</div>
+      <input type="Date" id="sectionB_Birth" name="sectionB_Birth" />
+    </div>
+  </fieldset>
+  <fieldset id="SectionC" style="display:none">
+  <h2>Section C</h2>
+  </fieldset>
+  <fieldset id="SectionD" style="display:none">
+  <h2>Section D</h2>
+  </fieldset>
+  <fieldset id="SectionE" style="display:none">
+  <h2>Section E</h2>
+  </fieldset>
+  <footer class="buttonsGroup">
+    <button type="button" id="previous" class="buttonNeutral">Previous</button>
+    <button type="button" id="next">Next</button>
+    <button type="button" id="submit" class="submit">Submit</button>
+  </footer>
+</form>
