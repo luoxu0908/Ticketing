@@ -1,3 +1,7 @@
+Foundation.Abide.defaults.patterns['NRIC'] = /^[A-Z]{1}[0-9]{7}[A-Z]{1}$/;
+Foundation.Abide.defaults.patterns['Mobile'] =/^\+{0,1}\d{8,}$/;
+$(document).foundation();
+
 var moveToSectionC=0;
 $(function() {
   //get cookie & loginID
@@ -14,11 +18,11 @@ formSectionsInit();
 //Submit data
 function SaveDeclaretion() {
 
-  if (!formSectionValidate($('#DeclaretionFrom'),1)) {
+  if (!formSectionValidate($('#pageContentWrapper'),1)) {
     return false;
   }
   var data = {};
-  $('#DeclaretionFrom :input,select').each(function() {
+  $('#pageContentWrapper :input,select').each(function() {
     var type = $(this).attr('type'),
       name = $(this).attr('name'),
       val = $(this).val();
@@ -126,6 +130,7 @@ function GetRelationship(sel) {
 
 
 function formSectionsInit() {
+
   $('form.formSection').each(function() {
     var form = $(this);
     var fieldsets = form.find('fieldset');
@@ -149,6 +154,7 @@ function formSectionsInit() {
     breadcrumbs.find('a').click(function() {
       var thisObj = $(this);
       var currentIndex = parseInt(form.data('current-form-index'));
+
       if (formSectionValidate(form,0) ) {
         loadFormSection(thisObj.data('fieldset-index'),3);
       }
@@ -172,6 +178,7 @@ function formSectionsInit() {
       return false;
     });
     footer.find('#next').click(function() {
+
         if (formSectionValidate(form,0)) {
           var targetIndex = parseInt(form.data('current-form-index')) + 1;
           if (targetIndex >= fieldsets.length) targetIndex=fieldsets.length-1;
@@ -222,6 +229,7 @@ function formSectionsInit() {
 }
 
 function formSectionValidate(form,isAll) {
+
   var result=0;
   moveToSectionC=$('[name=sectionA_ordinaryMembership]:checked').val();
   if (!isAll) {
@@ -231,7 +239,9 @@ function formSectionValidate(form,isAll) {
     $(form).find('fieldset:eq(1) :input,select').attr('disabled','disabled');
   }
   $(form).on('formvalid.zf.abide',function(){result=1;});
+
   $(form).foundation('validateForm');
+
   if (moveToSectionC==1) {
      $(form).find('fieldset:not(:eq(1)) :input,select').removeAttr('disabled');
   }

@@ -245,7 +245,7 @@ $(function(){
 
 function pageInit() {
   loadMenu();
-  //loadPage('currentPage','');
+  loadPage('currentPage','');
 
   //search
   //init search form and subLinksDropDown for mobile
@@ -484,36 +484,41 @@ function loadPage(url,target,options) {
   var pageLayout;
   var pageSubLinks;
   var pageSideBar;
+  var pageContentWrapper;
+  var queryString;
+  var pageScript;
+  var currentPage = false;
 
-  target = 'new';//hardcode for testing
-  if (typeof target != 'undefined' && target.toLowerCase() != 'new') {
-    mainContent.removeClass('layout-iframe');
-    mainContent.addClass('layout-iframe');
-    pageIFrame.prop('src',url);
+
+  if (url == 'currentPage' || url.trim() == '') {
+    url = location.pathname;
+    queryString = QueryStringToJSON();
+    currentPage = true;
+    if (url == '' || url == '/') {
+      url = '/index.html';
+    }
   }
   else {
-    mainContent.removeClass('layout-iframe');
+    var temp = url.match(/\?.+/);
+    if (temp != null)
+      queryString = QueryStringToJSON(temp[0].substring(1));
+    else
+      queryString = QueryStringToJSON('');
+  }
 
-    var pageTitle;
-    var pageLayout;
-    var pageSubLinks;
-    var pageSideBar;
-    var pageContentWrapper;
-    var queryString;
+  pageTitle = queryString['page-title'];
+  pageLayout = queryString['page-layout'];
+  pageSubLinks = queryString['page-sublinks'];
+  pageSideBar = queryString['page-sidebar'];
+  pageScript = queryString['page-script'];
 
-    if(url == 'currentPage' || url.trim() == '') {
-      url = location.pathname;
+  if (currentPage && typeof pageLayout == 'undefined')
+    pageLayout = 'layout-column-1';
 
-      if (url == '' || url == '/') {
-        url = '/index.html'
-      }
+  mainContent.removeClass('');
 
-
-
-
-    }
-    queryString = QueryStringToJSON();
-    //pageContent.load(location.pathname);
+  //target = 'new';//hardcode for testing
+  if (typeof pageLayout != 'undefined' && pageLayout.trim().length) {
 
     pageContent.load(
       url + ' #pageContentWrapper',
@@ -531,13 +536,12 @@ function loadPage(url,target,options) {
           pageLayout = queryString['page-layout'] ||  pageContentWrapper.data('page-layout');
           pageSubLinks = queryString['page-sublinks'] || pageContentWrapper.data('page-sublinks');
           pageSideBar = queryString['page-sidebar'] ||pageContentWrapper.data('page-sidebar');
+          pageScript = queryString['page-script'] ||pageContentWrapper.data('page-script');
 
           pageContentWrapper.find('h1#pageTitle').remove();
-          mainContent.find('#pageTitle').html(pageTitle);
         }
-        else {
 
-        }
+        mainContent.find('#pageTitle').html(pageTitle);
 
         if (url != '/index.html') {
           pageTitle += ' - Bizcube';
@@ -547,8 +551,23 @@ function loadPage(url,target,options) {
         }
         document.title = pageTitle;
         mainContent.addClass(pageLayout);
-      });
 
+        //load script
+        $.loadScript(pageScript, function(response, status, xhr){
+          if ( status == "error" ) {
+            var msg = "Sorry but there was an error: ";
+            $(this).html( msg + xhr.status + " " + xhr.statusText );
+            return;
+          }
+          //do something after loading script
+          console.log('load script');
+        });
+      });//load
+  }
+  else {
+    mainContent.removeClass();
+    mainContent.addClass('layout-iframe');
+    pageIFrame.prop('src',url);
   }
 }
 
@@ -822,23 +841,30 @@ function formSectionsInit() {
 
 }//formSectionsInit
 
-function QueryStringToJSON() {
-    var pairs = location.search.slice(1).split('&');
+function QueryStringToJSON(src) {
+    var pairs = src || location.search.slice(1).split('&');
 
     var result = {};
-    pairs.forEach(function(pair) {
-        pair = pair.split('=');
-        result[pair[0]] = decodeURIComponent(pair[1] || '');
-    });
-
+      for(var i = 0; i < pairs.length; i++) {
+          var pair = pairs[i].split('=');
+          result[pair[0]] = decodeURIComponent(pair[1] || '');
+      };
     return JSON.parse(JSON.stringify(result));
 }
 
-var query_string = QueryStringToJSON();
 function objectify(array) {//serialize data function
   var returnArray = {};
   for (var i = 0; i < array.length; i++){
     returnArray[array[i]['name']] = array[i]['value'];
   }
   return returnArray;
+}
+
+$.loadScript = function (url, callback) {
+    $.ajax({
+        url: url,
+        dataType: 'script',
+        success: callback,
+        async: true
+    });
 }
