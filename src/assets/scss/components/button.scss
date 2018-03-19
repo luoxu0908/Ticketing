@@ -173,6 +173,7 @@ button, .button, [type="button"], [type="reset"], [type="submit"] {
 	}
 }
 
+
 .close-button {
   background: none;
   margin: 0;
@@ -187,6 +188,21 @@ button, .button, [type="button"], [type="reset"], [type="submit"] {
 	&:active {
 		background: none;
     color: $medium-gray;
+	}
+}
+
+.back-button {
+	@include position(absolute,$top: 0, $left: 0);
+	background: transparent url(../img/icon-mid-left.png) no-repeat center center;
+	margin: 0;
+	height: 60px;
+	width: 60px;
+
+	&:hover {
+    background-color: transparent;
+  }
+	&:active {
+		background-color: transparent;
 	}
 }
 .lightBg, .modalContent {
