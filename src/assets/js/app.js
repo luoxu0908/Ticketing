@@ -245,7 +245,7 @@ $(function(){
 
 function pageInit() {
   loadMenu();
-  //loadPage('currentPage','');
+  loadPage('currentPage','');
 
   //search
   //init search form and subLinksDropDown for mobile
@@ -500,7 +500,10 @@ function loadPage(url,target,options) {
   }
   else {
     var temp = url.match(/\?.+/);
-    queryString = QueryStringToJSON(temp[0].substring(1));
+    if (temp != null)
+      queryString = QueryStringToJSON(temp[0].substring(1));
+    else
+      queryString = QueryStringToJSON('');
   }
 
   pageTitle = queryString['page-title'];
@@ -842,11 +845,10 @@ function QueryStringToJSON(src) {
     var pairs = src || location.search.slice(1).split('&');
 
     var result = {};
-    pairs.forEach(function(pair) {
-        pair = pair.split('=');
-        result[pair[0]] = decodeURIComponent(pair[1] || '');
-    });
-
+      for(var i = 0; i < pairs.length; i++) {
+          var pair = pairs[i].split('=');
+          result[pair[0]] = decodeURIComponent(pair[1] || '');
+      };
     return JSON.parse(JSON.stringify(result));
 }
 
