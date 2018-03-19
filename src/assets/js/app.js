@@ -280,14 +280,7 @@ function pageInit() {
     $('#searchForm').submit();
     return false;
   });
-<<<<<<< HEAD
-
-}//pageInit enfd
-=======
- loadMenu();
-
-});//onready
->>>>>>> 0bb3d8e678f8a96c18f4f11b7b7f264ef0f97975
+}//pageInit end
 
 //packages,
 function GetBasicInformation(personID) {
