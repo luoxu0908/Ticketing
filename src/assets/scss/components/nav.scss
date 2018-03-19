@@ -19,6 +19,9 @@
     padding: $global-mobile-padding;
     text-align: center;
   }
+  .back-button {
+    display: none;
+  }
 }
 
 #mainMenu {
@@ -67,6 +70,9 @@
     a {
       background: $complementary-dark-color2 url(../img/icon-mid-chevron-right.png) no-repeat center right;
 
+      &.selected {
+        background: $complementary-dark-color3 url(../img/icon-mid-chevron-right.png) no-repeat center right;
+      }
       &:hover {
         @include activeDropDown;
         background: $complementary-dark-color3 url(../img/icon-mid-chevron-right.png) no-repeat center right;

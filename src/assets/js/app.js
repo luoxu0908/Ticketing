@@ -11,10 +11,9 @@ import Foundation from 'foundation-sites';
 // If you want to pick and choose which modules to include, comment out the above and uncomment
 // the line below
 //import './lib/foundation-explicit-pieces';
-Foundation.Abide.defaults.patterns['NRIC'] = /^[A-Z]{1}[0-9]{7}[A-Z]{1}$/;
-Foundation.Abide.defaults.patterns['Mobile'] = /^\+{0,1}\d{8,}$/;
 
 $(document).foundation();
+
 var appCookie, igwasCookie, WebPartVal, guid;
 
 //document ready
@@ -120,6 +119,11 @@ $(function(){
   $('#mainMenuContainer .close-button').click(function() {
     console.log('mainMenuToggle click');
     mainMenuToggle();
+    return false;
+  });
+  $('#mainMenuContainer .back-button').click(function() {
+    console.log('hello');
+    moduleMenuToggle();
     return false;
   });
 
@@ -230,15 +234,32 @@ $(function(){
       }
     });
   });//editLinkForm
+
+  //init
+  pageInit();
+
+
+});//onready
+
+
+function pageInit() {
+  formOthersInit();
+  formSectionsInit();
+  loadMenu();
+  loadPage('currentPage','');
+
   //search
   //init search form and subLinksDropDown for mobile
   $( window ).resize(function() {
     resizeScreenSetup();
   });
   resizeScreenSetup();
+
+  //subLinks / tabs in sidebar1
   initSubLinks();
   //convertSubLinks(true);
 
+  //navSearch
   $('#navSearch').click(() => {
     $('#searchForm').slideToggle('start', function() {
       if ($('#searchForm').is(':visible')) {
@@ -259,13 +280,9 @@ $(function(){
     $('#searchForm').submit();
     return false;
   });
+}//pageInit end
 
-  formOthersInit();
-  formSectionsInit();
-  loadMenu();
-
-});//onready
-
+//packages,
 function GetBasicInformation(personID) {
   var data = {'PersonID': personID};
   $.ajax({
@@ -299,6 +316,7 @@ function GetBasicInformation(personID) {
   });
 }
 
+//cookies
 function getCookie(cookie, cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(cookie);
@@ -326,7 +344,7 @@ function getGUID() {
 };
 
 function resizeScreenSetup() {
-  console.log('resizeScreen');
+  //console.log('resizeScreen');
   if (Foundation.MediaQuery.is('small only')) {
     $('#searchForm').show();
     //change sub links to dropdown list
@@ -339,8 +357,8 @@ function resizeScreenSetup() {
     setupSubLinks(false);
     //initSubLinksDropDown();
   }
-
 }
+
 var menu = [];
 function loadMenu() {
   var data = {};
@@ -397,29 +415,19 @@ function loadMenu() {
             moduleMenu.append(moduleMenuItem);
           }
         }
+
+        //menu
         //console.log(menu);
         //console.log($('#mainMenu .module a').length);
         $('#mainMenu .module a').click(function() {
           var targetId = $(this).data('menu');
           var targetObj = $('#moduleMenu-'+targetId);
-          //console.log(targetObj.length);
-          if (Foundation.MediaQuery.current == 'small')
-          {
-            if (targetObj.find('li').length > 1) {
-              $('.module').hide();
-              $('.moduleMenu').hide();
-              targetObj.show();
-            }
-            else {
-              console.log('aaa');
-              window.location.href = $(this).prop('href');
-            }
-          }
-          else {
-            //console.log('aaa');
-            $('.moduleMenu').hide();
-            targetObj.show();
-          }
+
+          $('#mainMenu .module a').removeClass('selected');
+          $(this).addClass('selected');
+
+          moduleMenuToggle(targetObj);
+
           return false;
         });//module Links
 
@@ -473,16 +481,76 @@ function loadPage(url,target,options) {
   var pageIFrame = $('#pageIFrame');
   //var contentWindow = mainContentContainer.find('#contentWindow');
 
+  var pageTitle;
+  var pageLayout;
+  var pageSubLinks;
+  var pageSideBar;
 
-  target = 'iframe';//hardcode for testing
-  if (typeof target != 'undefined' && target.toLowerCase() == 'iframe') {
+  target = 'new';//hardcode for testing
+  if (typeof target != 'undefined' && target.toLowerCase() != 'new') {
+    mainContent.removeClass('layout-iframe');
     mainContent.addClass('layout-iframe');
     pageIFrame.prop('src',url);
   }
   else {
     mainContent.removeClass('layout-iframe');
-  }
 
+    var pageTitle;
+    var pageLayout;
+    var pageSubLinks;
+    var pageSideBar;
+    var pageContentWrapper;
+    var queryString;
+
+    if(url == 'currentPage' || url.trim() == '') {
+      url = location.pathname;
+
+      if (url == '' || url == '/') {
+        url = '/index.html'
+      }
+
+
+
+
+    }
+    queryString = QueryStringToJSON();
+    //pageContent.load(location.pathname);
+
+    pageContent.load(
+      url + ' #pageContentWrapper',
+      function( response, status, xhr ) {
+        if ( status == "error" ) {
+          var msg = "Sorry but there was an error: ";
+          $(this).html( msg + xhr.status + " " + xhr.statusText );
+          return;
+        }
+
+        var pageContentWrapper = $(this).find('#pageContentWrapper');
+
+        if (pageContentWrapper.length) {
+          pageTitle = queryString['page-title'] || pageContentWrapper.data('page-title') || pageContentWrapper.find('h1#pageTitle').html();
+          pageLayout = queryString['page-layout'] ||  pageContentWrapper.data('page-layout');
+          pageSubLinks = queryString['page-sublinks'] || pageContentWrapper.data('page-sublinks');
+          pageSideBar = queryString['page-sidebar'] ||pageContentWrapper.data('page-sidebar');
+
+          pageContentWrapper.find('h1#pageTitle').remove();
+          mainContent.find('#pageTitle').html(pageTitle);
+        }
+        else {
+
+        }
+
+        if (url != '/index.html') {
+          pageTitle += ' - Bizcube';
+        }
+        else {
+          pageTitle += ' Bizcube';
+        }
+        document.title = pageTitle;
+        mainContent.addClass(pageLayout);
+      });
+
+  }
 }
 
 function initSubLinksDropDown() {
@@ -508,7 +576,6 @@ function initSubLinksDropDown() {
   return subLinksDropDown;
 }
 
-
 function mainMenuToggle() {
   console.log('mainMenuToggle');
   var mainMenuContainer = $('#mainMenuContainer');
@@ -516,9 +583,13 @@ function mainMenuToggle() {
   if (Foundation.MediaQuery.current == 'small')
   {
     var position = mainMenuContainer.offset();
-    console.log(position.left );
+    //console.log(position.left );
     if(position.left < 0) {
       console.log('slideout');
+      //reset menu  first
+      $('#mainMenuContainer .back-button').hide();
+      $('.module').show();
+      $('.moduleMenu').hide();
       mainMenuContainer.animate({
         left:'0'
       },350);
@@ -537,8 +608,40 @@ function mainMenuToggle() {
     }
     else {
       console.log('slidedown');
+      $('#mainMenu').find('a').removeClass('selected');
+      $('#mainMenu').find('li:eq(0)').find('a').addClass('selected');
       mainMenuContainer.slideDown();
     }
+  }
+}
+
+function moduleMenuToggle(targetObj) {
+  if (Foundation.MediaQuery.current == 'small')
+  {
+    //console.log(targetObj);
+    if (typeof targetObj != 'undefined') {
+      if (targetObj.find('li').length > 1) {
+        $('#mainMenuContainer .back-button').show();
+        $('.module').hide();
+        $('.moduleMenu').hide();
+        targetObj.show();
+      }
+      else {
+        window.location.href = $(this).prop('href');
+      }
+    }
+    else {
+      $('#mainMenu .module a').removeClass('selected');
+      $('#mainMenuContainer .back-button').hide();
+      $('.module').show();
+      $('.moduleMenu').hide();
+    }
+  }
+  else {
+    //console.log('aaa');
+
+    $('.moduleMenu').hide();
+    targetObj.show();
   }
 }
 
@@ -576,7 +679,6 @@ function formOthersInit() {
           targetObj.prop('disabled','');
         }
         else {
-          targetObj.val('');
           targetObj.prop('disabled','disabled');
         }
       });
@@ -590,10 +692,11 @@ function formOthersInit() {
 
         if ($('[name='+radioName+']:checked').val() == thisVal) {
           targetObj.prop('disabled','');
+          console.log(3);
         }
         else {
-          targetObj.val('');
           targetObj.prop('disabled','disabled');
+          console.log(4);
         }
       });
     }
@@ -605,7 +708,6 @@ function formOthersInit() {
           targetObj.prop('disabled','');
         }
         else {
-          targetObj.val('');
           targetObj.prop('disabled','disabled');
         }
       });
@@ -639,7 +741,7 @@ function formSectionsInit() {
     breadcrumbs.find('a').click(function() {
       var thisObj = $(this);
       var currentIndex = parseInt(form.data('current-form-index'));
-      if (formSectionValidate(form) ) {
+      if (formSectionValidate(currentIndex) ) {
         loadFormSection(thisObj.data('fieldset-index'));
       }
       return false;
@@ -647,7 +749,7 @@ function formSectionsInit() {
 
     //set buttons
     footer.find('#previous').hide();
-    footer.find('[class*=submit]').hide();
+    footer.find('[type=submit]').hide();
 
     footer.find('#previous').click(function() {
       var currentIndex = parseInt(form.data('current-form-index'));
@@ -655,26 +757,31 @@ function formSectionsInit() {
 
       if (targetIndex <0) targetIndex=0;
 
-      if (formSectionValidate(form) ) {
+      if (formSectionValidate(currentIndex) ) {
         loadFormSection(targetIndex);
       }
-      return false;
+      loadFormSection( targetIndex);
     });
     footer.find('#next').click(function() {
-          var targetIndex = parseInt(form.data('current-form-index')) + 1;
-          if (targetIndex >= fieldsets.length) targetIndex=fieldsets.length-1;
-          loadFormSection(targetIndex);
+      var currentIndex = parseInt(form.data('current-form-index'));
+      var targetIndex = currentIndex + 1;
+
+      if (targetIndex >= fieldsets.length) targetIndex=fieldsets.length-1;
+
+      if (formSectionValidate(currentIndex) ) {
+        loadFormSection( targetIndex);
+      }
     });
 
+    function formSectionValidate(index) {
 
+      //check error
+      //if(error) {
+        //prompt error
+        //return false;
+      //}
 
-    function formSectionValidate(form) {
-      var result=0;
-      $(form).find('fieldset:hidden :input').attr('disabled','disabled');
-      $(form).on('formvalid.zf.abide',function(){result=1;});
-      $(form).foundation('validateForm');
-      $(form).find('fieldset :input').removeAttr('disabled');
-      return result;
+      return true;
     }
 
     function loadFormSection(index) {
@@ -682,35 +789,57 @@ function formSectionsInit() {
       form.data('current-form-index', index);
       var targetIndex = index;
 
-
+      console.log(index);
       //set breadcrumbs
-
       breadcrumbs.find('a').removeClass('active').filter(function() {
-        return ($(this).data('fieldset-index') == targetIndex);
+
+        return ($(this).data('fieldset-index') == targetIndex)
       }).addClass('active');
 
       //set fieldset`
       fieldsets.hide().filter(function() {
-        return ($(this).data('fieldset-index') == targetIndex);
+        return ($(this).data('fieldset-index') == targetIndex)
       }).show();
 
       if (index == 0) {
         footer.find('#previous').hide();
         footer.find('#next').show();
-        footer.find('[class*=submit]').hide();
+        footer.find('[type=submit]').hide();
       }
       else if (index == fieldsets.length-1) {
         footer.find('#previous').show();
         footer.find('#next').hide();
-        footer.find('[class*=submit]').show();
+        footer.find('[type=submit]').show();
       }
       else {
         footer.find('#previous').show();
         footer.find('#next').show();
-        footer.find('[class*=submit]').hide();
+        footer.find('[type=submit]').hide();
       }
 
       //set footer
     }
   });
+
+}//formSectionsInit
+
+function QueryStringToJSON() {
+    var pairs = location.search.slice(1).split('&');
+
+    var result = {};
+    pairs.forEach(function(pair) {
+        pair = pair.split('=');
+        result[pair[0]] = decodeURIComponent(pair[1] || '');
+    });
+
+    return JSON.parse(JSON.stringify(result));
+}
+
+var query_string = QueryStringToJSON();
+function objectify(array) {//serialize data function
+  var returnArray = {};
+  for (var i = 0; i < array.length; i++){
+    returnArray[array[i]['name']] = array[i]['value'];
+  }
+  return returnArray;
 }
