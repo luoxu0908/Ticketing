@@ -179,12 +179,30 @@ form,.form, .formTextContainer {
     border-bottom: 2px solid $light-gray;
     padding-bottom: 0.4rem;
   }
-
-
-
 }
 .spanCss{
   color: red;
+}
+#mainTable th {
+    padding: 1.2rem 0.8rem;
+    background: #fff;
+}
+
+#mainTable tr {
+    background: #fff;
+}
+
+    #mainTable tr:nth-child(even) {
+        background-color: #fff;
+    }
+
+#mainTable .titleTr {
+    background-color: #ccc !important;
+}
+
+#mainTable td,
+th {
+    border: 1px solid #000;
 }
 @include breakpoint(medium) {
   form,.form, .formTextContainer {
