@@ -7,9 +7,9 @@ $(function() {
   //get cookie & loginID
   var appCookie = Cookies.getJSON('appCookie'),
     loginID = appCookie.loginID;
-formSectionsInit();
+    formSectionsInit();
   $('#submit').click(function() {
-  //  Save();
+    Save();
   });
 //  GetDropdownList('.selOccupation', 'Jobs Category');
     GetRelationship('.selRelationship');
