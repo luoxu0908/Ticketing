@@ -24,6 +24,9 @@ $(function(){
         else {
           alert(data.d.RetMsg);
         }
+      },
+      error: function(data){
+        alert("Error: " + data.responseJSON.d.RetMsg);
       }
     });
 
@@ -96,6 +99,9 @@ function reviewCase(caseID){
       else {
         alert(data.d.RetMsg);
       }
+    },
+    error: function(data){
+      alert("Error: " + data.responseJSON.d.RetMsg);
     }
   });
 }
@@ -131,6 +137,9 @@ function addNewInvolvement(caseID){
       else {
         alert(data.d.RetMsg);
       }
+    },
+    error: function(data){
+      alert("Error: " + data.responseJSON.d.RetMsg);
     }
   });
 }
@@ -169,6 +178,9 @@ function addNewActivity(caseID){
       else {
         alert(data.d.RetMsg);
       }
+    },
+    error: function(data){
+      alert("Error: " + data.responseJSON.d.RetMsg);
     }
   });
 }
@@ -196,6 +208,9 @@ function GetAvailablePackage(caseId){
         alert(data.d.RetMsg);
       }
       $('#chargeForm #packageID').html(html);
+    },
+    error: function(data){
+      alert("Error: " + data.responseJSON.d.RetMsg);
     }
   });
 }
@@ -241,6 +256,9 @@ function GetCaseDetails(caseId){
       else {
         alert(data.d.RetMsg);
       }
+    },
+    error: function(data){
+      alert("Error: " + data.responseJSON.d.RetMsg);
     }
   });
 };
@@ -278,6 +296,9 @@ function GetCaseHistory(caseId){
       else {
         alert(data.d.RetMsg);
       }
+    },
+    error: function(data){
+      alert("Error: " + data.responseJSON.d.RetMsg);
     }
   });
 };
@@ -309,6 +330,9 @@ function GetCaseInvolvement(caseId){
       else {
         alert(data.d.RetMsg);
       }
+    },
+    error: function(data){
+      alert("Error: " + data.responseJSON.d.RetMsg);
     }
   });
 };
@@ -345,6 +369,9 @@ function chargeToPackage(caseID){
         else {
           alert(data.d.RetMsg);
         }
+      },
+      error: function(data){
+        alert("Error: " + data.responseJSON.d.RetMsg);
       }
     });
   }else{
@@ -377,6 +404,9 @@ function getStaffList(){
         alert(data.d.RetMsg);
       }
       $('#involvementForm #person').append(html);
+    },
+    error: function(data){
+      alert("Error: " + data.responseJSON.d.RetMsg);
     }
   });
 }

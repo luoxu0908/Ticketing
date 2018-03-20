@@ -115,6 +115,9 @@ function getPointofContact(PersonID){
       else {
         alert(data.d.RetMsg);
       }
+    },
+    error: function(data){
+      alert("Error: " + data.responseJSON.d.RetMsg);
     }
   });
 };
@@ -132,8 +135,8 @@ function changeMyPwd(PersonID, Username, Password){
     success: function(data){
       location.reload();
     },
-    error: function(XMLHttpRequest, data, errorThrown){
-      alert("Error: " + errorThrown);
+    error: function(data){
+      alert("Error: " + data.responseJSON.d.RetMsg);
     }
   })
 }
@@ -202,8 +205,8 @@ function GetBasicInformation(personID) {
         alert(data.d.RetMsg);
       }
     },
-    error: function(XMLHttpRequest, data, errorThrown){
-      alert("Error: " + errorThrown);
+    error: function(data){
+      alert("Error: " + data.responseJSON.d.RetMsg);
     }
   }).fail(function( jqXHR, textStatus ) {
     console.log( "Login fail" );
@@ -264,8 +267,8 @@ function updateIndBasic(PersonID){
         alert(data.d.RetMsg);
       }
     },
-    error: function(XMLHttpRequest, data, errorThrown){
-      alert("Error: " + errorThrown);
+    error: function(data){
+      alert("Error: " + data.responseJSON.d.RetMsg);
     }
   })
 }
@@ -316,8 +319,8 @@ function updateOrgBasic(PersonID){
         alert(data.d.RetMsg);
       }
     },
-    error: function(XMLHttpRequest, data, errorThrown){
-      alert("Error: " + errorThrown);
+    error: function(data){
+      alert("Error: " + data.responseJSON.d.RetMsg);
     }
   })
 }
@@ -373,8 +376,8 @@ function updateContactPoint(PersonID){
         alert(data.d.RetMsg);
       }
     },
-    error: function(XMLHttpRequest, data, errorThrown){
-      alert("Error: " + errorThrown);
+    error: function(data){
+      alert("Error: " + data.responseJSON.d.RetMsg);
     }
   })
 }

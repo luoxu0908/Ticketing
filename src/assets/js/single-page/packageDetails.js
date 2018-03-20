@@ -46,6 +46,9 @@ $(function(){
         else {
           alert(data.d.RetMsg);
         }
+      },
+      error: function(data){
+        alert("Error: " + data.responseJSON.d.RetMsg);
       }
     });
 
@@ -110,6 +113,9 @@ function addNewtransaction(PackageID, CaseID){
       else {
         alert(data.d.RetMsg);
       }
+    },
+    error: function(data){
+      alert("Error: " + data.responseJSON.d.RetMsg);
     }
   });
 }
@@ -146,6 +152,9 @@ function extendExpiry(PackageID){
       else {
         alert(data.d.RetMsg);
       }
+    },
+    error: function(data){
+      alert("Error: " + data.responseJSON.d.RetMsg);
     }
   });
 }
@@ -187,6 +196,9 @@ function getPackageDetails(PackageID){
       else {
         alert(data.d.RetMsg);
       }
+    },
+    error: function(data){
+      alert("Error: " + data.responseJSON.d.RetMsg);
     }
   });
 };
@@ -217,6 +229,9 @@ function getPackageTransaction(PackageID){
       else {
         alert(data.d.RetMsg);
       }
+    },
+    error: function(data){
+      alert("Error: " + data.responseJSON.d.RetMsg);
     }
   });
 };

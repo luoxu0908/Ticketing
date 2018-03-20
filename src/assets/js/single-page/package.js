@@ -39,6 +39,9 @@ $(function(){
       else {
         alert(data.d.RetMsg);
       }
+    },
+    error: function(data){
+      alert("Error: " + data.responseJSON.d.RetMsg);
     }
   });
 
@@ -65,6 +68,9 @@ $(function(){
         else {
           alert(data.d.RetMsg);
         }
+      },
+      error: function(data){
+        alert("Error: " + data.responseJSON.d.RetMsg);
       }
     });
 
@@ -128,6 +134,9 @@ function addNewPackage(){
       else {
         alert(data.d.RetMsg);
       }
+    },
+    error: function(data){
+      alert("Error: " + data.responseJSON.d.RetMsg);
     }
   });
 }
@@ -177,6 +186,9 @@ function getPackageList(){
       else {
         alert(data.d.RetMsg);
       }
+    },
+    error: function(data){
+      alert("Error: " + data.responseJSON.d.RetMsg);
     }
   });
 };
@@ -205,6 +217,9 @@ function getOrgProductList(Organization){
       else {
         alert(data.d.RetMsg);
       }
+    },
+    error: function(data){
+      alert("Error: " + data.responseJSON.d.RetMsg);
     }
   });
 }
