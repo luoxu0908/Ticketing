@@ -12,7 +12,7 @@ formSectionsInit();
   //  Save();
   });
 //  GetDropdownList('.selOccupation', 'Jobs Category');
-//  GetRelationship('.selRelationship');
+    GetRelationship('.selRelationship');
 });
 
 //Submit data
