@@ -102,9 +102,6 @@ $(function(){
             }
           }
         }
-      },
-      error: function(data){
-        alert("Error: " + data.responseJSON.d.RetMsg);
       }
     });
 
