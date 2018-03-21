@@ -13,14 +13,15 @@ $(function() {
   });
 //  GetDropdownList('.selOccupation', 'Jobs Category');
     GetRelationship('.selRelationship');
+
 });
 
 //Submit data
 function Save() {
 
-  if (!formSectionValidate($('#pageContentWrapper'),1)) {
+   if (!formSectionValidate($('#pageContentWrapper'),1)) {
     return false;
-  }
+   }
   var data = {};
   $('#pageContentWrapper :input,select').each(function() {
     var type = $(this).attr('type'),
@@ -43,7 +44,7 @@ function Save() {
     }
   });
   $.ajax({
-    url: apiSrc + "BCMain/iCtc1.SaveDeclaretion.json",
+    url: apiSrc + "BCMain/iCtc1.SaveAssistiveDeviceEquipmentSubsidy_Appln.json",
     method: "POST",
     dataType: "json",
     xhrFields: {
