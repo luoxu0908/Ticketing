@@ -1,6 +1,5 @@
 $(document).foundation();
 $(function() {
-  alert();
   //get cookie & loginID
   var appCookie = Cookies.getJSON('appCookie'),
     loginID = appCookie.loginID;
