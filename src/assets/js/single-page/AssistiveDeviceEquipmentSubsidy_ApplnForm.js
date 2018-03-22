@@ -7,7 +7,7 @@ $(function() {
   //get cookie & loginID
   var appCookie = Cookies.getJSON('appCookie'),
     loginID = appCookie.loginID;
-    formSectionsInit();
+  //  formSectionsInit();
   $('#submit').click(function() {
     Save();
   });
@@ -130,106 +130,106 @@ function GetRelationship(sel) {
 }
 
 
-function formSectionsInit() {
+// function formSectionsInit() {
+//
+//   $('form.formSection').each(function() {
+//     var form = $(this);
+//     var fieldsets = form.find('fieldset');
+//     var breadcrumbs = form.find('.breadcrumbs');
+//     var footer = form.find('footer.buttonsGroup');
+//
+//     form.data('current-form-index',0);
+//
+//     breadcrumbs.html('');
+//
+//     fieldsets.each(function(index) {
+//       var fieldset = $(this);
+//       fieldset.data('fieldset-index',index);
+//       breadcrumbs.append('<li><a href="#'+fieldset.prop('id')+'" data-fieldset-index="'+index+'">'+fieldset.find('h2').html()+'</a>').find('li:eq(0) a').addClass('active');
+//
+//       if(index>0) {
+//         fieldset.hide();
+//       }
+//     });
+//
+//     breadcrumbs.find('a').click(function() {
+//       var thisObj = $(this);
+//       var currentIndex = parseInt(form.data('current-form-index'));
+//
+//       if (formSectionValidate(form,0) ) {
+//         loadFormSection(thisObj.data('fieldset-index'),3);
+//       }
+//       return false;
+//     });
+//
+//     //set buttons
+//     footer.find('#previous').hide();
+//     footer.find('[class*=submit]').hide();
+//
+//     footer.find('#previous').click(function() {
+//
+//       var currentIndex = parseInt(form.data('current-form-index'));
+//       var targetIndex = currentIndex-1;
+//
+//       if (targetIndex <0) targetIndex=0;
+//
+//       if (formSectionValidate(form,0) ) {
+//         loadFormSection(targetIndex,0);
+//       }
+//       return false;
+//     });
+//     footer.find('#next').click(function() {
+//
+//         if (formSectionValidate(form,0)) {
+//           var targetIndex = parseInt(form.data('current-form-index')) + 1;
+//           if (targetIndex >= fieldsets.length) targetIndex=fieldsets.length-1;
+//           loadFormSection(targetIndex,1);
+//         }
+//         return false;
+//     });
+//
+//     function loadFormSection(index,isNext) {
+//       //set index
+//       if (index==1) {
+//         if (moveToSectionC==1&&isNext==1) {
+//           index++;
+//         }
+//         else if(moveToSectionC==1&&isNext==0) {
+//           index--;
+//         }
+//       }
+//       form.data('current-form-index', index);
+//       var targetIndex = index;
+//
+//       breadcrumbs.find('a').removeClass('active').filter(function() {
+//         return ($(this).data('fieldset-index') == targetIndex);
+//       }).addClass('active');
+//
+//       //set fieldset`
+//       fieldsets.hide().filter(function() {
+//         return ($(this).data('fieldset-index') == targetIndex);
+//       }).show();
+//
+//       if (index == 0) {
+//         footer.find('#previous').hide();
+//         footer.find('#next').show();
+//         footer.find('[class*=submit]').hide();
+//       }
+//       else if (index == fieldsets.length-1) {
+//         footer.find('#previous').show();
+//         footer.find('#next').hide();
+//         footer.find('[class*=submit]').show();
+//       }
+//       else {
+//         footer.find('#previous').show();
+//         footer.find('#next').show();
+//         footer.find('[class*=submit]').hide();
+//       }
+//     }
+//   });
+// }
 
-  $('form.formSection').each(function() {
-    var form = $(this);
-    var fieldsets = form.find('fieldset');
-    var breadcrumbs = form.find('.breadcrumbs');
-    var footer = form.find('footer.buttonsGroup');
-
-    form.data('current-form-index',0);
-
-    breadcrumbs.html('');
-
-    fieldsets.each(function(index) {
-      var fieldset = $(this);
-      fieldset.data('fieldset-index',index);
-      breadcrumbs.append('<li><a href="#'+fieldset.prop('id')+'" data-fieldset-index="'+index+'">'+fieldset.find('h2').html()+'</a>').find('li:eq(0) a').addClass('active');
-
-      if(index>0) {
-        fieldset.hide();
-      }
-    });
-
-    breadcrumbs.find('a').click(function() {
-      var thisObj = $(this);
-      var currentIndex = parseInt(form.data('current-form-index'));
-
-      if (formSectionValidate(form,0) ) {
-        loadFormSection(thisObj.data('fieldset-index'),3);
-      }
-      return false;
-    });
-
-    //set buttons
-    footer.find('#previous').hide();
-    footer.find('[class*=submit]').hide();
-
-    footer.find('#previous').click(function() {
-
-      var currentIndex = parseInt(form.data('current-form-index'));
-      var targetIndex = currentIndex-1;
-
-      if (targetIndex <0) targetIndex=0;
-
-      if (formSectionValidate(form,0) ) {
-        loadFormSection(targetIndex,0);
-      }
-      return false;
-    });
-    footer.find('#next').click(function() {
-
-        if (formSectionValidate(form,0)) {
-          var targetIndex = parseInt(form.data('current-form-index')) + 1;
-          if (targetIndex >= fieldsets.length) targetIndex=fieldsets.length-1;
-          loadFormSection(targetIndex,1);
-        }
-        return false;
-    });
-
-    function loadFormSection(index,isNext) {
-      //set index
-      if (index==1) {
-        if (moveToSectionC==1&&isNext==1) {
-          index++;
-        }
-        else if(moveToSectionC==1&&isNext==0) {
-          index--;
-        }
-      }
-      form.data('current-form-index', index);
-      var targetIndex = index;
-
-      breadcrumbs.find('a').removeClass('active').filter(function() {
-        return ($(this).data('fieldset-index') == targetIndex);
-      }).addClass('active');
-
-      //set fieldset`
-      fieldsets.hide().filter(function() {
-        return ($(this).data('fieldset-index') == targetIndex);
-      }).show();
-
-      if (index == 0) {
-        footer.find('#previous').hide();
-        footer.find('#next').show();
-        footer.find('[class*=submit]').hide();
-      }
-      else if (index == fieldsets.length-1) {
-        footer.find('#previous').show();
-        footer.find('#next').hide();
-        footer.find('[class*=submit]').show();
-      }
-      else {
-        footer.find('#previous').show();
-        footer.find('#next').show();
-        footer.find('[class*=submit]').hide();
-      }
-    }
-  });
-}
-
-function formSectionValidate(form,isAll) {
+//function formSectionValidate(form,isAll) {
 
   var result=0;
   moveToSectionC=$('[name=sectionA_ordinaryMembership]:checked').val();
