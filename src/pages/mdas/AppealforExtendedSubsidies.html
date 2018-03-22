@@ -1,5 +1,4 @@
-
-<form data-page-title="FORM - APPEAL FOR HIGHER SUBSIDY" id="pageContentWrapper" data-page-layout="" class="formSection" data-page-script="/assets/js/single-page/AppealforExtendedSubsidies.js" data-abide novalidate>
+<form data-page-title="FORM - APPEAL FOR HIGHER SUBSIDY" id="pageContentWrapper" data-page-layout="" class="formSection" data-page-script="../assets/js/single-page/AppealforExtendedSubsidies.js" data-abide novalidate>
     <h3>Important information:</h3>
     <p>1. I am aware that all the information furnished by me in this form is true and correct.</p>
     <p>2. The processing time for your appeal will take approximately 14 working days upon the receipt of the appeal form AND supporting documents.</p>
@@ -57,7 +56,8 @@
         <label><input type="radio" name="step2_Attached" value="0"> No, I do not have any supporting documents.</label>
     </fieldset>
     <fieldset id="step3" style="display:none;">
-        <h2>Step 3<h5><i>Please complete the declaration section.</i></h5></h2>
+        <h2>Step 3</h2>
+        <i>Please complete the declaration section.</i>
         <div class="labelText">PERSONAL DATA PROTECTION ACT DECLARATION</div>
         <label>
             <input type="checkbox" name="step3_DECLARATION1" value="I fully understand and agree that the personal information which I have provided may be disclosed to other agencies or
@@ -87,7 +87,7 @@ financial assistance for a stipulated period of time set by the Association.">
             <input type="checkbox" name="step3_DECLARATION2" value="I hereby confirm that I understand and agree to all the provisions in this form*.">
             I hereby confirm that I understand and agree to all the provisions in this form*.
         </label>
-        <table id="mainTable">
+        <table class="table-lines">
             <tr>
                 <th>Expenditure Items</th>
                 <th>Monthly ($)</th>
@@ -437,31 +437,31 @@ financial assistance for a stipulated period of time set by the Association.">
                 <td></td>
             </tr>
             <tr>
-                <td><input type="text"></td>
+                <td><input type="text" name="Specify1"></td>
                 <td><input type="text" pattern="number" class="calcNumber" name="MonthlySpecify1"></td>
                 <td><input type="text" pattern="number" class="calcNumber" name="AdhocSpecify1"></td>
                 <td><input type="text" pattern="" name="RemarksSpecify1"></td>
             </tr>
             <tr>
-                <td><input type="text"></td>
+                <td><input type="text" name="Specify2"></td>
                 <td><input type="text" pattern="number" class="calcNumber" name="MonthlySpecify2"></td>
                 <td><input type="text" pattern="number" class="calcNumber" name="AdhocSpecify2"></td>
                 <td><input type="text" pattern="" name="RemarksSpecify2"></td>
             </tr>
             <tr>
-                <td><input type="text"></td>
+                <td><input type="text" name="Specify3"></td>
                 <td><input type="text" pattern="number" class="calcNumber" name="MonthlySpecify3"></td>
                 <td><input type="text" pattern="number" class="calcNumber" name="AdhocSpecify3"></td>
                 <td><input type="text" pattern="" name="RemarksSpecify3"></td>
             </tr>
             <tr>
-                <td><input type="text"></td>
+                <td><input type="text" name="Specify4"></td>
                 <td><input type="text" pattern="number" class="calcNumber" name="MonthlySpecify4"></td>
                 <td><input type="text" pattern="number" class="calcNumber" name="AdhocSpecify4"></td>
                 <td><input type="text" pattern="" name="RemarksSpecify4"></td>
             </tr>
             <tr>
-                <td><input type="text"></td>
+                <td><input type="text" name="Specify5"></td>
                 <td><input type="text" pattern="number" class="calcNumber" name="MonthlySpecify5"></td>
                 <td><input type="text" pattern="number" class="calcNumber" name="AdhocSpecify5"></td>
                 <td><input type="text" pattern="" name="RemarksSpecify5"></td>
