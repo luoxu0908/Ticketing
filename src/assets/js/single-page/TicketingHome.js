@@ -235,7 +235,7 @@ function exportCase(){
   var $d = $("<input type='hidden' name='data'/>").val(JSON.stringify(data));
 	var $wpk = $("<input type='hidden' name='WebPartKey'/>").val(WebPartVal);
 	var $form = $("<form method='POST' style='display:none;'/>").appendTo(document.body);
-  $form.html("").attr("action",  apiSrc+"BCMain/FL1.GetCasesList.part").attr("target", Opt.Target).append($d).append($wpk).submit().remove();
+  $form.html("").attr("action",  apiSrc+"BCMain/FL1.ExportCasesList.part").attr("target", Opt.Target).append($d).append($wpk).submit().remove();
 };
 
 function getUsersList(){
