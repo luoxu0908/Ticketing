@@ -1,9 +1,43 @@
+
 <form data-page-title="FORM - APPEAL FOR HIGHER SUBSIDY" id="pageContentWrapper" data-page-layout="" class="formSection" data-page-script="../assets/js/single-page/AppealforExtendedSubsidies.js" data-abide novalidate>
-    <h3>Important information:</h3>
+  <style>
+#mainTable  label.middle {
+    padding: 0;
+    margin: 0;
+    padding-top: 1.4rem;
+  }
+  #pageContentWrapper  .text-left{
+  padding-top: 1.4rem;
+
+  }
+#pageContentWrapper div[class*=cell] h5{
+  padding-top: 1rem;
+}
+  #mainTable tr{
+    height:82px;
+  }
+  #mainTable th{
+    border-top:1px solid #cacaca
+  }
+  #mainTable input[type=text]{
+    height: 3.0rem;
+  }
+  #mainTable td{
+    padding: 0.6rem 0.5rem 0 0;
+  }
+  </style>
+<br>
+  <div class="grid-x">
+      <div class="cell small-4 grid-padding-x middle"><h5>Scheme/Grant Type:</h5>      </div>
+      <div class="cell small-6 grid-padding-x">
+        <input type="text">
+      </div>
+  </div>
+    <h3 onclick="window.print();">Important information:</h3>
     <p>1. I am aware that all the information furnished by me in this form is true and correct.</p>
     <p>2. The processing time for your appeal will take approximately 14 working days upon the receipt of the appeal form AND supporting documents.</p>
     <p>3. The outcome of the appeal will be sent to the mailing address as stated on this form and the MDAS’ decision is final.</p>
-    <p>4. You may contact MDAS at Tel. 62596933 to check on the status of your appeal.</p><br>
+    <p>4. You may contact MDAS at Tel. 62596933 to check on the status of your appeal.</p>
     <div>Please mail /email the completed form AND supporting documents to:</div>
     <div class="grid-x">
         <div class="cell small-8 grid-padding-x">
@@ -24,6 +58,7 @@
         <input type="text" id="step1_NRIC" name="step1_NRIC" pattern="NRIC" required/>
         <label for="step1_Contact">Contact No.</label>
         <input type="text" id="step1_Contact" name="step1_Contact" pattern="Mobile" />
+      
         <h3>Mailing Address</h3>
 
         <label for="step1_PostalCode">Postal Code</label>
@@ -49,13 +84,21 @@
             <input type="text" id="step1_ReasonOther" name="step1_ReasonOther" placeholder="Please provide full details of the circumstances to support the reason(s) for the appeal" data-form-other-text="true" />
         </div>
     </fieldset>
-    <fieldset id="step2" style="display:none;">
+
+    <fieldset id="step2" >
         <h2>Step 2</h2>
+        <div class="grid-x">
+            <div class="cell small-4 grid-padding-x middle"><h5>FOR OFFICE USE:</h5>      </div>
+            <div class="cell small-6 grid-padding-x">
+              <input type="text" placeholder="Types of supporting documents provided">
+            </div>
+        </div>
         <div class="labelText">Please provide supporting documents to substantiate your appeal.</div>
         <label><input type="radio" name="step2_Attached" value="1"> Yes, I have attached relevant documents to support the appeal.</label>
         <label><input type="radio" name="step2_Attached" value="0"> No, I do not have any supporting documents.</label>
     </fieldset>
-    <fieldset id="step3" style="display:none;">
+    <br><br>
+    <fieldset id="step3" >
         <h2>Step 3</h2>
         <i>Please complete the declaration section.</i>
         <div class="labelText">PERSONAL DATA PROTECTION ACT DECLARATION</div>
@@ -87,7 +130,31 @@ financial assistance for a stipulated period of time set by the Association.">
             <input type="checkbox" name="step3_DECLARATION2" value="I hereby confirm that I understand and agree to all the provisions in this form*.">
             I hereby confirm that I understand and agree to all the provisions in this form*.
         </label>
-        <table class="table-lines">
+        <div class="grid-x">
+            <div class="cell small-6">
+                  <input type="text">
+                  <h5>Signature/Thumbprint of the APPELLANT</h5>
+            </div>
+        </div>
+        <br>
+        <div class="grid-x">
+            <div class="cell small-offset-3 small-3">
+                  <h5>Case Note:</h3>
+            </div>
+            <div class="cell small-6">
+                  <input type="text">
+            </div>
+        </div>
+        <div class="grid-x">
+            <div class="cell small-offset-3 small-3">
+                  <h5>Case Manager:</h3>
+            </div>
+            <div class="cell small-6">
+                  <input type="text">
+            </div>
+        </div><br>
+        <h3>Declaration on Household Expenses </h3><br>
+        <table class="table-lines" id="mainTable">
             <tr>
                 <th>Expenditure Items</th>
                 <th>Monthly ($)</th>
@@ -518,10 +585,13 @@ financial assistance for a stipulated period of time set by the Association.">
                 <td></td>
             </tr>
         </table>
+        <br>
+
     </fieldset>
     <footer class="buttonsGroup">
         <button type="button" id="previous" class="buttonNeutral">Previous</button>
         <button type="button" id="next">Next</button>
         <button type="button" id="submit" class="submit">Submit</button>
     </footer>
+
 </form>
