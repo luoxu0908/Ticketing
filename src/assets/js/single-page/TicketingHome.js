@@ -157,13 +157,15 @@ function getCasesList(){
       caseThead = caseContainerTable.find('thead'),
       caseTbody = caseContainerTable.find('tbody');
 
-  var Organization, Status, DateFrom, DateTo;
+  var Organization, Status, Subject, Category, DateFrom, DateTo;
   Organization = $('#caseFilter #organisation').val();
   Status = $('#caseFilter #status').val();
+  Subject = $('#caseFilter #subject').val();
+  Category = $('#caseFilter #category').val();
   DateFrom = $('#caseFilter #dateCreatedFrom').val();
   DateTo = $('#caseFilter #dateCreatedTo').val();
 
-  var data = {'Organization':Organization, 'Status':Status, 'DateFrom':DateFrom, 'DateTo': DateTo};
+  var data = {'Organization':Organization, 'Status':Status, 'Subject':Subject, 'Category':Category, 'DateFrom':DateFrom, 'DateTo': DateTo};
   if (RoleName=='Clients'){
     caseThead.html('<tr><th colspan="2">Subject</th><th>Type</th><th>Created Date</th><th>Status</th></tr>');
   }
@@ -224,13 +226,15 @@ function getCasesList(){
 };
 
 function exportCase(){
-  var Organization, Status, DateFrom, DateTo;
+  var Organization, Status, Subject, Category, DateFrom, DateTo;
   Organization = $('#caseFilter #organisation').val();
   Status = $('#caseFilter #status').val();
+  Subject = $('#caseFilter #subject').val();
+  Category = $('#caseFilter #category').val();
   DateFrom = $('#caseFilter #dateCreatedFrom').val();
   DateTo = $('#caseFilter #dateCreatedTo').val();
 
-  var data = {'Organization':Organization, 'Status':Status, 'DateFrom':DateFrom, 'DateTo': DateTo};
+  var data = {'Organization':Organization, 'Status':Status, 'Subject':Subject, 'Category':Category, 'DateFrom':DateFrom, 'DateTo': DateTo};
   var Opt = $.extend({ Target: '_blank' }, '');
   var $d = $("<input type='hidden' name='data'/>").val(JSON.stringify(data));
 	var $wpk = $("<input type='hidden' name='WebPartKey'/>").val(WebPartVal);
