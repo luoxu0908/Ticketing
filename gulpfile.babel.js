@@ -118,6 +118,12 @@ function javascript() {
   ))
   .pipe(gulp.dest(PATHS.dist + '/assets/js/single-page'));
 
+  gulp.src('src/assets/js/bizcube2/**/*.js')
+  .pipe($.if(PRODUCTION, $.uglify()
+    .on('error', e => { console.log(e); })
+  ))
+  .pipe(gulp.dest(PATHS.dist + '/assets/js/bizcube2'));
+
   return gulp.src(PATHS.entries)
     .pipe(named())
     .pipe($.sourcemaps.init())
