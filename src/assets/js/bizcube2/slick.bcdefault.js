@@ -1567,7 +1567,7 @@
 if (typeof $ === "undefined") {
 	throw "SlickGrid requires jquery module to be loaded";
 }
-if (!$.fn.drag) {
+if (!jQueryEventDrag) {
 	throw "SlickGrid requires jquery.event.drag module to be loaded";
 }
 if (typeof Slick === "undefined") {
