@@ -44,6 +44,10 @@ ul.noBullets {
 	@include noBulletsList;
 }
 
+.error,
+.warning {
+	color: $alert-color;
+}
 
 .icon img {
 	//margin-right: 0.5rem;

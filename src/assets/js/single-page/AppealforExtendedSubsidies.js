@@ -1,27 +1,49 @@
-Foundation.Abide.defaults.patterns['NRIC'] = /^[A-Z]{1}[0-9]{7}[A-Z]{1}$/;
-Foundation.Abide.defaults.patterns['Mobile'] =/^\+{0,1}\d{8,}$/;
 $(document).foundation();
-
-var moveToSectionC=0;
 $(function() {
   //get cookie & loginID
   var appCookie = Cookies.getJSON('appCookie'),
     loginID = appCookie.loginID;
-  formSectionsInit();
+  formSectionsInit();formOthersInit();
   $('#submit').click(function() {
-    Save();
+    SaveDeclaretion();
   });
-//  GetDropdownList('.selOccupation', 'Jobs Category');
-    GetRelationship('.selRelationship');
-
+  GetDropdownList('.selOccupation', 'Jobs Category');
+  GetRelationship('.selRelationship');
+  $('.calcNumber').each(function(index,item){
+    $('.totalNumber,.grandTotalNumber').attr('readonly','readonly');
+      $(item).change(function(){
+        CalcTotal(this,index);
+      });
+  });
 });
 
-//Submit data
-function Save() {
+function CalcTotal(elment,index){
+  var odd='odd';
+  if (index%2==0){
+    odd='even';
+  }
+  $('.totalNumber:'+odd+'').each(function(itemIndex,item){
+      var total=0;
+      $(item).parents('tr').prevUntil('.titleTr').find('.calcNumber:'+odd+'').each(function(){
+         total+=(isNaN(parseFloat($(this).val()))?0:parseFloat($(this).val()));
+      });
+      $(item).val(total.toFixed(2));
+   });
 
-   if (!formSectionValidate($('#pageContentWrapper'),1)) {
+   $('.grandTotalNumber:'+odd+'').each(function(itemIndex,item){
+       var total=0;
+       $('.totalNumber:'+odd+'').each(function(){
+         total+=(isNaN(parseFloat($(this).val()))?0:parseFloat($(this).val()));
+       });
+      $(item).val(total.toFixed(2));
+    });
+}
+
+//Submit data
+function SaveDeclaretion() {
+  if (!formSectionValidate($('#pageContentWrapper'),1)) {
     return false;
-   }
+  }
   var data = {};
   $('#pageContentWrapper :input,select').each(function() {
     var type = $(this).attr('type'),
@@ -44,7 +66,7 @@ function Save() {
     }
   });
   $.ajax({
-    url: apiSrc + "BCMain/iCtc1.SaveAssistiveDeviceEquipmentSubsidy_Appln.json",
+    url: apiSrc + "BCMain/iCtc1.SaveAppealforExtendedSubsidies.json",
     method: "POST",
     dataType: "json",
     xhrFields: {
@@ -131,11 +153,10 @@ function GetRelationship(sel) {
 
 
 function formSectionsInit() {
-
   $('form.formSection').each(function() {
     var form = $(this);
     var fieldsets = form.find('fieldset');
-    var breadcrumbs = form.find('.breadcrumbs');
+    var breadcrumbs = form.find('#breadcrumbs');
     var footer = form.find('footer.buttonsGroup');
 
     form.data('current-form-index',0);
@@ -155,7 +176,6 @@ function formSectionsInit() {
     breadcrumbs.find('a').click(function() {
       var thisObj = $(this);
       var currentIndex = parseInt(form.data('current-form-index'));
-
       if (formSectionValidate(form,0) ) {
         loadFormSection(thisObj.data('fieldset-index'),3);
       }
@@ -179,7 +199,6 @@ function formSectionsInit() {
       return false;
     });
     footer.find('#next').click(function() {
-
         if (formSectionValidate(form,0)) {
           var targetIndex = parseInt(form.data('current-form-index')) + 1;
           if (targetIndex >= fieldsets.length) targetIndex=fieldsets.length-1;
@@ -190,14 +209,6 @@ function formSectionsInit() {
 
     function loadFormSection(index,isNext) {
       //set index
-      if (index==1) {
-        if (moveToSectionC==1&&isNext==1) {
-          index++;
-        }
-        else if(moveToSectionC==1&&isNext==0) {
-          index--;
-        }
-      }
       form.data('current-form-index', index);
       var targetIndex = index;
 
@@ -230,25 +241,66 @@ function formSectionsInit() {
 }
 
 function formSectionValidate(form,isAll) {
-
   var result=0;
-  moveToSectionC=$('[name=sectionA_ordinaryMembership]:checked').val();
   if (!isAll) {
       $(form).find('fieldset:hidden :input,select').attr('disabled','disabled');
   }
-  if (moveToSectionC==1) {
-    $(form).find('fieldset:eq(1) :input,select').attr('disabled','disabled');
-  }
+
   $(form).on('formvalid.zf.abide',function(){result=1;});
-
   $(form).foundation('validateForm');
-
-  if (moveToSectionC==1) {
-     $(form).find('fieldset:not(:eq(1)) :input,select').removeAttr('disabled');
-  }
-  else {
-     $(form).find('fieldset :input,select').removeAttr('disabled');
-  }
-
+  $(form).find('fieldset :input,select').removeAttr('disabled');
   return result;
+}
+
+function formOthersInit() {
+  $('[data-form-other-text=true]').prop('disabled','disabled');
+  $('[data-form-other]').each(function(){
+    var thisObj = $(this);
+    var targetVal = thisObj.data('form-other');
+    var targetObj = $('#' + targetVal);
+    var target = $('#' + targetVal);
+
+
+    if (thisObj.prop('type')=='checkbox') {
+      //console.log('checkbox');
+      thisObj.click(function() {
+        if (thisObj.is(':checked')) {
+          targetObj.prop('disabled','');
+        }
+        else {
+          targetObj.val('');
+          targetObj.prop('disabled','disabled');
+        }
+      });
+    }
+    else if (thisObj.prop('type') == 'radio') {
+      var radioName = thisObj.prop('name');
+      var thisVal = thisObj.val();
+      var radioGroup = $('[name='+radioName+']');
+
+      radioGroup.click(function() {
+
+        if ($('[name='+radioName+']:checked').val() == thisVal) {
+          targetObj.prop('disabled','');
+        }
+        else {
+          targetObj.val('');
+          targetObj.prop('disabled','disabled');
+        }
+      });
+    }
+    else if (thisObj.is('select')) {
+      thisObj.change(function() {
+        var thisVal = thisObj.val();
+        //console.log('select');
+        if (thisVal.toLowerCase()=='other' || thisVal.toLowerCase()=='others') {
+          targetObj.prop('disabled','');
+        }
+        else {
+          targetObj.val('');
+          targetObj.prop('disabled','disabled');
+        }
+      });
+    }
+  });
 }

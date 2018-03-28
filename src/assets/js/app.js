@@ -13,6 +13,7 @@ window.Cookies = Cookies;
 //window.jQueryUI = jQueryUI;
 window.Sortable = Sortable;
 window.jQueryEventDrag = jQueryEventDrag;
+window.loadPage = loadPage;
 
 import Foundation from 'foundation-sites';
 // If you want to pick and choose which modules to include, comment out the above and uncomment
