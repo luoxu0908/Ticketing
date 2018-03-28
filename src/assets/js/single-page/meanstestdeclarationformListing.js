@@ -39,8 +39,10 @@ $(document).ready(function () {
 	pageInit.done(function (data, textStatus, jqXHR) {
 		if ((data) && (data.d.RetVal == -1)) {
 
-			var Itms = data.d.RetData.PjtStatus.Rows, Sel = $("#StatusFilter");
-			for (var i = 0; i < Itms.length; i++) {
+			var Itms = data.d.RetData.Tbl.Rows, Sel = $("#StatusFilter");
+
+			for (var i = 0; i < 5; i++) {
+			//for (var i = 0; i < Itms.length; i++) {
 				Sel.append($('<option>', { value: Itms[i].Val }).text(Itms[i].Txt));
 			}
 			$('#StatusFilter :nth-child(2)').attr('selected', 'selected');
