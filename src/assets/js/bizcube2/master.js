@@ -458,7 +458,12 @@ if (window.XDomainRequest) {
 //Init basic Utils library for BC
 window.Utils = (window.Utils || {});
 window.Utils.Popup = function (Element, specs, options) {
+	var s = $.extend({ setfocus: true, href: "" }, options);
+	if (Element) {
+		if (!Element.$) { Element = $(Element); }
+	var URL = (s.href || Element.attr('href'));
 	loadPage(URL,''); //url,target,options
+}
 	/*
 	var s = $.extend({ setfocus: true, href: "" }, options);
 	if (Element) {
