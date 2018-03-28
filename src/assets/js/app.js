@@ -2,10 +2,15 @@ import $ from 'jquery';
 import Cookies from 'js-cookie';
 import whatInput from 'what-input';
 import Master from './lib/master';
+import jQueryUI from 'jquery-ui';
+import Sortable from 'jquery-ui/ui/widgets/sortable';
+
 
 window.$ = $;
+window.jQuery = $;
 window.Cookies = Cookies;
-
+//window.jQueryUI = jQueryUI;
+window.Sortable = Sortable;
 
 import Foundation from 'foundation-sites';
 // If you want to pick and choose which modules to include, comment out the above and uncomment
@@ -19,11 +24,12 @@ var appCookie, igwasCookie, WebPartVal, guid;
 
 //document ready
 $(function(){
-
+  //window.SlickGrid = new SlickGrid();
   window.Master = new Master();
   //get page name
   //pageName = getPageName();
   guid = getGUID();
+
 
   igwasCookie = Cookies.getJSON('IGWAS');
   if (igwasCookie){
@@ -505,6 +511,7 @@ function loadPage(url,target,options) {
     else
       queryString = QueryStringToJSON('');
   }
+  console.log('url:'+url);
 
   pageTitle = queryString['page-title'];
   pageLayout = queryString['page-layout'];
@@ -519,7 +526,7 @@ function loadPage(url,target,options) {
 
   //target = 'new';//hardcode for testing
   if (typeof pageLayout != 'undefined' && pageLayout.trim().length) {
-
+    console.log('loading '+url);
     pageContent.load(
       url + ' #pageContentWrapper',
       function( response, status, xhr ) {
@@ -552,7 +559,8 @@ function loadPage(url,target,options) {
         document.title = pageTitle;
         mainContent.addClass(pageLayout);
 
-        //load script
+        //load multi Scripts
+
         $.loadScript(pageScript, function(response, status, xhr){
           if ( status == "error" ) {
             var msg = "Sorry but there was an error: ";
@@ -562,6 +570,7 @@ function loadPage(url,target,options) {
           //do something after loading script
           console.log('load script');
         });
+
       });//load
   }
   else {
