@@ -458,6 +458,8 @@ if (window.XDomainRequest) {
 //Init basic Utils library for BC
 window.Utils = (window.Utils || {});
 window.Utils.Popup = function (Element, specs, options) {
+	loadPage(URL,''); //url,target,options
+	/*
 	var s = $.extend({ setfocus: true, href: "" }, options);
 	if (Element) {
 		if (!Element.$) { Element = $(Element); }
@@ -470,6 +472,7 @@ window.Utils.Popup = function (Element, specs, options) {
 		var popupWin = window.open(URL, s.name, specs);
 		if (s.setfocus) { popupWin.focus(); }
 	}
+	*/
 };
 window.Utils.PopupURL = function (URL, specs, options) {
 	if (URL) {
