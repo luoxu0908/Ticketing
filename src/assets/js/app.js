@@ -4,6 +4,7 @@ import whatInput from 'what-input';
 import Master from './lib/master';
 import jQueryUI from 'jquery-ui';
 import Sortable from 'jquery-ui/ui/widgets/sortable';
+import jQueryEventDrag from 'jquery.event.drag';
 
 
 window.$ = $;
@@ -11,6 +12,7 @@ window.jQuery = $;
 window.Cookies = Cookies;
 //window.jQueryUI = jQueryUI;
 window.Sortable = Sortable;
+window.jQueryEventDrag = jQueryEventDrag;
 
 import Foundation from 'foundation-sites';
 // If you want to pick and choose which modules to include, comment out the above and uncomment
