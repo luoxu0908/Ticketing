@@ -19,7 +19,8 @@ $(document).ready(function () {
 			enableAddRow: false,
 			asyncEditorLoading: false,
 			forceFitColumns: false,
-			multiColumnSort: true
+			multiColumnSort: true,
+			rowHeight: 60
 		},
 		{
 			AddSelColumn: false,
