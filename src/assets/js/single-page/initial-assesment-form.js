@@ -33,7 +33,7 @@ $(function(){
 // save initial-assesment-form
 function SaveInitialAssesment(){
   var data={};
-  $('#InitialAssessmentForm :input,select').each(function(){
+  $('#pageContentWrapper :input,select').each(function(){
     var type=$(this).attr('type'), name= $(this).attr('name'),val=$(this).val();
     if (type=="radio") { val=$(':input[type="'+type+'"][name="'+name+'"]:checked').val()||'';};
     if (type=="checkbox") {
