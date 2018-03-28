@@ -1,9 +1,10 @@
 form,.form, .formTextContainer {
   max-width: 800px;
+  margin-bottom: 1.5rem;
 
   .breadcrumbs {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     ul {
       margin: 0;
       padding:0;
@@ -12,9 +13,7 @@ form,.form, .formTextContainer {
       list-style: none;
     }
   }
-.breadcrumbs a {
-  display: inline;
-}
+
   .close-button {
     top: 0;
   }
@@ -122,33 +121,35 @@ form,.form, .formTextContainer {
 
     justify-content: space-between;
   }
-.scoreForm {
-  .scoreRow {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: auto;
 
-    > .labelText {
-      grid-column: 1 / -1;
+  .scoreForm {
+    .scoreRow {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-rows: auto;
+
+      > .labelText {
+        grid-column: 1 / -1;
+      }
+      .checkBoxGoup {
+        grid-column: 1 / 11;
+      }
+      .score {
+        grid-column: -3 / -1;
+        text-align: right;
+      }
     }
-    .checkBoxGoup {
-      grid-column: 1 / 11;
-    }
-    .score {
-      grid-column: -3 / -1;
-      text-align: right;
+
+    .scoreTotal {
+      justify-content: flex-end;
     }
   }
-
-  .scoreTotal {
-    justify-content: flex-end;
-  }
-}
 
   input[placeholder=other] {
     width: 200px;
   }
 
+  //different form theme
   &.form2 {
     background: $complementary-dark-color3;
     color: $complementary-light-color1;
@@ -169,6 +170,19 @@ form,.form, .formTextContainer {
     }
   }
 
+  &.formRows {
+    .row {
+      display: flex;
+      justify-content: flex-start;
+      margin: 0 0 1rem;
+
+      div {
+        margin: 0 1rem 0 0;
+        min-width: 150px;
+      }
+    }
+  }
+
   &.formContainer {
     @include global-box();
   }
@@ -179,13 +193,8 @@ form,.form, .formTextContainer {
     border-bottom: 2px solid $light-gray;
     padding-bottom: 0.4rem;
   }
-
-
-
 }
-.spanCss{
-  color: red;
-}
+
 @include breakpoint(medium) {
   form,.form, .formTextContainer {
     .radioGroup,
