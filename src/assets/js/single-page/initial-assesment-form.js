@@ -143,7 +143,7 @@ function GetRelationship(sel) {
   });
 }
 function formOthersInit() {
-  $('[data-form-other-text=true]').prop('disabled','disabled');
+  $('[data-form-other-text=true]').prop('readonly','readonly');
   $('[data-form-other]').each(function(){
     var thisObj = $(this);
     var targetVal = thisObj.data('form-other');
@@ -155,11 +155,11 @@ function formOthersInit() {
       //console.log('checkbox');
       thisObj.click(function() {
         if (thisObj.is(':checked')) {
-          targetObj.prop('disabled','');
+          targetObj.prop('readonly','');
         }
         else {
           targetObj.val('');
-          targetObj.prop('disabled','disabled');
+          targetObj.prop('readonly','readonly');
         }
       });
     }
@@ -171,11 +171,11 @@ function formOthersInit() {
       radioGroup.click(function() {
 
         if ($('[name='+radioName+']:checked').val() == thisVal) {
-          targetObj.prop('disabled','');
+          targetObj.prop('readonly','');
         }
         else {
           targetObj.val('');
-          targetObj.prop('disabled','disabled');
+          targetObj.prop('readonly','readonly');
         }
       });
     }
@@ -184,11 +184,11 @@ function formOthersInit() {
         var thisVal = thisObj.val();
         //console.log('select');
         if (thisVal.toLowerCase()=='other' || thisVal.toLowerCase()=='others') {
-          targetObj.prop('disabled','');
+          targetObj.prop('readonly','');
         }
         else {
           targetObj.val('');
-          targetObj.prop('disabled','disabled');
+          targetObj.prop('readonly','readonly');
         }
       });
     }
