@@ -155,7 +155,7 @@
         <select id="sectiotB_Occupation" name="sectionB_Occupation" class="selOccupation"></select>
     </div>
     <div>
-      <label for="sectionB_relationship">Relationship to Main Applicant (PMD) <span class="">*</span> </label>
+      <label for="sectionB_relationship">Relationship to Main Applicant (PMD) <span class="error warning">*</span> </label>
       <select id="sectionB_relationship" name="sectionB_relationship" class="selRelationship" required></select>
     </div>
   </fieldset>
@@ -352,7 +352,7 @@
     </div>
     <div>
       <label for="sectionC_Age5">Age</label>
-      <input type="text" id="sectionC_Age5sectionC_Age5" name="sectionC_Age5" pattern="number"/>
+      <input type="text" id="sectionC_Age5" name="sectionC_Age5" pattern="number"/>
     </div>
     <div>
       <label for="sectionC_Occupation5">Occupation</label>
@@ -424,14 +424,14 @@
     <h3>DECLARATION BY APPLICANT/CAREGIVER</h3>
     <p>Consent/Declaration must be signed by Main Applicant and/or the Ordinary Member.</p>
     <div>
-      <label for="sectionE_Check1"><input type="checkbox" id="sectionE_Check1" name="sectionE_Check"> I/We hereby declare that all the information provided in this form is true, correct and accurate to the best of my knowledge.</label>
-      <label for="sectionE_Check2"><input type="checkbox" id="sectionE_Check2" name="sectionE_Check">I/We also understand that all information provided for the purpose of means testing evaluation will be kept confidential.</label>
-      <label for="sectionE_Check3"><input type="checkbox" id="sectionE_Check3" name="sectionE_Check">I/We understand and acknowledge that if any of the information provided in this form is false or inaccurate, I will be liable to repay in full any subsidy and financial assistance granted inclusive of all administrative expenses, and/or denied future financial assistance for a stipulated period of time set by the Association.</label>
+      <label for="sectionE_Check1"><input type="checkbox" id="sectionE_Check1" name="sectionE_Check" value="sectionE_Check1"> I/We hereby declare that all the information provided in this form is true, correct and accurate to the best of my knowledge.</label>
+      <label for="sectionE_Check2"><input type="checkbox" id="sectionE_Check2" name="sectionE_Check" value="sectionE_Check2">I/We also understand that all information provided for the purpose of means testing evaluation will be kept confidential.</label>
+      <label for="sectionE_Check3"><input type="checkbox" id="sectionE_Check3" name="sectionE_Check" value="sectionE_Check3">I/We understand and acknowledge that if any of the information provided in this form is false or inaccurate, I will be liable to repay in full any subsidy and financial assistance granted inclusive of all administrative expenses, and/or denied future financial assistance for a stipulated period of time set by the Association.</label>
     </div>
     <p>I/We hereby confirm that I/We understand and agree to all the provisions in this form.</p>
     <h3>MAIN APPLICANT</h3>
     <div>
-      <label for="sectionE_MainName">Name<span class="">*</span></label>
+      <label for="sectionE_MainName">Name<span class="error warning">*</span></label>
       <input type="text" id="sectionE_MainName" name="sectionE_MainName" required/>
     </div>
     <div>
