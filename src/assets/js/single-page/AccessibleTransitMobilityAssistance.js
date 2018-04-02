@@ -5,13 +5,200 @@ $(function(){
   //get cookie & loginID
   var appCookie = Cookies.getJSON('appCookie'),
       loginID = appCookie.loginID;
-    formSectionsInit();formOthersInit();
-    GetRelationship('.sectionB_relationship');
     // save data
     $('#submit').click(function(){
       SaveMuscularDystrophyAssociation();
     });
+    //get data
+    $.when(formSectionsInit(),formOthersInit(),GetRelationship('.sectionB_relationship')).then(function(){
+      var ID= '';
+      ID=GetQueryString('ID');
+      if (ID.length>0) {
+        GetAccessibleTransitMobilityAssistance(ID)
+      }
+    });
 });
+
+
+//get url param
+function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        var context = "";
+        if (r != null)
+            context = r[2];
+        reg = null;
+        r = null;
+        return context == null || context == "" || context == "undefined" ? "" : context;
+}
+//get data
+function GetAccessibleTransitMobilityAssistance(ID) {
+      var data = { 'ID': ID };
+      $.ajax({
+          url: apiSrc + "BCMain/iCtc1.GetAccessibleTransitMobilityForm.json",
+          method: "POST",
+          dataType: "json",
+          xhrFields: { withCredentials: true },
+          data: {
+              'data': JSON.stringify(data),
+              'WebPartKey': '021cb7cca70748ff89795e3ad544d5eb',
+              'ReqGUID': 'b4bbedbf-e591-4b7a-ad20-101f8f656277'
+          },
+          success: function (data) {
+              if ((data) && (data.d.RetVal === -1)) {
+                  if (data.d.RetData.Tbl.Rows.length > 0) {
+                      var AccessibleTransit = data.d.RetData.Tbl.Rows[0];
+                      var sectionA_ordinaryMembership=AccessibleTransit.SectionAMDASMembership||'';
+                      if (sectionA_ordinaryMembership == true) {
+                        $('#sectionA_ordinaryMembershipYes').prop('checked', true)
+                      }else if(sectionA_ordinaryMembership == false){
+                          $('#sectionA_ordinaryMembershipNo').prop('checked', true)
+                      }else {
+
+                      }
+                      $('#sectionA_FamilyName').val(AccessibleTransit.SectionAFamilyName || '')
+                      $('#sectionA_GivenName').val(AccessibleTransit.SectionAGivenName|| '')
+                      $('#sectionA_DisplayName').val(AccessibleTransit.SectionADisplayName|| '')
+                      $('#sectionA_nric').val(AccessibleTransit.SectionANRIC|| '')
+                      $('#sectionA_dateOfBirth').val(AccessibleTransit.SectionABirth|| '')
+                      $('#sectionA_home').val(AccessibleTransit.SectionATelNoHome|| '')
+                      $('#sectionA_office').val(AccessibleTransit.SectionATelNoOffice|| '')
+                      $('#sectionA_mobile').val(AccessibleTransit.SectionAHandphone|| '')
+                      $('#sectionA_email').val(AccessibleTransit.SectionAEmail|| '')
+
+                      $('#sectionB_FamilyName').val(AccessibleTransit.SectionAFamilyName || '')
+                      $('#sectionB_GivenName').val(AccessibleTransit.SectionAGivenName|| '')
+                      $('#sectionB_DisplayName').val(AccessibleTransit.SectionADisplayName|| '')
+                      $('#sectionB_nric').val(AccessibleTransit.SectionANRIC|| '')
+                      $('#sectionB_dateOfBirth').val(AccessibleTransit.SectionBBirth|| '')
+                      $('#sectionB_home').val(AccessibleTransit.SectionATelNoHome|| '')
+                      $('#sectionB_office').val(AccessibleTransit.SectionATelNoOffice|| '')
+                      $('#sectionB_mobile').val(AccessibleTransit.SectionAHandphone|| '')
+                      $('#sectionB_relationship').val(AccessibleTransit.SectionBRelationship|| '')
+                      $('#sectionB_email').val(AccessibleTransit.SectionAEmail|| '')
+
+
+
+                      var sectionC_PurposeTransport=AccessibleTransit.SectionCPurposeTransport || '';
+                      var sectionC_PurposeTransportArr = sectionC_PurposeTransport.split(',');
+                      for (var i = 0; i < sectionC_PurposeTransportArr.length; i++) {
+                          if (sectionC_PurposeTransportArr[i].length > 0) {
+                              var flag = false;
+                              $('input[name="sectionC_PurposeTransport"]').each(function () {
+                                  if ($(this).val() == sectionC_PurposeTransportArr[i]) { $(this).prop('checked', true); }
+                              });
+                          }
+                      }
+
+                      var sectionC_ModeTransport = AccessibleTransit.SectionCModeTransport || '';
+                      if (sectionC_ModeTransport.length > 0) {
+
+                          var sectionC_ModeTransportArr = sectionC_ModeTransport.split(',');
+                          var OthersectionC_ModeTransport = '';
+
+                          for (var i = 0; i < sectionC_ModeTransportArr.length; i++) {
+                              if (sectionC_ModeTransportArr[i].length > 0) {
+                                  var flag = false;
+                                  $('input[name="sectionC_ModeTransport"]').each(function () {
+                                      if ($(this).val() == sectionC_ModeTransportArr[i]) { $(this).prop('checked', true); flag = true; }
+                                  });
+                                  if (flag == false) {
+                                      OthersectionC_ModeTransport += sectionC_ModeTransportArr[i] + ' ';
+                                  }
+                              }
+
+                          }
+                          if (OthersectionC_ModeTransport.length > 0) {
+                              $('#sectionC_ModeTransportOtherText').val(OthersectionC_ModeTransport);
+                              $('input[name="sectionC_ModeTransport"]').each(function () {
+                                  if ($(this).val() == 'Others') { $(this).prop('checked', true); }
+                              });
+                          }
+                      }
+                      $('#sectionC_NameSchool').val(AccessibleTransit.SectionCNameSchool|| '')
+                      $('#sectionC_LocationSchool').val(AccessibleTransit.SectionCLocationSchool|| '')
+
+                      var sectionC_NumberTripsDay=AccessibleTransit.SectionCNumberTripsDay||'';
+                      if (sectionC_NumberTripsDay== 'One') {
+                        $('#sectionC_NumberTripsDayOne').prop('checked', true)
+                      }else if(sectionC_NumberTripsDay == 'Two'){
+                          $('#sectionC_NumberTripsDayTwo').prop('checked', true)
+                      }else {
+
+                      }
+                      $('#sectionC_TransportCostC1').val(AccessibleTransit.SectionCTransportCostC1|| '')
+                      $('#sectionC_NumberTripsWeek').val(AccessibleTransit.SectionCNumberTripsWeek|| '')
+                      $('#sectionC_TransportCostMonth').val(AccessibleTransit.SectionCTransportCostMonth|| '')
+                      $('#sectionC_NameHospital').val(AccessibleTransit.SectionCNameHospital|| '')
+                      $('#sectionC_TransportCostC2').val(AccessibleTransit.SectionCTransportCostC2|| '')
+                      $('#sectionC_PurposeConsultation').val(AccessibleTransit.SectionCPurposeConsultation|| '')
+                      $('#sectionC_PurposeFrequency').val(AccessibleTransit.SectionCPurposeFrequency|| '')
+
+                      var sectionD_validMean=AccessibleTransit.SectionDvalidMean||'';
+                      if (sectionD_validMean== '1') {
+                        $('#sectionD_validMeanYes').prop('checked', true)
+                      }else if(sectionD_validMean == '0'){
+                          $('#sectionD_validMeanNo').prop('checked', true)
+                      }else {
+
+                      }
+                      var SectionDSimilarSupport= AccessibleTransit.SectionDSimilarSupport||'';
+                      if (SectionDSimilarSupport.length>0) {
+                        if (SectionDSimilarSupport == '0') {
+                            $('#sectionD_SimilarSupportNo').prop('checked', true)
+                        }else {
+                          $('#sectionD_SimilarSupportYes').prop('checked', true)
+                          $('#sectionD_SourceFunding').val(SectionDSimilarSupport)
+                        }
+
+                      }
+
+                      var sectionE_ProtectionDeclaration=AccessibleTransit.SectionEProtectionDeclaration || '';
+                      var sectionE_ProtectionDeclarationArr = sectionE_ProtectionDeclaration.split(',');
+                      for (var i = 0; i < sectionE_ProtectionDeclarationArr.length; i++) {
+                          if (sectionE_ProtectionDeclarationArr[i].length > 0) {
+                              var flag = false;
+                              $('input[name="sectionE_ProtectionDeclaration"]').each(function () {
+                                  if ($(this).val() == sectionE_ProtectionDeclarationArr[i]) { $(this).prop('checked', true); }
+                              });
+                          }
+                      }
+                      var sectionE_ApplicantDeclaration=AccessibleTransit.SectionEApplicantDeclaration || '';
+                      var sectionE_ApplicantDeclarationArr = sectionE_ApplicantDeclaration.split(',');
+                      for (var i = 0; i < sectionE_ApplicantDeclarationArr.length; i++) {
+                          if (sectionE_ApplicantDeclarationArr[i].length > 0) {
+                              var flag = false;
+                              $('input[name="sectionE_ApplicantDeclaration"]').each(function () {
+                                  if ($(this).val() == sectionE_ApplicantDeclarationArr[i]) { $(this).prop('checked', true); }
+                              });
+                          }
+                      }
+                      $('#sectionE_MainName').val(AccessibleTransit.SectionEMainName|| '')
+                      $('#sectionE_MainSignature').val(AccessibleTransit.SectionEMainSignature|| '')
+                      $('#sectionE_MainDate').val(AccessibleTransit.SectionEMainDate|| '')
+                      $('#sectionE_MemberName').val(AccessibleTransit.SectionEMemberName|| '')
+                      $('#sectionE_MemberSignature').val(AccessibleTransit.SectionEMemberSignature|| '')
+                      $('#sectionE_MemberDate').val(AccessibleTransit.SectionEMemberDate|| '')
+                      $('#sectionE_ReceivedOn').val(AccessibleTransit.SectionEReceivedOn|| '')
+                      $('#sectionE_AssessmentOn').val(AccessibleTransit.SectionEAssessmentOn|| '')
+                      $('#sectionE_Recommendation').val(AccessibleTransit.SectionERecommendation|| '')
+                      $('#sectionE_ApprovedOn').val(AccessibleTransit.SectionEApprovedOn|| '')
+                      $('#sectionE_ProcessedBy').val(AccessibleTransit.SectionEProcessedBy|| '')
+                      $('#sectionE_Assessor').val(AccessibleTransit.SectionEAssessor|| '')
+                      $('#sectionE_CommenceOn').val(AccessibleTransit.SectionECommenceOn|| '')
+                      $('#sectionE_CaseNote').val(AccessibleTransit.SectionECaseNote|| '')
+
+
+
+                  }
+              }
+          }
+      });
+  }
+
+
+
+
 
 function formSectionValidate(form,isAll) {
   var result=0;
@@ -218,7 +405,7 @@ function SaveMuscularDystrophyAssociation(){
   });
 
   $.ajax({
-    url: apiSrc+"BCMain/iCtc1.SaveMuscularDystrophyAssociation.json",
+    url: apiSrc+"BCMain/iCtc1.SaveAccessibleTransitMobility.json",
     method: "POST",
     dataType: "json",
     xhrFields: { withCredentials: true },
