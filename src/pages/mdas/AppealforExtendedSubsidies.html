@@ -93,8 +93,8 @@
             </div>
         </div>
         <div class="labelText">Please provide supporting documents to substantiate your appeal.</div>
-        <label><input type="radio" name="step2_Attached" value="1"> Yes, I have attached relevant documents to support the appeal.</label>
-        <label><input type="radio" name="step2_Attached" value="0"> No, I do not have any supporting documents.</label>
+        <label><input type="radio" id="step2_AttachedYes" name="step2_Attached" value="1"> Yes, I have attached relevant documents to support the appeal.</label>
+        <label><input type="radio" id="step2_AttachedNo" name="step2_Attached" value="0"> No, I do not have any supporting documents.</label>
     </fieldset>
     <br><br>
     <fieldset id="step3" >
@@ -102,31 +102,28 @@
         <i>Please complete the declaration section.</i>
         <div class="labelText">PERSONAL DATA PROTECTION ACT DECLARATION</div>
         <label>
-            <input type="checkbox" name="step3_DECLARATION1" value="I fully understand and agree that the personal information which I have provided may be disclosed to other agencies or
-individuals as per the provisions of the Act."> I fully understand and agree that the personal information which I have provided may be disclosed to other agencies or
+            <input type="checkbox" name="step3_DECLARATION1" id="step3_CheckBox1" value="step3_CheckBox1"> I fully understand and agree that the personal information which I have provided may be disclosed to other agencies or
             individuals as per the provisions of the Act.
         </label>
 
         <div class="labelText">DECLARATION BY APPLICANT</div>
         Consent/Declaration must be signed by the Appellant (Ordinary Member).
         <label>
-            <input type="checkbox" name="step3_DECLARATION2" value="I hereby declare that all the information provided in this form is true, correct and accurate to the best of my knowledge.">
+            <input type="checkbox" name="step3_DECLARATION2" id="step3_CheckBox2" value="step3_CheckBox2">
             I hereby declare that all the information provided in this form is true, correct and accurate to the best of my knowledge.
         </label>
         <label>
-            <input type="checkbox" name="step3_DECLARATION2" value="I also understand that all information provided for the purpose of means testing evaluation will be kept confidential.">
+            <input type="checkbox" name="step3_DECLARATION2" id="step3_CheckBox3" value="step3_CheckBox3">
             I also understand that all information provided for the purpose of means testing evaluation will be kept confidential.
         </label>
         <label>
-            <input type="checkbox" name="step3_DECLARATION2" value="I understand and acknowledge that if any of the information provided in this form is false or inaccurate, I will be liable to
-repay in full any subsidy and financial assistance granted inclusive of all administrative expenses, and/or denied future
-financial assistance for a stipulated period of time set by the Association.">
+            <input type="checkbox" name="step3_DECLARATION2" id="step3_CheckBox4" value="step3_CheckBox4">
             I understand and acknowledge that if any of the information provided in this form is false or inaccurate, I will be liable to
             repay in full any subsidy and financial assistance granted inclusive of all administrative expenses, and/or denied future
             financial assistance for a stipulated period of time set by the Association.
         </label>
         <label>
-            <input type="checkbox" name="step3_DECLARATION2" value="I hereby confirm that I understand and agree to all the provisions in this form*.">
+            <input type="checkbox" name="step3_DECLARATION2" id="step3_CheckBox5" value="step3_CheckBox5">
             I hereby confirm that I understand and agree to all the provisions in this form*.
         </label>
         <div class="grid-x">
@@ -168,37 +165,37 @@ financial assistance for a stipulated period of time set by the Association.">
             </tr>
             <tr>
                 <td>Installment (CPF/Cash)*</td>
-                <td><input type="text" pattern="number" class="calcNumber" name="MonthlyInstallment"></td>
-                <td><input type="text" pattern="number" class="calcNumber" name="AdhocInstallment"></td>
-                <td><input type="text" pattern="" name="RemarksInstallment"></td>
+                <td><input type="text" id="MonthlyInstallment"  pattern="number" class="calcNumber" name="MonthlyInstallment"></td>
+                <td><input type="text" id="AdhocInstallment" pattern="number" class="calcNumber" name="AdhocInstallment"></td>
+                <td><input type="text" id="RemarksInstallment" pattern="" name="RemarksInstallment"></td>
             </tr>
             <tr>
                 <td>Rental</td>
-                <td><input type="text" pattern="number" class="calcNumber" name="MonthlyRental"></td>
-                <td><input type="text" pattern="number" class="calcNumber" name="AdhocRental"></td>
-                <td><input type="text" pattern="" name="RemarksRental"></td>
+                <td><input type="text" id="MonthlyRental" pattern="number" class="calcNumber" name="MonthlyRental"></td>
+                <td><input type="text" id="AdhocRental" pattern="number" class="calcNumber" name="AdhocRental"></td>
+                <td><input type="text" id="RemarksRental" pattern="" name="RemarksRental"></td>
             </tr>
             <tr>
                 <td>Utilities</td>
-                <td><input type="text" pattern="number" class="calcNumber" name="MonthlyUtilities"></td>
-                <td><input type="text" pattern="number" class="calcNumber" name="AdhocUtilities"></td>
-                <td><input type="text" pattern="" name="RemarksUtilities"></td>
+                <td><input type="text" id="MonthlyUtilities" pattern="number" class="calcNumber" name="MonthlyUtilities"></td>
+                <td><input type="text" id="AdhocUtilities" pattern="number" class="calcNumber" name="AdhocUtilities"></td>
+                <td><input type="text" id="RemarksUtilities" pattern="" name="RemarksUtilities"></td>
             </tr>
             <tr>
                 <td>Conservancy and Service Charge</td>
-                <td><input type="text" pattern="number" class="calcNumber" name="MonthlyConservancy"></td>
-                <td><input type="text" pattern="number" class="calcNumber" name="AdhocConservancy"></td>
-                <td><input type="text" pattern="" name="RemarksConservancy"></td>
+                <td><input type="text" id="MonthlyConservancy" pattern="number" class="calcNumber" name="MonthlyConservancy"></td>
+                <td><input type="text" id="AdhocConservancy" pattern="number" class="calcNumber" name="AdhocConservancy"></td>
+                <td><input type="text" id="RemarksConservancy" pattern="" name="RemarksConservancy"></td>
             </tr>
             <tr>
                 <td></td>
                 <td>
                     <div class="grid-x">
                         <div class="cell small-4">
-                            <label for="middle-label" class="text-left middle">Total:</label>
+                            <label for="middle-label"  class="text-left middle">Total:</label>
                         </div>
                         <div class="cell small-8 ">
-                            <input type="text" class="totalNumber" name="Total1">
+                            <input type="text"  id="Total1" class="totalNumber" name="Total1">
                         </div>
                     </div>
                 </td>
@@ -208,7 +205,7 @@ financial assistance for a stipulated period of time set by the Association.">
                             <label for="middle-label" class="text-left middle">Total:</label>
                         </div>
                         <div class="cell small-8 ">
-                            <input type="text" class="totalNumber" name="Total2">
+                            <input type="text" id="Total2" class="totalNumber" name="Total2">
                         </div>
                     </div>
                 </td>
@@ -222,15 +219,15 @@ financial assistance for a stipulated period of time set by the Association.">
             </tr>
             <tr>
                 <td>Home</td>
-                <td><input type="text" pattern="number" class="calcNumber" name="MonthlyHome"></td>
-                <td><input type="text" pattern="number" class="calcNumber" name="AdhocHome"></td>
-                <td><input type="text" pattern="" name="RemarksHome"></td>
+                <td><input type="text" id="MonthlyHome" pattern="number" class="calcNumber" name="MonthlyHome"></td>
+                <td><input type="text" id="AdhocHome" pattern="number" class="calcNumber" name="AdhocHome"></td>
+                <td><input type="text" id="RemarksHome" pattern="" name="RemarksHome"></td>
             </tr>
             <tr>
                 <td>Mobile</td>
-                <td><input type="text" pattern="number" class="calcNumber" name="MonthlyMobile"></td>
-                <td><input type="text" pattern="number" class="calcNumber" name="AdhocMobile"></td>
-                <td><input type="text" pattern="" name="RemarksMobile"></td>
+                <td><input type="text" id="MonthlyMobile" pattern="number" class="calcNumber" name="MonthlyMobile"></td>
+                <td><input type="text" id="AdhocMobile" pattern="number" class="calcNumber" name="AdhocMobile"></td>
+                <td><input type="text" id="RemarksMobile" pattern="" name="RemarksMobile"></td>
             </tr>
             <tr>
                 <td></td>
@@ -240,7 +237,7 @@ financial assistance for a stipulated period of time set by the Association.">
                             <label for="middle-label" class="text-left middle">Total:</label>
                         </div>
                         <div class="cell small-8 ">
-                            <input type="text" class="totalNumber" name="Total3">
+                            <input id="Total3" type="text" class="totalNumber" name="Total3">
                         </div>
                     </div>
                 </td>
@@ -250,7 +247,7 @@ financial assistance for a stipulated period of time set by the Association.">
                             <label for="middle-label" class="text-left middle">Total:</label>
                         </div>
                         <div class="cell small-8 ">
-                            <input type="text" class="totalNumber" name="Total4">
+                            <input id="Total4" type="text" class="totalNumber" name="Total4">
                         </div>
                     </div>
                 </td>
@@ -264,9 +261,9 @@ financial assistance for a stipulated period of time set by the Association.">
             </tr>
             <tr>
                 <td>Meals / Others</td>
-                <td><input type="text" pattern="number" class="calcNumber" name="MonthlyMeals"></td>
-                <td><input type="text" pattern="number" class="calcNumber" name="AdhocMeals"></td>
-                <td><input type="text" pattern="" name="RemarksMeals"></td>
+                <td><input type="text" id="MonthlyMeals" pattern="number" class="calcNumber" name="MonthlyMeals"></td>
+                <td><input type="text" id="AdhocMeals" pattern="number" class="calcNumber" name="AdhocMeals"></td>
+                <td><input type="text" id="RemarksMeals" pattern="" name="RemarksMeals"></td>
             </tr>
             <tr>
                 <td></td>
@@ -276,7 +273,7 @@ financial assistance for a stipulated period of time set by the Association.">
                             <label for="middle-label" class="text-left middle">Total:</label>
                         </div>
                         <div class="cell small-8 ">
-                            <input type="text" class="totalNumber" name="Total5">
+                            <input  id="Total5" type="text" class="totalNumber" name="Total5">
                         </div>
                     </div>
                 </td>
@@ -286,7 +283,7 @@ financial assistance for a stipulated period of time set by the Association.">
                             <label for="middle-label" class="text-left middle">Total:</label>
                         </div>
                         <div class="cell small-8 ">
-                            <input type="text" class="totalNumber" name="Total6">
+                            <input id="Total6" type="text" class="totalNumber" name="Total6">
                         </div>
                     </div>
                 </td>
@@ -300,45 +297,45 @@ financial assistance for a stipulated period of time set by the Association.">
             </tr>
             <tr>
                 <td>By Person(s) with Muscular Dystrophy</td>
-                <td><input type="text" pattern="number" class="calcNumber" name="MonthlyByPerson"></td>
-                <td><input type="text" pattern="number" class="calcNumber" name="AdhocByPerson"></td>
-                <td><input type="text" pattern="" name="RemarksByPerson"></td>
+                <td><input type="text" id="MonthlyByPerson" pattern="number" class="calcNumber" name="MonthlyByPerson"></td>
+                <td><input type="text" id="AdhocByPerson" pattern="number" class="calcNumber" name="AdhocByPerson"></td>
+                <td><input type="text" id="RemarksByPerson" pattern="" name="RemarksByPerson"></td>
             </tr>
             <tr>
                 <td>Equipment</td>
-                <td><input type="text" pattern="number" class="calcNumber" name="MonthlyEquipment"></td>
-                <td><input type="text" pattern="number" class="calcNumber" name="AdhocEquipment"></td>
-                <td><input type="text" pattern="" name="RemarksEquipment"></td>
+                <td><input type="text" id="MonthlyEquipment" pattern="number" class="calcNumber" name="MonthlyEquipment"></td>
+                <td><input type="text" id="AdhocEquipment" pattern="number" class="calcNumber" name="AdhocEquipment"></td>
+                <td><input type="text"  id="RemarksEquipment" pattern="" name="RemarksEquipment"></td>
             </tr>
             <tr>
                 <td>Therapy</td>
-                <td><input type="text" pattern="number" class="calcNumber" name="MonthlyTherapy"></td>
-                <td><input type="text" pattern="number" class="calcNumber" name="AdhocTherapy"></td>
-                <td><input type="text" pattern="" name="RemarksTherapy"></td>
+                <td><input type="text"  id="MonthlyTherapy" pattern="number" class="calcNumber" name="MonthlyTherapy"></td>
+                <td><input type="text"  id="AdhocTherapy" pattern="number" class="calcNumber" name="AdhocTherapy"></td>
+                <td><input type="text"  id="RemarksTherapy" pattern="" name="RemarksTherapy"></td>
             </tr>
             <tr>
                 <td>Home Help Service</td>
-                <td><input type="text" pattern="number" class="calcNumber" name="MonthlyHomeHelpService"></td>
-                <td><input type="text" pattern="number" class="calcNumber" name="AdhocHomeHelpService"></td>
-                <td><input type="text" pattern="" name="RemarksHomeHelpService"></td>
+                <td><input type="text" id="MonthlyHomeHelpService" pattern="number" class="calcNumber" name="MonthlyHomeHelpService"></td>
+                <td><input type="text" id="AdhocHomeHelpService" pattern="number" class="calcNumber" name="AdhocHomeHelpService"></td>
+                <td><input type="text" id="RemarksHomeHelpService" pattern="" name="RemarksHomeHelpService"></td>
             </tr>
             <tr>
                 <td>By Other Family Members</td>
-                <td><input type="text" pattern="number" class="calcNumber" name="MonthlyOtherFamilyMembers"></td>
-                <td><input type="text" pattern="number" class="calcNumber" name="AdhocOtherFamilyMembers"></td>
-                <td><input type="text" pattern="" name="RemarksOtherFamilyMembers"></td>
+                <td><input type="text" id="MonthlyOtherFamilyMembers" pattern="number" class="calcNumber" name="MonthlyOtherFamilyMembers"></td>
+                <td><input type="text" id="AdhocOtherFamilyMembers" pattern="number" class="calcNumber" name="AdhocOtherFamilyMembers"></td>
+                <td><input type="text" id="RemarksOtherFamilyMembers" pattern="" name="RemarksOtherFamilyMembers"></td>
             </tr>
             <tr>
                 <td>Medical expenses</td>
-                <td><input type="text" pattern="number" class="calcNumber" name="MonthlyMedicalExpenses"></td>
-                <td><input type="text" pattern="number" class="calcNumber" name="AdhocMedicalExpenses"></td>
-                <td><input type="text" pattern="" name="RemarksMedicalExpenses"></td>
+                <td><input type="text" id="MonthlyMedicalExpenses" pattern="number" class="calcNumber" name="MonthlyMedicalExpenses"></td>
+                <td><input type="text" id="AdhocMedicalExpenses" pattern="number" class="calcNumber" name="AdhocMedicalExpenses"></td>
+                <td><input type="text" id="RemarksMedicalExpenses" pattern="" name="RemarksMedicalExpenses"></td>
             </tr>
             <tr>
                 <td>Others</td>
-                <td><input type="text" pattern="number" class="calcNumber" name="MonthlyOthers"></td>
-                <td><input type="text" pattern="number" class="calcNumber" name="AdhocOthers"></td>
-                <td><input type="text" pattern="" name="RemarksOthers"></td>
+                <td><input type="text" id="MonthlyOthers" pattern="number" class="calcNumber" name="MonthlyOthers"></td>
+                <td><input type="text" id="AdhocOthers" pattern="number" class="calcNumber" name="AdhocOthers"></td>
+                <td><input type="text" id="RemarksOthers" pattern="" name="RemarksOthers"></td>
             </tr>
             <tr>
                 <td></td>
@@ -348,7 +345,7 @@ financial assistance for a stipulated period of time set by the Association.">
                             <label for="middle-label" class="text-left middle">Total:</label>
                         </div>
                         <div class="cell small-8 ">
-                            <input type="text" class="totalNumber" name="Total7">
+                            <input id="Total7" type="text" class="totalNumber" name="Total7">
                         </div>
                     </div>
                 </td>
@@ -358,7 +355,7 @@ financial assistance for a stipulated period of time set by the Association.">
                             <label for="middle-label" class="text-left middle">Total:</label>
                         </div>
                         <div class="cell small-8 ">
-                            <input type="text" class="totalNumber" name="Total8">
+                            <input  id="Total8" type="text" class="totalNumber" name="Total8">
                         </div>
                     </div>
                 </td>
@@ -372,21 +369,21 @@ financial assistance for a stipulated period of time set by the Association.">
             </tr>
             <tr>
                 <td>School Fees</td>
-                <td><input type="text" pattern="number" class="calcNumber" name="MonthlySchoolFees"></td>
-                <td><input type="text" pattern="number" class="calcNumber" name="AdhocSchoolFees"></td>
-                <td><input type="text" pattern="" name="RemarksSchoolFees"></td>
+                <td><input type="text" id="MonthlySchoolFees" pattern="number" class="calcNumber" name="MonthlySchoolFees"></td>
+                <td><input type="text" id="AdhocSchoolFees" pattern="number" class="calcNumber" name="AdhocSchoolFees"></td>
+                <td><input type="text" id="RemarksSchoolFees" pattern="" name="RemarksSchoolFees"></td>
             </tr>
             <tr>
                 <td>Childcare / Student Care</td>
-                <td><input type="text" pattern="number" class="calcNumber" name="MonthlyChildcareCare"></td>
-                <td><input type="text" pattern="number" class="calcNumber" name="AdhocChildcareCare"></td>
-                <td><input type="text" pattern="" name="RemarksChildcareCare"></td>
+                <td><input type="text" id="MonthlyChildcareCare" pattern="number" class="calcNumber" name="MonthlyChildcareCare"></td>
+                <td><input type="text" id="AdhocChildcareCare" pattern="number" class="calcNumber" name="AdhocChildcareCare"></td>
+                <td><input type="text" id="RemarksChildcareCare" pattern="" name="RemarksChildcareCare"></td>
             </tr>
             <tr>
                 <td>School Expenses</td>
-                <td><input type="text" pattern="number" class="calcNumber" name="MonthlySchoolExpenses"></td>
-                <td><input type="text" pattern="number" class="calcNumber" name="AdhocSchoolExpenses"></td>
-                <td><input type="text" pattern="" name="RemarksSchoolExpenses"></td>
+                <td><input type="text" id="MonthlySchoolExpenses" pattern="number" class="calcNumber" name="MonthlySchoolExpenses"></td>
+                <td><input type="text" id="AdhocSchoolExpenses" pattern="number" class="calcNumber" name="AdhocSchoolExpenses"></td>
+                <td><input type="text" id="RemarksSchoolExpenses" pattern="" name="RemarksSchoolExpenses"></td>
             </tr>
             <tr>
                 <td></td>
@@ -396,7 +393,7 @@ financial assistance for a stipulated period of time set by the Association.">
                             <label for="middle-label" class="text-left middle">Total:</label>
                         </div>
                         <div class="cell small-8 ">
-                            <input type="text" class="totalNumber" name="Total9">
+                            <input type="text" id="Total9" class="totalNumber" name="Total9">
                         </div>
                     </div>
                 </td>
@@ -406,7 +403,7 @@ financial assistance for a stipulated period of time set by the Association.">
                             <label for="middle-label" class="text-left middle">Total:</label>
                         </div>
                         <div class="cell small-8 ">
-                            <input type="text" class="totalNumber" name="Total10">
+                            <input  type="text"  id="Total10" class="totalNumber" name="Total10">
                         </div>
                     </div>
                 </td>
@@ -420,15 +417,15 @@ financial assistance for a stipulated period of time set by the Association.">
             </tr>
             <tr>
                 <td>Transport to school</td>
-                <td><input type="text" pattern="number" class="calcNumber" name="MonthlyTransportToschool"></td>
-                <td><input type="text" pattern="number" class="calcNumber" name="AdhocTransportToschool"></td>
-                <td><input type="text" pattern="" name="RemarksTransportToschool"></td>
+                <td><input type="text" id="MonthlyTransportToschool" pattern="number" class="calcNumber" name="MonthlyTransportToschool"></td>
+                <td><input type="text" id="AdhocTransportToschool" pattern="number" class="calcNumber" name="AdhocTransportToschool"></td>
+                <td><input type="text" id="RemarksTransportToschool" pattern="" name="RemarksTransportToschool"></td>
             </tr>
             <tr>
                 <td>General Transport cost</td>
-                <td><input type="text" pattern="number" class="calcNumber" name="MonthlyGeneralTransportCost"></td>
-                <td><input type="text" pattern="number" class="calcNumber" name="AdhocGeneralTransportCost"></td>
-                <td><input type="text" pattern="" name="RemarksGeneralTransportCost"></td>
+                <td><input type="text" id="MonthlyGeneralTransportCost" pattern="number" class="calcNumber" name="MonthlyGeneralTransportCost"></td>
+                <td><input type="text" id="AdhocGeneralTransportCost" pattern="number" class="calcNumber" name="AdhocGeneralTransportCost"></td>
+                <td><input type="text" id="RemarksGeneralTransportCost" pattern="" name="RemarksGeneralTransportCost"></td>
             </tr>
             <tr>
                 <td></td>
@@ -438,7 +435,7 @@ financial assistance for a stipulated period of time set by the Association.">
                             <label for="middle-label" class="text-left middle">Total:</label>
                         </div>
                         <div class="cell small-8 ">
-                            <input type="text" class="totalNumber" name="Total11">
+                            <input  id="Total11" type="text" class="totalNumber" name="Total11">
                         </div>
                     </div>
                 </td>
@@ -448,7 +445,7 @@ financial assistance for a stipulated period of time set by the Association.">
                             <label for="middle-label" class="text-left middle">Total:</label>
                         </div>
                         <div class="cell small-8 ">
-                            <input type="text" class="totalNumber" name="Total12">
+                            <input id="Total12" type="text" class="totalNumber" name="Total12">
                         </div>
                     </div>
                 </td>
@@ -462,9 +459,9 @@ financial assistance for a stipulated period of time set by the Association.">
             </tr>
             <tr>
                 <td>Salary and Levy</td>
-                <td><input type="text" pattern="number" class="calcNumber" name="MonthlySalaryAndLevy"></td>
-                <td><input type="text" pattern="number" class="calcNumber" name="AdhocSalaryAndLevy"></td>
-                <td><input type="text" pattern="" name="RemarksSalaryAndLevy"></td>
+                <td><input type="text" id="MonthlySalaryAndLevy" pattern="number" class="calcNumber" name="MonthlySalaryAndLevy"></td>
+                <td><input type="text" id="AdhocSalaryAndLevy" pattern="number" class="calcNumber" name="AdhocSalaryAndLevy"></td>
+                <td><input type="text" id="RemarksSalaryAndLevy" pattern="" name="RemarksSalaryAndLevy"></td>
             </tr>
             <tr>
                 <td></td>
@@ -474,7 +471,7 @@ financial assistance for a stipulated period of time set by the Association.">
                             <label for="middle-label" class="text-left middle">Total:</label>
                         </div>
                         <div class="cell small-8 ">
-                            <input type="text" class="totalNumber" name="Total13">
+                            <input type="text" id="Total13" class="totalNumber" name="Total13">
                         </div>
                     </div>
                 </td>
@@ -484,7 +481,7 @@ financial assistance for a stipulated period of time set by the Association.">
                             <label for="middle-label" class="text-left middle">Total:</label>
                         </div>
                         <div class="cell small-8 ">
-                            <input type="text" class="totalNumber" name="Total14">
+                            <input type="text" id="Total14" class="totalNumber" name="Total14">
                         </div>
                     </div>
                 </td>
@@ -503,34 +500,34 @@ financial assistance for a stipulated period of time set by the Association.">
                 <td></td>
             </tr>
             <tr>
-                <td><input type="text" name="Specify1"></td>
-                <td><input type="text" pattern="number" class="calcNumber" name="MonthlySpecify1"></td>
-                <td><input type="text" pattern="number" class="calcNumber" name="AdhocSpecify1"></td>
-                <td><input type="text" pattern="" name="RemarksSpecify1"></td>
+                <td><input type="text" id="Specify1" name="Specify1"></td>
+                <td><input type="text" id="MonthlySpecify1" pattern="number" class="calcNumber" name="MonthlySpecify1"></td>
+                <td><input type="text" id="AdhocSpecify1" pattern="number" class="calcNumber" name="AdhocSpecify1"></td>
+                <td><input type="text" id="RemarksSpecify1" pattern="" name="RemarksSpecify1"></td>
             </tr>
             <tr>
-                <td><input type="text" name="Specify2"></td>
-                <td><input type="text" pattern="number" class="calcNumber" name="MonthlySpecify2"></td>
-                <td><input type="text" pattern="number" class="calcNumber" name="AdhocSpecify2"></td>
-                <td><input type="text" pattern="" name="RemarksSpecify2"></td>
+                <td><input type="text" id="Specify2" name="Specify2"></td>
+                <td><input type="text" id="MonthlySpecify2" pattern="number" class="calcNumber" name="MonthlySpecify2"></td>
+                <td><input type="text" id="AdhocSpecify2" pattern="number" class="calcNumber" name="AdhocSpecify2"></td>
+                <td><input type="text" id="RemarksSpecify2" pattern="" name="RemarksSpecify2"></td>
             </tr>
             <tr>
-                <td><input type="text" name="Specify3"></td>
-                <td><input type="text" pattern="number" class="calcNumber" name="MonthlySpecify3"></td>
-                <td><input type="text" pattern="number" class="calcNumber" name="AdhocSpecify3"></td>
-                <td><input type="text" pattern="" name="RemarksSpecify3"></td>
+                <td><input type="text" id="Specify3"  name="Specify3"></td>
+                <td><input type="text" id="MonthlySpecify3" pattern="number" class="calcNumber" name="MonthlySpecify3"></td>
+                <td><input type="text" id="AdhocSpecify3" pattern="number" class="calcNumber" name="AdhocSpecify3"></td>
+                <td><input type="text" id="RemarksSpecify3" pattern="" name="RemarksSpecify3"></td>
             </tr>
             <tr>
-                <td><input type="text" name="Specify4"></td>
-                <td><input type="text" pattern="number" class="calcNumber" name="MonthlySpecify4"></td>
-                <td><input type="text" pattern="number" class="calcNumber" name="AdhocSpecify4"></td>
-                <td><input type="text" pattern="" name="RemarksSpecify4"></td>
+                <td><input type="text" id="Specify4" name="Specify4"></td>
+                <td><input type="text" id="MonthlySpecify4" pattern="number" class="calcNumber" name="MonthlySpecify4"></td>
+                <td><input type="text" id="AdhocSpecify4" pattern="number" class="calcNumber" name="AdhocSpecify4"></td>
+                <td><input type="text" id="RemarksSpecify4" pattern="" name="RemarksSpecify4"></td>
             </tr>
             <tr>
-                <td><input type="text" name="Specify5"></td>
-                <td><input type="text" pattern="number" class="calcNumber" name="MonthlySpecify5"></td>
-                <td><input type="text" pattern="number" class="calcNumber" name="AdhocSpecify5"></td>
-                <td><input type="text" pattern="" name="RemarksSpecify5"></td>
+                <td><input type="text" id="Specify5" name="Specify5"></td>
+                <td><input type="text" id="MonthlySpecify5" pattern="number" class="calcNumber" name="MonthlySpecify5"></td>
+                <td><input type="text" id="AdhocSpecify5" pattern="number" class="calcNumber" name="AdhocSpecify5"></td>
+                <td><input type="text" id="RemarksSpecify5" pattern="" name="RemarksSpecify5"></td>
             </tr>
             <tr>
                 <td></td>
@@ -540,7 +537,7 @@ financial assistance for a stipulated period of time set by the Association.">
                             <label for="middle-label" class="text-left middle">Total:</label>
                         </div>
                         <div class="cell small-8 ">
-                            <input type="text" class="totalNumber" name="Total15">
+                            <input type="text" id="Total15" class="totalNumber" name="Total15">
                         </div>
                     </div>
                 </td>
@@ -550,7 +547,7 @@ financial assistance for a stipulated period of time set by the Association.">
                             <label for="middle-label" class="text-left middle">Total:</label>
                         </div>
                         <div class="cell small-8 ">
-                            <input type="text" class="totalNumber" name="Total16">
+                            <input type="text" id="Total16" class="totalNumber" name="Total16">
                         </div>
                     </div>
                 </td>
@@ -567,17 +564,17 @@ financial assistance for a stipulated period of time set by the Association.">
                             <label for="middle-label" class="text-left middle">$</label>
                         </div>
                         <div class="cell small-9 ">
-                            <input type="text" class="grandTotalNumber" name="GrandTotal1">
+                            <input type="text" id="GrandTotal1" class="grandTotalNumber" name="GrandTotal1">
                         </div>
                     </div>
                 </td>
                 <td>
                     <div class="grid-x">
                         <div class="cell small-3">
-                            <label for="middle-label" class="text-left middle">$</label>
+                            <label for="middle-label" id="" class="text-left middle">$</label>
                         </div>
                         <div class="cell small-9 ">
-                            <input type="text" class="grandTotalNumber" name="GrandTotal2">
+                            <input type="text"  id="GrandTotal2" class="grandTotalNumber" name="GrandTotal2">
                         </div>
                     </div>
                 </td>

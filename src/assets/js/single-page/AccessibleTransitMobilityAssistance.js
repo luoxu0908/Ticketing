@@ -167,7 +167,6 @@ function GetAccessibleTransitMobilityAssistance(ID) {
                       var sectionE_ApplicantDeclarationArr = sectionE_ApplicantDeclaration.split(',');
                       for (var i = 0; i < sectionE_ApplicantDeclarationArr.length; i++) {
                           if (sectionE_ApplicantDeclarationArr[i].length > 0) {
-                              var flag = false;
                               $('input[name="sectionE_ApplicantDeclaration"]').each(function () {
                                   if ($(this).val() == sectionE_ApplicantDeclarationArr[i]) { $(this).prop('checked', true); }
                               });
