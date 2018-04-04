@@ -16,6 +16,7 @@
     "jquery-ui": "^1.12.1",
     "jquery.event.drag": "^2.2.2",
     "js-cookie": "^2.2.0",
+    "moment": "^2.22.0",
     "motion-ui": "~1.2.2",
     "what-input": "^4.1.3"
   },

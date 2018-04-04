@@ -122,3 +122,26 @@ $(document).ready(function () {
 	window.QS = $.parseQS(); window.DoGridInit = false;
 	setTimeout(function () { DoSlickGridInit(); }, 25); //Give other widgets some time to init
 });
+
+var $MTool = $('#MTool'), $filters = $('#Filters');
+	window.QS = $.parseQS();
+	$(document).on("togShowHide", function (e) {
+	    if (e.Show) { $filters.show(); $MTool.show(); } else { $filters.hide(); $MTool.hide(); }
+	});
+	$(document).ready(function () {
+
+	});
+	function OpenMeans() {
+	}
+	window.open(apiSrc+"mdas/initial-assesment-form.html")
+	function ViewEdit(ID) {
+	    var url = apiSrc+'mdas/initial-assesment-form.html?ID=' + ID;
+	    window.open(url)
+	}
+
+	function refreshData() { jQuery.event.trigger({ type: "refreshSG" }); }
+	function GetFilterData() {
+	    var FilterData = { 'DisplayName': $('#DisplayName').val() || "", 'QueryNRIC': $('#QueryNRIC').val() || "" };
+	    return FilterData;
+	}
+	window.DoGridInit = true; //ready for SG to init

@@ -184,7 +184,7 @@ var SlickGridHelper = function SlickGridHelper(GridID, ModKey, GridOptions, Help
 		var Opt = $.extend({ "Timeout": (_SGH.Options.ReqTimeoutMS || 30000) }, JSONOpt);
 		SvrData = SvrData || {};
 		SvrData.ModKey = _SGH.ModKey;
-		var jqxhr = $.JSONPost(URL, SvrData, Opt);
+		var jqxhr = $.JSONPost(apiSrc+URL, SvrData, Opt);
 		jqxhr.fail(function (jqXHR, textStatus, errorThrown) {
 			if (EditCmd) {
 				if (Slick.GlobalEditorLock.cancelCurrentEdit()) { EditCmd.undo(); _SGH.Grid.gotoCell(EditCmd.row, EditCmd.cell, false); }

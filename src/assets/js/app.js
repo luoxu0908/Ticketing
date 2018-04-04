@@ -5,6 +5,7 @@ import Master from './lib/master';
 import jQueryUI from 'jquery-ui';
 import Sortable from 'jquery-ui/ui/widgets/sortable';
 import jQueryEventDrag from 'jquery.event.drag';
+import moment from 'moment';
 
 
 window.$ = $;
@@ -13,6 +14,7 @@ window.Cookies = Cookies;
 //window.jQueryUI = jQueryUI;
 window.Sortable = Sortable;
 window.jQueryEventDrag = jQueryEventDrag;
+window.moment = moment;
 window.loadPage = loadPage;
 
 import Foundation from 'foundation-sites';
