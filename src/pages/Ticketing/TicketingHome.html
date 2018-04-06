@@ -18,8 +18,10 @@
             <th>Product</th>
             <th>Package Type</th>
             <th>Expiry Date</th>
-            <th>Assurance Plus</th>
+            <th>Quantity</th>
+            <th>Total man-hours</th>
             <th>Utilized Man-hour(s)</th>
+            <th>Remaining Man-hour(s)</th>
           </tr>
         </thead>
         <tbody>
@@ -65,7 +67,7 @@
           <div class="grid-x card-divider">
             <div align="center" class="cell auto">
               <img src="../assets/img/user-add.png" width="100" height="100"> <br>
-              Add New User
+              Add New Organisation
             </div>
           </div>
         </div>
@@ -294,7 +296,7 @@
       </label>
     </div>
   </div>
-  <div class="grid-x grid-padding-x">
+  <div class="grid-x grid-padding-x" id="CreatCasecategory">
     <div class="cell">
       <label>
         Category
@@ -351,8 +353,9 @@
         Package Type <span style="color:red">*</span>
         <select id="type" name="type">
           <option value="">-- Please Select --</option>
-          <option value="Maintenance">Maintenance</option>
+          <option value="Maintenance">Support Mantainance</option>
           <option value="Assurance">Assurance</option>
+          <option value="AssurancePlus">Assurance Plus</option>
         </select>
       </label>
     </div>
@@ -396,7 +399,7 @@
 </form>
 <form id="newUserForm" class="reveal lightBg" data-reveal >
   <header onloadedmetadata="" class="grid-x grid-padding-x">
-    <h3 class="cell">New User</h3>
+    <h3 class="cell">New Organisation</h3>
     <button class="close-button" data-close aria-label="Close modal" type="button">
     <span aria-hidden="true">&times;</span>
     </button>
@@ -412,7 +415,7 @@
   <div class="grid-x grid-padding-x">
     <div class="cell">
       <label>
-      NRIC/UEN <span style="color:red">*</span>
+        UEN <span style="color:red">*</span>
       <input type="text" id="entityKey" name="entityKey"/>
       </label>
     </div>

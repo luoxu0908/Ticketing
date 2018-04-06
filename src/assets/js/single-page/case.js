@@ -37,7 +37,7 @@ $(function(){
     if (RoleName=='Admin'){
 
     }else if (RoleName=='Clients'){
-
+      $('#AddNewActivity').hide();
     }else if (RoleName=='Support Developer'){
       $('.supportControl').show();
     }else if (RoleName=='Support Team Lead'){

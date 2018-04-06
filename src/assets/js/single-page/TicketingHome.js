@@ -104,11 +104,13 @@ $(function(){
     });
 
   $.when(checkRoleAccess, getOrgnaisation).then(function( x ) {
-    if (RoleName=='Admin'){
+
+    if (RoleName=='Admin'|| RoleName=='Security Admin'){
       $('.adminView').show();
       getUsersList();
     }else if (RoleName=='Clients'){
       $('.clientView').show();
+      $('#CreatCasecategory').hide();
       getProductOwn();
       getCasesList();
     }else if (RoleName=='Support Developer'){
