@@ -377,7 +377,9 @@ function getProductOwn(){
             htmlString += '<td>'+products[i].PackageType+'</td>';
             htmlString += '<td>'+expiryDate+'</td>';
             htmlString += '<td>'+products[i].AssuranceNo+'</td>';
+            htmlString += '<td>'+products[i].ManHoursBought+'</td>';
             htmlString += '<td>'+products[i].ManHoursUsed+'</td>';
+            htmlString += '<td>'+products[i].ManHoursLeft+'</td>';
             htmlString += '</tr>';
           }
         }
