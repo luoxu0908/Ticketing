@@ -75,7 +75,11 @@ $(function(){
     }
     appCookie.redirectPage = (pageURL != '') ? pageURL : appRootPath+'index.html';
     Cookies.set('appCookie', appCookie);
-    window.location.href = appRootPath +'login.html';
+    var LoginID=GetQueryString('Login');
+
+    if(LoginID!=0){
+      window.location.href = appRootPath +'login.html';
+    }
   }
 
   if(appCookie.loginID){
@@ -730,4 +734,14 @@ function formSectionsInit() {
     }
   });
 
+}
+function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        var context = "";
+        if (r != null)
+            context = r[2];
+        reg = null;
+        r = null;
+        return context == null || context == "" || context == "undefined" ? "" : context;
 }
