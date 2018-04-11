@@ -131,8 +131,8 @@
   </section>
   <section id="activityLog">
     <header class="grid-x">
-      <h2 class="cell auto">Activity Log</h2>
-      <button id="AddNewActivity" type="button" class="buttonType2 buttonType2Add cell medium-3 text-right"  data-open="activityForm">Add New Activity</button>
+      <h2 class="cell auto">Case History</h2>
+      <button id="AddNewActivity" type="button" class="buttonType2 buttonType2Add cell medium-3 text-right"  data-open="activityForm">Add Case Remarks</button>
     </header>
     <div class="threadContainer" id="logThread">
       <div class="scrollContainer scrollY threadLog">
@@ -181,17 +181,17 @@
   </form>
   <form id="activityForm" class="reveal lightBg" data-reveal>
     <header class="grid-x grid-padding-x">
-      <h3 class="cell">New Activity</h3>
+      <h3 class="cell">Case Remarks</h3>
       <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
       <span aria-hidden="true">&times;</span>
       </button>
     </header>
     <div class="grid-x grid-padding-x">
       <div class="cell">
-        <label>
+        <label style="display:none">
         Description <span style="color:red">*</span>
-        <textarea id="description" name="description"></textarea>
         </label>
+        <textarea id="description" name="description"></textarea>
       </div>
     </div>
     <div style="display:none" class="grid-x grid-padding-x internalCheckBox supportControl">
