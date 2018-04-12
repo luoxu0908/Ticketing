@@ -5,7 +5,7 @@ $(function () {
             Submit();
         });
     });
-
+  //192.168.123.185
     function Submit() {
           var UserNameCheck = '', PasswordCheck = '', EmailAddressOrNric = $('#EmailAddressOrNric').val() || '';
           if ($('#RememberUsernameCheckBox').prop('checked') == true) {
@@ -38,7 +38,7 @@ $(function () {
                   if ((data) && (data.d.RetVal === -1)) {
                       if (data.d.RetData.Tbl.Rows.length > 0) {
                           if (data.d.RetData.Tbl.Rows[0].Success == true) {
-                              alert("Your request has been successfully sent to your email"+data.d.RetData.Tbl.Rows[0].EmailAddrStr)
+                                alert("Your request has been successfully sent to your email" + ' (' + data.d.RetData.Tbl.Rows[0].EmailAddrStr + ')')
                           } else {
                               alert(data.d.RetData.Tbl.Rows[0].ReturnMsg);
                           }
