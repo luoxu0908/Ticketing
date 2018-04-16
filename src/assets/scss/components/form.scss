@@ -1,4 +1,4 @@
-form,.form, .formTextContainer {
+form, .form, .formTextContainer {
   max-width: 800px;
   margin-bottom: 1.5rem;
 
@@ -22,17 +22,19 @@ form,.form, .formTextContainer {
   	font-weight: bold;
     margin-bottom: 0.5rem;
   }
+
   .text {
   	margin-bottom: $global-margin;
     min-height: 1.5rem;
   }
+
   input[type=text],
   input[type=password],
   input[type=email],
   input[type=Date],
   select,
   textarea {
-    background: $complementary-light-color1;
+    background-color: $complementary-light-color1;
     border-radius: 0;
     border: none;
     border-bottom: 3px solid $light-gray;
@@ -51,8 +53,11 @@ form,.form, .formTextContainer {
       border: none;
       border-bottom: 3px solid $medium-gray;
       box-shadow: 0 0;
-      background: lighten($contrast-color1,30);
+      background-color: lighten($contrast-color1,30);
     }
+  }
+  select {
+    padding-right: 1.5rem;
   }
   textarea {
     height: 180px;
@@ -75,6 +80,7 @@ form,.form, .formTextContainer {
     @include formGroups(column);
 
   }
+
   .dateGroup {
     @include formGroups();
 
@@ -176,7 +182,7 @@ form,.form, .formTextContainer {
     .row {
       display: flex;
       justify-content: flex-start;
-      margin: 0 0 0.5rem;
+      margin: 0 0 0;
 
 
       div, a {
@@ -187,7 +193,7 @@ form,.form, .formTextContainer {
       }
     }
     button,.button {
-      margin: 0 0 1rem;
+      margin: 0 0 0rem;
     }
   }
 
