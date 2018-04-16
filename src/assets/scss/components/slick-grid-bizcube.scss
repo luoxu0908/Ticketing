@@ -1,4 +1,7 @@
 div.GridDimensions {
+  $gridLineHeight: 1.3em;
+  box-sizing: content-box;
+	line-height: $gridLineHeight;
 
   .slick-headerrow-column.ui-state-default,
   .slick-header-column.ui-state-default,
@@ -8,7 +11,24 @@ div.GridDimensions {
     padding: 0.5rem 0.5rem;
   }
 
-  .slick-row {
+  .slick-header-column.ui-state-default {
+    line-height: $gridLineHeight;
   }
+
+  .slick-header {
+		background: $complementary-light-color3;
+		border: 1px solid silver;
+    left: -1px; //to display right border, to match the rest of the rows border
+
+		.slick-header-column {
+
+		}
+    .slick-header-menubutton {
+      background-image: url("../../assets/img/down.gif") !important;
+      display: block;
+      width: 12px;
+      height: 10px;
+    }
+	}
 
 }

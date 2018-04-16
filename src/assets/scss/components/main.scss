@@ -110,10 +110,7 @@ ul.noBullets {
 	}
 }
 
-.GridDimensions {
-	box-sizing: content-box;
-	line-height: 1.2em;
-}
+
 
 @include breakpoint(medium) {
   #mainContent {
