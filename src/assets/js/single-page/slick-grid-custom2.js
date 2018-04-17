@@ -31,8 +31,6 @@ function DoSlickGridInit() {
 			console.log('_rowHeight: ' +_rowHeight);
 			var _headerRowHeight = (QS.headerRowHeight || ((_rowHeight / 25) * 16));
 
-
-console.log('_headerRowHeight:'+ _headerRowHeight);
 			//note that if CustomEditCmdHandler is a function, it will override the default SGH editCommandHandler
 
 			window.SGH = new SlickGridHelper(
