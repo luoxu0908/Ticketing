@@ -179,9 +179,11 @@ form, .form, .formTextContainer {
   &.formRows {
     max-width: none;
 
-    .row {
+    .row,
+    footer {
       display: flex;
       justify-content: flex-start;
+      flex-wrap: wrap;
       margin: 0 0 0;
 
 
