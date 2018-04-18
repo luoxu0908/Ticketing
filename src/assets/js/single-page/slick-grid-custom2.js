@@ -5,7 +5,7 @@ window.SGHInitMaxTries = 40;
 
 window.SGHInitTries = window.SGHInitMaxTries; //countdown, set to -1 if successful, 0 if failed
 
-$('#refreshGrid').click(refreshData());
+$('#refreshGrid, #BtnRefresh').on('click',refreshData());
 function refreshData() { jQuery.event.trigger({ type: "refreshSG" }); }
 
 function DoSlickGridInit() {
@@ -28,7 +28,7 @@ function DoSlickGridInit() {
 
 			var FFMin = (QS.ForceFitColsMinWidth || 0);
 			var _rowHeight = (QS.rowHeight || 60);
-			console.log('_rowHeight: ' +_rowHeight);
+
 			var _headerRowHeight = (QS.headerRowHeight || ((_rowHeight / 25) * 16));
 
 			//note that if CustomEditCmdHandler is a function, it will override the default SGH editCommandHandler
@@ -94,6 +94,40 @@ function DoSlickGridInit() {
 					var Opt = $.extend(true, { RefreshOnLoad: R, RefreshOnLoad_JSONOpt: { } }, window.DefaultGridOptions);
 
 					if (Opt.RefreshOnLoad != 0) { jQuery.event.trigger({ type: "refreshSG", JSONOpt: Opt.RefreshOnLoad_JSONOpt }); }
+
+					//create form using json
+					let formJson = [
+							{
+								eq: 0,
+								id:'displayName',
+								name:'displayName',
+								label: 'Display Name',
+								type: 'select',
+								width: '200',
+								style: {
+									background: 'red'
+								}
+							},
+							{
+								eq: 1,
+								id:'createDate',
+								name:'createDate',
+								label: 'Create Date',
+								type: 'text',
+								placeholder: 'hello',
+								value: ''
+							}
+					];
+					/*
+					[{"eq":0,"id":"displayName","name":"displayName","label":"Display Name","type":"select","width":"200","style":{"background":"red"}},{"eq":1,"id":"createDate","name":"createDate","type":"text","placeholder":"hello","value":""}]
+
+					%5B%7B%22eq%22%3A0%2C%22id%22%3A%22displayName%22%2C%22name%22%3A%22displayName%22%2C%22label%22%3A%22Display%20Name%22%2C%22type%22%3A%22select%22%2C%22width%22%3A%22200%22%2C%22style%22%3A%7B%22background%22%3A%22red%22%7D%7D%2C%7B%22eq%22%3A1%2C%22id%22%3A%22createDate%22%2C%22name%22%3A%22createDate%22%2C%22type%22%3A%22text%22%2C%22placeholder%22%3A%22hello%22%2C%22value%22%3A%22%22%7D%5D
+					*/
+					//createForm
+					if (typeof formJson != 'undefined' && formJson.length > 0) {
+						createFilterForm(formJson);
+					}
+
 				},
 				function () {
 					jQuery.event.trigger({ type: "refreshedSG" });
@@ -101,6 +135,8 @@ function DoSlickGridInit() {
 				function (Cols, RowKeyField, OthDS, OthSettings) {
 					if (typeof (PreInitGrid) === "function") PreInitGrid(Cols, RowKeyField, OthDS, OthSettings);
 				}
+
+
 			); //slickgridheler
 			//$(document).on("RecalcUI", function (e) { window.SGH.resize(MinGridHeight); });
 			$(document).on("EndEdit", function (e) { window.SGH.endEditTrySave(); });
@@ -128,20 +164,71 @@ var $MTool = $('#MTool'), $filters = $('#Filters');
 	$(document).on("togShowHide", function (e) {
 	    if (e.Show) { $filters.show(); $MTool.show(); } else { $filters.hide(); $MTool.hide(); }
 	});
-	$(document).ready(function () {
 
-	});
 	function OpenMeans() {
 	}
-	window.open(apiSrc+"mdas/initial-assesment-form.html")
+
 	function ViewEdit(ID) {
 	    var url = apiSrc+'mdas/initial-assesment-form.html?ID=' + ID;
 	    window.open(url)
 	}
 
 	function refreshData() { jQuery.event.trigger({ type: "refreshSG" }); }
+
+	function createFilterForm(formJson) {
+
+
+		let formContainer = $('#slickGridFormContainer');
+		formContainer.html('');
+		formContainer.append('<div class="row"></div><footer></footer>');
+		let formRow = formContainer.find('.row');
+		let formFooter = formContainer.find('footer');
+
+		for (let i = 0; i < formJson.length; i++) {
+			let formObj = null;
+			let formLabel = null;
+			let formObjDiv = $('<div></div>');
+
+			switch (formJson[i].type.toLowerCase()) {
+				case 'select':
+					formObj = $('<select></select>');
+				break;
+				case 'text':
+					formObj = $('<input type="text"/>');
+				default:
+				break;
+			}
+			//formLabel
+
+			formObjDiv.data('form-obj-id',formJson[i].id);
+			formObj.prop('id', formJson[i].id);
+			formObj.prop('name', formJson[i].name);
+			if (typeof formJson[i].placeholder != 'undefined' && formJson[i].placeholder != '')
+				formObj.prop('placeholder', formJson[i].placeholder);
+			if (typeof formJson[i].value != 'undefined' && formJson[i].value != '')
+				formObj.val(formJson[i].value);
+			if (typeof formJson[i].style != 'undefined' && formJson[i].style != '')
+				formObj.css(formJson[i].style);
+
+			formObjDiv.append('<label for="'+formJson[i].id+'">'+formJson[i].label+'</label>')
+			formObj.appendTo(formObjDiv);
+			formObjDiv.appendTo(formRow);
+		};   //for
+
+		formFooter.append('<button id="BtnRefresh">Refresh</button>');
+	} //createFilterForm
+
 	function GetFilterData() {
-	    var FilterData = { 'DisplayName': $('#DisplayName').val() || "", 'QueryNRIC': $('#QueryNRIC').val() || "" };
-	    return FilterData;
+		//dynamic get filter data
+		let formRow = $('#slickGridFormContainer').find('.row');
+		let formJson = {};
+
+		formRow.find('div').each(function() {
+			let thisObj = $(this);
+			var formObjID = thisObj.data('form-obj-id');
+			formJson[formObjID] = $('#'+formObjID).val();
+		});
+
+	  return formJson;
 	}
 	window.DoGridInit = true; //ready for SG to init
