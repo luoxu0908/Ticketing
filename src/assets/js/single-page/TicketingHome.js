@@ -107,6 +107,7 @@ $(function(){
 
     if (RoleName=='Admin'|| RoleName=='Security Admin'){
       $('.adminView').show();
+      $('.clientView').show();
       getUsersList();
     }else if (RoleName=='Clients'){
       $('.clientView').show();
@@ -431,12 +432,13 @@ function getOrgProductList(Organization){
 }
 
 function addNewPackage(){
-  var RoleID, PackageType, Product, StartDate, ExpiryDate, AssurancePlus, NoAssPlus, Remarks;
+  var RoleID, PackageType, Product, StartDate, ExpiryDate, AssurancePlus, NoAssPlus,Quantity, Remarks;
   RoleID = $('#packageAddForm #organisation').val();
   Product = $('#packageAddForm #product').val();
   PackageType =  $('#packageAddForm #type').val();
   StartDate = $('#packageAddForm #packageStartDate').val();
   ExpiryDate = $('#packageAddForm #packageExpiryDate').val();
+  Quantity=$('#packageAddForm #quantity').val();
   if ($("#packageAddForm #assurancePlus").is(':checked')){
     AssurancePlus = 1;
   }else{
@@ -444,13 +446,17 @@ function addNewPackage(){
   }
   NoAssPlus = $('#packageAddForm #assurancePlusNo').val() * 5 * 8;
   Remarks = $('#packageAddForm #remarks').val();
+  Quantity=parseInt(Quantity);
 
   if (RoleID.length==0 || PackageType.length==0 || Product.length==0 || StartDate.length==0 || ExpiryDate.length==0){
     alert('Please fill in all mandatory fields!');
     return false;
   }
-
-  var data = {'RoleID':RoleID, 'PackageType':PackageType, 'Product':Product, 'StartDate':StartDate, 'ExpiryDate':ExpiryDate, 'Remarks':Remarks, 'AssurancePlus':AssurancePlus, 'NoAssPlus':NoAssPlus};
+  if(isNaN(ival)){
+    alert('Please fill in Quantity fields!');
+    return false;
+    }
+  var data = {'RoleID':RoleID, 'PackageType':PackageType, 'Product':Product, 'StartDate':StartDate, 'ExpiryDate':ExpiryDate, 'Remarks':Remarks, 'AssurancePlus':AssurancePlus, 'NoAssPlus':NoAssPlus,'Quantity':Quantity};
   $.ajax({
     url: apiSrc+"BCMain/Ctc1.AddNewPackage.json",
     method: "POST",
@@ -465,6 +471,7 @@ function addNewPackage(){
           if (data.d.RetData.Tbl.Rows[0].Success == true) {
             clearPackageForm();
             alert('Package added successfully!');
+            $('#packageAddForm').foundation('close');
           } else { alert(data.d.RetData.Tbl.Rows[0].ReturnMsg); }
         }
       }

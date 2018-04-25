@@ -111,7 +111,7 @@ function addNewInvolvement(caseID){
   staff = $('#involvementForm #person').val();
   task = $('#involvementForm #task').val();
 
-  if (staff.length==0 || task.length==0){
+  if (staff.length==0){
     alert('Please fill in all mandatory fields!');
     return false;
   }
@@ -322,7 +322,8 @@ function GetCaseInvolvement(caseId){
             var time = convertDateTime(caseInvolvements[i].CreatedDate,'time');
             involvementContainer += '<div class="thread">'
             involvementContainer += '<div class="top"> <span class="datetime">'+date+'<i> '+time+'</i> </span> </div>'
-            involvementContainer += '<div class="text">'+caseInvolvements[i].RolePerson+': '+caseInvolvements[i].Remarks+'</div> </div>'
+            involvementContainer += '<div class="text">'+caseInvolvements[i].RolePerson+'</div> </div>'
+            //involvementContainer += '<div class="text">'+caseInvolvements[i].RolePerson+': '+caseInvolvements[i].Remarks+'</div> </div>'
           }
           $('#taskThread .threadTask').html(involvementContainer);
         }
