@@ -100,7 +100,7 @@ button, .button, [type="button"], [type="reset"], [type="submit"] {
 	&.buttonChargeAdd {
 		&.left:before,
 		&:after {
-			background: url('/assets/img/case-charge.png') no-repeat center center;
+			background: url('https://portal.taksys.com.sg/Support/assets/img/case-charge.png') no-repeat center center;
 			background-size: 100% 100%;
 		}
 		&.left:hover:before,
@@ -112,7 +112,7 @@ button, .button, [type="button"], [type="reset"], [type="submit"] {
 	&.buttonReviewAdd {
 		&.left:before,
 		&:after {
-			background: url('/assets/img/case-review.jpg') no-repeat center center;
+			background: url('https://portal.taksys.com.sg/Support/assets/img/case-review.jpg') no-repeat center center;
 			background-size: 100% 100%;
 		}
 		&.left:hover:before,
