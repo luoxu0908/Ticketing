@@ -10,6 +10,25 @@
   <header class="grid-x toggleTitle">
     <h2 class="cell auto">Package(s)</h2>
   </header>
+  <div id="packageFilter" class="packageFilter tabBoxContainer">
+    <button class="button button3 tabBoxButton" data-target="packageFilterForm" ><i class="icon"><img src="{{root}}assets/img/icon-light-filter.png" alt="icon"/></i>Filter</button>
+    <form class="form2 tabBoxContent reveal" id="packageFilterForm">
+      <button class="close-button tabBoxButtonClose" aria-label="Dismiss alert" type="button" data-close>
+      <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="grid-x grid-padding-x">
+        <div class="cell small-12 medium-6 orgCell">
+          <label>Organization
+          <select id="organisation" name="organisation">
+          </select>
+          </label>
+        </div>
+      </div>
+      <footer class="grid-x grid-margin-x">
+        <button type="button" class="cell small-12 medium-offset-4 medium-4 button2 tabBoxButtonSubmit">Filter</button>
+      </footer>
+    </form>
+  </div>
   <div class="toggleContent">
     <div class="scrollContainer scrollY">
       <table class="packageTable">

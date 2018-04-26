@@ -33,12 +33,12 @@ $(function(){
       if ((data) && (data.d.RetVal === -1)) {
         if (data.d.RetData.Tbl.Rows.length == 1) {
           var org = data.d.RetData.Tbl.Rows[0];
-          $('#caseAddForm #organisation, #caseFilter #organisation, #packageAddForm #organisation').append('<option value="'+org.DefaultRoleID+'" selected>'+org.DisplayName+'</option>');
+          $('#caseAddForm #organisation, #caseFilter #organisation, #packageAddForm #organisation,#packageFilter #organisation').append('<option value="'+org.DefaultRoleID+'" selected>'+org.DisplayName+'</option>');
         }else if (data.d.RetData.Tbl.Rows.length > 0) {
-          $('#caseAddForm #organisation, #caseFilter #organisation, #packageAddForm #organisation').append('<option value="">-- Please Select --</option>');
+          $('#caseAddForm #organisation, #caseFilter #organisation, #packageAddForm #organisation,#packageFilter #organisation').append('<option value="">-- Please Select --</option>');
           var orgList = data.d.RetData.Tbl.Rows;
           for (var i=0; i<orgList.length; i++ ){
-            $('#caseAddForm #organisation, #caseFilter #organisation, #packageAddForm #organisation').append('<option value="'+orgList[i].DefaultRoleID+'">'+orgList[i].DisplayName+'</option>');
+            $('#caseAddForm #organisation, #caseFilter #organisation, #packageAddForm #organisation,#packageFilter #organisation').append('<option value="'+orgList[i].DefaultRoleID+'">'+orgList[i].DisplayName+'</option>');
           }
         }
       }
@@ -109,6 +109,7 @@ $(function(){
       $('.adminView').show();
       $('.clientView').show();
       getUsersList();
+      getProductOwn();
     }else if (RoleName=='Clients'){
       $('.clientView').show();
       $('#CreatCasecategory').hide();
@@ -144,6 +145,9 @@ $(function(){
   });
   $('#userFilter .tabBoxButtonSubmit').click(function(){
     getUsersList();
+  });
+  $('#packageFilter .tabBoxButtonSubmit').click(function(){
+    getProductOwn();
   });
   $('#packageAddForm #submit').click(function(){
     addNewPackage();
@@ -355,7 +359,8 @@ function getProductOwn(){
   var productContainerTable = $('#packageContainer').find('table'),
       productThead = productContainerTable.find('thead'),
       productTbody = productContainerTable.find('tbody');
-
+  var  organization =  $('#packageFilter #organisation').val();
+  var data = {'organization':organization};
   productTbody.html('');
 
   $.ajax({
@@ -363,7 +368,7 @@ function getProductOwn(){
     method: "POST",
     dataType: "json",
     xhrFields: {withCredentials: true},
-    data: { 'data':'',
+    data: { 'data':JSON.stringify(data),
             'WebPartKey':WebPartVal,
             'ReqGUID': getGUID() },
     success: function(data){
@@ -444,7 +449,6 @@ function addNewPackage(){
   }else{
     AssurancePlus = 0;
   }
-  NoAssPlus = $('#packageAddForm #assurancePlusNo').val() * 5 * 8;
   Remarks = $('#packageAddForm #remarks').val();
   Quantity=parseInt(Quantity);
 
@@ -456,6 +460,8 @@ function addNewPackage(){
     alert('Please fill in Quantity fields!');
     return false;
     }
+    //NoAssPlus = $('#packageAddForm #assurancePlusNo').val() * 5 * 8;
+    NoAssPlus =Quantity* 5* 5 * 8;
   var data = {'RoleID':RoleID, 'PackageType':PackageType, 'Product':Product, 'StartDate':StartDate, 'ExpiryDate':ExpiryDate, 'Remarks':Remarks, 'AssurancePlus':AssurancePlus, 'NoAssPlus':NoAssPlus,'Quantity':Quantity};
   $.ajax({
     url: apiSrc+"BCMain/Ctc1.AddNewPackage.json",

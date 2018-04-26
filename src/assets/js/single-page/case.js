@@ -37,7 +37,7 @@ $(function(){
     if (RoleName=='Admin'){
 
     }else if (RoleName=='Clients'){
-      $('#AddNewActivity').hide();
+      $('#AddNewActivity').show();
     }else if (RoleName=='Support Developer'){
       $('.supportControl').show();
     }else if (RoleName=='Support Team Lead'){
@@ -147,15 +147,18 @@ function addNewInvolvement(caseID){
 function addNewActivity(caseID){
   var Description, internal;
   Description = $('#activityForm #description').val();
-  if ($("#activityForm #internal").is(':checked')){
-    internal = 1;
-  }else{
-    internal = 0;
-  }
+
+  internal= $("#activityForm [name=internal]:checked").val()||'';
 
   if (Description.length==0){
     alert('Please fill in description!');
     return false;
+  }
+  if (RoleName!='Clients'){
+    if (internal.length==0){
+      alert('Please fill in internal or All!');
+      return false;
+    }
   }
 
   var data = {'FLID':caseID, 'Details':Description, 'Internal':internal};
@@ -171,6 +174,7 @@ function addNewActivity(caseID){
       if ((data) && (data.d.RetVal === -1)) {
         if (data.d.RetData.Tbl.Rows.length > 0) {
           if (data.d.RetData.Tbl.Rows[0].Success == true) {
+            $('#activityForm').foundation('close');
             GetCaseHistory(caseID);
           } else { alert(data.d.RetData.Tbl.Rows[0].ReturnMsg); }
         }
@@ -188,6 +192,7 @@ function addNewActivity(caseID){
 function GetAvailablePackage(caseId){
   $('#chargeForm #packageID').html('');
   var html = '<option value="">-- Please Select --</option>';
+      html += '<option value="0">Quotation</option>';
   $.ajax({
     url: apiSrc+"BCMain/Ctc1.GetAvailablePackage.json",
     method: "POST",
