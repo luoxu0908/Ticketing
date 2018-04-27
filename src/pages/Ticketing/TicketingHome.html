@@ -8,7 +8,7 @@
 </section>
 <section id="packageContainer" class="toggleBox clientView" style="display:none">
   <header class="grid-x toggleTitle">
-    <h2 class="cell auto">Package(s)</h2>
+    <h2 class="cell auto">Package(s)</h2><a href="https://portal.bizcube.com.sg/1.pdf" class="cell auto">Maintainance & Support SLA</a><a class="cell auto" href="https://portal.bizcube.com.sg/1.pdf">Software Assurance SLA</a><a class="cell auto" href="https://portal.bizcube.com.sg/1.pdf">Software Assurance SLA</a>
   </header>
   <div id="packageFilter" class="packageFilter tabBoxContainer">
     <button class="button button3 tabBoxButton" data-target="packageFilterForm" ><i class="icon"><img src="{{root}}assets/img/icon-light-filter.png" alt="icon"/></i>Filter</button>
@@ -97,6 +97,16 @@
             <div align="center" class="cell auto">
               <img src="../assets/img/Package-Add.png" width="100" height="100" > <br>
               Add New Package
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="large-3 cell" data-open="newPersonForm">
+        <div class="card">
+          <div class="grid-x card-divider">
+            <div align="center" class="cell auto">
+              <img src="../assets/img/user-add.png" width="100" height="100"> <br>
+              Add New Person
             </div>
           </div>
         </div>
@@ -220,7 +230,7 @@
         </div>
         <div class="cell small-12 medium-6">
           <label>
-          NRIC
+          UEN
           <input type="text" id="entityKey" name="entityKey" />
           </label>
         </div>
@@ -249,7 +259,7 @@
       <thead>
         <tr>
           <th>Name</th>
-          <th>NRIC</th>
+          <th>UEN</th>
           <th>Contact No.</th>
           <th>Email</th>
           <th>Address</th>
@@ -518,6 +528,20 @@
     </div>
   </div>
   <div class="grid-x grid-padding-x">
+    <div class="cell small-12 medium-6">
+      <label>
+      Username<span style="color:red">*</span>
+      <input type="text" id="Username" name="Username"/>
+      </label>
+    </div>
+    <div class="cell small-12 medium-6">
+      <label>
+      Password<span style="color:red">*</span>
+      <input type="Password" id="Password" name="Password"/>
+      </label>
+    </div>
+  </div>
+  <div class="grid-x grid-padding-x" style="display:none">
     <div class="cell">
       <label>
         Role <span style="color:red">*</span>
@@ -550,6 +574,70 @@
     <div class="grid-x grid-padding-x">
       <div class="cell small-12 medium-6"> <label for="poc2Designation"> Designation </label> <input type="text" id="poc2Designation" /> </div>
       <div class="cell small-12 medium-6"> <label for="poc2Department"> Department </label> <input type="text" id="poc2Department" /> </div>
+    </div>
+  </div>
+  <footer class="grid-x grid-margin-x">
+    <button type="button" id="submit" data-close class="cell small-12 medium-offset-4 medium-4 newPackagaSubmitButton">Submit</button>
+  </footer>
+</form>
+<form id="newPersonForm" class="reveal lightBg" data-reveal >
+  <header onloadedmetadata="" class="grid-x grid-padding-x">
+    <h3 class="cell">New Staff</h3>
+    <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+    </button>
+  </header>
+  <div class="grid-x grid-padding-x">
+    <div class="cell">
+      <label>
+      Name <span style="color:red">*</span>
+      <input type="text" id="displayName" name="displayName"/>
+      </label>
+    </div>
+  </div>
+  <div class="grid-x grid-padding-x">
+    <div class="cell">
+      <label>
+        NRIC/FIN <span style="color:red">*</span>
+      <input type="text" id="entityKey" name="entityKey"/>
+      </label>
+    </div>
+  </div>
+  <div class="grid-x grid-padding-x">
+    <div class="cell small-12 medium-6">
+      <label>
+      Contact No. <span style="color:red">*</span>
+      <input type="text" id="contact" name="contact"/>
+      </label>
+    </div>
+    <div class="cell small-12 medium-6">
+      <label>
+      Email <span style="color:red">*</span>
+      <input type="text" id="email" name="email"/>
+      </label>
+    </div>
+  </div>
+  <div class="grid-x grid-padding-x">
+    <div class="cell small-12 medium-6">
+      <label>
+      Username<span style="color:red">*</span>
+      <input type="text" id="Username" name="Username"/>
+      </label>
+    </div>
+    <div class="cell small-12 medium-6">
+      <label>
+      Password<span style="color:red">*</span>
+      <input type="Password" id="Password" name="Password"/>
+      </label>
+    </div>
+  </div>
+  <div class="grid-x grid-padding-x">
+    <div class="cell">
+      <label>
+        Role <span style="color:red">*</span>
+        <select id="role" name="role">
+        </select>
+      </label>
     </div>
   </div>
   <footer class="grid-x grid-margin-x">
