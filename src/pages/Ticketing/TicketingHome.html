@@ -270,6 +270,65 @@
     </table>
   </div><!-- scroll container end -->
 </section>
+<section id="PersonuserContainer" class="adminView" style="display:none">
+  <header class="grid-x">
+    <h2 class="cell auto">Staff(s)</h2>
+  </header>
+  <div id='PersonuserFilter' class="PersonuserFilter tabBoxContainer">
+    <button class="button button3 tabBoxButton" data-target="PersonuserFilterForm" ><i class="icon"><img src="{{root}}assets/img/icon-light-filter.png" alt="icon"/></i>Filter</button>
+    <form class="form2 tabBoxContent reveal" id="PersonuserFilterForm">
+      <button class="close-button tabBoxButtonClose" aria-label="Dismiss alert" type="button" data-close>
+      <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="grid-x grid-padding-x">
+        <div class="cell small-12 medium-6 orgCell">
+          <label>Name
+          <input type="text" id="name" name="name" />
+          </select>
+          </label>
+        </div>
+        <div class="cell small-12 medium-6">
+          <label>
+          NRIC/FIN
+          <input type="text" id="entityKey" name="entityKey" />
+          </label>
+        </div>
+      </div>
+      <div class="grid-x grid-padding-x">
+        <div class="cell small-12 medium-6 orgCell">
+          <label>Contact No.
+          <input type="text" id="contactNo" name="contactNo" />
+          </select>
+          </label>
+        </div>
+        <div class="cell small-12 medium-6">
+          <label>
+          Email
+          <input type="text" id="email" name="email" />
+          </label>
+        </div>
+      </div>
+      <footer class="grid-x grid-margin-x">
+        <button type="button" class="cell small-12 medium-offset-4 medium-4 button2 tabBoxButtonSubmit">Filter</button>
+      </footer>
+    </form>
+  </div>
+  <div class="scrollContainer scrollY">
+    <table class="PersonuserTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>NRIC/FIN</th>
+          <th>Contact No.</th>
+          <th>Email</th>
+          <th>Address</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div><!-- scroll container end -->
+</section>
 <form id="caseAddForm" class="reveal medium lightBg" data-reveal >
   <header onloadedmetadata=""class="grid-x grid-padding-x">
     <h3 class="cell">New Case</h3>
