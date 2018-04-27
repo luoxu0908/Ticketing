@@ -182,9 +182,9 @@ function getCasesList(){
   DateTo = $('#caseFilter #dateCreatedTo').val();
 
   var data = {'Organization':Organization, 'Status':Status, 'Subject':Subject, 'Category':Category, 'DateFrom':DateFrom, 'DateTo': DateTo};
-  if (RoleName=='Clients'){
-    caseThead.html('<tr><th colspan="2">Subject</th><th>Type</th><th>Created Date</th><th>Status</th></tr>');
-  }
+  //if (RoleName=='Clients'){
+    //caseThead.html('<tr><th colspan="2">Subject</th><th>Type</th><th>Created Date</th><th>Status</th></tr>');
+  //}
   caseTbody.html('');
   $.ajax({
     url: apiSrc+"BCMain/FL1.GetCasesList.json",
@@ -210,7 +210,7 @@ function getCasesList(){
             }else{
               htmlString += '<td class="colorCodeNonActive"></td>';
             }
-            if (RoleName=='Clients'){
+            /*if (RoleName=='Clients'){
               htmlString += '<td>'+cases[i].Subject+'</td>';
               htmlString += '<td>'+cases[i].Category+'</td>';
               htmlString += '<td>'+createdDate+'</td>';
@@ -221,7 +221,18 @@ function getCasesList(){
               htmlString += '<td>'+cases[i].DisplayName+'</td>';
               htmlString += '<td>'+createdDate+'</td>';
               htmlString += '<td><span class="statusNew">'+cases[i].Status+'</span></td> </tr>';
-            }
+            }*/
+            htmlString += '<td>'+cases[i].Subject+'</td>';
+            htmlString += '<td>'+cases[i].FLID+'</td>';
+            htmlString += '<td>'+cases[i].PackageType+'</td>';
+            htmlString += '<td>'+cases[i].Category+'</td>';
+            htmlString += '<td>'+cases[i].DisplayName+'</td>';
+            htmlString += '<td>'+createdDate+'</td>';
+            htmlString += '<td>'+cases[i].StartDate+'</td>';
+            htmlString += '<td>'+cases[i].ExpiryDate+'</td>';
+            htmlString += '<td><span class="statusNew">'+cases[i].Status+'</span></td> ';
+            htmlString += '<td>'+cases[i].Involvement+'</td></tr>';
+
           }
           caseTbody.html(htmlString);
           $('.caseTable tbody tr').click(function(){
@@ -373,8 +384,7 @@ function createNewCase(){
   Product = $('#caseAddForm #product').val();
   Category = $('#caseAddForm #category').val();
   Details = $('#caseAddForm #description').val();
-
-  if (Organization.length==0 || ContactPerson.length==0 || Email.length==0 || Contact.length==0 || Subject.length==0 || Details.length==0){
+  if (Organization.length==0 || ContactPerson.length==0 || Email.length==0 || Contact.length==0 || Subject.length==0 || Details.length==0||Product.length==0){
     alert('Please fill in all mandatory fields!');
     return false;
   }
