@@ -222,14 +222,16 @@ function getCasesList(){
               htmlString += '<td>'+createdDate+'</td>';
               htmlString += '<td><span class="statusNew">'+cases[i].Status+'</span></td> </tr>';
             }*/
+            var StartDate= convertDateTime(cases[i].StartDate,'date');
+            var ExpiryDate= convertDateTime(cases[i].ExpiryDate,'date');
             htmlString += '<td>'+cases[i].Subject+'</td>';
             htmlString += '<td>'+cases[i].FLID+'</td>';
             htmlString += '<td>'+cases[i].PackageType+'</td>';
             htmlString += '<td>'+cases[i].Category+'</td>';
             htmlString += '<td>'+cases[i].DisplayName+'</td>';
             htmlString += '<td>'+createdDate+'</td>';
-            htmlString += '<td>'+cases[i].StartDate+'</td>';
-            htmlString += '<td>'+cases[i].ExpiryDate+'</td>';
+            htmlString += '<td>'+StartDate+'</td>';
+            htmlString += '<td>'+ExpiryDate+'</td>';
             htmlString += '<td><span class="statusNew">'+cases[i].Status+'</span></td> ';
             htmlString += '<td>'+cases[i].Involvement+'</td></tr>';
 
