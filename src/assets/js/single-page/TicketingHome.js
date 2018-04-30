@@ -451,10 +451,10 @@ function getProductOwn(){
           var htmlString = '';
           for (var i=0; i<products.length; i++ ){
             var expiryDate=convertDateTime(products[i].ExpiryDate,'date');
-            if(RoleName=='Clients'){
-            htmlString += '<tr id="'+ products[i].Product +'" data-open="caseAddForm">';
+            if(RoleName=='Clients'||RoleName=='Admin'||RoleName=='Security Admin'){
+              htmlString += '<tr id="'+ products[i].Product+'">';
             }else{
-            htmlString += '<tr id="'+ products[i].Product+'">';
+              htmlString += '<tr id="'+ products[i].Product +'" data-open="caseAddForm">';
            }
             htmlString += '<td>'+products[i].Product+'</td>';
             htmlString += '<td>'+products[i].PackageType+'</td>';
