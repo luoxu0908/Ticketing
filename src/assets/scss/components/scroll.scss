@@ -3,7 +3,7 @@
 }
 
 .scrollY {
-	@include scrollY();
+	@include scrollY(300px);
 }
 
 .scrollYPackages {
