@@ -93,6 +93,12 @@ function reviewCase(caseID){
           if (data.d.RetData.Tbl.Rows[0].Success == true) {
             GetCaseDetails(caseID);
             GetCaseHistory(caseID);
+            $('#reviewForm #status').val('');
+            $('#reviewForm #category').val('');
+            $('#reviewForm #scheduleDateFrom').val('');
+            $('#reviewForm #scheduleDateTo').val('');
+            $('#reviewForm #manHours').val('');
+            $('#reviewForm').foundation('close');
           } else { alert(data.d.RetData.Tbl.Rows[0].ReturnMsg); }
         }
       }
@@ -131,6 +137,8 @@ function addNewInvolvement(caseID){
           if (data.d.RetData.Tbl.Rows[0].Success == true) {
             GetCaseInvolvement(caseID);
             GetCaseHistory(caseID);
+            $('#involvementForm #person').val('');
+            $('#involvementForm').foundation('close');
           } else { alert(data.d.RetData.Tbl.Rows[0].ReturnMsg); }
         }
       }
@@ -174,6 +182,7 @@ function addNewActivity(caseID){
       if ((data) && (data.d.RetVal === -1)) {
         if (data.d.RetData.Tbl.Rows.length > 0) {
           if (data.d.RetData.Tbl.Rows[0].Success == true) {
+            $('#activityForm #description').val('');
             $('#activityForm').foundation('close');
             GetCaseHistory(caseID);
           } else { alert(data.d.RetData.Tbl.Rows[0].ReturnMsg); }
@@ -366,6 +375,8 @@ function chargeToPackage(caseID){
           if (data.d.RetData.Tbl.Rows.length > 0) {
             if (data.d.RetData.Tbl.Rows[0].Success == true) {
               $.when(GetAvailablePackage(caseID)).then(function () {
+                $('#chargeForm #packageID').val('');
+                $('#chargeForm').foundation('close');
                 GetCaseDetails(caseID);
                 GetCaseHistory(caseID);
             	});

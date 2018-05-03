@@ -10,7 +10,12 @@ $(function(){
       $("#newUserForm #contactPoint").hide();
     }
   });
-
+  $("#newUserForm #postalCode").blur(function(){
+    var postalCode=$("#newUserForm #postalCode").val();
+    if(postalCode.length>0){
+      GetAddressFromPostalCode(postalCode);
+    }
+  });
   $("#packageAddForm #assurancePlus").change(function(){
     if ($("#packageAddForm #assurancePlus").is(':checked')){
       $("#packageAddForm #assurancePlusNo").show();
@@ -35,7 +40,8 @@ $(function(){
           var org = data.d.RetData.Tbl.Rows[0];
           $('#caseAddForm #organisation, #caseFilter #organisation, #packageAddForm #organisation,#packageFilter #organisation').append('<option value="'+org.DefaultRoleID+'" selected>'+org.DisplayName+'</option>');
         }else if (data.d.RetData.Tbl.Rows.length > 0) {
-          $('#caseAddForm #organisation, #caseFilter #organisation, #packageAddForm #organisation,#packageFilter #organisation').append('<option value="">-- Please Select --</option>');
+          $('#caseAddForm #organisation, #packageAddForm #organisation,#packageFilter #organisation').append('<option value="">-- Please Select --</option>');
+          $( '#caseFilter #organisation').append('<option value="">-- Please All --</option>');
           var orgList = data.d.RetData.Tbl.Rows;
           for (var i=0; i<orgList.length; i++ ){
             $('#caseAddForm #organisation, #caseFilter #organisation, #packageAddForm #organisation,#packageFilter #organisation').append('<option value="'+orgList[i].DefaultRoleID+'">'+orgList[i].DisplayName+'</option>');
@@ -50,6 +56,7 @@ $(function(){
       alert("Error: " + data.responseJSON.d.RetMsg);
     }
   });
+
 
   var getRoleTags =
   $.ajax({
@@ -79,6 +86,8 @@ $(function(){
     }
   });
 
+
+
   var checkRoleAccess =
     $.ajax({
       url: apiSrc+"BCMain/iCtc1.CheckRoleAccess.json",
@@ -103,6 +112,7 @@ $(function(){
       }
     });
 
+    GetCountry();
   $.when(checkRoleAccess, getOrgnaisation).then(function( x ) {
 
     if (RoleName=='Admin'|| RoleName=='Security Admin'){
@@ -413,6 +423,7 @@ function createNewCase(){
       if ((data) && (data.d.RetVal === -1)) {
         if (data.d.RetData.Tbl.Rows.length > 0) {
           if (data.d.RetData.Tbl.Rows[0].Success == true) {
+            $('#caseAddForm').foundation('close');
             getCasesList();
           } else {
             alert(data.d.RetData.Tbl.Rows[0].ReturnMsg);
@@ -450,6 +461,7 @@ function getProductOwn(){
         if (data.d.RetData.Tbl.Rows.length > 0) {
           var products = data.d.RetData.Tbl.Rows;
           var htmlString = '';
+          var hmtlHref=''
           for (var i=0; i<products.length; i++ ){
             var expiryDate=convertDateTime(products[i].ExpiryDate,'date');
             if(RoleName=='Clients'||RoleName=='Admin'||RoleName=='Security Admin'){
@@ -457,8 +469,17 @@ function getProductOwn(){
             }else{
               htmlString += '<tr id="'+ products[i].Product +'" data-open="caseAddForm">';
            }
+           if (products[i].PackageType=='Maintenance')
+           {
+             hmtlHref='https://portal.bizcube.com.sg/BizCubeSoftwareMaintenance_Support.pdf';
+           }else if(products[i].PackageType=='Assurance'){
+             hmtlHref='https://portal.bizcube.com.sg/BizCubeSoftwareAssurance.pdf';
+           }else if(products[i].PackageType=='AssurancePlus'){
+              hmtlHref='https://portal.bizcube.com.sg/BizCubeAssurancePlus.pdf';
+           }
+
             htmlString += '<td>'+products[i].Product+'</td>';
-            htmlString += '<td>'+products[i].PackageType+'</td>';
+            htmlString += "<td><a href="+hmtlHref+">"+products[i].PackageDesc+"</a></td>";
             htmlString += '<td>'+expiryDate+'</td>';
             htmlString += '<td>'+products[i].AssuranceNo+'</td>';
             htmlString += '<td>'+products[i].ManHoursBought+'</td>';
@@ -505,6 +526,9 @@ function getOrgProductList(Organization){
           for (var i=0; i<productList.length; i++ ){
             $('#caseAddForm #product').append('<option value="'+productList[i].Product+'">'+productList[i].Product+'</option>');
           }
+          if(productList.length==1){
+            $('#caseAddForm #product').val(productList[0].Product);
+          }
         }
       }
       else {
@@ -516,6 +540,7 @@ function getOrgProductList(Organization){
     }
   });
 }
+
 
 function addNewPackage(){
   var RoleID, PackageType, Product, StartDate, ExpiryDate, AssurancePlus, NoAssPlus,Quantity, Remarks;
@@ -537,7 +562,7 @@ function addNewPackage(){
     alert('Please fill in all mandatory fields!');
     return false;
   }
-  if(isNaN(ival)){
+  if(isNaN(Quantity)){
     alert('Please fill in Quantity fields!');
     return false;
     }
@@ -629,6 +654,7 @@ function addNewUser(){
           if (data.d.RetData.Tbl.Rows[0].Success == true) {
             clearUserForm();
             alert('New Origanisation added successfully!');
+            $('#newUserForm').foundation('close');
             getUsersList();
           } else { alert(data.d.RetData.Tbl.Rows[0].ReturnMsg); }
         }
@@ -681,6 +707,7 @@ function addNewPerson(){
           if (data.d.RetData.Tbl.Rows[0].Success == true) {
             clearPersonUserForm();
             alert('New Person added successfully!');
+            $('#newPersonForm').foundation('close');
             getPersonUsersList();
           } else { alert(data.d.RetData.Tbl.Rows[0].ReturnMsg); }
         }
@@ -732,6 +759,7 @@ function clearPackageForm(){
 
 function clearUserForm(){
   firstName = $('#newUserForm #firstName').val('');
+  displayName = $('#newUserForm #displayName').val('');
   lastName = $('#newUserForm #lastName').val('');
   entityKey = $('#newUserForm #entityKey').val('');
   mobile =  $('#newUserForm #contact').val('');
@@ -763,7 +791,7 @@ function clearPersonUserForm(){
   displayName=$('#newPersonForm #displayName').val('');
   entityKey = $('#newPersonForm #entityKey').val('');
   mobile =  $('#newPersonForm #contact').val('');
-  email = $('#newUserForm #email').val('');
+  email = $('#newPersonForm #email').val('');
   Username = $('#newPersonForm #Username').val('');
   Password = $('#newPersonForm #Password').val('');
   role = $('#newPersonForm #role').val('');
@@ -791,3 +819,72 @@ function getGUID() {
 	});
 	return uuid;
 };
+
+function GetCountry(){
+  $('#newUserForm #country').html('');
+  $('#newUserForm #country').append('<option value="">-- Please Select --</option>');
+  var data = {'LookupCat':'Countries'};
+  $.ajax({
+    url: apiSrc+"BCMain/iCtc1.GetLookupVal.json",
+    method: "POST",
+    dataType: "json",
+    xhrFields: {withCredentials: true},
+    data: { 'data':JSON.stringify(data),
+            'WebPartKey':WebPartVal,
+            'ReqGUID': getGUID() },
+    success: function(data){
+      if ((data) && (data.d.RetVal === -1)) {
+        if (data.d.RetData.Tbl.Rows.length > 0) {
+          var productList = data.d.RetData.Tbl.Rows;
+          for (var i=0; i<productList.length; i++ ){
+            $('#newUserForm #country').append('<option value="'+productList[i].Description+'">'+productList[i].Description+'</option>');
+          }
+          if(productList.length>0){
+            $('#newUserForm #country').val('Singapore');
+
+          }
+        }
+      }
+      else {
+        alert(data.d.RetMsg);
+      }
+    },
+    error: function(data){
+      alert("Error: " + data.responseJSON.d.RetMsg);
+    }
+  });
+}
+
+function GetAddressFromPostalCode(PostalCode){
+
+  var data = {'Country':'Singapore','PostalCode':'PostalCode'};
+  $.ajax({
+    url: apiSrc+"BCMain/iCtc1.GetAddressFromPostalCode.json",
+    method: "POST",
+    dataType: "json",
+    xhrFields: {withCredentials: true},
+    data: { 'data':JSON.stringify(data),
+            'WebPartKey':WebPartVal,
+            'ReqGUID': getGUID() },
+    success: function(data){
+      if ((data) && (data.d.RetVal === -1)) {
+        if (data.d.RetData.Tbl.Rows.length > 0) {
+          var productList = data.d.RetData.Tbl.Rows;
+
+          if(productList.length>0){
+            $('#newUserForm #blockNo').val('AddrP1');
+            $('#newUserForm #unitNo').val('AddrP2')
+            ;$('#newUserForm #building').val('AddrP4');
+            $('#newUserForm #street').val('AddrP3');
+          }
+        }
+      }
+      else {
+        alert(data.d.RetMsg);
+      }
+    },
+    error: function(data){
+      alert("Error: " + data.responseJSON.d.RetMsg);
+    }
+  });
+}
