@@ -227,7 +227,7 @@ function getCasesList(){
                 htmlString += '<td>'+cases[i].FLID+'</td>';
             htmlString += '<td>'+cases[i].Subject+'</td>';
 
-            htmlString += '<td>'+cases[i].PackageType+'</td>';
+            htmlString += '<td>'+cases[i].Product+'</td>';
             htmlString += '<td>'+cases[i].Category+'</td>';
             htmlString += '<td>'+cases[i].DisplayName+'</td>';
             htmlString += '<td>'+createdDate+'</td>';
