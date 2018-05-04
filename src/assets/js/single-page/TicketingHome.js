@@ -487,7 +487,7 @@ function getProductOwn(){
            }
 
             htmlString += '<td>'+products[i].Product+'</td>';
-            htmlString += "<td><a href="+hmtlHref+">"+products[i].PackageDesc+"</a></td>";
+            htmlString += "<td><a href="+hmtlHref+" target='_blank'>"+products[i].PackageDesc+"</a></td>";
             htmlString += '<td>'+expiryDate+'</td>';
             htmlString += '<td>'+products[i].AssuranceNo+'</td>';
             htmlString += '<td>'+products[i].ManHoursBought+'</td>';
