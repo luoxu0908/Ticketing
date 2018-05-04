@@ -4,6 +4,9 @@ $(function () {
         $('#submit').click(function () {
             Submit();
         });
+        $('#back').click(function () {
+            window.location.href='../login.html'
+        });
     });
   //192.168.123.185
     function Submit() {
