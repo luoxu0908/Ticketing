@@ -25,37 +25,7 @@ $(function(){
     }
   });
 
-  var getOrgnaisation =
-  $.ajax({
-    url: apiSrc+"BCMain/iCtc1.getOrgnaisationList.json",
-    method: "POST",
-    dataType: "json",
-    xhrFields: {withCredentials: true},
-    data: { 'data':JSON.stringify({}),
-            'WebPartKey':WebPartVal,
-            'ReqGUID': getGUID() },
-    success: function(data){
-      if ((data) && (data.d.RetVal === -1)) {
-        if (data.d.RetData.Tbl.Rows.length == 1) {
-          var org = data.d.RetData.Tbl.Rows[0];
-          $('#caseAddForm #organisation, #caseFilter #organisation, #packageAddForm #organisation,#packageFilter #organisation').append('<option value="'+org.DefaultRoleID+'" selected>'+org.DisplayName+'</option>');
-        }else if (data.d.RetData.Tbl.Rows.length > 0) {
-          $('#caseAddForm #organisation, #packageAddForm #organisation,#packageFilter #organisation').append('<option value="">-- Please Select --</option>');
-          $( '#caseFilter #organisation').append('<option value="">-- All --</option>');
-          var orgList = data.d.RetData.Tbl.Rows;
-          for (var i=0; i<orgList.length; i++ ){
-            $('#caseAddForm #organisation, #caseFilter #organisation, #packageAddForm #organisation,#packageFilter #organisation').append('<option value="'+orgList[i].DefaultRoleID+'">'+orgList[i].DisplayName+'</option>');
-          }
-        }
-      }
-      else {
-        alert(data.d.RetMsg);
-      }
-    },
-    error: function(data){
-      alert("Error: " + data.responseJSON.d.RetMsg);
-    }
-  });
+  getOrgnaisationList();
 
 
   var getRoleTags =
@@ -113,7 +83,7 @@ $(function(){
     });
 
     GetCountry();
-  $.when(checkRoleAccess, getOrgnaisation).then(function( x ) {
+  $.when(checkRoleAccess, getOrgnaisationList()).then(function( x ) {
 
     if (RoleName=='Admin'|| RoleName=='Security Admin'){
       $('.adminView').show();
@@ -620,7 +590,8 @@ function addNewUser(){
   street = $('#newUserForm #street').val();
   unit = $('#newUserForm #unitNo').val();
   building = $('#newUserForm #building').val();
-  role = $('#newUserForm #role').val();
+  //role = $('#newUserForm #role').val();
+  role = 'Group.2 (Clients)';
   poc1Name = $('#newUserForm #poc1Name').val();
   poc1Contact = $('#newUserForm #poc1Contact').val();
   poc1Email = $('#newUserForm #poc1Email').val();
@@ -664,6 +635,7 @@ function addNewUser(){
             alert('New Origanisation added successfully!');
             $('#newUserForm').foundation('close');
             getUsersList();
+            getOrgnaisationList();
           } else { alert(data.d.RetData.Tbl.Rows[0].ReturnMsg); }
         }
       }
@@ -865,7 +837,7 @@ function GetCountry(){
 
 function GetAddressFromPostalCode(PostalCode){
 
-  var data = {'Country':'Singapore','PostalCode':'PostalCode'};
+  var data = {'Country':'Singapore','PostalCode':PostalCode};
   $.ajax({
     url: apiSrc+"BCMain/iCtc1.GetAddressFromPostalCode.json",
     method: "POST",
@@ -876,14 +848,45 @@ function GetAddressFromPostalCode(PostalCode){
             'ReqGUID': getGUID() },
     success: function(data){
       if ((data) && (data.d.RetVal === -1)) {
-        if (data.d.RetData.Tbl.Rows.length > 0) {
-          var productList = data.d.RetData.Tbl.Rows;
 
-          if(productList.length>0){
-            $('#newUserForm #blockNo').val('AddrP1');
-            $('#newUserForm #unitNo').val('AddrP2')
-            ;$('#newUserForm #building').val('AddrP4');
-            $('#newUserForm #street').val('AddrP3');
+            var obj = new Object();
+            obj = $.parseJSON(data.d.RetData);
+            $('#newUserForm #blockNo').val(obj.AddrP1||'');
+            $('#newUserForm #unitNo').val(obj.AddrP2||'')
+            ;$('#newUserForm #building').val(obj.AddrP4||'');
+            $('#newUserForm #street').val(obj.AddrP3||'');
+
+      }
+      else {
+        alert(data.d.RetMsg);
+      }
+    },
+    error: function(data){
+      alert("Error: " + data.responseJSON.d.RetMsg);
+    }
+  });
+}
+
+function getOrgnaisationList(){
+  $.ajax({
+    url: apiSrc+"BCMain/iCtc1.getOrgnaisationList.json",
+    method: "POST",
+    dataType: "json",
+    xhrFields: {withCredentials: true},
+    data: { 'data':JSON.stringify({}),
+            'WebPartKey':WebPartVal,
+            'ReqGUID': getGUID() },
+    success: function(data){
+      if ((data) && (data.d.RetVal === -1)) {
+        if (data.d.RetData.Tbl.Rows.length == 1) {
+          var org = data.d.RetData.Tbl.Rows[0];
+          $('#caseAddForm #organisation, #caseFilter #organisation, #packageAddForm #organisation,#packageFilter #organisation').append('<option value="'+org.DefaultRoleID+'" selected>'+org.DisplayName+'</option>');
+        }else if (data.d.RetData.Tbl.Rows.length > 0) {
+          $('#caseAddForm #organisation, #packageAddForm #organisation,#packageFilter #organisation').append('<option value="">-- Please Select --</option>');
+          $( '#caseFilter #organisation').append('<option value="">-- All --</option>');
+          var orgList = data.d.RetData.Tbl.Rows;
+          for (var i=0; i<orgList.length; i++ ){
+            $('#caseAddForm #organisation, #caseFilter #organisation, #packageAddForm #organisation,#packageFilter #organisation').append('<option value="'+orgList[i].DefaultRoleID+'">'+orgList[i].DisplayName+'</option>');
           }
         }
       }
