@@ -41,7 +41,7 @@ $(function(){
           $('#caseAddForm #organisation, #caseFilter #organisation, #packageAddForm #organisation,#packageFilter #organisation').append('<option value="'+org.DefaultRoleID+'" selected>'+org.DisplayName+'</option>');
         }else if (data.d.RetData.Tbl.Rows.length > 0) {
           $('#caseAddForm #organisation, #packageAddForm #organisation,#packageFilter #organisation').append('<option value="">-- Please Select --</option>');
-          $( '#caseFilter #organisation').append('<option value="">-- Please All --</option>');
+          $( '#caseFilter #organisation').append('<option value="">-- All --</option>');
           var orgList = data.d.RetData.Tbl.Rows;
           for (var i=0; i<orgList.length; i++ ){
             $('#caseAddForm #organisation, #caseFilter #organisation, #packageAddForm #organisation,#packageFilter #organisation').append('<option value="'+orgList[i].DefaultRoleID+'">'+orgList[i].DisplayName+'</option>');
