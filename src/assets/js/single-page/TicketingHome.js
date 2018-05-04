@@ -423,7 +423,15 @@ function createNewCase(){
       if ((data) && (data.d.RetVal === -1)) {
         if (data.d.RetData.Tbl.Rows.length > 0) {
           if (data.d.RetData.Tbl.Rows[0].Success == true) {
-            $('#caseAddForm').foundation('close');
+             $('#caseAddForm #organisation').val('');
+             $('#caseAddForm #name').val('');
+             $('#caseAddForm #email').val('');
+             $('#caseAddForm #contact').val('');
+             $('#caseAddForm #title').val('');
+             $('#caseAddForm #product').val('');
+             $('#caseAddForm #category').val('');
+             $('#caseAddForm #description').val('');
+             $('#caseAddForm').foundation('close');
             getCasesList();
           } else {
             alert(data.d.RetData.Tbl.Rows[0].ReturnMsg);
