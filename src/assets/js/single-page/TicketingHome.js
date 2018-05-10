@@ -954,7 +954,7 @@ var access = false;
                           $('#caseAddForm #organisation, #caseFilter #organisation, #packageAddForm #organisation,#packageFilter #organisation').html('<option value="' + org.DefaultRoleID + '" selected>' + org.DisplayName + '</option>');
                       } else if (data.d.RetData.Tbl.Rows.length > 0) {
                           $('#caseAddForm #organisation, #packageAddForm #organisation,#packageFilter #organisation').html('<option value="">-- Please Select --</option>');
-                          $('#caseFilter #organisation').append('<option value="">-- All --</option>');
+                          $('#caseFilter #organisation').html('<option value="">-- All --</option>');
                           var orgList = data.d.RetData.Tbl.Rows;
                           for (var i = 0; i < orgList.length; i++) {
                               $('#caseAddForm #organisation, #caseFilter #organisation, #packageAddForm #organisation,#packageFilter #organisation').html('<option value="' + orgList[i].DefaultRoleID + '">' + orgList[i].DisplayName + '</option>');
