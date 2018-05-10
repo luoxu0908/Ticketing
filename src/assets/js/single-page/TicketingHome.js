@@ -621,6 +621,7 @@ var access = false;
                           if (data.d.RetData.Tbl.Rows[0].Success == true) {
                               clearPackageForm();
                               alert('Package added successfully!');
+                              getPackageList();
                               $('#packageAddForm').foundation('close');
                           } else { alert(data.d.RetData.Tbl.Rows[0].ReturnMsg); }
                       }
