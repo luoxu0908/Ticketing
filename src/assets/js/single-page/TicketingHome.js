@@ -951,13 +951,13 @@ var access = false;
                   if ((data) && (data.d.RetVal === -1)) {
                       if (data.d.RetData.Tbl.Rows.length == 1) {
                           var org = data.d.RetData.Tbl.Rows[0];
-                          $('#caseAddForm #organisation, #caseFilter #organisation, #packageAddForm #organisation,#packageFilter #organisation').append('<option value="' + org.DefaultRoleID + '" selected>' + org.DisplayName + '</option>');
+                          $('#caseAddForm #organisation, #caseFilter #organisation, #packageAddForm #organisation,#packageFilter #organisation').html('<option value="' + org.DefaultRoleID + '" selected>' + org.DisplayName + '</option>');
                       } else if (data.d.RetData.Tbl.Rows.length > 0) {
-                          $('#caseAddForm #organisation, #packageAddForm #organisation,#packageFilter #organisation').append('<option value="">-- Please Select --</option>');
+                          $('#caseAddForm #organisation, #packageAddForm #organisation,#packageFilter #organisation').html('<option value="">-- Please Select --</option>');
                           $('#caseFilter #organisation').append('<option value="">-- All --</option>');
                           var orgList = data.d.RetData.Tbl.Rows;
                           for (var i = 0; i < orgList.length; i++) {
-                              $('#caseAddForm #organisation, #caseFilter #organisation, #packageAddForm #organisation,#packageFilter #organisation').append('<option value="' + orgList[i].DefaultRoleID + '">' + orgList[i].DisplayName + '</option>');
+                              $('#caseAddForm #organisation, #caseFilter #organisation, #packageAddForm #organisation,#packageFilter #organisation').html('<option value="' + orgList[i].DefaultRoleID + '">' + orgList[i].DisplayName + '</option>');
                           }
                       }
                   }
