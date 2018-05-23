@@ -869,7 +869,7 @@ var access = false;
           $('#newUserForm #country').html('');
           $('#newUserForm #country').append('<option value="">-- Please Select --</option>');
           var data = { 'LookupCat': 'Countries' };
-          $.ajax({
+        return  $.ajax({
               url: apiSrc + "BCMain/iCtc1.GetLookupVal.json",
               method: "POST",
               dataType: "json",
