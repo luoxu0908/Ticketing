@@ -603,7 +603,7 @@ var access = false;
               return false;
           }
           //NoAssPlus = $('#packageAddForm #assurancePlusNo').val() * 5 * 8;
-          NoAssPlus = Quantity * 5 * 5 * 8;
+          NoAssPlus = Quantity * 5  * 8;
           var data = { 'RoleID': RoleID, 'PackageType': PackageType, 'Product': Product, 'StartDate': StartDate, 'ExpiryDate': ExpiryDate, 'Remarks': Remarks, 'AssurancePlus': AssurancePlus, 'NoAssPlus': NoAssPlus, 'Quantity': Quantity };
           $.ajax({
               url: apiSrc + "BCMain/Ctc1.AddNewPackage.json",
