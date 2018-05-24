@@ -290,12 +290,12 @@ function GetCaseHistory(caseId){
       if ((data) && (data.d.RetVal === -1)) {
         if (data.d.RetData.Tbl.Rows.length > 0) {
           var caseLogs = data.d.RetData.Tbl.Rows;
-          var threadContainer = ' <div class="legend"><h6>Legend</h6><ul><li class="active">Staff</li><li class="non-active">User</li></ul></div>';
+          var threadContainer = ' <div class="legend"><h6>Legend</h6><ul><li class="active">User</li><li class="non-active">Staff</li></ul></div>';
           for (var i=0; i<caseLogs.length; i++ ){
             var date = convertDateTime(caseLogs[i].CreatedDate,'date');
             var time = convertDateTime(caseLogs[i].CreatedDate,'time');
             if (caseLogs[i].Internal){
-              threadContainer += '<div class="thread" style="border-left:15px #00cc00 solid;margin-top:3px;">'
+              threadContainer += '<div class="thread">'
               threadContainer += '<div class="top"> <span class="datetime">'+date+'<i> '+time+'</i> by '+caseLogs[i].CreatedBy+'</span> <span class="tag">Internal</span></div>'
               threadContainer += '<div class="text">'+caseLogs[i].Details+'</div> </div>';
             }else{
