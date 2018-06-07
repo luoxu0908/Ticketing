@@ -69,7 +69,7 @@ var access = false;
           });
 
           getOrgnaisationList();
-
+          getStaffList();
 
           var getRoleTags =
           $.ajax({
@@ -200,15 +200,16 @@ var access = false;
               caseThead = caseContainerTable.find('thead'),
               caseTbody = caseContainerTable.find('tbody');
 
-          var Organization, Status, Subject, Category, DateFrom, DateTo;
+          var Organization, Status, Subject, Category, DateFrom, DateTo,product,person;
           Organization = $('#caseFilter #organisation').val();
           Status = $('#caseFilter #status').val();
           Subject = $('#caseFilter #subject').val();
           Category = $('#caseFilter #category').val();
           DateFrom = $('#caseFilter #dateCreatedFrom').val();
           DateTo = $('#caseFilter #dateCreatedTo').val();
-
-          var data = { 'Organization': Organization, 'Status': Status, 'Subject': Subject, 'Category': Category, 'DateFrom': DateFrom, 'DateTo': DateTo };
+          product = $('#caseFilter #product').val();
+          person = $('#caseFilter #person').val();
+          var data = { 'Organization': Organization, 'Status': Status, 'Subject': Subject, 'Category': Category, 'DateFrom': DateFrom, 'DateTo': DateTo,'Product':product,'Person':person };
           //if (RoleName=='Clients'){
           //caseThead.html('<tr><th colspan="2">Subject</th><th>Type</th><th>Created Date</th><th>Status</th></tr>');
           //}
@@ -971,4 +972,36 @@ var access = false;
                   alert("Error: " + data.responseJSON.d.RetMsg);
               }
           });
+      }
+
+      function getStaffList(){
+        $('#caseFilterForm #person').html('<option value="">-- Please Select --</option>');
+        var html = '';
+        var data = {};
+        $.ajax({
+          url: apiSrc+"BCMain/iCtc1.GetStaffList.json",
+          method: "POST",
+          dataType: "json",
+          xhrFields: {withCredentials: true},
+          data: { 'data':JSON.stringify(data),
+                  'WebPartKey':WebPartVal,
+                  'ReqGUID': getGUID() },
+          success: function(data){
+            if ((data) && (data.d.RetVal === -1)) {
+              if (data.d.RetData.Tbl.Rows.length > 0) {
+                var staffList = data.d.RetData.Tbl.Rows;
+                for (var i=0; i<staffList.length; i++ ){
+                  html+=('<option value="'+staffList[i].RoleID+'">'+staffList[i].StaffDetails+'</option>');
+                }
+              }
+            }
+            else {
+              alert(data.d.RetMsg);
+            }
+            $('#caseFilterForm #person').append(html);
+          },
+          error: function(data){
+            alert("Error: " + data.responseJSON.d.RetMsg);
+          }
+        });
       }
