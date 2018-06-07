@@ -259,6 +259,7 @@ var access = false;
 
                               htmlString += '<td>' + cases[i].Product + '</td>';
                               htmlString += '<td>' + cases[i].Category + '</td>';
+                              htmlString += '<td>' + cases[i].PriorityLevel + '</td>';
                               htmlString += '<td>' + cases[i].DisplayName + '</td>';
                               htmlString += '<td>' + createdDate + '</td>';
                               htmlString += '<td>' + StartDate + '</td>';
@@ -412,7 +413,7 @@ var access = false;
       };
       //Create new case
       function createNewCase() {
-          var Organization, ContactPerson, Email, Contact, Subject, Product, Category, Details;
+          var Organization, ContactPerson, Email, Contact, Subject, Product, Category, Details,PriorityLevel;
           Organization = $('#caseAddForm #organisation').val();
           ContactPerson = $('#caseAddForm #name').val();
           Email = $('#caseAddForm #email').val();
@@ -420,8 +421,9 @@ var access = false;
           Subject = $('#caseAddForm #title').val();
           Product = $('#caseAddForm #product').val();
           Category = $('#caseAddForm #category').val();
+          PriorityLevel=$('#caseAddForm #PriorityLevel').val();
           Details = $('#caseAddForm #description').val();
-          if (Organization.length == 0 || ContactPerson.length == 0 || Email.length == 0 || Contact.length == 0 || Subject.length == 0 || Details.length == 0 || Product.length == 0) {
+          if (Organization.length == 0 || ContactPerson.length == 0 || Email.length == 0 || Contact.length == 0 || Subject.length == 0 || Details.length == 0 || Product.length == 0||PriorityLevel.length==0) {
               alert('Please fill in all mandatory fields!');
               return false;
           }
@@ -434,7 +436,7 @@ var access = false;
               return false;
           }
 
-          var data = { 'Organization': Organization, 'ContactPerson': ContactPerson, 'Email': Email, 'ContactNo': Contact, 'Subject': Subject, 'Category': Category, 'Details': Details, 'Product': Product };
+          var data = { 'Organization': Organization, 'ContactPerson': ContactPerson, 'Email': Email, 'ContactNo': Contact, 'Subject': Subject, 'Category': Category, 'Details': Details, 'Product': Product,'PriorityLevel':PriorityLevel };
           $.ajax({
               url: apiSrc + "BCMain/FL1.AddNewCase.json",
               method: "POST",
@@ -456,6 +458,7 @@ var access = false;
                               $('#caseAddForm #title').val('');
                               $('#caseAddForm #product').val('');
                               $('#caseAddForm #category').val('');
+                              $('#caseAddForm #PriorityLevel').val('');
                               $('#caseAddForm #description').val('');
                               $('#caseAddForm').foundation('close');
                               getCasesList();

@@ -211,6 +211,7 @@
           <th >Subject</th>
           <th>Product</th>
           <th>Type</th>
+          <th>Priority Level</th>
           <th>Organisation</th>
           <th>Created Date</th>
           <th>Schedule From Date</th>
@@ -418,6 +419,19 @@
           <option value="CR">Change Request</option>
           <option value="Project">Project</option>
           <option value="Road Map">Road Map</option>
+        </select>
+      </label>
+    </div>
+  </div>
+  <div class="grid-x grid-padding-x" id="CreatCasecategory">
+    <div class="cell">
+      <label>
+        Priority Level<span style="color:red">*</span>
+        <select id="PriorityLevel" name="PriorityLevel">
+          <option value="">-- Please Select --</option>
+          <option value="Critical">Critical</option>
+          <option value="Urgent">Urgent</option>
+          <option value="Normal">Normal</option>
         </select>
       </label>
     </div>

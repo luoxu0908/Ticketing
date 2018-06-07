@@ -70,15 +70,20 @@ $(function(){
 });
 
 function reviewCase(caseID){
-  var status, category, dateFrom, dateTo, manHours, actualHour;
+  var status, category, dateFrom, dateTo, manHours, actualHour,PriorityLevel;
   status = $('#reviewForm #status').val();
   category = $('#reviewForm #category').val();
   dateFrom = $('#reviewForm #scheduleDateFrom').val();
   dateTo = $('#reviewForm #scheduleDateTo').val();
   manHours = $('#reviewForm #manHours').val();
+  PriorityLevel = $('#reviewForm #PriorityLevel').val();
   actualHour = $('#reviewForm #actualManHours').val();
 
-  var data = {'FLID':caseID, 'Status':status, 'Category':category, 'ChargeHours':manHours, 'ActualHours':actualHour, 'TargetStartDate':dateFrom, 'TargetEndDate':dateTo};
+  if (PriorityLevel.length==0) {
+      alert('Please fill in all mandatory fields!');
+      return false;
+  }
+  var data = {'FLID':caseID, 'Status':status, 'Category':category, 'ChargeHours':manHours, 'ActualHours':actualHour, 'TargetStartDate':dateFrom, 'TargetEndDate':dateTo,'PriorityLevel':PriorityLevel};
   $.ajax({
     url: apiSrc+"BCMain/FL1.ReviewCase.json",
     method: "POST",
