@@ -96,13 +96,15 @@ function reviewCase(caseID){
       if ((data) && (data.d.RetVal === -1)) {
         if (data.d.RetData.Tbl.Rows.length > 0) {
           if (data.d.RetData.Tbl.Rows[0].Success == true) {
-            GetCaseDetails(caseID);
-            GetCaseHistory(caseID);
             $('#reviewForm #status').val('');
             $('#reviewForm #category').val('');
             $('#reviewForm #scheduleDateFrom').val('');
             $('#reviewForm #scheduleDateTo').val('');
+            $('#reviewForm #PriorityLevel').val('');
             $('#reviewForm #manHours').val('');
+            GetCaseDetails(caseID);
+            GetCaseHistory(caseID);
+
             $('#reviewForm').foundation('close');
           } else { alert(data.d.RetData.Tbl.Rows[0].ReturnMsg); }
         }
