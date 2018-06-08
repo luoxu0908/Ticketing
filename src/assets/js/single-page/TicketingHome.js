@@ -509,11 +509,16 @@ var access = false;
                                   htmlString += '<tr id="' + products[i].Product + '" data-open="caseAddForm">';
                               }
                               if (products[i].PackageType == 'Maintenance') {
-                                  hmtlHref = 'https://portal.bizcube.com.sg/BizCubeSoftwareMaintenance_Support.pdf';
+                                htmlString += "<td><a href='#' target='_blank'>Edit</a></td>";
+                                hmtlHref = 'https://portal.bizcube.com.sg/BizCubeSoftwareMaintenance_Support.pdf';
                               } else if (products[i].PackageType == 'Assurance') {
-                                  hmtlHref = 'https://portal.bizcube.com.sg/BizCubeSoftwareAssurance.pdf';
+                                htmlString += "<td><a href='#' target='_blank'>Edit</a></td>";
+                                hmtlHref = 'https://portal.bizcube.com.sg/BizCubeSoftwareAssurance.pdf';
                               } else if (products[i].PackageType == 'AssurancePlus') {
+                                htmlString += "<td></td>";
                                   hmtlHref = 'https://portal.bizcube.com.sg/BizCubeAssurancePlus.pdf';
+                              }else {
+                                htmlString += "<td></td>";
                               }
 
                               htmlString += '<td>' + products[i].Product + '</td>';

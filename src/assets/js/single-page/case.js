@@ -5,7 +5,9 @@ $(function(){
   //get caseID from URL
   var urlParams = new URLSearchParams(window.location.search),
       caseID = urlParams.get('caseID');
-
+  $('#Print').click(function(){
+    window.print()
+  });
   var checkRoleAccess =
     $.ajax({
       url: apiSrc+"BCMain/iCtc1.CheckRoleAccess.json",
@@ -252,6 +254,7 @@ function GetCaseDetails(caseId){
           var caseDetails = data.d.RetData.Tbl.Rows[0];
           var createdDate = convertDateTime(caseDetails.CreatedDate, 'datetime'),
               updatedDate = convertDateTime(caseDetails.ModifiedDate, 'datetime');
+          $('#summary .CaseID').html(caseDetails.FLID);
           $('#summary .organisation').html(caseDetails.Organisation);
           $('#summary .name').html(caseDetails.ContactPerson);
           $('#summary .email').html(caseDetails.Email);
