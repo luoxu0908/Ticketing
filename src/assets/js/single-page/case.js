@@ -85,12 +85,6 @@ function DoPrint() {
        window.document.body.innerHTML = printData
        window.print()
    }
-   function DisplayAfterPrint() {
-       $('.boxContent').show();
-       $('.titleMain').show();
-       $('#Print').show();
-       $('.buttonType2').show();
-   }
 
 function reviewCase(caseID){
   var status, category, dateFrom, dateTo, manHours, actualHour,PriorityLevel;
