@@ -1,13 +1,17 @@
-var RoleName = '';
+var RoleName = '',PrintFlag='';
 
 $(function(){
 
   //get caseID from URL
   var urlParams = new URLSearchParams(window.location.search),
       caseID = urlParams.get('caseID');
-  $('#Print').click(function(){
-    window.print()
-  });
+      $('#Print').click(function () {
+          DoPrint();
+          var PrintFlag=document.execCommand("print");
+          if (PrintFlag) {
+            window.location.href = './case.html?caseID=' + caseID;
+          }
+      });
   var checkRoleAccess =
     $.ajax({
       url: apiSrc+"BCMain/iCtc1.CheckRoleAccess.json",
@@ -70,6 +74,23 @@ $(function(){
   });
 
 });
+
+
+function DoPrint() {
+       $('.boxContent').hide();
+       $('.titleMain').hide();
+       $('#Print').hide();
+       $('.buttonType2').hide();
+       var printData = document.getElementById("mainContent").innerHTML;
+       window.document.body.innerHTML = printData
+       window.print()
+   }
+   function DisplayAfterPrint() {
+       $('.boxContent').show();
+       $('.titleMain').show();
+       $('#Print').show();
+       $('.buttonType2').show();
+   }
 
 function reviewCase(caseID){
   var status, category, dateFrom, dateTo, manHours, actualHour,PriorityLevel;
