@@ -1,5 +1,5 @@
 var access = false;
-      var RoleName = '';
+var RoleName = '',CurrentPackageID=0;
 
       $(function () {
 
@@ -191,6 +191,10 @@ var access = false;
           });
           $('#newPersonForm #submit').click(function () {
               addNewPerson();
+          });
+
+          $('#packageUpdateForm #submit').click(function () {
+              SaveEditPackage();
           });
       });
 
@@ -509,10 +513,10 @@ var access = false;
                                   htmlString += '<tr id="' + products[i].Product + '" data-open="caseAddForm">';
                               }
                               if (products[i].PackageType == 'Maintenance') {
-                                htmlString += "<td><a href='#' target='_blank'>Edit</a></td>";
+                                htmlString += "<td><a href='#' onclick=EditPackageItem(" + products[i].PackageID + ") >Edit</a></td>";
                                 hmtlHref = 'https://portal.bizcube.com.sg/BizCubeSoftwareMaintenance_Support.pdf';
                               } else if (products[i].PackageType == 'Assurance') {
-                                htmlString += "<td><a href='#' target='_blank'>Edit</a></td>";
+                                htmlString += "<td><a href='#' onclick=EditPackageItem(" + products[i].PackageID + ") >Edit</a></td>";
                                 hmtlHref = 'https://portal.bizcube.com.sg/BizCubeSoftwareAssurance.pdf';
                               } else if (products[i].PackageType == 'AssurancePlus') {
                                 htmlString += "<td></td>";
@@ -958,17 +962,17 @@ var access = false;
               },
               success: function (data) {
                   if ((data) && (data.d.RetVal === -1)) {
-                    $('#caseAddForm #organisation, #caseFilter #organisation, #packageAddForm #organisation,#packageFilter #organisation').html('');
+                    $('#caseAddForm #organisation, #caseFilter #organisation, #packageAddForm #organisation,#packageFilter #organisation,#packageUpdateForm #EditOrganisation').html('');
                     $('#caseFilter #organisation').html('');
                       if (data.d.RetData.Tbl.Rows.length == 1) {
                           var org = data.d.RetData.Tbl.Rows[0];
-                          $('#caseAddForm #organisation, #caseFilter #organisation, #packageAddForm #organisation,#packageFilter #organisation').append('<option value="' + org.DefaultRoleID + '" selected>' + org.DisplayName + '</option>');
+                          $('#caseAddForm #organisation, #caseFilter #organisation, #packageAddForm #organisation,#packageFilter #organisation,#packageUpdateForm #EditOrganisation').append('<option value="' + org.DefaultRoleID + '" selected>' + org.DisplayName + '</option>');
                       } else if (data.d.RetData.Tbl.Rows.length > 0) {
-                          $('#caseAddForm #organisation, #packageAddForm #organisation,#packageFilter #organisation').append('<option value="">-- Please Select --</option>');
+                          $('#caseAddForm #organisation, #packageAddForm #organisation,#packageFilter #organisation,#packageUpdateForm #EditOrganisation').append('<option value="">-- Please Select --</option>');
                           $('#caseFilter #organisation').append('<option value="">-- All --</option>');
                           var orgList = data.d.RetData.Tbl.Rows;
                           for (var i = 0; i < orgList.length; i++) {
-                              $('#caseAddForm #organisation, #caseFilter #organisation, #packageAddForm #organisation,#packageFilter #organisation').append('<option value="' + orgList[i].DefaultRoleID + '">' + orgList[i].DisplayName + '</option>');
+                              $('#caseAddForm #organisation, #caseFilter #organisation, #packageAddForm #organisation,#packageFilter #organisation,#packageUpdateForm #EditOrganisation').append('<option value="' + orgList[i].DefaultRoleID + '">' + orgList[i].DisplayName + '</option>');
                           }
                       }
                   }
@@ -1013,3 +1017,110 @@ var access = false;
           }
         });
       }
+
+      function EditPackageItem(PackageID) {
+          $('#packageUpdateForm').foundation('open');
+          $.when(getOrgnaisationList()).then(function () {
+              GetPackageEntity(PackageID);
+          });
+      };
+
+      function GetPackageEntity(PackageID) {
+            CurrentPackageID=PackageID;
+           $('#packageUpdateForm #EditOrganisation').attr('disabled', 'disabled');
+           $('#packageUpdateForm #EditQuantity').attr('disabled', 'disabled');
+            return $.ajax({
+                 url: apiSrc + "BCMain/Ctc1.GetPackageEntity.json",
+                 method: "POST",
+                 dataType: "json",
+                 xhrFields: { withCredentials: true },
+                 data: {
+                     'data': JSON.stringify({ 'PackageID': PackageID }),
+                     'WebPartKey': WebPartVal,
+                     'ReqGUID': getGUID()
+                 },
+                 success: function (data) {
+                     if ((data) && (data.d.RetVal === -1)) {
+                         if (data.d.RetData.Tbl.Rows.length > 0) {
+                             var PackageItem = data.d.RetData.Tbl.Rows[0];
+                             $('#packageUpdateForm #EditOrganisation').val(PackageItem.RoleID);
+                             $('#packageUpdateForm #EditProduct').val(PackageItem.Product);
+                             $('#packageUpdateForm #EditType').val(PackageItem.PackageType);
+                             $('#packageUpdateForm #EditQuantity').val(PackageItem.Quantity);
+                             $('#packageUpdateForm #EditPackageStartDate').val(data.d.RetData.Tbl.Rows[0].StartDate);
+                             $('#packageUpdateForm #EditPackageExpiryDate').val(data.d.RetData.Tbl.Rows[0].ExpiryDate);
+                             $('#packageUpdateForm #EidtRemarks').val(PackageItem.Remarks);
+                         }
+                     }
+                     else {
+                         alert(data.d.RetMsg);
+                     }
+                 },
+                 error: function (data) {
+                     alert("Error: "+ data.responseJSON.d.RetMsg);
+                 }
+             });
+         }
+
+function SaveEditPackage() {
+    var RoleID, PackageType, Product, StartDate, ExpiryDate, NoAssPlus, Quantity, Remarks;
+    RoleID = $('#packageUpdateForm #EditOrganisation').val();
+    Product = $('#packageUpdateForm #EditProduct').val();
+    PackageType = $('#packageUpdateForm #EditType').val();
+    StartDate = $('#packageUpdateForm #EditPackageStartDate').val();
+    ExpiryDate = $('#packageUpdateForm #EditPackageExpiryDate').val();
+    Quantity = $('#packageUpdateForm #EditQuantity').val();
+    Remarks = $('#packageUpdateForm #EidtRemarks').val();
+    Quantity = parseInt(Quantity);
+
+    if (RoleID.length == 0 || PackageType.length == 0 || Product.length == 0 || StartDate.length == 0 || ExpiryDate.length == 0) {
+        alert('Please fill in all mandatory fields!');
+        return false;
+    }
+    if (isNaN(Quantity)) {
+        alert('Please fill in Quantity fields!');
+        return false;
+    }
+
+    NoAssPlus = Quantity * 5 * 8;
+    var data = { 'PackageID': CurrentPackageID, 'RoleID': RoleID, 'PackageType': PackageType, 'Product': Product, 'StartDate': StartDate, 'ExpiryDate': ExpiryDate, 'Remarks': Remarks, 'NoAssPlus': NoAssPlus, 'Quantity': Quantity };
+    return $.ajax({
+        url: apiSrc + "BCMain/Ctc1.UpdatePackage.json",
+        method: "POST",
+        dataType: "json",
+        xhrFields: { withCredentials: true },
+        data: {
+            'data': JSON.stringify(data),
+            'WebPartKey': WebPartVal,
+            'ReqGUID': getGUID()
+        },
+        success: function (data) {
+            if ((data) && (data.d.RetVal === -1)) {
+                if (data.d.RetData.Tbl.Rows.length > 0) {
+                    if (data.d.RetData.Tbl.Rows[0].Success == true) {
+                      getProductOwn();
+                        alert('Package Updated successfully!');
+
+                        $('#packageUpdateForm').foundation('close');
+                        clearEditPackageForm();
+                    } else { alert(data.d.RetData.Tbl.Rows[0].ReturnMsg); }
+                }
+            }
+            else {
+                alert(data.d.RetMsg);
+            }
+        },
+        error: function (data) {
+            alert("Error: " + data.responseJSON.d.RetMsg);
+        }
+    });
+}
+
+function clearEditPackageForm() {
+ $('#packageUpdateForm #EditOrganisation').val('');
+ $('#packageUpdateForm #EditProduct').val('');
+ $('#packageUpdateForm #EditType').val('');
+ $('#packageUpdateForm #EditPackageStartDate').val('');
+ $('#packageUpdateForm #EditPackageExpiryDate').val('');
+ $('#packageUpdateForm #EidtRemarks').val('');
+}

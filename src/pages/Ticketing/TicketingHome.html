@@ -742,3 +742,74 @@
     <button type="button" id="submit"  class="cell small-12 medium-offset-4 medium-4 newPackagaSubmitButton">Submit</button>
   </footer>
 </form>
+<form id="packageUpdateForm" class="reveal lightBg" data-reveal>
+    <header onloadedmetadata="" class="grid-x grid-padding-x">
+        <h3 class="cell">Edit Package</h3>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+            </button>
+</header>
+    <div class="grid-x grid-padding-x">
+        <div class="cell">
+            <label>
+                Organisation <span style="color:red">*</span>
+                <select id="EditOrganisation" name="EditOrganisation"></select>
+            </label>
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell">
+            <label>
+                Product <span style="color:red">*</span>
+                <input type="text" id="EditProduct" name="EditProduct" />
+            </label>
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell">
+            <label>
+                Package Type <span style="color:red">*</span>
+                <select id="EditType" name="EditType">
+                    <option value="">-- Please Select --</option>
+                    <option value="Maintenance">Mantainance & Support </option>
+                    <option value="Assurance">Software Assurance</option>
+                    <option value="AssurancePlus">Assurance Plus</option>
+                </select>
+            </label>
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell">
+            <label>
+                Quantity <span style="color:red">*</span>
+                <input type="number" id="EditQuantity" name="EditQuantity" value="1" />
+            </label>
+        </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell small-12 medium-6">
+            <label>
+                Start Date <span style="color:red">*</span>
+                <input type="date" id="EditPackageStartDate" name="EditPackageStartDate" />
+            </label>
+        </div>
+        <div class="cell small-12 medium-6">
+            <label>
+                Expiry Date <span style="color:red">*</span>
+                <input type="date" id="EditPackageExpiryDate" name="EditPackageExpiryDate" />
+            </label>
+        </div>
+    </div>
+
+    <div class="grid-x grid-padding-x">
+        <div class="cell">
+            <label>
+                Remarks
+                <textarea id="EidtRemarks" name="EidtRemarks"></textarea>
+            </label>
+        </div>
+    </div>
+    <footer class="grid-x grid-margin-x">
+        <button type="button" id="submit" class="cell small-12 medium-offset-4 medium-4 newPackagaSubmitButton">Submit</button>
+</footer>
+</form>
