@@ -235,7 +235,7 @@ var RoleName = '',CurrentPackageID=0;
                           var htmlString = '';
                           for (var i = 0; i < cases.length; i++) {
                               var createdDate = convertDateTime(cases[i].CreatedDate, 'date');
-                              htmlString += '<tr id="' + cases[i].FLID + '">';
+                              htmlString += '<tr id="' + cases[i].FLID + '" onclick=window.location.href="./case.html?caseID='+cases[i].FLID+'&FileID='+cases[i].FileID+'">';
                               //color code
                               var status = cases[i].Status;
                               var re = /\bOpen\b/;
@@ -244,18 +244,7 @@ var RoleName = '',CurrentPackageID=0;
                               } else {
                                   htmlString += '<td class="colorCodeNonActive"></td>';
                               }
-                              /*if (RoleName=='Clients'){
-                                htmlString += '<td>'+cases[i].Subject+'</td>';
-                                htmlString += '<td>'+cases[i].Category+'</td>';
-                                htmlString += '<td>'+createdDate+'</td>';
-                                htmlString += '<td><span class="statusNew">'+cases[i].Status+'</span></td> </tr>';
-                              }else{
-                                htmlString += '<td>'+cases[i].Subject+'</td>';
-                                htmlString += '<td>'+cases[i].Category+'</td>';
-                                htmlString += '<td>'+cases[i].DisplayName+'</td>';
-                                htmlString += '<td>'+createdDate+'</td>';
-                                htmlString += '<td><span class="statusNew">'+cases[i].Status+'</span></td> </tr>';
-                              }*/
+
                               var StartDate = convertDateTime(cases[i].StartDate, 'date');
                               var ExpiryDate = convertDateTime(cases[i].ExpiryDate, 'date');
                               htmlString += '<td>' + cases[i].FLID + '</td>';
@@ -273,11 +262,6 @@ var RoleName = '',CurrentPackageID=0;
 
                           }
                           caseTbody.html(htmlString);
-                          $('.caseTable tbody tr').click(function () {
-                              var caseId = $(this).attr('id'),
-                                  caseUrl = './case.html?caseID=' + caseId
-                              window.location.href = caseUrl;
-                          });
                       }
                   }
                   else {

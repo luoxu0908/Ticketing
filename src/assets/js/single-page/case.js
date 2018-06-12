@@ -1,10 +1,12 @@
-var RoleName = '',PrintFlag='';
+var RoleName = '',PrintFlag='',FileID='';
 
 $(function(){
 
   //get caseID from URL
   var urlParams = new URLSearchParams(window.location.search),
       caseID = urlParams.get('caseID');
+      FileID=urlParams.get('FileID');
+
       $('#Print').click(function () {
           DoPrint();
           var PrintFlag=document.execCommand("print");
@@ -85,7 +87,9 @@ function DoPrint() {
        window.document.body.innerHTML = printData
        window.print()
    }
-
+function AddNewAttactment(){
+  window.open('../DAV?TabParam='+FileID);
+}
 function reviewCase(caseID){
   var status, category, dateFrom, dateTo, manHours, actualHour,PriorityLevel;
   status = $('#reviewForm #status').val();
