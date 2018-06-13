@@ -1,4 +1,4 @@
-var RoleName = '',PrintFlag='',FileID='';
+var RoleName = '',PrintFlag='',FileID='',caseID='';
 
 $(function(){
 
@@ -88,7 +88,7 @@ function DoPrint() {
        window.print()
    }
 function AddNewAttactment(){
-  window.open('../DAV?TabParam='+FileID);
+  window.open('../BCMain/tabs.htm?Prefix=FL&Type=CaseAttach&title='+caseID+'&TabParam='+FileID);
 }
 function reviewCase(caseID){
   var status, category, dateFrom, dateTo, manHours, actualHour,PriorityLevel;
