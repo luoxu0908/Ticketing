@@ -520,7 +520,11 @@ var RoleName = '',CurrentPackageID=0;
                           }
                       }
                       productTbody.html(htmlString);
-
+                      if(RoleName=='Admin'||RoleName=='Security Admin'){
+                       $('.packageTable tr').find('th:eq(0)').hide(); $('.packageTable tr').find('td:eq(0)').hide();
+                     }else {
+                       $('.packageTable tr').find('th:eq(0)').show(); $('.packageTable tr').find('td:eq(0)').show();
+                     }
 
                       $('.packageTable tbody tr').click(function () {
                           var Product = $(this).attr('id');
