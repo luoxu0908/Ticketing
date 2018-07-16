@@ -294,6 +294,7 @@ function GetCaseDetails(caseId){
           $('#reviewForm #manHours').val(caseDetails.ChargeHours);
           $('#reviewForm #scheduleDateFrom').val(caseDetails.DateFrom);
           $('#reviewForm #scheduleDateTo').val(caseDetails.DateTo);
+          $('#chargeForm #actualManHours').val(caseDetails.ChargeHours);
         // $('#reviewForm #actualManHours').val(caseDetails.ActualHours);
         }
       }
