@@ -146,9 +146,11 @@ var RoleName = '',CurrentPackageID=0;
                   getCasesList();
               } else if (RoleName == 'Support Developer') {
                   $('.developerView').show();
+                  $('#packageContainer').show();
                   getCasesList();
               } else if (RoleName == 'Support Team Lead') {
                   $('.teamLeadView').show();
+                  $('#packageContainer').show();
                   getCasesList();
               } else if (RoleName == 'Sales') {
                   $('.salesView').show();
@@ -491,11 +493,11 @@ var RoleName = '',CurrentPackageID=0;
                           var hmtlHref = ''
                           for (var i = 0; i < products.length; i++) {
                               var expiryDate = convertDateTime(products[i].ExpiryDate, 'date');
-                              if (RoleName == 'Clients' || RoleName == 'Admin' || RoleName == 'Security Admin') {
+                            //  if (RoleName == 'Clients' || RoleName == 'Admin' || RoleName == 'Security Admin') {
                                   htmlString += '<tr id="' + products[i].Product + '">';
-                              } else {
-                                  htmlString += '<tr id="' + products[i].Product + '" data-open="caseAddForm">';
-                              }
+                            //  } else {
+                                //  htmlString += '<tr id="' + products[i].Product + '" data-open="caseAddForm">';
+                              //}
                               if (products[i].PackageType == 'Maintenance') {
                                 htmlString += "<td><a href='#' onclick=EditPackageItem(" + products[i].PackageID + ") >Edit</a></td>";
                                 hmtlHref = 'https://portal.bizcube.com.sg/BizCubeSoftwareMaintenance_Support.pdf';
@@ -520,7 +522,7 @@ var RoleName = '',CurrentPackageID=0;
                           }
                       }
                       productTbody.html(htmlString);
-                      if(RoleName=='Admin'||RoleName=='Security Admin'){
+                      if(RoleName=='Admin'||RoleName=='Security Admin'||RoleName=='Support Developer'||RoleName=='Support Team Lead'){
                        $('.packageTable tr').find('th:eq(0)').hide(); $('.packageTable tr').find('td:eq(0)').hide();
                      }else {
                        $('.packageTable tr').find('th:eq(0)').show(); $('.packageTable tr').find('td:eq(0)').show();
