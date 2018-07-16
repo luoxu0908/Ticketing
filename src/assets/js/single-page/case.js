@@ -1,4 +1,4 @@
-var RoleName = '',PrintFlag='',FileID='',caseID='';
+var RoleName = '',PrintFlag='',FileID='',caseID='',TargetRoleID='';
 
 $(function(){
 
@@ -290,10 +290,11 @@ function GetCaseDetails(caseId){
           $('#reviewInfo .actualHour').html(caseDetails.ActualHours);
           $('#reviewForm #status').val(caseDetails.Status);
           $('#reviewForm #category').val(caseDetails.Category);
+          $('#reviewForm #PriorityLevel').val(caseDetails.PriorityLevel);
+          $('#reviewForm #manHours').val(caseDetails.ChargeHours);
           $('#reviewForm #scheduleDateFrom').val(caseDetails.DateFrom);
           $('#reviewForm #scheduleDateTo').val(caseDetails.DateTo);
-          $('#reviewForm #manHours').val(caseDetails.ChargeHours);
-          $('#reviewForm #actualManHours').val(caseDetails.ActualHours);
+        // $('#reviewForm #actualManHours').val(caseDetails.ActualHours);
         }
       }
       else {
@@ -386,14 +387,27 @@ function GetCaseInvolvement(caseId){
 };
 
 function chargeToPackage(caseID){
-  var packageID;
+  var packageID,ManHours;
   packageID = $('#chargeForm #packageID').val();
-
+  ManHours= $('#chargeForm #actualManHours').val();
   if (packageID == ''){
     alert('Please select package to charge!');
     return false;
   }
-  var data = {'FLID':caseID, 'packageID':packageID};
+
+  if (ManHours == ''){
+    alert('Please fill in all mandatory fields!');
+    return false;
+  }
+
+    ManHours = parseInt(ManHours);
+
+    if (isNaN(ManHours)) {
+      alert('Invalid Actual Man-hour(s)!');
+      return false;
+    }
+
+  var data = {'FLID':caseID, 'packageID':packageID,'ManHours':ManHours};
   if (confirm("Confirming charging to package?")){
     $.ajax({
       url: apiSrc+"BCMain/FL1.ChargeToPackageID.json",
@@ -409,6 +423,7 @@ function chargeToPackage(caseID){
             if (data.d.RetData.Tbl.Rows[0].Success == true) {
               $.when(GetAvailablePackage(caseID)).then(function () {
                 $('#chargeForm #packageID').val('');
+                $('#chargeForm #actualManHours').val('');
                 $('#chargeForm').foundation('close');
                 GetCaseDetails(caseID);
                 GetCaseHistory(caseID);
