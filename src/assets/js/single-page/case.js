@@ -286,7 +286,7 @@ function GetCaseDetails(caseId){
           $('#reviewInfo .category').html(caseDetails.Category);
           $('#reviewInfo .dateFrom').html(caseDetails.DateFrom);
           $('#reviewInfo .dateTo').html(caseDetails.DateTo);
-          $('#reviewInfo .manHours').html(caseDetails.ChargeHours);
+          $('#reviewInfo .manHours').html(caseDetails.ActualHours);
           $('#reviewInfo .actualHour').html(caseDetails.ActualHours);
           $('#reviewForm #status').val(caseDetails.Status);
           $('#reviewForm #category').val(caseDetails.Category);
