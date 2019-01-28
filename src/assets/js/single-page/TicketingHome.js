@@ -556,9 +556,9 @@ function getProductOwn() {
                 }
                 productTbody.html(htmlString);
                 if (RoleName == 'Admin' || RoleName == 'Security Admin' || RoleName == 'Support Developer' || RoleName == 'Support Team Lead') {
-                    $('.packageTable tr').find('th:eq(0)').hide(); $('.packageTable tr').find('td:eq(0)').hide();
-                } else {
                     $('.packageTable tr').find('th:eq(0)').show(); $('.packageTable tr').find('td:eq(0)').show();
+                } else {
+                    $('.packageTable tr').find('th:eq(0)').hide(); $('.packageTable tr').find('td:eq(0)').hide();
                 }
 
                 $('.packageTable tbody tr').click(function () {
