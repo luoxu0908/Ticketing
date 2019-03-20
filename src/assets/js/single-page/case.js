@@ -407,6 +407,10 @@ function chargeToPackage(caseID){
       alert('Invalid Actual Man-hour(s)!');
       return false;
     }
+    else if (ManHours<=0) {
+      alert('Actual Man-hour(s) should greater than 0!');
+       return false;
+   }
 
   var data = {'FLID':caseID, 'packageID':packageID,'ManHours':ManHours};
   if (confirm("Confirming charging to package?")){
