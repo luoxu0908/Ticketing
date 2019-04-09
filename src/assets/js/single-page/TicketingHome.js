@@ -1053,7 +1053,7 @@ function EditPackageItem(PackageID) {
 function GetPackageEntity(PackageID) {
     CurrentPackageID = PackageID;
     $('#packageUpdateForm #EditOrganisation').attr('disabled', 'disabled');
-    $('#packageUpdateForm #EditQuantity').attr('disabled', 'disabled');
+    $('#packageUpdateForm #EditQuantity').attr('readonly', 'readonly');
     return $.ajax({
         url: apiSrc + "BCMain/Ctc1.GetPackageEntity.json",
         method: "POST",
