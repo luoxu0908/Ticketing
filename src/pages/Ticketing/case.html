@@ -1,6 +1,6 @@
 <div id="caseContainer" class="contentContainer">
   <div class="boxContent">
-    <a class="button buttonType2 left buttonType2Back" href="./TicketingHome.html">Back to Case Listing</a>
+    <a class="button buttonType2 left buttonType2Back" href="#" onclick="window.history.back()">Back to Case Listing</a>
   </div>
   <header class="titleMain">
     <h1 class="caseTitle">
@@ -263,9 +263,12 @@
           <select id="status" name="status">
             <option value="">-- Please Select --</option>
             <option value="New - Open">New - Open</option>
-            <option value="Reviewed & Processing - Open">Reviewed & Processing - Open</option>
-            <option value="Reviewed & Pending Approval - Open">Reviewed & Pending Approval - Open</option>
+            <option value="Reviewing - Open">Reviewing - Open</option>
+            <option value="Pending Client Approval – Open">Pending Client Approval – Open</option>
             <option value="Processing - Open">Processing - Open</option>
+            <option value="Pending Client Input – Open">Pending Client Input – Open</option>
+            <option value="KIV – Closed">KIV – Closed</option>
+            <option value="Roadmap Enhancement – Closed">Roadmap Enhancement – Closed</option>
             <option value="Rejected - Closed">Rejected - Closed</option>
             <option value="Completed - Closed">Completed - Closed</option>
           </select>
