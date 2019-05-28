@@ -222,7 +222,7 @@ $(function () {
 });
 function ClearCaseFilter() {
     $('#caseFilter #organisation').val('');
-    $('#caseFilter #status').val('');
+    $('#caseFilter #status').val('Open');
     $('#caseFilter #subject').val('');
     $('#caseFilter #category').val('');
     $('#caseFilter #product').val('');
