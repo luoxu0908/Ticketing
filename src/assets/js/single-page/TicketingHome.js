@@ -238,32 +238,32 @@ function GetCaseFilter() {
         DateFrom_cookie = Cookies.getJSON('DateFrom_cookie'),
         DateTo_cookie = Cookies.getJSON('DateTo_cookie');
 
-    if (Organization_cookie != 'undefined') {
-        $('#caseFilter #organisation').val(Organization_cookie);
-    }
-    if (Status_cookie == '') {
-        $('#caseFilterForm #status').val('');
-    } else {
-        $('#caseFilterForm #status').val(Status_cookie || 'Open');
-    }
-    if (Subject_cookie != 'undefined') {
-        $('#caseFilter #subject').val(Subject_cookie);
-    }
-    if (Category_cookie != 'undefined') {
-        $('#caseFilter #category').val(Category_cookie);
-    }
-    if (Product_cookie != 'undefined') {
-        $('#caseFilter #product').val(Product_cookie);
-    }
-    if (Involvement_cookie != 'undefined') {
-        $('#caseFilter #person').val(Involvement_cookie);
-    }
-    if (DateFrom_cookie != 'undefined') {
-        $('#caseFilter #dateCreatedFrom').val(DateFrom_cookie);
-    }
-    if (DateTo_cookie != 'undefined') {
-        $('#caseFilter #dateCreatedTo').val(DateTo_cookie);
-    }
+        if (Organization_cookie != 'undefined') {
+            $('#caseFilterForm #organisation').val(Organization_cookie);
+        }
+        if (Status_cookie == '') {
+            $('#caseFilterForm #status').val('');
+        } else {
+            $('#caseFilterForm #status').val(Status_cookie || 'Open');
+        }
+        if (Subject_cookie != 'undefined') {
+            $('#caseFilterForm #subject').val(Subject_cookie);
+        }
+        if (Category_cookie != 'undefined') {
+            $('#caseFilterForm #category').val(Category_cookie);
+        }
+        if (Product_cookie != 'undefined') {
+            $('#caseFilterForm #product').val(Product_cookie);
+        }
+        if (Involvement_cookie != 'undefined') {
+            $('#caseFilterForm #person').val(Involvement_cookie);
+        }
+        if (DateFrom_cookie != 'undefined') {
+            $('#caseFilterForm #dateCreatedFrom').val(DateFrom_cookie);
+        }
+        if (DateTo_cookie != 'undefined') {
+            $('#caseFilterForm #dateCreatedTo').val(DateTo_cookie);
+        }
 
 }
 //get case list
