@@ -66,7 +66,9 @@ $(function(){
   $('#involvementForm #submit').click(function(){
     addNewInvolvement(caseID);
   });
-
+  $('#DeleteinvolvementForm #submit').click(function(){
+    DelNewInvolvement(caseID);
+  });
   $('#reviewForm #submit').click(function(){
     reviewCase(caseID);
   });
@@ -127,6 +129,45 @@ function reviewCase(caseID){
             GetCaseHistory(caseID);
 
             $('#reviewForm').foundation('close');
+          } else { alert(data.d.RetData.Tbl.Rows[0].ReturnMsg); }
+        }
+      }
+      else {
+        alert(data.d.RetMsg);
+      }
+    },
+    error: function(data){
+      alert("Error: " + data.responseJSON.d.RetMsg);
+    }
+  });
+}
+function DelNewInvolvement(caseID){
+  var staff, task;
+  staff = $('#DeleteinvolvementForm #person').val();
+  task = $('#DeleteinvolvementForm #task').val();
+
+  if (staff.length==0){
+    alert('Please fill in all mandatory fields!');
+    return false;
+  }
+
+  var data = {'FLID':caseID, 'RoleID':staff, 'Details':task};
+  $.ajax({
+    url: apiSrc+"BCMain/FL1.DelInvolvement.json",
+    method: "POST",
+    dataType: "json",
+    xhrFields: {withCredentials: true},
+    data: { 'data':JSON.stringify(data),
+            'WebPartKey':WebPartVal,
+            'ReqGUID': getGUID() },
+    success: function(data){
+      if ((data) && (data.d.RetVal === -1)) {
+        if (data.d.RetData.Tbl.Rows.length > 0) {
+          if (data.d.RetData.Tbl.Rows[0].Success == true) {
+            GetCaseInvolvement(caseID);
+            GetCaseHistory(caseID);
+            $('#DeleteinvolvementForm #person').val('');
+            $('#DeleteinvolvementForm').foundation('close');
           } else { alert(data.d.RetData.Tbl.Rows[0].ReturnMsg); }
         }
       }
@@ -451,6 +492,7 @@ function chargeToPackage(caseID){
 
 function getStaffList(){
   $('#involvementForm #person').html('<option value="">-- Please Select --</option>');
+    $('#DeleteinvolvementForm #person').html('<option value="">-- Please Select --</option>');
   var html = '';
   var data = {};
   $.ajax({
@@ -474,6 +516,7 @@ function getStaffList(){
         alert(data.d.RetMsg);
       }
       $('#involvementForm #person').append(html);
+      $('#DeleteinvolvementForm #person').append(html);
     },
     error: function(data){
       alert("Error: " + data.responseJSON.d.RetMsg);
