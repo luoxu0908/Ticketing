@@ -131,7 +131,7 @@ $(function () {
 
     GetCountry();
     $.when(checkRoleAccess, getOrgnaisationList()).then(function (x) {
-
+        GetCaseFilter();
         if (RoleName == 'Admin' || RoleName == 'Security Admin') {
             $('.adminView').show();
             $('.clientView').show();
@@ -169,7 +169,19 @@ $(function () {
         createNewCase();
     });
     $('#caseFilter .tabBoxButtonSubmit').click(function () {
+        Cookies.set('Organization_cookie', $('#caseFilter #organisation').val() || '');
+        Cookies.set('Status_cookie', $('#caseFilter #status').val() || '');
+        Cookies.set('Subject_cookie', $('#caseFilter #subject').val() || '');
+        Cookies.set('Category_cookie', $('#caseFilter #category').val() || '');
+        Cookies.set('Product_cookie', $('#caseFilter #product').val() || '');
+        Cookies.set('Involvement_cookie', $('#caseFilter #person').val() || '');
+        Cookies.set('DateFrom_cookie', $('#caseFilter #dateCreatedFrom').val() || '');
+        Cookies.set('DateTo_cookie', $('#caseFilter #dateCreatedTo').val() || '');
         getCasesList();
+    });
+
+    $('#caseFilter #ResetToDefault').click(function () {
+        ClearCaseFilter();
     });
     $('#exportCase').click(function () {
         exportCase();
@@ -198,17 +210,62 @@ $(function () {
         addNewPackage();
     });
     $('#newUserForm #submit').click(function () {
-        addNewUser();
+        addNewUser('O');
     });
     $('#newPersonForm #submit').click(function () {
-        addNewPerson();
+        addNewPerson('I');
     });
 
     $('#packageUpdateForm #submit').click(function () {
         SaveEditPackage();
     });
 });
+function ClearCaseFilter() {
+    $('#caseFilter #organisation').val('');
+    $('#caseFilter #status').val('Open');
+    $('#caseFilter #subject').val('');
+    $('#caseFilter #category').val('');
+    $('#caseFilter #product').val('');
+    $('#caseFilter #person').val('');
+    $('#caseFilter #dateCreatedFrom').val('');
+    $('#caseFilter #dateCreatedTo').val('');
+}
 
+function GetCaseFilter() {
+    var Organization_cookie = Cookies.getJSON('Organization_cookie'), Status_cookie = Cookies.getJSON('Status_cookie'),
+        Subject_cookie = Cookies.getJSON('Subject_cookie'), Category_cookie = Cookies.getJSON('Category_cookie'),
+        Product_cookie = Cookies.getJSON('Product_cookie'), Involvement_cookie = Cookies.getJSON('Involvement_cookie'),
+        DateFrom_cookie = Cookies.getJSON('DateFrom_cookie'),
+        DateTo_cookie = Cookies.getJSON('DateTo_cookie');
+
+        if (Organization_cookie != 'undefined') {
+            $('#caseFilterForm #organisation').val(Organization_cookie);
+        }
+        if (Status_cookie == '') {
+            $('#caseFilterForm #status').val('');
+        } else {
+            $('#caseFilterForm #status').val(Status_cookie || 'Open');
+        }
+        if (Subject_cookie != 'undefined') {
+            $('#caseFilterForm #subject').val(Subject_cookie);
+        }
+        if (Category_cookie != 'undefined') {
+            $('#caseFilterForm #category').val(Category_cookie);
+        }
+        if (Product_cookie != 'undefined') {
+            $('#caseFilterForm #product').val(Product_cookie);
+        }
+        if (Involvement_cookie != 'undefined') {
+            $('#caseFilterForm #person').val(Involvement_cookie);
+        }
+        if (DateFrom_cookie != 'undefined') {
+            $('#caseFilterForm #dateCreatedFrom').val(DateFrom_cookie);
+        }
+        if (DateTo_cookie != 'undefined') {
+            $('#caseFilterForm #dateCreatedTo').val(DateTo_cookie);
+        }
+
+}
 //get case list
 function getCasesList() {
     var caseContainerTable = $('#caseContainer').find('table'),
@@ -672,7 +729,7 @@ function addNewPackage() {
     });
 }
 
-function addNewUser() {
+function addNewUser(NRICType) {
     var displayName, entityKey, mobile, email, country, postalCode, city, state, block, street, unit, building, role = '', poc1Name,
     poc1Contact, poc1Email, poc1Designation, poc1Department, poc2Name, poc2Contact, poc2Email, poc2Designation, poc2Department, Username = '', Password = '';
     displayName = $('#newUserForm #displayName').val();
@@ -714,7 +771,7 @@ function addNewUser() {
         return false;
     }
 
-    var data = { 'displayName': displayName, 'entityKey': entityKey, 'mobile': mobile, 'email': email, 'country': country, 'postalCode': postalCode, 'city': city, 'state': state, 'block': block, 'street': street, 'unit': unit, 'building': building, 'role': role, 'poc1Name': poc1Name, 'poc1Contact': poc1Contact, 'poc1Email': poc1Email, 'poc1Designation': poc1Designation, 'poc1Department': poc1Department, 'poc2Name': poc2Name, 'poc2Contact': poc2Contact, 'poc2Email': poc2Email, 'poc2Designation': poc2Designation, 'poc2Department': poc2Department, 'Username': Username, 'UserPassword': Password };
+    var data = { 'NRICType':NRICType,'displayName': displayName, 'entityKey': entityKey, 'mobile': mobile, 'email': email, 'country': country, 'postalCode': postalCode, 'city': city, 'state': state, 'block': block, 'street': street, 'unit': unit, 'building': building, 'role': role, 'poc1Name': poc1Name, 'poc1Contact': poc1Contact, 'poc1Email': poc1Email, 'poc1Designation': poc1Designation, 'poc1Department': poc1Department, 'poc2Name': poc2Name, 'poc2Contact': poc2Contact, 'poc2Email': poc2Email, 'poc2Designation': poc2Designation, 'poc2Department': poc2Department, 'Username': Username, 'UserPassword': Password };
 
     $.ajax({
         url: apiSrc + "BCMain/iCtc1.AddNewUser1.json",
@@ -748,7 +805,7 @@ function addNewUser() {
     });
 }
 
-function addNewPerson() {
+function addNewPerson(NRICType) {
     var displayName = '', entityKey = '', mobile = '', email = '', country = '', postalCode = '', city = '', state = '', block = '', street = '', unit = '',
     building = '', role = '0', poc1Name = '', poc1Contact = '', poc1Email = '', poc1Designation = '', poc1Department = '', poc2Name = '', poc2Contact = '',
     poc2Email = '', poc2Designation = '', poc2Department = '', Username = '', Password = '';
@@ -770,7 +827,7 @@ function addNewPerson() {
         return false;
     }
 
-    var data = { 'displayName': displayName, 'entityKey': entityKey, 'mobile': mobile, 'email': email, 'country': country, 'postalCode': postalCode, 'city': city, 'state': state, 'block': block, 'street': street, 'unit': unit, 'building': building, 'role': role, 'poc1Name': poc1Name, 'poc1Contact': poc1Contact, 'poc1Email': poc1Email, 'poc1Designation': poc1Designation, 'poc1Department': poc1Department, 'poc2Name': poc2Name, 'poc2Contact': poc2Contact, 'poc2Email': poc2Email, 'poc2Designation': poc2Designation, 'poc2Department': poc2Department, 'Username': Username, 'UserPassword': Password };
+    var data = { 'NRICType':NRICType,'displayName': displayName, 'entityKey': entityKey, 'mobile': mobile, 'email': email, 'country': country, 'postalCode': postalCode, 'city': city, 'state': state, 'block': block, 'street': street, 'unit': unit, 'building': building, 'role': role, 'poc1Name': poc1Name, 'poc1Contact': poc1Contact, 'poc1Email': poc1Email, 'poc1Designation': poc1Designation, 'poc1Department': poc1Department, 'poc2Name': poc2Name, 'poc2Contact': poc2Contact, 'poc2Email': poc2Email, 'poc2Designation': poc2Designation, 'poc2Department': poc2Department, 'Username': Username, 'UserPassword': Password };
 
     $.ajax({
         url: apiSrc + "BCMain/iCtc1.AddNewUser1.json",
