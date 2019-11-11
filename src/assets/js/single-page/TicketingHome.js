@@ -11,8 +11,8 @@ $(function () {
         }
     });
     $("#packageAddForm #type").change(function () {
-        var val = $("#packageAddForm #type option:selected").val();
-        var data = { 'RoleID': $('#packageAddForm #organisation').val() }
+        var val = $("#packageAddForm #type option:selected").val(),Product=$('#packageAddForm #product').val();
+        var data = { 'RoleID': $('#packageAddForm #organisation').val() ,'Product':Product}
         return $.ajax({
             url: apiSrc + "BCMain/FL1.GetPackageExpiryDate.json",
             method: "POST",
